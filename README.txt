@@ -30,7 +30,7 @@ View live examples on the [demo site](http://connekthq.com/ajax-load-more/).
 Ajax Load More accepts a number of paramaters to pass to the WordPress query. These parameters are passed via shortcode. Don't worry, it's super simple with our custom Shortcode Builder.
  
 *   repeater - select from a list of customizable repeaters (Add-on available)
-*   post_types - comma seperated list of post types to query
+*   post_type - comma seperated list of post types to query
 *   category - query by category slug
 *   tag - query by tag slug
 *   author - query by author id
