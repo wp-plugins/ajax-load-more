@@ -19,7 +19,7 @@ function alm_admin_vars() { ?>
     <script type='text/javascript'>
 	 /* <![CDATA[ */
     var alm_admin_localize = <?php echo json_encode( array( 
-        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'ajax_admin_url' => admin_url( 'admin-ajax.php' ),
         'alm_admin_nonce' => wp_create_nonce( 'alm_repeater_nonce' )
     )); ?>
     /* ]]> */
@@ -169,7 +169,7 @@ function alm_repeater_page(){ ?>
 								responseText.addClass('loading').html('<?php _e('Saving data...', ALM_NAME) ?>');
 								$.ajax({
 									type: 'POST',
-									url: alm_admin_localize.ajaxurl,
+									url: alm_admin_localize.ajax_admin_url,
 									data: {
 										action: 'alm_save_repeater',
 										value: value, 
