@@ -6,7 +6,7 @@ Description: A simple solution for Ajax loading of WordPress Posts and Pages.
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.0.1
+Version: 2.0.2
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
@@ -53,8 +53,8 @@ if( !class_exists('AjaxLoadMore') ):
 		define('ALM_NAME', '_ajax_load_more');
 		define('ALM_TITLE', 'Ajax Load More');
 		
-		define('ALM_VERSION', '2.0.1');
-		define('ALM_RELEASE', 'June 9, 2014');
+		define('ALM_VERSION', '2.0.2');
+		define('ALM_RELEASE', 'June 12, 2014');
 		
 		
 		add_action('wp_ajax_ajax_load_more_init', array(&$this, 'alm_query_posts'));
