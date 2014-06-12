@@ -6,13 +6,13 @@ Description: A simple solution for Ajax loading of WordPress Posts and Pages.
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.0.3
+Version: 2.0.4
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.0.3');
+define('ALM_VERSION', '2.0.4');
 define('ALM_RELEASE', 'June 12, 2014');
 
 /*
@@ -25,25 +25,7 @@ define('ALM_RELEASE', 'June 12, 2014');
 
 register_activation_hook( __FILE__, 'alm_install' );
 function alm_install() {  
- 
-	//Removed creation of core repeater file, it is now included directly in the /repeater/ dir.
-	/*
-	$alm_path = plugin_dir_path(__FILE__);
-	//Create direcotry if it doesn't exist
-	if (!file_exists($alm_path.'core/repeater')) {
-	    mkdir($alm_path.'core/repeater', 0777, true);
-	}
-	
-	//Check for default.php, if null create it
-	$filename = plugin_dir_path(__FILE__).'core/repeater/default.php';
-	$defaultContent = '<li><?php if ( has_post_thumbnail() ) { the_post_thumbnail(array(100,100));}?><h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3><p class="entry-meta"><?php the_time("F d, Y"); ?></p><?php the_excerpt(); ?></li>';		
-	if (!file_exists($filename)) {		
-		$handle = fopen($filename, 'w') or die('Cannot open file:  '.$my_file); //implicitly creates file
-		fwrite($handle, $defaultContent);
-		fclose($handle);
-	} 	
-	*/
-	
+ 	
 	global $wpdb;	
 	$table_name = $wpdb->prefix . "alm";
 	$defaultRepeater = '<li><?php if ( has_post_thumbnail() ) { the_post_thumbnail(array(100,100));}?><h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3><p class="entry-meta"><?php the_time("F d, Y"); ?></p><?php the_excerpt(); ?></li>';	

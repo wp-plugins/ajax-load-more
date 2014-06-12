@@ -134,6 +134,10 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.0.4 =
+* Adding plugin version to wpdb table.
+* Removed legacy repeater code.
+
 = 2.0.3 =
 * Fixed issue with WP auto updates overriding the default repeater. Please deactivate and then activate your plugin.
 
