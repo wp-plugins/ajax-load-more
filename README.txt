@@ -134,6 +134,9 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.0.3 =
+* Fixed issue with WP auto updates overriding the default repeater. Please deactivate and then activate your plugin.
+
 = 2.0.2 =
 * Fixed issue with tinymce conflict
 

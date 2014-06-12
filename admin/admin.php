@@ -3,8 +3,6 @@
 /* Admin function */
 
 
-
-
 add_action( 'admin_head', 'alm_admin_vars' );
 add_action( 'wp_ajax_alm_save_repeater', 'alm_save_repeater' ); // Ajax Save Repeater
 add_action( 'wp_ajax_nopriv_alm_save_repeater', 'alm_save_repeater' ); // Ajax Save Repeater
@@ -28,6 +26,35 @@ function alm_admin_vars() { ?>
 
 
 
+/**
+* alm_update_default
+* Update default repeater if plugin versions do not match. This means the plugin has been updated.
+*
+* @since 2.0.0
+*/
+
+add_action( 'admin_init', 'alm_update_default' );
+function alm_update_default() {  
+	 global $wpdb;
+	 $table_name = $wpdb->prefix . "alm";	 
+	 
+	 //If alm table is present
+	 if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
+	    $version = $wpdb->get_var("SELECT pluginVersion FROM $table_name WHERE id = 1");
+	        
+	    if($version != ALM_VERSION){
+		   //Write to repeater file
+		   $defaultRepeater = $wpdb->get_var("SELECT repeaterDefault FROM $table_name WHERE id = 1");
+			$f = ALM_PATH. '/core/repeater/default.php'; // File
+			$o = fopen($f, 'w+'); //Open file
+			$w = fwrite($o, $defaultRepeater); //Save the file
+			$r = fread($o, 100000); //Read it
+			fclose($o); //now close it
+	    }
+    }
+    
+    
+}
 /**
 * alm_admin_menu
 * Create Admin Menu
@@ -208,6 +235,13 @@ function alm_repeater_page(){ ?>
 	   <aside class="alm-sidebar">
 	   		<div class="cta">
 				<h3><?php _e('Repeater Help', ALM_NAME); ?></h3>
+				<?php
+					global $wpdb;
+					
+					//$table_name = $wpdb->prefix . "alm";	
+					//$value = $wpdb->get_var("SELECT repeaterDefault FROM $table_name WHERE id = 1");
+				
+				?>
 				<div class="item">
 					<p><strong><?php _e('What is a repeater?', ALM_NAME); ?></strong></p>
 					<p><?php _e('A repeater is a snippet of code that will execute over and over within a <a href="http://codex.wordpress.org/The_Loop" target="_blank">WordPress loop</a>.</p>', ALM_NAME); ?></p>
@@ -244,7 +278,8 @@ function alm_save_repeater(){
 	// Check our nonce, if they don't match then bounce!
 	if (! wp_verify_nonce( $nonce, 'alm_repeater_nonce' ))
 		die('Get Bounced!');
-			
+	
+	//Write to repeater file
 	$c = Trim(stripslashes($_POST["value"])); // Repeater Value
 	$n = Trim(stripslashes($_POST["repeater"])); // Repeater name
 	if($n === 'default')
@@ -255,6 +290,14 @@ function alm_save_repeater(){
 	$w = fwrite($o, $c); //Save the file
 	$r = fread($o, 100000); //Read it
 	fclose($o); //now close it
+	
+	
+	//Save to database
+	global $wpdb;
+	$table_name = $wpdb->prefix . "alm";		
+	$data_update = array('repeaterDefault' => "$c", 'pluginVersion' => ALM_VERSION);
+	$data_where = array('id' => "1");
+	$wpdb->update($table_name , $data_update, $data_where);
 	
 	//Our results
 	if($w){
