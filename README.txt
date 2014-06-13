@@ -134,6 +134,10 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.0.5 =
+* Updating db table structure
+* Adding upgrader_process_complete checker
+
 = 2.0.4 =
 * Adding plugin version to wpdb table.
 * Removed legacy repeater code.
