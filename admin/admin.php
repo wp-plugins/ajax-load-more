@@ -192,9 +192,8 @@ function alm_repeater_page(){ ?>
 					do_action('alm_custom_repeaters'); 
 				?>		   
 				<script>
-				$(document).ready(function() {
-					"use strict";
-					$(document).ready(function() {
+					jQuery(document).ready(function($) {					   
+					   "use strict";
 						var _alm_admin = {};				
 						
 					    /*
@@ -247,8 +246,7 @@ function alm_repeater_page(){ ?>
 								_alm_admin.saveRepeater(btn);
 							});
 						});		
-					});
-				});		
+					});		
 				</script>
 		   </section>
 		   <!-- End Repeaters -->		   
