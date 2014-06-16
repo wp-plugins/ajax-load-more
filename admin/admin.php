@@ -516,7 +516,7 @@ function alm_adminHeader() {
    $url = plugins_url( 'css/admin.css', __FILE__ );
    echo '<link rel="stylesheet" type="text/css" href="' . $url . '" />';
    echo '<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">';
-   echo '<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>';
+   //echo '<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>';
 }   
 function alm_adminFooter() {
    echo '<script type="text/javascript" src="'.plugins_url( 'js/libs/select2.min.js', __FILE__ ).'"></script>';
