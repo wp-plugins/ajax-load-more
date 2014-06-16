@@ -8,11 +8,11 @@ Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Ajax Load More is simple solution for lazy loading your WordPress posts and pages with AJAX.
+Ajax Load More is simple solution for lazy loading your WordPress posts and pages with Ajax.
 
 == Description ==
 
-A simple yet powerful solution for loading WordPress posts and pages via AJAX requests. Build complex WP queries using our shortcode builder and let Ajax Load More handle the rest.
+A simple yet powerful solution for loading WordPress posts and pages via Ajax requests. Build complex WP queries using our shortcode builder and let Ajax Load More handle the rest.
 
 
 View live examples on the [demo site](http://connekthq.com/ajax-load-more/).
