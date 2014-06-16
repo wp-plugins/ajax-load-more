@@ -16,12 +16,15 @@ add_action( 'wp_ajax_nopriv_alm_save_repeater', 'alm_save_repeater' ); // Ajax S
 * @since 2.0.5
 */
 
-add_action('upgrader_process_complete', 'alm_core_update');
+
+//add_action('upgrader_process_complete', 'alm_core_update', 10, 2); // Removed because it was not reliable
+add_action('admin_init', 'alm_core_update');
 function alm_core_update() {  
 	 global $wpdb;
-	 $table_name = $wpdb->prefix . "alm";
-	     
-	 //If alm table exists
+	 $table_name = $wpdb->prefix . "alm";	     
+    // **********************************************
+	 // If table exists
+	 // **********************************************
 	 if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
 	 
 	    // Updated 2.0.5
@@ -33,15 +36,13 @@ function alm_core_update() {
        }
        
        // ********
-       // @TO-DO
+       // @TO-DO - Upgrade test, will remove in future versions
        // ********
-       // Upgrade test, will remove in future versions	
        $row2 = $wpdb->get_results("SELECT COLUMN_NAME FROM $table_name.COLUMNS WHERE column_name = 'test'");
        if(empty($row2)){
          $wpdb->query("ALTER TABLE $table_name ADD test TEXT NOT NULL");
          $wpdb->update($table_name , array('test' => 'test value'), array('id' => 1));
-       }
-       
+       }       
 	 
        // Compare versions of repeaters, if template versions do not match, update the repeater with value from DB
 	    $version = $wpdb->get_var("SELECT pluginVersion FROM $table_name WHERE name = 'default'");	        
@@ -55,6 +56,25 @@ function alm_core_update() {
 			fclose($o); //now close it
 	    }
     }   
+    
+    // **********************************************
+    // If table DOES NOT exist, create it.	
+    // **********************************************
+    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {	
+	   $createRepeater = '<li><?php if ( has_post_thumbnail() ) { the_post_thumbnail(array(100,100));}?><h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3><p class="entry-meta"><?php the_time("F d, Y"); ?></p><?php the_excerpt(); ?></li>';
+		$sql = "CREATE TABLE $table_name (
+			id mediumint(9) NOT NULL AUTO_INCREMENT,
+			name text NOT NULL,
+			repeaterDefault longtext NOT NULL,
+			pluginVersion text NOT NULL,
+			UNIQUE KEY id (id)
+		);";		
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+		
+		//Insert default data in newly created table
+		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $createRepeater, 'pluginVersion' => ALM_VERSION));
+   }
 }
 
 
