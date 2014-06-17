@@ -7,6 +7,26 @@ add_action( 'wp_ajax_alm_save_repeater', 'alm_save_repeater' ); // Ajax Save Rep
 add_action( 'wp_ajax_nopriv_alm_save_repeater', 'alm_save_repeater' ); // Ajax Save Repeater
 
 
+
+/*
+*  alm_admin_vars
+*  Create admin variables and ajax nonce
+*
+*  @since 2.0.0
+*/
+function alm_admin_vars() { ?>
+    <script type='text/javascript'>
+	 /* <![CDATA[ */
+    var alm_admin_localize = <?php echo json_encode( array( 
+        'ajax_admin_url' => admin_url( 'admin-ajax.php' ),
+        'alm_admin_nonce' => wp_create_nonce( 'alm_repeater_nonce' )
+    )); ?>
+    /* ]]> */
+    </script>
+<?php }
+
+
+
 /**
 * alm_core_update
 * Update default repeater on plugin update.
@@ -16,8 +36,6 @@ add_action( 'wp_ajax_nopriv_alm_save_repeater', 'alm_save_repeater' ); // Ajax S
 * @since 2.0.5
 */
 
-
-//add_action('upgrader_process_complete', 'alm_core_update', 10, 2); // Removed because it was not reliable
 add_action('admin_init', 'alm_core_update');
 function alm_core_update() {  
 	 global $wpdb;
@@ -29,7 +47,7 @@ function alm_core_update() {
 	 
 	    // Updated 2.0.5
        // Check column 'name' exists in $wpdb - this is an upgrade checker.	
-       $row = $wpdb->get_results("SELECT COLUMN_NAME FROM $table_name.COLUMNS WHERE column_name = 'name'");
+       $row = $wpdb->get_col("Show columns from $table_name like 'name'");
        if(empty($row)){
          $wpdb->query("ALTER TABLE $table_name ADD name TEXT NOT NULL");
          $wpdb->update($table_name , array('name' => 'default'), array('id' => 1));
@@ -38,13 +56,13 @@ function alm_core_update() {
        // ********
        // @TO-DO - Upgrade test, will remove in future versions
        // ********
-       $row2 = $wpdb->get_results("SELECT COLUMN_NAME FROM $table_name.COLUMNS WHERE column_name = 'test'");
-       if(empty($row2)){
+       $test = $wpdb->get_col("Show columns from $table_name like 'test'");
+       if(empty($test)){
          $wpdb->query("ALTER TABLE $table_name ADD test TEXT NOT NULL");
          $wpdb->update($table_name , array('test' => 'test value'), array('id' => 1));
        }       
 	 
-       // Compare versions of repeaters, if template versions do not match, update the repeater with value from DB
+       // Compare versions of repeaters, if template versions do not match, update the repeater with value from DB	       
 	    $version = $wpdb->get_var("SELECT pluginVersion FROM $table_name WHERE name = 'default'");	        
 	    if($version != ALM_VERSION){ // First, make sure versions do not match.
 		   //Write to repeater file
@@ -77,23 +95,6 @@ function alm_core_update() {
    }
 }
 
-
-/*
-*  alm_admin_vars
-*  Create admin variables and ajax nonce
-*
-*  @since 2.0.0
-*/
-function alm_admin_vars() { ?>
-    <script type='text/javascript'>
-	 /* <![CDATA[ */
-    var alm_admin_localize = <?php echo json_encode( array( 
-        'ajax_admin_url' => admin_url( 'admin-ajax.php' ),
-        'alm_admin_nonce' => wp_create_nonce( 'alm_repeater_nonce' )
-    )); ?>
-    /* ]]> */
-    </script>
-<?php }
 
 
 /**
