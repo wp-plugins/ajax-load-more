@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Ajax Load More
-Plugin URI: http://connekthq.com/ajax-load-more
+Plugin URI: http://connekthq.com/plugins/ajax-load-more
 Description: A simple solution for Ajax lazy loading of WordPress Posts and Pages.
 Author: Darren Cooney
 Twitter: @KaptonKaos

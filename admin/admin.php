@@ -502,7 +502,7 @@ function alm_add_ons_page(){ ?>
                if (has_action('alm_repeater_installed')){
                   echo '<a class="btn installed" href="#"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{
-                  echo '<a class="btn" href="http://connekthq.com/ajax-load-more/custom-repeaters" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
+                  echo '<a class="btn" href="http://connekthq.com/plugins/ajax-load-more/custom-repeaters/" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
                }
             ?> 		   
 		   </section>

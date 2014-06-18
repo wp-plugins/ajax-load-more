@@ -15,7 +15,7 @@ Ajax Load More is simple solution for lazy loading your WordPress posts and page
 A simple yet powerful solution for loading WordPress posts and pages via Ajax requests. Build complex WP queries using our shortcode builder and let Ajax Load More handle the rest.
 
 
-View live examples on the **[demo site](http://connekthq.com/ajax-load-more/)**.
+View live examples on the **[demo site](http://connekthq.com/plugins/ajax-load-more/)**.
 
 
 = Please Rate Ajax Load More! =
@@ -71,10 +71,10 @@ The following Add-ons are available to increase the functionality of Ajax Load M
 
 **Custom Repeaters**
 The Custom Repeaters add-on will add five additional customizeable repeaters and allow you to select unique repeaters for different content types throughout your theme.
-[More Information](http://connekthq.com/ajax-load-more/custom-repeaters)
+[More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
 = Website =
-http://connekthq.com/ajax-load-more
+http://connekthq.com/ajax-load-more/
 
 
 == Frequently Asked Questions ==
