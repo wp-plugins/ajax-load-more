@@ -57,8 +57,8 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 = Tested Browsers =
 
 * Firefox (mac + pc)
-* Safari (mac + pc)
 * Chrome	(mac + pc)
+* Safari (mac)
 * IE8+
 * iPhone (Safari, Chrome)
 * Android (Native + Chrome)
