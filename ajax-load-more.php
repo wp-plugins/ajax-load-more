@@ -6,13 +6,13 @@ Description: A simple solution for Ajax lazy loading of WordPress Posts and Page
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.0.10
+Version: 2.0.11
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.0.10');
+define('ALM_VERSION', '2.0.11');
 define('ALM_RELEASE', 'June 17, 2014');
 
 /*
