@@ -22,7 +22,7 @@ View live examples on the **[demo site](http://connekthq.com/ajax-load-more/)**.
 
 Your ratings make a big difference! If you like and use Ajax Load More, please consider taking the the time to [rate my plugin](http://wordpress.org/support/view/plugin-reviews/ajax-load-more). Your ratings and reviews will help this plugin grow and provide the motivation needed to keep pushing it forward. 
 
-= PLugin Features =
+= Features =
 
 * **Shortcode/Query Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters)
 * **Customizable Repeater** - edit and extend the functionality of Ajax Load More by editing the repeater (see screenshots)
