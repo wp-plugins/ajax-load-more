@@ -293,7 +293,7 @@ function alm_repeater_page(){ ?>
 				<div class="item">
 					<p><strong><?php _e('Tips and Tricks', ALM_NAME); ?></strong></p>
 					<ul>
-						<li><?php _e('Always open and close your templates with an HTML element. In some rare cases data may not be displayed.<br/>e.g. <code>&lt;li> &lt;/li></code> or <code>&lt;div> &lt;/div></code>', ALM_NAME); ?><br/> </li>
+						<li><?php _e('Always open and close your templates with an HTML element. In some rare cases data may not be displayed if not wrapped in HTML.<br/>e.g. <code>&lt;li> &lt;/li></code> or <code>&lt;div> &lt;/div></code>', ALM_NAME); ?><br/> </li>
 					</ul>
 				</div>			
 		   	</div>
