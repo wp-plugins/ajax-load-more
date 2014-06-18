@@ -134,6 +134,9 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.0.11 =
+* Removed 2 filters for widget_text which were casuing issues in sidebars
+
 = 2.0.10 =
 * Updating default repeater template to include the_permalink()
 

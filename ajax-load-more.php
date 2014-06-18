@@ -76,8 +76,11 @@ if( !class_exists('AjaxLoadMore') ):
 		add_shortcode('ajax_load_more', array(&$this, 'alm_shortcode'));
 		
 		// Allow shortcodes in widget areas
+		// Removed in 2.0.11
+		/*
 		add_filter('widget_text', array(&$this, 'shortcode_unautop'));
 		add_filter('widget_text', array(&$this, 'do_shortcode'));
+		*/
 		
 		// load text domain
 		load_plugin_textdomain( 'ajax-load-more', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
