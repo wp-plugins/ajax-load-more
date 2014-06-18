@@ -134,8 +134,8 @@ How to install Ajax Load More.
 
 == Changelog ==
 
-= 2.0.11 =
-* Adding add_filter('widget_text', 'do_shortcode');
+= 2.0.12 =
+* Adding add_filter('widget_text', 'do_shortcode'); 
 
 = 2.0.11 =
 * Removed 2 filters for widget_text which were casuing issues in sidebars
