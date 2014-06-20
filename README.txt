@@ -20,7 +20,7 @@ View live examples on the **[demo site](http://connekthq.com/plugins/ajax-load-m
 
 = Please Rate Ajax Load More! =
 
-Your ratings make a big difference! If you like and use Ajax Load More, please consider taking the the time to [rate my plugin](http://wordpress.org/support/view/plugin-reviews/ajax-load-more). Your ratings and reviews will help this plugin grow and provide the motivation needed to keep pushing it forward. 
+Your ratings make a big difference! If you like and use Ajax Load More, please consider taking the time to [rate my plugin](http://wordpress.org/support/view/plugin-reviews/ajax-load-more). Your ratings and reviews will help this plugin grow and provide the motivation needed to keep pushing it forward. 
 
 = Features =
 
