@@ -2,7 +2,7 @@
  * WordPress Ajax Load More
  * https://github.com/dcooney/wordpress-ajax-load-more
  *
- * Copyright 2014 Connekt Media - http://connekthq.com
+ * Copyright 2014 Connekt Media - http://cnkt.ca/ajax-load-more/
  * Free to use under the GPLv2 license.
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -30,7 +30,8 @@
 		$max_pages = $content.data('max-pages'),
 		$pause = $content.data('pause'),
 		$offset = $content.data('offset'),
-		$transition = $content.data('transition');
+		$transition = $content.data('transition'),
+		$posts_per_page = $content.data('posts-per-page');
 		
 	AjaxLoadMore.init = function() {
 		
@@ -119,6 +120,7 @@
 				},
 				success: function(data) {
 					$data = $(data); // Convert data to an object
+					//console.log($data.length);
 					if ($init) {
 						$button.text($button_label);
 						$init = false;
@@ -132,7 +134,7 @@
 							$el.fadeIn(speed, 'alm_easeInOutQuad', function() {
 								$loading = false;
 								$button.delay(speed).removeClass('loading');
-								if ($data.length < $content.data('display-posts')) {
+								if ($data.length < $posts_per_page) {
 									$finished = true;
 									$button.addClass('done');
 								}
@@ -141,7 +143,7 @@
 							$el.slideDown(speed, 'alm_easeInOutQuad', function() {
 								$loading = false;
 								$button.delay(speed).removeClass('loading');
-								if ($data.length < $content.data('display-posts')) {
+								if ($data.length < $posts_per_page) {
 									$finished = true;
 									$button.addClass('done');
 								}
