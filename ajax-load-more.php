@@ -250,31 +250,31 @@ if( !class_exists('AjaxLoadMore') ):
 		// the WP loop
 
 		if ($alm_query->have_posts()) :
-			while ($alm_query->have_posts()): $alm_query->the_post();	
-		
+			while ($alm_query->have_posts()): $alm_query->the_post();			
 			$file = $repeater;
 			$include = '';
-			if (has_action('alm_repeater_installed')){ // If Custom Repeaters is installed
-				if($file == 'repeater1'){
-					$include = ALM_REPEATER_PATH . 'repeaters/repeater1.php';
-				}elseif($file == 'repeater2'){
-					$include = ALM_REPEATER_PATH . 'repeaters/repeater2.php';
-				}elseif($file == 'repeater3'){
-					$include = ALM_REPEATER_PATH . 'repeaters/repeater3.php';
-				}elseif($file == 'repeater4'){
-					$include = ALM_REPEATER_PATH . 'repeaters/repeater4.php';
-				}elseif($file == 'repeater5'){
-					$include = ALM_REPEATER_PATH . 'repeaters/repeater5.php';
-				}else{
-					$include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';
-				}				
+			$found = false;
+			if (has_action('alm_repeater_installed')){// If Custom Repeaters is installed
+			   $repeaterLength = ALM_REPEATER_LENGTH;
+			   if(!defined(ALM_REPEATER_LENGTH)){
+   			   $repeaterLength = 6;
+			   }
+			   for ($i = 2; $i <= $repeaterLength + 2; $i++) {
+			      $repeaterVal = 'repeater' . $i;
+   				if($file == $repeaterVal){
+   					$include = ALM_REPEATER_PATH . 'repeaters/'. $file .'.php';
+   					$found = true;
+   				}
+				}
+				if(!$found){
+   				$include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';
+				}	
 			}else{				
 				$include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';
-			}
-						
+			}						
 			include( $include );
 			
-		endwhile;
+         endwhile;
 		endif;
 		wp_reset_query();
 		exit;
