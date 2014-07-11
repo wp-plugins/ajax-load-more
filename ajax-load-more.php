@@ -256,7 +256,7 @@ if( !class_exists('AjaxLoadMore') ):
 			$found = false;
 			if (has_action('alm_repeater_installed')){// If Custom Repeaters is installed
 			   $repeaterLength = ALM_REPEATER_LENGTH;
-			   if(!defined(ALM_REPEATER_LENGTH)){
+			   if(!defined('ALM_REPEATER_LENGTH')){
    			   $repeaterLength = 6;
 			   }
 			   for ($i = 2; $i <= $repeaterLength + 2; $i++) {
