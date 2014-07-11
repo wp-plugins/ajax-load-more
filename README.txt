@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.0.15
+Stable tag: 2.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,10 @@ How to install Ajax Load More.
 6. Shortcode and implementation examples
 
 == Changelog ==
+
+= 2.0.16 =
+* Added file exists check for for custom repeaters
+* Added variable for custom repeater length
 
 = 2.0.15 =
 * Fixed issue with loading of admin javascript and css on pages other than Ajax Load More.

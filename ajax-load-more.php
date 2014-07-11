@@ -6,14 +6,14 @@ Description: A simple solution for Ajax lazy loading of WordPress Posts and Page
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.0.15
+Version: 2.0.16
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.0.15');
-define('ALM_RELEASE', 'July 3, 2014');
+define('ALM_VERSION', '2.0.16');
+define('ALM_RELEASE', 'July 7, 2014');
 
 /*
 *  alm_install
@@ -247,6 +247,7 @@ if( !class_exists('AjaxLoadMore') ):
 		$alm_query = new WP_Query( $args );
 
 
+		
 		// the WP loop
 
 		if ($alm_query->have_posts()) :
@@ -262,7 +263,11 @@ if( !class_exists('AjaxLoadMore') ):
 			   for ($i = 2; $i <= $repeaterLength + 2; $i++) {
 			      $repeaterVal = 'repeater' . $i;
    				if($file == $repeaterVal){
-   					$include = ALM_REPEATER_PATH . 'repeaters/'. $file .'.php';
+   					$include = ALM_REPEATER_PATH . 'repeaters/'. $file .'.php';      					
+         			//confirm file exists
+         			if(!file_exists($include)){		
+         			   $include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';   
+         			}					   
    					$found = true;
    				}
 				}
@@ -271,7 +276,9 @@ if( !class_exists('AjaxLoadMore') ):
 				}	
 			}else{				
 				$include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';
-			}						
+			}		
+						
+			//Include file	
 			include( $include );
 			
          endwhile;
