@@ -6,7 +6,7 @@
 	echo '<h3 class="heading">'.__('Repeater', ALM_NAME). '</h3>';
 	echo '<div class="expand-wrap">';
 	echo '<div class="section-title">';
-	echo '<p>'.__('Select a <a href="?page=ajax-load-more-repeaters">repeater</a> from drop menu.', ALM_NAME). '</p>';
+	echo '<p>'.__('Select a <a href="admin.php?page=ajax-load-more-repeaters" target="_parent">repeater</a> from drop menu.', ALM_NAME). '</p>';
 	echo '</div>';
 	echo '<div class="wrap"><div class="inner">';
 	echo '<select name="repeater-select" id="repeater-select">';
@@ -45,7 +45,7 @@
 	    echo '</div>';
 	    echo '</div>';
    }
-    
+   
    // List Categories	    
 	$cats = get_categories();
 	if($cats){
@@ -83,6 +83,54 @@
 	    echo '</div>';
 	    echo '</div>';
     }
+    
+    
+	// List Taxonomies
+	$tax_args = array(
+		'public'   => true,
+		'_builtin' => false	
+	); 
+	$tax_output = 'objects'; // or objects
+	$taxonomies = get_taxonomies( $tax_args, $tax_output ); 
+	if ( $taxonomies ) {
+		echo '<div class="row taxonomy" id="alm-taxonomy">';   		
+		echo '<h3 class="heading">'.__('Taxonomy', ALM_NAME). '</h3>';
+		echo '<div class="expand-wrap">';
+		echo '<div class="section-title">';
+		echo '<p>'.__('Select your custom taxonomy then select the terms and operator.', ALM_NAME). '</p>';
+		echo '</div>';
+		
+		echo '<div class="wrap">';
+		
+		echo '<div class="inner">';
+		echo '<select name="taxonomy-select" id="taxonomy-select">';
+		echo '<option value="" selected="selected">-- ' . __('Select Taxonomy', ALM_NAME) . ' --</option>';
+	    foreach( $taxonomies as $taxonomy ){
+         echo '<option name="chk-'.$taxonomy->query_var.'" id="chk-'.$taxonomy->query_var.'" value="'.$taxonomy->query_var.'">'.$taxonomy->label.'</option>';
+	    }
+	    echo '</select>';
+	    echo '</div>';
+	    
+	    echo '<div id="taxonomy-extended">';
+	    echo '<div class="inner border-top" id="tax-terms">';
+	    echo '<label class="full">'. __('Select Terms', ALM_NAME) .'</label>';
+	    echo '<div id="tax-terms-container"></div>';
+	    echo '</div>';
+	    
+	    echo '<div class="inner border-top" id="tax-operator-select">';
+	    echo '<label class="full">'. __('Select Operator', ALM_NAME) .'</label>';
+	    echo '<ul class="radio">';
+	    echo '<li><input name="tax-operator" id="tax-in-radio" value="IN" type="radio" checked="checked"><label for="tax-in-radio">IN (default)</li>';
+	    echo '<li><input name="tax-operator" id="tax-not-in-radio" value="NOT IN" type="radio"><label for="tax-not-in-radio">NOT IN</li>';
+	    echo '</ul>';
+	    echo '</div>';	    
+	    echo '</div>';
+	    
+	    echo '</div>';
+	    echo '</div>';
+	    echo '</div>';
+	}
+    
     
     // List Authors	   
 	$authors = get_users();
