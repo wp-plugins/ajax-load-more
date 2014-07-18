@@ -33,6 +33,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 *   repeater - select from a list of customizable repeaters (Add-on available)
 *   post_type - comma seperated list of post types to query
 *   category - query by category slug
+*   tag - query by tag slug
 *   taxonomy - query by custom taxonomy
 *   taxonomy_terms - comma seperated list of custom taxonomy terms to query
 *   taxonomy_operator - Operator to test (IN/NOT IN)
