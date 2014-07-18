@@ -14,7 +14,7 @@ Ajax Load More is simple solution for lazy loading your WordPress posts and page
 
 A simple yet powerful solution for loading WordPress posts and pages via Ajax requests. Build complex WP queries using our shortcode builder and let **[Ajax Load More](http://connekthq.com/plugins/ajax-load-more/)** handle the rest.
 
-All you do is create your shortcode then place the code on your page via the content editor or directly in your template files.
+Create your shortcode then add the code to your page via the content editor or you can add it directly to your template files.
  
 
 = Features =
