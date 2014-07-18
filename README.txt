@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.0.16
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,16 +13,23 @@ Ajax Load More is simple solution for lazy loading your WordPress posts and page
 == Description ==
 
 A simple yet powerful solution for loading WordPress posts and pages via Ajax requests. Build complex WP queries using our shortcode builder and let **[Ajax Load More](http://connekthq.com/plugins/ajax-load-more/)** handle the rest.
+
+All you do is create your shortcode then place the code on your page via the content editor or directly in your template files.
  
 
 = Features =
 
-* **Shortcode/Query Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters)
-* **Customizable Repeater** - edit and extend the functionality of Ajax Load More by editing the repeater (see screenshots)
+* **Shortcode Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters)
+* **Query Parameters** - You can query WordPress for so many different content types it difficult to keep track. Query by Post type, Category, Tags, Custom Taxonomies, Search Terms, Authors and more!!
+* **Customizable Repeater Template** - edit and extend the functionality of Ajax Load More by editing the repeater (see screenshots)
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots)
 
 Check out the live **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
  
+
+= UPDATES =
+QUERY BY CUSTOM TAXONOMY!
+You can now query by custom taxonomy terms. Select your taxonomy, taxonomy terms and operator.
 
 = Shortcode Parameters =
 
@@ -31,7 +38,9 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 *   repeater - select from a list of customizable repeaters (Add-on available)
 *   post_type - comma seperated list of post types to query
 *   category - query by category slug
-*   tag - query by tag slug
+*   taxonomy - query by custom taxonomy
+*   taxonomy_terms - comma seperated list of custom taxonomy terms to query
+*   taxonomy_operator - Operator to test (IN/NOT IN)
 *   author - query by author id
 *   search - query search term ('s') 
 *   exclude - comma separated list of post ID's to exclude from query. 
@@ -57,7 +66,7 @@ Your ratings make a big difference! If you like and use Ajax Load More, please c
 = Tested Browsers =
 
 * Firefox (mac + pc)
-* Chrome	(mac + pc)
+* Chrome (mac + pc)
 * Safari (mac)
 * IE8+
 * iPhone (Safari, Chrome)
@@ -134,12 +143,12 @@ How to install Ajax Load More.
 
 == Changelog ==
 
-= 2.0.16 =
-* Added file exists check for for custom repeaters
-* Added variable for custom repeater length
+= 2.1.0 =
+* Adding custom taxonomy query - select from a list of custom taxonomies then select terms and operator
+* Fixed path to repeater file in admin functions
 
 = 2.0.15 =
-* Fixed issue with loading of admin javascript and css on pages other than Ajax Load More.
+* Fixed issue with loading of admin javascript and css on pages other than Ajax Load More
 
 = 2.0.14 =
 * Fixed issue with author query

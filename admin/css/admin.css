@@ -124,6 +124,36 @@
       overflow: visible;
    }
    
+.ajax-load-more #alm-taxonomy label.full{
+   display: block;
+   clear: both;
+   width: 100%;
+   color: #444;
+   font-weight: 600;
+   padding: 0 0 15px;
+   cursor: default;
+}
+.ajax-load-more .border-top{
+   display: block;
+   border-top: 1px solid #efefef;
+   width: 100%;
+   clear: both;
+   margin: 0 0 20px;
+   padding: 20px 0 0 !important;
+   overflow:hidden;
+}
+.ajax-load-more #taxonomy-extended{
+   display: none;
+   overflow: hidden;
+}
+.ajax-load-more p.warning{
+	color: #d24646;
+	font-size: 13px;
+	border-left: 3px solid #d24646;
+	margin: 0;
+	padding: 0 0 0 10px;
+}
+   
 
 .ajax-load-more label,
 .ajax-load-more input,
@@ -144,12 +174,17 @@
 
 .row.checkboxes{}
 .row.checkboxes input,
-.row.checkboxes label{
+.row.checkboxes label,
+.radio input,
+.radio label{
    float: left;
    width: auto;
    margin-right: 10px;
    padding: 0;
    clear: none;
+}
+.radio input{
+	margin-left: 3px;
 }
 .ajax-load-more input[type=text]{
    padding: 10px;
@@ -521,7 +556,8 @@
 		text-decoration: none;
 	}
    
-.saved-response{
+.saved-response,
+p.loading{
    font-size: 12px;
    padding: 8px 0;
    color:#999;
@@ -532,7 +568,11 @@
    top: 12px;
    left: 15px;
 }
-	.saved-response.loading{
+p.loading{
+	position: static;
+}
+	.saved-response.loading,
+	p.loading{
 		background: url(../img/loader.gif) no-repeat left center;
 		padding-left: 24px;
 	}

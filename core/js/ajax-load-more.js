@@ -104,6 +104,8 @@
 					category: $content.data('category'),
 					author: $content.data('author'),
 					taxonomy: $content.data('taxonomy'),
+					taxonomy_terms: $content.data('taxonomy-terms'),
+					taxonomy_operator: $content.data('taxonomy-operator'),
 					tag: $content.data('tag'),
 					search: $content.data('search'),
 					exclude: $content.data('exclude'),

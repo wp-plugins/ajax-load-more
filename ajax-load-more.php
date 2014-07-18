@@ -2,18 +2,18 @@
 /*
 Plugin Name: Ajax Load More
 Plugin URI: http://connekthq.com/plugins/ajax-load-more
-Description: A simple solution for Ajax lazy loading of WordPress Posts and Pages.
+Description: A simple yet powerful solution for loading WordPress posts and pages with Ajax.
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.0.16
+Version: 2.1.0
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.0.16');
-define('ALM_RELEASE', 'July 7, 2014');
+define('ALM_VERSION', '2.1.0');
+define('ALM_RELEASE', 'July 17, 2014');
 
 /*
 *  alm_install
@@ -76,10 +76,6 @@ if( !class_exists('AjaxLoadMore') ):
 		add_shortcode('ajax_load_more', array(&$this, 'alm_shortcode'));
 		
 		// Allow shortcodes in widget areas
-		// Removed in 2.0.11
-		/*
-		   add_filter('widget_text', array(&$this, 'shortcode_unautop'));
-		*/
 		add_filter('widget_text', 'do_shortcode');
 		
 		// load text domain
@@ -144,6 +140,8 @@ if( !class_exists('AjaxLoadMore') ):
 				'post_type' => 'post',
 				'category' => '',
 				'taxonomy' => '',
+				'taxonomy_terms' => '',
+				'taxonomy_operator' => '',
 				'tag' => '',
 				'author' => '',
 				'search' => '',
@@ -177,7 +175,7 @@ if( !class_exists('AjaxLoadMore') ):
 			$btn_color = ' '.$options['_alm_btn_color'];
 		}
 		
-		return '<'.$wrap_element.' id="ajax-load-more" class="'. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-tag="'.$tag.'" data-author="'.$author.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-search="'.$search.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></'.$wrap_element.'>';
+		return '<'.$wrap_element.' id="ajax-load-more" class="'. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-search="'.$search.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></'.$wrap_element.'>';
 	}
 
 
@@ -200,7 +198,15 @@ if( !class_exists('AjaxLoadMore') ):
 		$postType = (isset($_GET['postType'])) ? $_GET['postType'] : 'post';
 		$category = (isset($_GET['category'])) ? $_GET['category'] : '';
 		$author_id = (isset($_GET['author'])) ? $_GET['author'] : '';
+		
 		$taxonomy = (isset($_GET['taxonomy'])) ? $_GET['taxonomy'] : '';
+		$taxonomy_terms = (isset($_GET['taxonomy_terms'])) ? $_GET['taxonomy_terms'] : '';
+		$taxonomy_operator = $_GET['taxonomy_operator'];
+		if($taxonomy_operator == ''){
+			$taxonomy_operator = 'IN';
+		}
+		
+		$post_format = (isset($_GET['postFormat'])) ? $_GET['postFormat'] : '';
 		$tag = (isset($_GET['tag'])) ? $_GET['tag'] : '';
 		$s = (isset($_GET['search'])) ? $_GET['search'] : '';
 		$exclude = (isset($_GET['exclude'])) ? $_GET['exclude'] : '';
@@ -214,6 +220,7 @@ if( !class_exists('AjaxLoadMore') ):
 		$args = array(
 			'post_type' => $postType,
 			'category_name' => $category,
+			'tag' => $tag,
 			'author' => $author_id,
 			'posts_per_page' => $numPosts,
 			'offset' => $offset + ($numPosts*$page),
@@ -233,21 +240,26 @@ if( !class_exists('AjaxLoadMore') ):
 		}
 
 
-		// Query by Taxonomy/Tag - Taxonomy is deprecated for now
-
-		if(empty($taxonomy)){
-			$args['tag'] = $tag;
-		}else{
-			$args[$taxonomy] = $tag;
-		}
-
+		// Taxonomy query
+		if(!empty($taxonomy)){	
+			$the_terms = explode(", ", $taxonomy_terms);	
+			$args['tax_query'] = array(
+				'relation' => 'OR',
+				array(
+			        'taxonomy' => $taxonomy,
+			        'field' => 'slug',
+			        'terms' => $the_terms,
+			        'operator' => $taxonomy_operator
+				),
+			);
+	    }
+		
 
 		// Query by $args
 
 		$alm_query = new WP_Query( $args );
 
 
-		
 		// the WP loop
 
 		if ($alm_query->have_posts()) :
