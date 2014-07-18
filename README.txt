@@ -12,9 +12,8 @@ Ajax Load More is simple solution for lazy loading your WordPress posts and page
 
 == Description ==
 
-A simple yet powerful solution for loading WordPress posts and pages via Ajax requests. Build complex WP queries using our shortcode builder and let **[Ajax Load More](http://connekthq.com/plugins/ajax-load-more/)** handle the rest.
-
-Create your shortcode then add the code to your page via the content editor or you can add it directly to your template files.
+A simple yet powerful solution for loading WordPress posts and pages via Ajax requests.
+Build complex WordPress queries using our shortcode builder then simply add the shortcode to your page via the content editor or add it directly to your template files. Then sit back and let **[Ajax Load More](http://connekthq.com/plugins/ajax-load-more/)** handle the rest.
  
 
 = Features =
@@ -26,10 +25,6 @@ Create your shortcode then add the code to your page via the content editor or y
 
 Check out the live **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
  
-
-= UPDATES =
-QUERY BY CUSTOM TAXONOMY!
-You can now query by custom taxonomy terms. Select your taxonomy, taxonomy terms and operator.
 
 = Shortcode Parameters =
 
@@ -57,6 +52,12 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 
     [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]
     
+= Demos =
+* **[Default](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Out of the box functionality and styling
+* **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Elements fade in as posts are loaded
+* **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
+
+*Each of our product demo's are able to have a unique look because the [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed*
 
 = Please Rate Ajax Load More! =
 
