@@ -460,7 +460,7 @@ function alm_get_tax_terms(){
 	$terms = get_terms($taxonomy, $tax_args);
 	$returnVal = '';
 	if ( !empty( $terms ) && !is_wp_error( $terms ) ){		
-		$returnVal .= '<ul>';
+		$returnVal .= '<ul class="radio">';
 		foreach ( $terms as $term ) {
 			//print_r($term);
 			$returnVal .='<li><input type="checkbox" name="tax-term-'.$term->slug.'" id="tax-term-'.$term->slug.'" data-type="'.$term->slug.'"><label for="tax-term-'.$term->slug.'">'.$term->name.'</label></li>';		
