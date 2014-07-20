@@ -20,7 +20,7 @@ Build complex WordPress queries using our shortcode builder then add the shortco
 = Features =
 
 * **Shortcode Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters).
-* **Query Parameters** - You can query WordPress for so many different content types it may be difficult to keep track! Query by Post type, Category, Tags, Custom Taxonomies, Search Terms, Authors and more!!
+* **Query Parameters** - You can query WordPress for so many different content types it may be difficult to keep track! Query by Post type, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
 * **Customizable Repeater Templates** - edit and extend the functionality of Ajax Load More by adjusting the repeater template (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 
