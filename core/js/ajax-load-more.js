@@ -107,6 +107,8 @@
 					taxonomy_terms: $content.data('taxonomy-terms'),
 					taxonomy_operator: $content.data('taxonomy-operator'),
 					tag: $content.data('tag'),
+					order: $content.data('order'),
+					orderby: $content.data('orderby'),
 					search: $content.data('search'),
 					exclude: $content.data('exclude'),
 					numPosts: $content.data('posts-per-page'),

@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,52 +12,53 @@ Ajax Load More is simple solution for lazy loading your WordPress posts and page
 
 == Description ==
 
-A simple yet powerful solution for loading WordPress posts and pages via Ajax requests.
-Build complex WordPress queries using our shortcode builder then simply add the shortcode to your page via the content editor or add it directly to your template files. Then sit back and let **[Ajax Load More](http://connekthq.com/plugins/ajax-load-more/)** handle the rest.
+A simple yet powerful solution for loading WordPress posts and pages via Ajax requests. Build complex WP queries using our shortcode builder and let **[Ajax Load More](http://connekthq.com/plugins/ajax-load-more/)** handle the rest.
+
+Create your shortcode then add the code to your page via the content editor or you can add it directly to your template files.
  
 
 = Features =
 
 * **Shortcode Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters)
-* **Query Parameters** - you can query WordPress by so many different parameters it may be difficult to keep track! Query by Custom Post Types, Category, Tag, Custom Taxonomies, Search Term, Authors and more!!
+* **Query Parameters** - You can query WordPress for so many different content types it may be difficult to keep track! Query by Post type, Category, Tags, Custom Taxonomies, Search Terms, Authors and more!!
 * **Customizable Repeater Template** - edit and extend the functionality of Ajax Load More by editing the repeater (see screenshots)
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots)
 
 Check out the live **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
  
 
+= UPDATES =
+QUERY BY CUSTOM TAXONOMY!
+You can now query by custom taxonomy terms. Select your taxonomy, taxonomy terms and operator.
+
 = Shortcode Parameters =
 
 Ajax Load More accepts a number of paramaters to pass to the WordPress query. These parameters are passed via shortcode. Don't worry, it's super simple with our custom Shortcode Builder.
  
-*   repeater - select from a list of customizable repeaters (Add-on available)
-*   post_type - comma seperated list of post types to query
-*   category - query by category slug
-*   tag - query by tag slug
-*   taxonomy - query by custom taxonomy
-*   taxonomy_terms - comma seperated list of custom taxonomy terms to query
-*   taxonomy_operator - Operator to test (IN/NOT IN)
-*   author - query by author id
-*   search - query search term ('s') 
-*   exclude - comma separated list of post ID's to exclude from query. 
-*   offset - offset the initial query (number).
-*   posts_per_page - number of posts to load with each request
-*   scroll - load more posts as the user scrolls the page (true/false)
-*   max_pages - maximum number of pages to load while scrolling (only if scroll == true)  
-*   pause - do not load posts until user clicks load button (true/false) 
-*   transition - select a loading transition from the drop menu (slide/fade) 
-*   button_label - customize the Load More button label.
+*   **repeater** - select from a list of customizable repeaters (Add-on available)
+*   **post_type** - comma seperated list of post types to query
+*   **category** - query by category slug
+*   **taxonomy** - query by custom taxonomy
+*   **taxonomy_terms** - comma seperated list of custom taxonomy terms(slug) to query
+*   **taxonomy_operator** - Operator to test (IN/NOT IN)
+*   **author** - query by author id
+*   **search** - query search term ('s') 
+*   **order** - order posts ASC(ascending) or DESC(descending) order
+*   **orderby** - order posts by date, title, name, menu order, random, author, post ID or comment count
+*   **exclude** - comma separated list of post ID's to exclude from query. 
+*   **offset** - offset the initial query (number).
+*   **posts_per_page** - number of posts to load with each request
+*   **scroll** - load more posts as the user scrolls the page (true/false)
+*   **max_pages** - maximum number of pages to load while scrolling (only if scroll == true)  
+*   **pause** - do not load posts until user clicks load button (true/false) 
+*   **transition** - select a loading transition from the drop menu (slide/fade) 
+*   **button_label** - customize the Load More button label
 
 
 = Example Shortcode =
 
     [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]
     
-= Demos =
-* **[Default](http://connekthq.com/plugins/ajax-load-more/)** - Out of the box functionality and styling
-* **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
-* **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
-*The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
 = Please Rate Ajax Load More! =
 
@@ -143,6 +144,11 @@ How to install Ajax Load More.
 6. Shortcode and implementation examples
 
 == Changelog ==
+
+= 2.1.1 =
+* Adding Order and Orderby query parameters, you can now set these values within the Shortcode Builder
+* Updating core javascript code
+* Fixed bug with taxonomy query selectors
 
 = 2.1.0 =
 * Adding custom taxonomy query - select from a list of custom taxonomies then select terms and operator

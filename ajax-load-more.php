@@ -2,7 +2,7 @@
 /*
 Plugin Name: Ajax Load More
 Plugin URI: http://connekthq.com/plugins/ajax-load-more
-Description: A simple yet powerful solution for loading WordPress posts and pages with Ajax.
+Description: A simple yet powerful solution for lazy loading WordPress posts and pages with Ajax.
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
@@ -12,8 +12,8 @@ Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.1.0');
-define('ALM_RELEASE', 'July 17, 2014');
+define('ALM_VERSION', '2.1.1');
+define('ALM_RELEASE', 'July 20, 2014');
 
 /*
 *  alm_install
@@ -145,6 +145,8 @@ if( !class_exists('AjaxLoadMore') ):
 				'tag' => '',
 				'author' => '',
 				'search' => '',
+				'order' => '',
+				'orderby' => '',
 				'exclude' => '',
 				'offset' => '0',
 				'posts_per_page' => '5',
@@ -175,7 +177,7 @@ if( !class_exists('AjaxLoadMore') ):
 			$btn_color = ' '.$options['_alm_btn_color'];
 		}
 		
-		return '<'.$wrap_element.' id="ajax-load-more" class="'. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-search="'.$search.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></'.$wrap_element.'>';
+		return '<'.$wrap_element.' id="ajax-load-more" class="'. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></'.$wrap_element.'>';
 	}
 
 
@@ -209,6 +211,8 @@ if( !class_exists('AjaxLoadMore') ):
 		$post_format = (isset($_GET['postFormat'])) ? $_GET['postFormat'] : '';
 		$tag = (isset($_GET['tag'])) ? $_GET['tag'] : '';
 		$s = (isset($_GET['search'])) ? $_GET['search'] : '';
+		$order = (isset($_GET['order'])) ? $_GET['order'] : 'DESC';
+		$orderby = (isset($_GET['orderby'])) ? $_GET['orderby'] : 'date';
 		$exclude = (isset($_GET['exclude'])) ? $_GET['exclude'] : '';
 		$numPosts = (isset($_GET['numPosts'])) ? $_GET['numPosts'] : 6;
 		$page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
@@ -225,8 +229,8 @@ if( !class_exists('AjaxLoadMore') ):
 			'posts_per_page' => $numPosts,
 			'offset' => $offset + ($numPosts*$page),
 			's' => $s,
-			'orderby' => 'date',
-			'order' => 'DESC',
+			'order' => $order,
+			'orderby' => $orderby,
 			'post_status' => 'publish',
 			'ignore_sticky_posts' => true,
 		);

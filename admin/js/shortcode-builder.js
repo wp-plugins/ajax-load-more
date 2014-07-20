@@ -42,8 +42,9 @@ jQuery(document).ready(function($) {
             if(post_type_count>1){
                output += ', ' + $(this).data('type');
             }else{
-               if($('.post_types input').hasClass('changed'))
-                  output += ' post_type="'+$(this).data('type')+'';               
+               if($(this).hasClass('changed')){
+                  output += ' post_type="'+$(this).data('type')+''; 
+               }              
             }
          }
       }); 
@@ -58,7 +59,7 @@ jQuery(document).ready(function($) {
       var tax = $('select#taxonomy-select').val(),
       	  tax_operator = $('#tax-operator-select input[name=tax-operator]:checked').val();      	  
       	          
-      if(tax != '' && tax != undefined){
+      if(tax !== '' && tax !== undefined){
          output += ' taxonomy="'+tax+'"';
          if($('select#taxonomy-select').hasClass('changed')){         	
          	$('#taxonomy-extended').slideDown(200, 'alm_easeInOutQuad');
@@ -82,7 +83,7 @@ jQuery(document).ready(function($) {
 		 output += '"';
          
          //Get Tax Operator
-         if(tax_operator != '' && tax_operator != undefined){
+         if(tax_operator !== '' && tax_operator !== 'IN' && tax_operator !== undefined && tax_term_count !== 0){
 	        output += ' taxonomy_operator="'+tax_operator+'"';
          }         
       }else{
@@ -94,7 +95,7 @@ jQuery(document).ready(function($) {
       // ---------------------------
       
       var cat = $('.categories select').val();              
-      if(cat != '' && cat != undefined) 
+      if(cat !== '' && cat !== undefined) 
          output += ' category="'+cat+'"';
       
       // ---------------------------
@@ -102,7 +103,7 @@ jQuery(document).ready(function($) {
       // ---------------------------
       
       var tag = $('.tags select').val();              
-      if(tag != '' && tag != undefined) 
+      if(tag !== '' && tag !== undefined) 
          output += ' tag="'+tag+'"';   
       
       // ---------------------------
@@ -110,7 +111,7 @@ jQuery(document).ready(function($) {
       // ---------------------------
       
       var author = $('.authors select').val();              
-      if(author != '' && author != undefined) 
+      if(author !== '' && author !== undefined) 
          output += ' author="'+author+'"';   
       
       
@@ -120,18 +121,34 @@ jQuery(document).ready(function($) {
       
       var search = $('.search-term input').val();    
       search = $.trim(search);       
-      if(search != '') 
+      if(search !== '') 
          output += ' search="'+search+'"';  
          
           
+      // ---------------------------
+      // - Ordering      
+      // ---------------------------
+      var order = $('select#post-order').val(),
+          orderby = $('select#post-orderby').val();    
+      if(order !== 'DESC') 
+         output += ' order="'+order+'"'; 
+      if(orderby !== 'date') 
+         output += ' orderby="'+orderby+'"'; 
+         
+         
       // ---------------------------
       // - Exclude posts      
       // ---------------------------
       
       var exclude = $('.exclude input').val();    
       exclude = $.trim(exclude);       
-      if(exclude != '') 
-         output += ' exclude="'+exclude+'"';   
+      if(exclude !== ''){
+         //Remove trailing comma, if present
+         if(exclude.charAt( exclude.length-1 ) == ",") {
+            exclude = exclude.slice(0, -1)
+         }
+         output += ' exclude="'+exclude+'"';  
+      } 
       
       
       // ---------------------------
@@ -148,7 +165,7 @@ jQuery(document).ready(function($) {
       // ---------------------------
       
       var posts_per_page = $('.posts_per_page select').val();  
-      if(posts_per_page > 0 && posts_per_page != 5 && $('.posts_per_page select').hasClass('changed'))
+      if(posts_per_page > 0 && posts_per_page !== 5 && $('.posts_per_page select').hasClass('changed'))
          output += ' posts_per_page="'+posts_per_page+'"';            
       
       
@@ -157,7 +174,7 @@ jQuery(document).ready(function($) {
       // ---------------------------
       
       var scroll_load = $('.scroll_load input[name=scroll]:checked').val();     
-      if(scroll_load == 'f'){
+      if(scroll_load === 'f'){
          $('.row.max_pages').slideUp(100, 'alm_easeInOutQuad');
          if($('.scroll_load input').hasClass('changed'))          
             output += ' scroll="false"';         
@@ -174,7 +191,7 @@ jQuery(document).ready(function($) {
       // ---------------------------
       
       var pause_load = $('.pause_load input[name=pause]:checked').val();     
-      if(pause_load == 't')          
+      if(pause_load === 't')          
             output += ' pause="true"';         
 
       
@@ -182,8 +199,8 @@ jQuery(document).ready(function($) {
       // - transition       
       // ---------------------------
       
-      var transition = $('.transition select').val(); 
-      if($('.transition select').hasClass('changed'))
+      var transition = $('.transition input[name=transition]:checked').val(); 
+      if(transition !== 'slide')
          output += ' transition="'+transition+'"';
       
       
@@ -193,7 +210,7 @@ jQuery(document).ready(function($) {
       
       var btn_lbl = $('.btn-label input').val();    
       btn_lbl = $.trim(btn_lbl);       
-      if(btn_lbl != '' && $('.btn-label input').hasClass('changed')) 
+      if(btn_lbl !== '' && $('.btn-label input').hasClass('changed')) 
          output += ' button_label="'+btn_lbl+'"';         
       
       
@@ -210,17 +227,17 @@ jQuery(document).ready(function($) {
    
    $('.post_types input[type=checkbox]#chk-post').prop('checked', true).addClass('changed'); //Select post by default
    
-   $('.repeater select, .post_types input[type=checkbox], .categories select, .tags select, .authors select, .offset select, .posts_per_page select, .scroll_load input[type=radio], .pause_load input[type=radio], .max_pages select, .transition select, #taxonomy-select, #tax-operator-select input[type=radio]').change(function() {
+   $('.repeater select, .post_types input[type=checkbox], .categories select, .tags select, .authors select, .offset select, .posts_per_page select, .scroll_load input[type=radio], .pause_load input[type=radio], .max_pages select, .transition input[type=radio], #taxonomy-select, #tax-operator-select input[type=radio], #post-order, #post-orderby').change(function() {
       $(this).addClass('changed');      
 
-      // If post type is not selected, select post.
+      // If post type is not selected, select 'post'.
       if(!$('.post_types input[type=checkbox]:checked').length > 0){
          $('.post_types input[type=checkbox]#chk-post').prop('checked', true);
       } 
+      // If Tax Term Operator is not selected, select 'IN'.
       if(!$('#tax-operator-select input[type=radio]:checked').length > 0){
          $('#tax-operator-select input[type=radio]#tax-in-radio').prop('checked', true);
-      }
-      
+      }      
       
       _alm.buildShortcode();
    });
@@ -254,7 +271,7 @@ jQuery(document).ready(function($) {
 	
 	$('select.jump-menu').change(function() {
 		var pos = $(this).val();
-		if(pos!= 'null'){
+		if(pos !== 'null'){
 			$('html,body').animate({
 			   scrollTop: $('#'+pos).offset().top - ($('.intro').height() - 20)
 			}, 200, 'alm_easeInOutQuad');
@@ -280,6 +297,19 @@ jQuery(document).ready(function($) {
 			});
 		}
 	});
+	
+    $('.toggle-all').click(function(e){ 
+        var el = $(this);
+		if($(el).hasClass('closed')){
+		    $(el).removeClass('closed');
+            $('h3.heading').removeClass('open');
+			$('.expand-wrap').slideDown(100, 'alm_easeInOutQuad');
+		}else{
+		    $(el).addClass('closed');
+            $('h3.heading').addClass('open');
+			$('.expand-wrap').slideUp(100, 'alm_easeInOutQuad');
+		}
+    });
 	
 	
    /*
