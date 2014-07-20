@@ -58,7 +58,8 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 = Demos =
 * **[Default](http://connekthq.com/plugins/ajax-load-more/)** - Out of the box functionality and styling
 * **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
-* **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user <br/>
+* **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
+
 *The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
 = Please Rate Ajax Load More! =
