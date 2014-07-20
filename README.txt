@@ -70,7 +70,9 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 
 The following Add-ons are available to increase the functionality of Ajax Load More.
 
-**[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
+**Custom Repeaters**
+
+The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters) add-on will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
 [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
 
