@@ -24,7 +24,7 @@ Build complex WordPress queries using our shortcode builder then add the shortco
 * **Customizable Repeater Templates** - edit and extend the functionality of Ajax Load More by adjusting the repeater template (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 
-Check out the live **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
+Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
 
 
