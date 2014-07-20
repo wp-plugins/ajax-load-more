@@ -12,18 +12,17 @@ Ajax Load More is simple solution for lazy loading your WordPress posts and page
 
 == Description ==
 
-A simple yet powerful solution for lazy loading WordPress posts and pages with Ajax.
-
-Build complex WordPress queries using our shortcode builder then add the shortcode to your page via the content editor or directly into your template files.
+Ajax Load More is a simple yet powerful solution for lazy loading WordPress posts and pages with Ajax.
+Build complex WordPress queries using our shortcode builder then add the shortcode to your pages via the content editor or directly into your template files.
  
 
 
 = Features =
 
-* **Shortcode Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters)
+* **Shortcode Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters).
 * **Query Parameters** - You can query WordPress for so many different content types it may be difficult to keep track! Query by Post type, Category, Tags, Custom Taxonomies, Search Terms, Authors and more!!
-* **Customizable Repeater Template** - edit and extend the functionality of Ajax Load More by editing the repeater (see screenshots)
-* **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots)
+* **Customizable Repeater Templates** - edit and extend the functionality of Ajax Load More by adjusting the repeater template (see screenshots).
+* **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 
 Check out the live **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
@@ -71,15 +70,8 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 
 The following Add-ons are available to increase the functionality of Ajax Load More.
 
-**Custom Repeaters** will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
+**[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
 [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
-
-
-
-= Please Rate Ajax Load More! =
-
-Your ratings make a big difference! If you like and use Ajax Load More, please consider taking the time to [rate my plugin](http://wordpress.org/support/view/plugin-reviews/ajax-load-more). Your ratings and reviews will help this plugin grow and provide the motivation needed to keep pushing it forward.
-
 
 
 = Tested Browsers =
@@ -98,6 +90,13 @@ Your ratings make a big difference! If you like and use Ajax Load More, please c
 http://connekthq.com/ajax-load-more/
 
 
+
+= Please Rate Ajax Load More! =
+
+Your ratings make a big difference! If you like and use Ajax Load More, please consider taking the time to [rate my plugin](http://wordpress.org/support/view/plugin-reviews/ajax-load-more). Your ratings and reviews will help this plugin grow and provide the motivation needed to keep pushing it forward.
+
+
+
 == Frequently Asked Questions ==
 
 
@@ -111,11 +110,17 @@ Yes, Ajax Load more uses admin-ajax and nonces in order to protect URLs and form
 
 = Can I make modifications to the plugin code? =
 
-Sure, but please be aware that if any modifications are made may affect future updates.
+Sure, but please be aware that if modifications are made it may affect future updates of the plugin.
 
-= Can I modify the repeater? =
+= Can I modify the repeater template? =
 
-Yes, visit the Repeaters area in the WordPress admin.
+Yes, visit the Repeater Template area in the WordPress admin.
+
+= What are the steps to getting Ajax Load More to display on my website =
+
+1. Create your shortcode
+2. Add the shortcode to your page, by adding it through the content editor or placing it directly within one of your template files.
+3. Load a page with your shortcode in place and watch Ajax Load More fetch your posts. 
 
 == Installation ==
 
