@@ -12,10 +12,11 @@ Ajax Load More is simple solution for lazy loading your WordPress posts and page
 
 == Description ==
 
-A simple yet powerful solution for loading WordPress posts and pages via Ajax requests. Build complex WP queries using our shortcode builder and let **[Ajax Load More](http://connekthq.com/plugins/ajax-load-more/)** handle the rest.
+A simple yet powerful solution for lazy loading WordPress posts and pages with Ajax.
 
-Create your shortcode then add the code to your page via the content editor or you can add it directly to your template files.
+Build complex WordPress queries using our shortcode builder then add the shortcode to your page via the content editor or directly into your template files.
  
+
 
 = Features =
 
@@ -25,6 +26,7 @@ Create your shortcode then add the code to your page via the content editor or y
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots)
 
 Check out the live **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
+
 
 
 = Shortcode Parameters =
@@ -51,6 +53,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 *   **button_label** - customize the Load More button label
 
 
+
 = Example Shortcode =
 
     [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]
@@ -62,18 +65,21 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 
 *The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
+
+
 = Add-ons =
 
 The following Add-ons are available to increase the functionality of Ajax Load More.
 
-**[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)**
+**Custom Repeaters** will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
+[Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
-This add-on will add five additional customizeable repeaters and allow you to select unique repeaters for different content types throughout your theme.
-[More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
+
 
 = Please Rate Ajax Load More! =
 
 Your ratings make a big difference! If you like and use Ajax Load More, please consider taking the time to [rate my plugin](http://wordpress.org/support/view/plugin-reviews/ajax-load-more). Your ratings and reviews will help this plugin grow and provide the motivation needed to keep pushing it forward.
+
 
 
 = Tested Browsers =
@@ -85,6 +91,7 @@ Your ratings make a big difference! If you like and use Ajax Load More, please c
 * iPhone (Safari, Chrome)
 * Android (Native + Chrome)
 * BB10
+
 
 
 = Website =
