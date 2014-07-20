@@ -6,7 +6,7 @@ Description: A simple yet powerful solution for lazy loading WordPress posts and
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.1.0
+Version: 2.1.1
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
