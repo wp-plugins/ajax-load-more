@@ -62,6 +62,15 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 
 *The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
+= Add-ons =
+
+The following Add-ons are available to increase the functionality of Ajax Load More.
+
+**[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)**
+
+This add-on will add five additional customizeable repeaters and allow you to select unique repeaters for different content types throughout your theme.
+[More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
+
 = Please Rate Ajax Load More! =
 
 Your ratings make a big difference! If you like and use Ajax Load More, please consider taking the time to [rate my plugin](http://wordpress.org/support/view/plugin-reviews/ajax-load-more). Your ratings and reviews will help this plugin grow and provide the motivation needed to keep pushing it forward.
@@ -77,14 +86,6 @@ Your ratings make a big difference! If you like and use Ajax Load More, please c
 * Android (Native + Chrome)
 * BB10
 
-
-= Add-ons =
-
-The following Add-ons are available to increase the functionality of Ajax Load More.
-
-**Custom Repeaters**
-The Custom Repeaters add-on will add five additional customizeable repeaters and allow you to select unique repeaters for different content types throughout your theme.
-[More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
 = Website =
 http://connekthq.com/ajax-load-more/
