@@ -8,7 +8,7 @@ Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Ajax Load More is simple solution for lazy loading your WordPress posts and pages with Ajax.
+A simple solution for lazy loading your WordPress posts and pages with Ajax.
 
 == Description ==
 
@@ -62,7 +62,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 * **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
 * **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
 
-*The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
+The **[Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/)** has been installed for use on each of our product demos*
 
 
 
