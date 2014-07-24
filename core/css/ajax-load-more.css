@@ -169,12 +169,13 @@ button#load-more{
 	padding: 0;
 }
 	.alm-listing li{
+		background: none;
 		margin: 0 0 10px;
-		overflow: hidden;
 		padding: 0 0 0 190px;
+		overflow: hidden;
 		position: relative;
-	}
-						
+		list-style: none;
+	}						
 	.alm-listing li a{
 		color: #34383D;
 	}
@@ -191,6 +192,4 @@ button#load-more{
 		-webkit-border-radius:3px;
 		-moz-border-radius:3px;
 		border-radius:3px;
-	}	
-			
-		
+	}		
