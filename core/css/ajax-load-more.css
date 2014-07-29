@@ -93,7 +93,7 @@ button.alm-load-more-btn{
       -moz-border-radius:3px;
       border-radius:3px;
       display: inline-block;
-      z-index: 100;
+      z-index: 0;
       content: '';
       position: absolute;
       left: 0;
