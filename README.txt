@@ -165,10 +165,9 @@ How to install Ajax Load More.
 
 = 2.1.2 =
 * Adding ability to have multiple instances of script on a single page
-* Updated core js/css.
-* Adding class names to wrapping div, need to remove #ajax-load-more in upcoming releases.
-* Small styling updates to admin panel.
-* Update .pot language file.
+* Adding global class name('.ajax-load-more-wrap') to Ajax Load More container. I plan to remove the #ajax-load-more naming convention in upcoming releases, but need time for users to update their code.
+* Small styling enhancements to admin panel.
+* Updated .pot language file.
 
 
 = 2.1.1 =
