@@ -4,11 +4,11 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple solution for lazy loading your WordPress posts and pages with Ajax.
+Ajax Load More is simple solution for lazy loading your WordPress posts and pages with Ajax.
 
 == Description ==
 
@@ -19,6 +19,7 @@ Build complex WordPress queries using our shortcode builder then add the shortco
 
 = Features =
 
+* **Multiple Instances** - you can now include multiple instances of Ajax Load More on a single page.
 * **Shortcode Builder** - create your own Ajax Load More shortcode by adjusting the various WordPress query parameters (see Shortcode Parameters).
 * **Query Parameters** - You can query WordPress for so many different content types it may be difficult to keep track! Query by Post type, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
 * **Customizable Repeater Templates** - edit and extend the functionality of Ajax Load More by adjusting the repeater template (see screenshots).
@@ -62,7 +63,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 * **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
 * **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
 
-The **[Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/)** has been installed for use on each of our product demos*
+*The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
 
 
@@ -161,6 +162,14 @@ How to install Ajax Load More.
 6. Shortcode and implementation examples
 
 == Changelog ==
+
+= 2.1.2 =
+* Adding ability to have multiple instances of script on a single page
+* Updated core js/css.
+* Adding class names to wrapping div, need to remove #ajax-load-more in upcoming releases.
+* Small styling updates to admin panel.
+* Update .pot language file.
+
 
 = 2.1.1 =
 * Adding Order and Orderby query parameters, you can now set these values within the Shortcode Builder

@@ -1,5 +1,6 @@
 /*
  * WordPress Ajax Load More
+ * http://wordpress.org/plugins/ajax-load-more/
  * https://github.com/dcooney/wordpress-ajax-load-more
  *
  * Copyright 2014 Connekt Media - http://cnkt.ca/ajax-load-more/
@@ -8,34 +9,35 @@
  *
  * Author: Darren Cooney
  * Twitter: @KaptonKaos
- */
+*/
+ 
 (function($) {
-	"use strict";
-	var AjaxLoadMore = {};
-	//Set vars
-	var page = 0,
-		speed = 300,
-		proceed = false,
-		$init = true,
-		$loading = true,
-		$finished = false,
-		$window = $(window),
-		$button_label = '',
-		$data, 
-		$el = $('#ajax-load-more'),
-		$content = $('.alm-listing', $el),
-		$scroll = true,
-		$prefix = 'alm-',
-		$repeater = $content.data('repeater'),
-		$max_pages = $content.data('max-pages'),
-		$pause = $content.data('pause'),
-		$offset = $content.data('offset'),
-		$transition = $content.data('transition'),
-		$posts_per_page = $content.data('posts-per-page');
-		
-	AjaxLoadMore.init = function() {
+	"use strict";		
+	$.ajaxloadmore = function(el) {
+		//Set vars
+		var AjaxLoadMore = {}, 
+			page = 0,
+			speed = 300,
+			proceed = false,
+			$init = true,
+			$loading = true,
+			$finished = false,
+			$window = $(window),
+			$button_label = '',
+			$data, 
+			$el = el,
+			$content = $('.alm-listing', $el),
+			$scroll = true,
+			$prefix = 'alm-',
+			$repeater = $content.data('repeater'),
+			$max_pages = $content.data('max-pages'),
+			$pause = $content.data('pause'),
+			$offset = $content.data('offset'),
+			$transition = $content.data('transition'),
+			$posts_per_page = $content.data('posts-per-page');
 		
 		$(window).scrollTop(0); //Prevent loading of unnessasry posts - move user to top of page
+		
 		// Check for pause on init
 		// Pause could be used to hold the loading of posts for a button click.
 		if ($pause === undefined) {
@@ -83,13 +85,14 @@
 			$scroll = true;
 		}
 		
-		// Add load more button
-		$el.append('<div class="alm-btn-wrap"><button id="load-more" class="more">' + $button_label + '</button></div>');
-		var $button = $('#load-more');
-		//Parse Post Type for multiples
+		// Append load more button tp .ajax-load-more
+		$el.append('<div class="'+$prefix+'btn-wrap"><button id="load-more" class="'+$prefix+'load-more-btn more">' + $button_label + '</button></div>');
+		var $button = $('.alm-load-more-btn', $el);
+		
+		//Parse Post Type for multiple entries
 		var $post_type = $content.data('post-type');
 		$post_type = $post_type.split(",");
-		$('#load-more').text("Loading...");
+		
 		// Load posts function
 		AjaxLoadMore.loadPosts = function() {
 			$button.addClass('loading');
@@ -161,7 +164,6 @@
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 					$button.removeClass('loading');
-					//alert(jqXHR + " :: " + textStatus + " :: " + errorThrown);
 				}
 			});
 		};
@@ -196,21 +198,29 @@
 			$button.text($button_label);			
 		}else{
 			AjaxLoadMore.loadPosts();
-		}
-		
+		}		
 		
 		//flag to prevent unnecessary loading of post on init. Hold for 2 seconds.
 		setTimeout(function() {
 			proceed = true;
-		}, 2000);   
+		}, 1000);   
+		
+		//Custom easing function
+		$.easing.alm_easeInOutQuad = function(x, t, b, c, d) {
+			if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+			return -c / 2 * ((--t) * (t - 2) - 1) + b;
+		};	
 	};
-	//Init Ajax load More    
-	if ($("#ajax-load-more").length) {
-		AjaxLoadMore.init();
+	
+	// Initiate all instances of Ajax load More
+	$.fn.ajaxloadmore = function() {
+		return this.each(function() {
+			new $.ajaxloadmore($(this));
+		});
 	}
-	//Custom easing function
-	$.easing.alm_easeInOutQuad = function(x, t, b, c, d) {
-		if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-		return -c / 2 * ((--t) * (t - 2) - 1) + b;
-	};
+  
+	//Init Ajax load More 
+	if($(".ajax-load-more-wrap").length)   
+	   $(".ajax-load-more-wrap").ajaxloadmore();
+	
 })(jQuery);

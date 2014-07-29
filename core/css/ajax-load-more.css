@@ -1,5 +1,7 @@
 /*
  * WordPress Ajax Load More
+ * http://wordpress.org/plugins/ajax-load-more/
+ 
  * https://github.com/dcooney/wordpress-ajax-load-more
  *
  * Copyright 2014 Connekt Media - http://connekthq.com/
@@ -10,7 +12,7 @@
  * Twitter: @KaptonKaos
 */
 
-button#load-more{	
+button.alm-load-more-btn{	
    font-family: Helvetica, Arial, sans-serif;
    font-size:16px;
    font-weight: 600;
@@ -34,7 +36,7 @@ button#load-more{
    text-decoration: none;
    -webkit-appearance: none; 
    -moz-appearance: none;   
-   appearance: none;   
+   appearance: none;      
    /* Prevents text selection */
    -webkit-touch-callout: none;
    -webkit-user-select: none;
@@ -45,12 +47,12 @@ button#load-more{
    user-select: none;
    cursor: pointer;
 }
-	button#load-more:hover{
+	button.alm-load-more-btn:hover{
 		background-color: #ec4745;
 		color: #fff;
 		text-decoration: none;
 	}
-	button#load-more:active{
+	button.alm-load-more-btn:active{
 		-webkit-box-shadow: inset 0 4px 3px rgba(0, 0, 0, 0.15);
 		-moz-box-shadow: inset 0 4px 3px rgba(0, 0, 0, 0.15);
 		box-shadow: inset 0 4px 3px rgba(0, 0, 0, 0.15);
@@ -59,12 +61,12 @@ button#load-more{
 	
 	
 	/* Loading */
-   button#load-more.loading{
+   button.alm-load-more-btn.loading{
     	padding-left: 42px;
    }
     
    /* Loaded / Done */
-	button#load-more.done{
+	button.alm-load-more-btn.done{
 		cursor: default;
 		opacity: 0.2;
 		filter: alpha(opacity=20); 
@@ -75,14 +77,14 @@ button#load-more{
    }  
       
    /* Loading Icon */
-	button #load-more:before,
-	button#load-more.done:before{                
+	button.alm-load-more-btn:before,
+	button.alm-load-more-btn.done:before{                
 		background: none;
 		width: 0;
 	}
 	
 	/* Loading :before */
-	button#load-more.loading:before {
+	button.alm-load-more-btn.loading:before {
       background: #fff url(../../core/img/ajax-loader.gif) no-repeat center center;
       width: 30px;
       height: 30px;
@@ -109,50 +111,50 @@ button#load-more{
 }
 
 /* Blue */
-#ajax-load-more.blue button#load-more{
+.ajax-load-more-wrap.blue button#load-more{
 	background-color: #529ecf;
 }
-	#ajax-load-more.blue button#load-more:hover,
-	#ajax-load-more.blue button#load-more.done{
+	.ajax-load-more-wrap.blue button#load-more:hover,
+	.ajax-load-more-wrap.blue button#load-more.done{
 		background-color: #468ebb;
 	}
 	
 /* green */
-#ajax-load-more.green button#load-more{
+.ajax-load-more-wrap.green button#load-more{
 	background-color: #80bb46;
 }
-	#ajax-load-more.green button#load-more:hover,
-	#ajax-load-more.green button#load-more.done{
+	.ajax-load-more-wrap.green button#load-more:hover,
+	.ajax-load-more-wrap.green button#load-more.done{
 		background-color: #6fa43c;
 	}
 
 	
 /* red */
-#ajax-load-more.red button#load-more{
+.ajax-load-more-wrap.red button#load-more{
 	background-color: #ca4b4b;
 }
-	#ajax-load-more.red button#load-more:hover,
-	#ajax-load-more.red button#load-more.done{
+	.ajax-load-more-wrap.red button#load-more:hover,
+	.ajax-load-more-wrap.red button#load-more.done{
 		background-color: #b13b3b;
 	}
 
 
 /* purple */
-#ajax-load-more.purple button#load-more{
+.ajax-load-more-wrap.purple button#load-more{
 	background-color: #b14fae;
 }
-	#ajax-load-more.purple button#load-more:hover,
-	#ajax-load-more.purple button#load-more.done{
+	.ajax-load-more-wrap.purple button#load-more:hover,
+	.ajax-load-more-wrap.purple button#load-more.done{
 		background-color: #9c4399;
 	}
 	
 
 /* grey */
-#ajax-load-more.grey button#load-more{
+.ajax-load-more-wrap.grey button#load-more{
 	background-color: #999;
 }
-	#ajax-load-more.grey button#load-more:hover,
-	#ajax-load-more.grey button#load-more.done{
+	.ajax-load-more-wrap.grey button#load-more:hover,
+	.ajax-load-more-wrap.grey button#load-more.done{
 		background-color: #666;
 	}
 

@@ -254,7 +254,8 @@
    border: 1px solid #ccc;
    width: 50%;  
 }
-	.ajax-load-more input[type=text]:focus{
+	.ajax-load-more input[type=text]:focus,
+	.ajax-load-more textarea:focus{
 		border-color: #999;
 		box-shadow: 0 0 3px #ccc;
 	}
@@ -328,6 +329,16 @@
 		.ajax-load-more .repeaters .section-title p{
 			padding-left: 0 !important;
 		}
+		.ajax-load-more label.template-title{
+   		padding: 10px 0 5px;
+   		margin: 0;
+   		font-size: 0.9em;
+		}
+		
+	.ajax-load-more label input._alm_repeater_alias{
+		height: auto;
+		line-height: normal !important;
+	}
 	
 	
 
@@ -707,11 +718,10 @@ table.highlight{
       margin: 15px 0 0;
       clear: none;
    }
-   .default-repeater textarea{
-	   width: 100%;
-   }
-   .repeater-wrap textarea{
+   .repeater-wrap textarea,   
+   .repeater-wrap input[type=text]{
    	background: #efefef;
+   	width: 100%;
    }
    
    

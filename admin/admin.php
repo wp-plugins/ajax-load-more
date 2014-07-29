@@ -227,17 +227,12 @@ function alm_repeater_page(){ ?>
 	               fclose ($handle);
 	            ?> 
 	            <h3 class="heading"><?php _e('Default Repeater Template', ALM_NAME); ?></h3>
-	            <div class="expand-wrap">	            
-		            <div class="section-title">
-		               <p><?php _e('Enter the HTML and PHP for the default template.', ALM_NAME); ?></p>                  
-		            </div>
+	            <div class="expand-wrap">  
 		            <div class="wrap repeater-wrap" data-name="default">
-		            	<div class="textarea-wrap">
-			            	<textarea rows="10" class="_alm_repeater"><?php echo $contents; ?></textarea>
-		            	</div>
-							<input type="submit" value="Save Template" class="button button-primary save-repeater">
+		               <label class="template-title" for="default_repeater"><?php _e('Enter the HTML and PHP for the default template', ALM_NAME); ?></label>   	       
+			            <textarea rows="10" id="default_repeater" class="_alm_repeater" contenteditable><?php echo $contents; ?></textarea>
+							<input type="submit" value="<?php _e('Save Template', ALM_NAME); ?>" class="button button-primary save-repeater">
 		            	<div class="saved-response">&nbsp;</div>
-		            	<!-- <div class="restore-default"><a href="javascript:void(0);"><?php _e('Restore Default', ALM_NAME); ?></a></div> -->
 		            </div>
 	            </div>
 	            <?php
