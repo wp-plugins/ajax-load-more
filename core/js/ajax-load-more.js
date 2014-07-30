@@ -14,7 +14,7 @@
 (function($) {
 	"use strict";		
 	$.ajaxloadmore = function(el) {
-		//Set vars
+		//Set variables
 		var AjaxLoadMore = {}, 
 			page = 0,
 			speed = 300,
@@ -93,7 +93,12 @@
 		var $post_type = $content.data('post-type');
 		$post_type = $post_type.split(",");
 		
-		// Load posts function
+		
+		/* AjaxLoadMore.loadPosts()
+		* 
+		*  The function to get posts via Ajax
+		*  @since 2.0.0
+		*/
 		AjaxLoadMore.loadPosts = function() {
 			$button.addClass('loading');
 			$.ajax({
@@ -168,6 +173,7 @@
 			});
 		};
 		
+		
 		// Button click event
 		$button.click(function() {
 			if($pause === true){
@@ -181,17 +187,39 @@
 			}
 		});
 		
-		// Window scroll event
+		
+		/* AjaxLoadMore.isVisible()
+		* 
+		*  Check to see if element is visible before loading posts
+		*  @since 2.1.2
+		*/
+		AjaxLoadMore.isVisible = function(){
+		   var visible = false;
+   		if($el.is(":visible")){
+   		   visible = true;
+   		}
+   		return visible;
+		}
+		
+		
+		/* AjaxLoadMore.isVisible()
+		* 
+		*  Check to see if element is visible before loading posts
+		*  @since 2.1.2
+		*/
 		if ($scroll) {
 			$window.scroll(function() {
-				var content_offset = $button.offset();
-				if (!$loading && !$finished && $window.scrollTop() >= Math.round(content_offset.top - ($window.height() - 150)) && page < ($max_pages - 1) && proceed) {
-					$loading = true;
-					page++;
-					AjaxLoadMore.loadPosts();
+			   if(AjaxLoadMore.isVisible()){
+   				var content_offset = $button.offset();
+   				if (!$loading && !$finished && $window.scrollTop() >= Math.round(content_offset.top - ($window.height() - 150)) && page < ($max_pages - 1) && proceed) {
+   					$loading = true;
+   					page++;
+   					AjaxLoadMore.loadPosts();
+   				}
 				}
 			});
 		}
+		
 		
 		//Check for pause variable
 		if($pause === true){
@@ -200,10 +228,12 @@
 			AjaxLoadMore.loadPosts();
 		}		
 		
+		
 		//flag to prevent unnecessary loading of post on init. Hold for 2 seconds.
 		setTimeout(function() {
 			proceed = true;
 		}, 1000);   
+		
 		
 		//Custom easing function
 		$.easing.alm_easeInOutQuad = function(x, t, b, c, d) {
@@ -212,14 +242,21 @@
 		};	
 	};
 	
-	// Initiate all instances of Ajax load More
+	/* ajaxloadmore()
+	* 
+	*  Initiate all instances of Ajax load More
+	*  @since 2.1.2
+   */
 	$.fn.ajaxloadmore = function() {
 		return this.each(function() {
 			new $.ajaxloadmore($(this));
 		});
 	}
-  
-	//Init Ajax load More 
+	
+   /* 
+	*  Init Ajax load More if div is present on screen
+	*  @since 2.1.2
+   */ 
 	if($(".ajax-load-more-wrap").length)   
 	   $(".ajax-load-more-wrap").ajaxloadmore();
 	
