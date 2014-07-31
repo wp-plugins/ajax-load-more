@@ -8,7 +8,7 @@ Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Ajax Load More is simple solution for lazy loading your WordPress posts and pages with Ajax.
+A simple solution for lazy loading your WordPress posts and pages with Ajax.
 
 == Description ==
 
