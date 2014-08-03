@@ -18,7 +18,7 @@ button.alm-load-more-btn{
    font-weight: 600;
    width:auto;   
    height: 42px;
-   line-height: 42px;
+   line-height: 44px;
    background: #FF5A58;
    color:#fff;
    border: none;
@@ -62,7 +62,7 @@ button.alm-load-more-btn{
 	
 	/* Loading */
    button.alm-load-more-btn.loading{
-    	padding-left: 42px;
+    	padding-left: 44px;
    }
     
    /* Loaded / Done */
@@ -88,12 +88,12 @@ button.alm-load-more-btn{
       background: #fff url(../../core/img/ajax-loader.gif) no-repeat center center;
       width: 30px;
       height: 30px;
-      margin: 5px;		
+      margin: 6px;		
       -webkit-border-radius:3px;
       -moz-border-radius:3px;
       border-radius:3px;
       display: inline-block;
-      z-index: 0;
+      z-index: 100;
       content: '';
       position: absolute;
       left: 0;

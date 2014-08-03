@@ -209,7 +209,7 @@
 		*/
 		if ($scroll) {
 			$window.scroll(function() {
-			   if(AjaxLoadMore.isVisible()){
+			   if(AjaxLoadMore.isVisible()){	
    				var content_offset = $button.offset();
    				if (!$loading && !$finished && $window.scrollTop() >= Math.round(content_offset.top - ($window.height() - 150)) && page < ($max_pages - 1) && proceed) {
    					$loading = true;
@@ -223,7 +223,8 @@
 		
 		//Check for pause variable
 		if($pause === true){
-			$button.text($button_label);			
+			$button.text($button_label);	
+		   $loading = false;		
 		}else{
 			AjaxLoadMore.loadPosts();
 		}		
