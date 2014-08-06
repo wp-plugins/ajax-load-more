@@ -53,14 +53,19 @@ function alm_core_update() {
          $wpdb->query("ALTER TABLE $table_name ADD name TEXT NOT NULL");
          $wpdb->update($table_name , array('name' => 'default'), array('id' => 1));
        }
-       
        // ********
        // @TO-DO - Upgrade test, will remove in future versions
+       // REMOVED - 2.1.3
        // ********
        $test = $wpdb->get_col("Show columns from $table_name like 'test'");
-       if(empty($test)){
-         $wpdb->query("ALTER TABLE $table_name ADD test TEXT NOT NULL");
-         $wpdb->update($table_name , array('test' => 'test value'), array('id' => 1));
+       if(!empty($test)){
+         $wpdb->query("ALTER TABLE $table_name DROP test");
+       }    
+       
+       //Add column for repeater template alias
+       $alias = $wpdb->get_col("Show columns from $table_name like 'alias'");
+       if(empty($alias)){
+         $wpdb->query("ALTER TABLE $table_name ADD alias TEXT NOT NULL");
        }       
 	 
        // Compare versions of repeaters, if template versions do not match, update the repeater with value from DB	       
@@ -109,7 +114,7 @@ add_action( 'admin_menu', 'alm_admin_menu' );
 function alm_admin_menu() {  
    $icon = 'dashicons-plus-alt';
    $icon = ALM_ADMIN_URL . "/img/alm-logo-16x16.png";
-   $alm_page = add_menu_page( 'Ajax Load More', 'Ajax Load More', 'edit_theme_options', 'ajax-load-more', 'alm_settings_page', $icon, 81 );
+   $alm_page = add_menu_page( 'Ajax Load More', 'Ajax Load More', 'edit_theme_options', 'ajax-load-more', 'alm_settings_page', $icon );
    $alm_settings_page = add_submenu_page( 'ajax-load-more', 'Settings', 'Settings', 'edit_theme_options', 'ajax-load-more', 'alm_settings_page'); 
    $alm_template_page = add_submenu_page( 'ajax-load-more', 'Repeater Templates', 'Repeater Templates', 'edit_theme_options', 'ajax-load-more-repeaters', 'alm_repeater_page'); 
    $alm_shortcode_page = add_submenu_page( 'ajax-load-more', 'Shortcode Builder', 'Shortcode Builder', 'edit_theme_options', 'ajax-load-more-shortcode-builder', 'alm_shortcode_builder_page'); 
@@ -190,7 +195,6 @@ function alm_settings_page(){ ?>
 		   </div>
 		   <aside class="alm-sidebar">
 				<?php include( plugin_dir_path( __FILE__ ) . 'includes/cta/resources.php');	?>
-				<?php //include( plugin_dir_path( __FILE__ ) . 'includes/cta/writeable.php');	?>
 				<?php include( plugin_dir_path( __FILE__ ) . 'includes/cta/about.php');	?>
 		   </aside>	
 		   	
@@ -267,6 +271,7 @@ function alm_repeater_page(){ ?>
 								value = el.val(),
 								btn = btn,
 								repeater = container.data('name'),
+								alias = ($('input._alm_repeater_alias', container).length) ? $('input._alm_repeater_alias', container).val() : '',
 								responseText = $(".saved-response", container);
 								
 							//If submit button has changed class.
@@ -279,6 +284,7 @@ function alm_repeater_page(){ ?>
 										action: 'alm_save_repeater',
 										value: value, 
 										repeater: repeater,
+										alias: alias,
 										nonce: alm_admin_localize.alm_admin_nonce,
 									},
 									success: function(e) {								
@@ -312,13 +318,6 @@ function alm_repeater_page(){ ?>
 	   <aside class="alm-sidebar">
 	   		<div class="cta">
 				<h3><?php _e('Templating Help', ALM_NAME); ?></h3>
-				<?php
-					global $wpdb;
-					
-					//$table_name = $wpdb->prefix . "alm";	
-					//$value = $wpdb->get_var("SELECT repeaterDefault FROM $table_name WHERE id = 1");
-				
-				?>
 				<div class="item">
 					<p><strong><?php _e('What is a repeater template?', ALM_NAME); ?></strong></p>
 					<p><?php _e('A repeater template is a snippet of code that will execute over and over within a <a href="http://codex.wordpress.org/The_Loop" target="_blank">WordPress loop</a>.</p>', ALM_NAME); ?></p>
@@ -376,7 +375,7 @@ function alm_save_repeater(){
 	   $data_update = array('repeaterDefault' => "$c", 'pluginVersion' => ALM_VERSION);
 	   $data_where = array('name' => "default");
    }else{      
-	   $data_update = array('repeaterDefault' => "$c", 'pluginVersion' => ALM_REPEATER_VERSION);
+	   $data_update = array('repeaterDefault' => "$c", 'alias' => "$a", 'pluginVersion' => ALM_REPEATER_VERSION);
       $data_where = array('name' => $n);
    }
 	$wpdb->update($table_name , $data_update, $data_where);

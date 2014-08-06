@@ -6,14 +6,14 @@ Description: A simple yet powerful solution for lazy loading WordPress posts and
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.1.2
+Version: 2.1.3
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.1.2');
-define('ALM_RELEASE', 'July 29, 2014');
+define('ALM_VERSION', '2.1.3');
+define('ALM_RELEASE', 'August 6, 2014');
 
 /*
 *  alm_install

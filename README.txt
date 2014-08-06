@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -163,12 +163,17 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.1.3 =
+* Fixed issue with causing the Ajax Load More menu to not show on admin screen do to location conflict.
+* Adding column 'alias' to wp_alm table to allow for repeater alias (Only for the custom repeater add-on). 
+* Remove legasy column 'test' from wp_alm table.  
+* Updating styles in admin.css. 
+
 = 2.1.2 =
 * Adding ability to have multiple instances of script on a single page
 * Adding global class name('.ajax-load-more-wrap') to Ajax Load More container. I plan to remove the #ajax-load-more naming convention in upcoming releases, but need time for users to update their code.
 * Small styling enhancements to admin panel.
 * Updated .pot language file.
-
 
 = 2.1.1 =
 * Adding Order and Orderby query parameters, you can now set these values within the Shortcode Builder
