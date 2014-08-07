@@ -25,7 +25,10 @@
  	
  
    // List registered post_types
-	$types = get_post_types();
+   $pt_args = array(
+      'public'   => true
+   );
+	$types = get_post_types($pt_args);
 	if($types){
 		echo '<div class="row checkboxes post_types" id="alm-post-types">';   		
 		echo '<h3 class="heading">'.__('Post Types', ALM_NAME). '</h3>';
@@ -352,7 +355,7 @@
       <h3 class="heading"><?php _e('Transition', ALM_NAME); ?></h3>
       <div class="expand-wrap">
          <div class="section-title">
-   		 	<p><?php _e('Select a loading transition from the drop menu.', ALM_NAME); ?></p>
+   		 	<p><?php _e('Select a loading transition.', ALM_NAME); ?></p>
    		 </div>
          <div class="wrap">
             <div class="inner">	               

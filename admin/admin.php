@@ -230,7 +230,7 @@ function alm_repeater_page(){ ?>
 	               $contents = fread ($handle, filesize ($filename));
 	               fclose ($handle);
 	            ?> 
-	            <h3 class="heading"><?php _e('Default Repeater Template', ALM_NAME); ?></h3>
+	            <h3 class="heading"><?php _e('Default Template', ALM_NAME); ?></h3>
 	            <div class="expand-wrap">  
 		            <div class="wrap repeater-wrap" data-name="default">
 		               <label class="template-title" for="default_repeater"><?php _e('Enter the HTML and PHP for the default template', ALM_NAME); ?></label>   	       
@@ -358,6 +358,7 @@ function alm_save_repeater(){
 	//Write to repeater file
 	$c = Trim(stripslashes($_POST["value"])); // Repeater Value
 	$n = Trim(stripslashes($_POST["repeater"])); // Repeater name
+	$a = Trim(stripslashes($_POST["alias"])); // Repeater alias
 	if($n === 'default')
 		$f = ALM_PATH. '/core/repeater/'.$n .'.php'; // File
 	else
@@ -365,8 +366,7 @@ function alm_save_repeater(){
 	$o = fopen($f, 'w+'); //Open file
 	$w = fwrite($o, $c); //Save the file
 	$r = fread($o, 100000); //Read it
-	fclose($o); //now close it
-	
+	fclose($o); //now close it	
 	
 	//Save to database
 	global $wpdb;

@@ -101,6 +101,7 @@
 		*/
 		AjaxLoadMore.loadPosts = function() {
 			$button.addClass('loading');
+			$loading = true;
 			$.ajax({
 				type: "GET",
 				url: alm_localize.ajaxurl,
@@ -168,6 +169,7 @@
 					}
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
+				   $loading = false;
 					$button.removeClass('loading');
 				}
 			});

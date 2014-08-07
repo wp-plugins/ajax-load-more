@@ -82,7 +82,7 @@
    font-weight: 600;
    padding: 0 0 0 25px !important;
    line-height: normal !important;
-   margin: 0 0 5px !important;
+   margin: 0 !important;
    color: #444;
    cursor: pointer;
    width: 100%;
@@ -228,8 +228,22 @@
 	display: inline-block; 
 	clear: both;
 	border-radius: 3px;
-	color: #666;
+	color: #444;	
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+   box-shadow: none;
 }
+	
+.ajax-load-more textarea._alm_repeater{
+   font-family: Consolas, monaco, monospace;   
+   font-size: 13px;
+   line-height: 19px;
+   padding: 10px;
+}
+   .ajax-load-more textarea._alm_repeater:focus{
+      color: #222;
+   }
+	
 .ajax-load-more label{
 	padding: 5px 0;
 }
@@ -253,7 +267,7 @@
    padding: 10px;
    line-height: 1.3;
    border: 1px solid #ccc;
-   width: 50%;  
+   width: 60%;  
 }
 .ajax-load-more input.disabled-input{
    opacity: 0.5;
@@ -271,11 +285,11 @@
 
 .ajax-load-more .one_half{
    display: inline-block;
-   width: 48%;
-   margin: 0 0 0 2%;
+   width: 47.333%;
+   margin: 0 0 1% 2%;
 }   
    .ajax-load-more .one_half:first-child{
-      margin: 0 2% 0 0;  
+      margin: 0 2% 1% 0;  
    }
 
 /* --------------------------------------------------------------------------- */
@@ -283,14 +297,14 @@
 /* --------------------------------------------------------------------------- */
 
 .ajax-load-more .row{ 
-	padding: 15px 0 0; 
-	margin: 15px 0 0;
-	height: auto; 
-	width: 100%;
-	display: block;
-	overflow: visible;
-	clear: both;
-    border-top: 1px solid #efefef;
+   padding: 15px 0 0; 
+   margin: 15px 0 0;
+   height: auto; 
+   width: 100%;
+   display: block;
+   overflow: hidden;
+   clear: both;
+   border-top: 2px solid #efefef;
 }
 
 	.admin.ajax-load-more .row{ 
@@ -325,6 +339,7 @@
 
 .ajax-load-more .section-title{
 	width: 35%;
+	padding-top: 5px;
 	float: left;
 }
 	.ajax-load-more .section-title p{		
@@ -356,11 +371,10 @@
 	
 
 .ajax-load-more .row .wrap{
-  padding: 0;
+  padding: 5px 0 0 5%;
   margin: 0;
   border: none;
   width: 65%;
-  padding-left: 5%;
   float: left;
   position: relative;
 }
@@ -401,7 +415,7 @@
       }
       .ajax-load-more .row .wrap .inner.half{
          padding:0 0 20px;
-         width: 49.5%;
+         width: 49.333%;
          display: inline-block;
       }
       
@@ -683,7 +697,7 @@ input.save-repeater{
 	.restore-default a{
 		text-decoration: none;
 	}
-	
+
 	
 table.highlight{
    background: #fff !important;
@@ -993,7 +1007,7 @@ a.btn{
     zoom: 1;
     *display: inline;
     vertical-align: middle;
-    min-width: 50%;
+    min-width: 60%;
 }
 .inner.half .select2-container{
     min-width: 90%;
