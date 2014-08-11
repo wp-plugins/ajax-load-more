@@ -1016,14 +1016,15 @@ a.btn{
 */
 
 .ajax-load-more .CodeMirror {
-  height: auto;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  padding: 8px;
-  background: #f7f7f7;
-  border: 1px solid #ccc;
-  color: #999;
+   height: auto;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   padding: 8px;
+   background: #f7f7f7;
+   border: 1px solid #ccc;
+   color: #999;
+   line-height: 1.3;
 }
    
    .ajax-load-more .cm-s-pastel-on-dark.CodeMirror{ /* Bkg color */
@@ -1037,8 +1038,7 @@ a.btn{
      border-radius: 2px 0 0 2px;
    }
    .ajax-load-more .CodeMirror pre{
-      font-size: 14px;
-      line-height: 1.2;
+      font-size: 13px;
    }
    .ajax-load-more .CodeMirror-scroll {
      overflow-y: hidden;
@@ -1047,28 +1047,32 @@ a.btn{
    
    
    .ajax-load-more .cm-tag{ /* <li> <h2> html elements */ 
-      color:#777 !important;
+      color: #0a4b83 !important;
    }
    .ajax-load-more .cm-string{  /* Elements in " " */ 
-      color:#8fb77a !important;
+      color: #d14 !important;
    }
    .ajax-load-more .cm-attribute{ /* class names */
-      color:#416fcb !important;
+      color: #008080 !important;
    }
    .ajax-load-more .cm-keyword{ /* if, array, echo */
-      color:#ae5fb3 !important;
+      color: #ae5fb3 !important;
    }
    .ajax-load-more span.CodeMirror-matchingbracket{
-      color:#ff0000 !important;
+      color: #ff0000 !important;
    }
    .ajax-load-more .CodeMirror span.cm-meta{ /* <?php */
-      color: #fb8fb3;
+      color: #999;
    }
    .ajax-load-more .CodeMirror span.cm-variable{ /* Function names */
-      color: #d75858;
-      /* background: #f2f4d7; */
+      color: #111;
+      font-weight: 500;
       padding: 0 1px;
    }
+  .ajax-load-more .CodeMirror span.cm-number{ /* Numbers */
+      color: #009999 !important;
+   }
+   
    
 		
 		
