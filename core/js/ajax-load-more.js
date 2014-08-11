@@ -108,8 +108,9 @@
 				data: {
 					action: 'ajax_load_more_init',
 					nonce: alm_localize.alm_nonce,
-					postType: $post_type,
 					repeater: $repeater,
+					postType: $post_type,
+					postFormat: $content.data('post-format'),
 					category: $content.data('category'),
 					author: $content.data('author'),
 					taxonomy: $content.data('taxonomy'),

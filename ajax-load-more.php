@@ -138,6 +138,7 @@ if( !class_exists('AjaxLoadMore') ):
 		extract(shortcode_atts(array(
 				'repeater' => 'default',
 				'post_type' => 'post',
+				'post_format' => '',
 				'category' => '',
 				'taxonomy' => '',
 				'taxonomy_terms' => '',
@@ -177,7 +178,7 @@ if( !class_exists('AjaxLoadMore') ):
 			$btn_color = ' '.$options['_alm_btn_color'];
 		}
 		
-		return '<'.$wrap_element.' id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></'.$wrap_element.'>';
+		return '<'.$wrap_element.' id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></'.$wrap_element.'>';
 	}
 
 
@@ -198,6 +199,7 @@ if( !class_exists('AjaxLoadMore') ):
 
 		$repeater = (isset($_GET['repeater'])) ? $_GET['repeater'] : 'default';
 		$postType = (isset($_GET['postType'])) ? $_GET['postType'] : 'post';
+		$postFormat = (isset($_GET['postFormat'])) ? $_GET['postFormat'] : '';
 		$category = (isset($_GET['category'])) ? $_GET['category'] : '';
 		$author_id = (isset($_GET['author'])) ? $_GET['author'] : '';
 		
@@ -243,7 +245,36 @@ if( !class_exists('AjaxLoadMore') ):
 			$args['post__not_in'] = $exclude;
 		}
 
-
+      // Post Format query
+		if(!empty($postFormat)){	
+		   $format = "post-format-$postFormat";
+		   //If query is for standrd we need to filter by NOT IN
+		   if($format == 'post-format-standard'){		   
+	      	if (($post_formats = get_theme_support('post-formats')) && is_array($post_formats[0]) && count($post_formats[0])) {
+               $terms = array();
+               foreach ($post_formats[0] as $format) {
+                  $terms[] = 'post-format-'.$format;
+               }
+            }		      
+		      $args['tax_query'] = array(
+   		   	array(
+                  'taxonomy' => 'post_format',
+                  'terms' => $terms,
+                  'field' => 'slug',
+                  'operator' => 'NOT IN'
+               )
+            );
+		   }else{
+   			$args['tax_query'] = array(
+   				array(
+   			        'taxonomy' => 'post_format',
+   			        'field' => 'slug',
+   			        'terms' => array($format),
+   				)
+   			);
+			}
+	    }
+      
 		// Taxonomy query
 		if(!empty($taxonomy)){	
 			$the_terms = explode(", ", $taxonomy_terms);	

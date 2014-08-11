@@ -3,8 +3,8 @@ Contributors: dcooney
 Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
 Requires at least: 3.6
-Tested up to: 3.9.1
-Stable tag: 2.1.3
+Tested up to: 3.9.2
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
  
 *   **repeater** - select from a list of customizable repeaters (Add-on available)
 *   **post_type** - comma seperated list of post types to query
+*   **post_format** - query by post format
 *   **category** - query by category slug
 *   **taxonomy** - query by custom taxonomy
 *   **taxonomy_terms** - comma seperated list of custom taxonomy terms(slug) to query
@@ -163,10 +164,18 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.2.0 =
+* Adding Post Format query.
+* Adding syntax highlighting for Repeater Templates with CodeMirror (http://codemirror.net/).
+* Adding custom alias integration for Repeater Templates (Only for the custom repeater add-on).
+* Adding button preview on settings page.
+* Adding 'White' button style
+* Updated .pot language file
+
 = 2.1.3 =
-* Fixed issue with causing the Ajax Load More menu to not show on admin screen do to location conflict.
+* Fixed issue causing the Ajax Load More menu to not show on some admin screen do to location conflict with another plugin.
 * Adding column 'alias' to wp_alm table to allow for repeater alias (Only for the custom repeater add-on). 
-* Remove legasy column 'test' from wp_alm table.  
+* Remove legacy column 'test' from wp_alm table.  
 * Updating styles in admin.css. 
 
 = 2.1.2 =
