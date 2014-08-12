@@ -910,8 +910,7 @@ function alm_btn_color_callback() {
 	   });
 	   
     </script>
-    <?
- 
+    <?php 
 }
 
 
