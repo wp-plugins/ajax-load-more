@@ -488,7 +488,7 @@ function alm_shortcode_builder_page(){ ?>
 		   	<div class="cta">
 					<h3><?php _e('Did you know?', ALM_NAME); ?></h3>
 					<img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/shortcode-editor.jpg"><br/>
-					<?php _e('<p class="addon-intro">You can generate shortcodes while editing pages!</p><p>Look for the Ajax Load More [+] icon in the content editor toolbar and the <a href="?page=ajax-load-more-shortcode-builder">shortcode builder</a> will pop open.', ALM_NAME); ?></p>
+					<?php _e('<p class="addon-intro">You can generate shortcodes while editing pages!</p><p>Look for the Ajax Load More [A] icon in the content editor toolbar and the <a href="?page=ajax-load-more-shortcode-builder">shortcode builder</a> will open.', ALM_NAME); ?></p>
 		   	</div>
 	   </div>
 	</div>
@@ -630,9 +630,9 @@ function alm_add_ons_page(){ ?>
                      <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/repeater-add-ons.jpg">                         
                   </div>
                   <div class="wrap">
-                     <p class="addon-intro"><?php _e('Unlock additional repeater templates and keep your site looking and feeling fresh!', ALM_NAME); ?></p>
+                     <p class="addon-intro"><?php _e('Unlock additional repeater templates and keep your WordPress theme looking and feeling fresh.', ALM_NAME); ?></p>
                      <p><?php _e('The Custom Repeaters add-on will add <strong>five</strong> additional <a href="?page=ajax-load-more-repeaters">repeaters</a> and allow you to select unique repeaters for different content types throughout your theme.</p>                   
-                     <p>It\'s easy, seriously! Simply build each <a href="?page=ajax-load-more-repeaters">repeater</a> just the way you want them, then select a template from the list of available templates while building your <a href="?page=ajax-load-more-shortcode-builder">shortcode</a>.</p><p><strong>Read/Write Access is required!</strong></p>', ALM_NAME); ?>                     
+                     <p>Simply construct your <a href="?page=ajax-load-more-repeaters">repeater templates</a> however you like, then select a template from the list of available templates while building your <a href="?page=ajax-load-more-shortcode-builder">shortcode</a>.</p>', ALM_NAME); ?>                     
                   </div>           
                </div>
 			   </div>			   
