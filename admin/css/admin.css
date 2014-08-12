@@ -670,8 +670,8 @@
 	top: -2px;
 }
 .ajax-load-more p.addon-intro{
-   font-size: 20px !important;
-   line-height: 28px !important;
+   font-size: 24px !important;
+   line-height: 30px !important;
 }
 
 .ajax-load-more h3.add-on-title,
@@ -927,7 +927,7 @@ a.btn{
 	   position: relative;	
 	}
 	.ajax-load-more .alm-sidebar .cta.padding-bottom{
-		padding-bottom: 70px;
+		padding-bottom: 60px;
 	}
 	.ajax-load-more .alm-sidebar h3,
 	.ajax-load-more .alm-sidebar h4{

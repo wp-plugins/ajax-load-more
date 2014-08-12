@@ -631,8 +631,7 @@ function alm_add_ons_page(){ ?>
                   </div>
                   <div class="wrap">
                      <p class="addon-intro"><?php _e('Unlock additional repeater templates and keep your WordPress theme looking and feeling fresh.', ALM_NAME); ?></p>
-                     <p><?php _e('The Custom Repeaters add-on will add <strong>five</strong> additional <a href="?page=ajax-load-more-repeaters">repeaters</a> and allow you to select unique repeaters for different content types throughout your theme.</p>                   
-                     <p>Simply construct your <a href="?page=ajax-load-more-repeaters">repeater templates</a> however you like, then select a template from the list of available templates while building your <a href="?page=ajax-load-more-shortcode-builder">shortcode</a>.</p>', ALM_NAME); ?>                     
+                     <p><?php _e('The Custom Repeaters add-on will add <strong>five</strong> additional <a href="?page=ajax-load-more-repeaters">repeaters</a> and allow you to select unique repeaters for different content types throughout your theme.</p>', ALM_NAME); ?>                     
                   </div>           
                </div>
 			   </div>			   
@@ -648,6 +647,10 @@ function alm_add_ons_page(){ ?>
 	   </div>	   
 	   
 	   <div class="alm-sidebar">
+	   	<div class="cta">
+			<h3><?php _e('About Add-ons', ALM_NAME); ?></h3>
+			<p><?php _e('Add-ons are installed as a separate plugin and will receive plug-in update notifications. ', ALM_NAME); ?></p>
+	   	</div>
 	   	<div class="cta">
 			<h3><?php _e('About Add-ons', ALM_NAME); ?></h3>
 			<p><?php _e('Add-ons are installed as a separate plugin and will receive plug-in update notifications. ', ALM_NAME); ?></p>
