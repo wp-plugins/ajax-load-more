@@ -6,5 +6,5 @@
 		<li><a target="_blank" href="http://wordpress.org/support/plugin/ajax-load-more">Support</a></li>
 		<li><a target="_blank" href="http://connekthq.com/plugins/ajax-load-more/custom-repeaters/">Custom Repeaters Add-on</a></li>
 	</ul>
-	<?php _e('<a href="https://github.com/dcooney/wordpress-ajax-load-more" target="blank" class="visit"><i class="fa fa-github"></i> Latest development build on Github</a>', ALM_NAME); ?>
+	<?php _e('<a href="https://github.com/dcooney/wordpress-ajax-load-more" target="blank" class="visit"><i class="fa fa-github"></i> Latest build on Github</a>', ALM_NAME); ?>
 </div>
