@@ -20,7 +20,7 @@
 	
 	echo '</div></div>';
 	if (!has_action('alm_get_custom_repeaters')) {
-	  include( 'cta/extend.php');
+	  include( ALM_PATH.'admin/includes/cta/extend.php');
 	}
 	echo '</div>';
 	echo '</div>';
