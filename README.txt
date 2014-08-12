@@ -156,7 +156,7 @@ How to install Ajax Load More.
 == Screenshots ==
 
 1. Settings screen
-2. The Repeater Templates
+2. The Default Repeater Template
 3. Repeater Templates w/ Custom Repeater Add-on
 4. Shortcode Builder (Admin screen)
 5. Shortcode Builder (Page Edit screen)
