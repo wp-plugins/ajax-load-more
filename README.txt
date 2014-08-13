@@ -128,7 +128,7 @@ Yes, visit the Repeater Template section in your WordPress admin.
 
 = How are my repeater templates saved? =
 
-Repeater template data is saved to the your WordPress database as well as written directly to a repeater templete .php file in the ajax-load-more plugin directory.
+Repeater template data is saved to the your WordPress database as well as written directly to a repeater template .php file in the ajax-load-more plugin directory.
 
 
 == Installation ==
