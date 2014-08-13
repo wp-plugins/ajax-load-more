@@ -104,9 +104,15 @@ Your ratings make a big difference! If you like and use Ajax Load More, please c
 == Frequently Asked Questions ==
 
 
+= What are the steps to getting Ajax Load More to display on my website =
+
+1. Create your shortcode
+2. Add the shortcode to your page, by adding it through the content editor or placing it directly within one of your template files.
+3. Load a page with your shortcode in place and watch Ajax Load More fetch your posts. 
+
 = What are my server requirements? =
 
-Your server must be able to read/write/create files. Ajax Load More creates the default repeater on plugin activation and in order to modify the output you are required to write to the file as well. 
+Your server must be able to read/write/create files. Ajax Load More creates the default repeater on plugin activation and in order to modify the output we are required to write to the file as well. 
 
 = Is the ajax functionality secure? =
 
@@ -118,13 +124,12 @@ Sure, but please be aware that if modifications are made it may affect future up
 
 = Can I modify the repeater template? =
 
-Yes, visit the Repeater Template area in the WordPress admin.
+Yes, visit the Repeater Template section in your WordPress admin.
 
-= What are the steps to getting Ajax Load More to display on my website =
+= How are my repeater templates saved? =
 
-1. Create your shortcode
-2. Add the shortcode to your page, by adding it through the content editor or placing it directly within one of your template files.
-3. Load a page with your shortcode in place and watch Ajax Load More fetch your posts. 
+Repeater template data is saved to the your WordPress database as well as written directly to a repeater templete .php file in the ajax-load-more plugin directory.
+
 
 == Installation ==
 
@@ -156,12 +161,11 @@ How to install Ajax Load More.
 == Screenshots ==
 
 1. Settings screen
-2. The Default Repeater Template
-3. Repeater Templates w/ Custom Repeater Add-on
-4. Shortcode Builder (Admin screen)
-5. Shortcode Builder (Page Edit screen)
-6. Content Editor shortcode icon
-7. Shortcode and implementation examples
+2. The collection of available repeaters
+3. Shortcode Builder (Admin screen)
+4. Shortcode Builder (Page Edit screen)
+5. Content Editor shortcode icon
+6. Shortcode and implementation examples
 
 == Changelog ==
 

@@ -197,7 +197,7 @@ function alm_settings_page(){ ?>
 		<div class="wrap">
 		<div class="header-wrap">
          <h2><?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span></h2>
-         <p>A simple solution for lazy loading WordPress posts and pages</p>
+         <p>A simple solution for lazy loading WordPress posts and pages with Ajax</p>
          </div>
 		   <div class="alm-main">
 		   	<div class="group">
