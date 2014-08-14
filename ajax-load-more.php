@@ -2,7 +2,7 @@
 /*
 Plugin Name: Ajax Load More
 Plugin URI: http://connekthq.com/plugins/ajax-load-more
-Description: A simple yet powerful solution for lazy loading WordPress posts and pages with Ajax.
+Description: A simple solution for lazy loading WordPress posts and pages with Ajax
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
@@ -158,27 +158,24 @@ if( !class_exists('AjaxLoadMore') ):
 				'button_label' => 'Older Posts'
 			),
 			$atts));
-
-		// Use HTML5 elements?
-		$wrap_element = 'div';
-		if(isset($options['_alm_html5']) ||  $options['_alm_html5'] == '1'){
-			$wrap_element = 'section';
-		}
+         
+      // Get container elements (ul | div)
 		$container_element = 'ul';
 		if($options['_alm_container_type'] == '2'){
 			$container_element = 'div';
 		}
+		// Get extra classnames
 		$classname = '';
 		if(isset($options['_alm_classname'])){
 			$classname = ' '.$options['_alm_classname'];
 		}
-		
+		// Get button color
 		$btn_color = '';
 		if(isset($options['_alm_btn_color'])){
 			$btn_color = ' '.$options['_alm_btn_color'];
 		}
 		
-		return '<'.$wrap_element.' id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></'.$wrap_element.'>';
+		return '<div id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'"><'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'></div>';
 	}
 
 
