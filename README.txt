@@ -37,8 +37,9 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 *   **post_type** - comma seperated list of post types to query
 *   **post_format** - query by post format
 *   **category** - query by category slug
+*   **Tag** - query by tag name
 *   **taxonomy** - query by custom taxonomy
-*   **taxonomy_terms** - comma seperated list of custom taxonomy terms(slug) to query
+*   **taxonomy_terms** - comma seperated list of custom taxonomy terms(slug)
 *   **taxonomy_operator** - Operator to test (IN/NOT IN)
 *   **author** - query by author id
 *   **search** - query search term ('s') 
