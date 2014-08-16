@@ -33,26 +33,26 @@ Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for 
 
 Ajax Load More accepts a number of paramaters to pass to the WordPress query. These parameters are passed via shortcode - don't worry, creating your shortcode is simple with our Shortcode Builder.
  
-*   **repeater** - select from a list of customizable repeaters (Add-on available)
-*   **post_type** - comma seperated list of post types to query
-*   **post_format** - query by post format
-*   **category** - query by category slug
-*   **Tag** - query by tag name
-*   **taxonomy** - query by custom taxonomy
-*   **taxonomy_terms** - comma seperated list of custom taxonomy terms(slug)
-*   **taxonomy_operator** - Operator to test (IN/NOT IN)
-*   **author** - query by author id
-*   **search** - query search term ('s') 
-*   **order** - order posts ASC(ascending) or DESC(descending) order
-*   **orderby** - order posts by date, title, name, menu order, random, author, post ID or comment count
-*   **exclude** - comma separated list of post ID's to exclude from query. 
-*   **offset** - offset the initial query (number).
-*   **posts_per_page** - number of posts to load with each request
-*   **scroll** - load more posts as the user scrolls the page (true/false)
-*   **max_pages** - maximum number of pages to load while scrolling (only if scroll == true)  
-*   **pause** - do not load posts until user clicks load button (true/false) 
-*   **transition** - select a loading transition from the drop menu (slide/fade) 
-*   **button_label** - customize the Load More button label
+*   **repeater** - Choose a repeater template (Add-on available). Default = ‘default‘
+*   **post_type** - Comma separated list of post types. Default = ‘post’
+*   **post_format** - Query by post format. Default = null
+*   **category** - Query by category slug. Default = null
+*   **Tag** - Query by tag name. Default = null
+*   **taxonomy** - Query by custom taxonomy name. Default = null
+*   **taxonomy_terms** - Comma separated list of custom taxonomy terms(slug). Default = null
+*   **taxonomy_operator** - Operator to compare Taxonomy Terms against (IN/NOT IN). Default = ‘IN’
+*   **author** - Query by author id. Default = null
+*   **search** - Query search term (‘s’). Default = null
+*   **order** - Display posts in ASC(ascending) or DESC(descending) order. Default = ‘DESC’
+*   **orderby** - Order posts by date, title, name, menu order, random, author, post ID or comment count.  Default = ‘date’
+*   **exclude** - Comma separated list of post ID’s to exclude from query. Default = null 
+*   **offset** - Offset the initial query (number). Default = ’0′
+*   **posts_per_page** - Number of posts to load with each Ajax request. Default = ’5′
+*   **scroll** - Load more posts as the user scrolls the page (true/false). Default = ‘true’
+*   **max_pages** - Maximum number of pages to load while user is scrolling (activated on when scroll = true). Default = '5' 
+*   **pause** - Do not load posts until user clicks the Load More button (true/false). Default = 'false'
+*   **transition** - Choose a posts reveal transition (slide/fade). Default = 'slide' 
+*   **button_label** - The label text for Load More button. Default = 'Older Posts'
 
 
 
@@ -75,7 +75,7 @@ The following Add-ons are available to increase the functionality of Ajax Load M
 
 **Custom Repeaters**
 
-The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters) add-on will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
+The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
 [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
 
