@@ -37,7 +37,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 *   **post_type** - Comma separated list of post types. Default = ‘post’
 *   **post_format** - Query by post format. Default = null
 *   **category** - Query by category slug. Default = null
-*   **Tag** - Query by tag name. Default = null
+*   **tag** - Query by tag name. Default = null
 *   **taxonomy** - Query by custom taxonomy name. Default = null
 *   **taxonomy_terms** - Comma separated list of custom taxonomy terms(slug). Default = null
 *   **taxonomy_operator** - Operator to compare Taxonomy Terms against (IN/NOT IN). Default = ‘IN’
