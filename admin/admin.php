@@ -793,7 +793,7 @@ function alm_hide_btn_callback(){
 	   $options['_alm_hide_btn'] = '0';
 	
 	echo '<input type="hidden" name="alm_settings[_alm_hide_btn]" value="0" />
-	<label><input type="checkbox" name="alm_settings[_alm_hide_btn]" value="1"'. (($options['_alm_hide_btn']) ? ' checked="checked"' : '') .' /> '.__('Disable shortcode button from content editors', ALM_NAME).'</label>';	
+	<label><input type="checkbox" name="alm_settings[_alm_hide_btn]" value="1"'. (($options['_alm_hide_btn']) ? ' checked="checked"' : '') .' /> '.__('Hide shortcode button in WYSIWYG editor', ALM_NAME).'<p class="desc"></p></label>';	
 }
 
 
