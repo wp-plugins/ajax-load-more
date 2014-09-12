@@ -5,10 +5,10 @@
 	
  	// List available repeaters
 	echo '<div class="row repeater" id="alm-repeaters">';   		
-	echo '<h3 class="heading">'.__('Repeater', ALM_NAME). '</h3>';
+	echo '<h3 class="heading">'.__('Template', ALM_NAME). '</h3>';
 	echo '<div class="expand-wrap">';
 	echo '<div class="section-title">';
-	echo '<p>'.__('Choose your <a href="admin.php?page=ajax-load-more-repeaters" target="_parent">repeater</a>.', ALM_NAME). '</p>';
+	echo '<p>'.__('Select your <a href="admin.php?page=ajax-load-more-repeaters" target="_parent">repeater template</a>.', ALM_NAME). '</p>';
 	echo '</div>';
 	echo '<div class="wrap"><div class="inner">';
 	echo '<select name="repeater-select" id="repeater-select">';
@@ -20,7 +20,7 @@
 	
 	echo '</div></div>';
 	if (!has_action('alm_get_custom_repeaters')) {
-	  include( ALM_PATH.'admin/includes/cta/extend.php');
+	  include( 'cta/extend.php');
 	}
 	echo '</div>';
 	echo '</div>';

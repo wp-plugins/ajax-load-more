@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,10 +61,9 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
     [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]
     
 = Demos =
-* **[Default](http://connekthq.com/plugins/ajax-load-more/examples/default)** - Out of the box functionality and styling
+* **[Default](http://connekthq.com/plugins/ajax-load-more/)** - Out of the box functionality and styling
 * **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
 * **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
-* **[Multiple Instances](http://connekthq.com/plugins/ajax-load-more/examples/multiple-instances/)** - Include multiple Ajax Load More' on a single page
 
 *The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
@@ -76,7 +75,7 @@ The following Add-ons are available to increase the functionality of Ajax Load M
 
 **Custom Repeaters**
 
-The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will add five additional customizeable repeater templates and allow you to select unique templates for different content types throughout your theme.
+The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will add an additional five repeater templates allowing you to create unique templates for different content types throughout your theme.
 [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
 
@@ -171,13 +170,20 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.2.1 =
+* Fixed php notice/warning that would trigger if WP_DEBUG was enabled. 
+* Adding minified core JS.
+* Adding global option to disable shortcode button in the content editor.
+* Adding touchmove js event for faster scroll detection on mobile devices.
+* Code clean up, removing unused functions.
+
 = 2.2.0 =
 * Adding Post Format query.
 * Adding syntax highlighting for Repeater Templates with CodeMirror (http://codemirror.net/).
 * Adding custom alias integration for Repeater Templates (Only for the custom repeater add-on).
 * Adding button preview on settings page.
-* Adding 'White' button style
-* Updated .pot language file
+* Adding 'White' button style.
+* Updated .pot language file.
 
 = 2.1.3 =
 * Fixed issue causing the Ajax Load More menu to not show on some admin screen do to location conflict with another plugin.

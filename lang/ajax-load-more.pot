@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Load More\n"
-"POT-Creation-Date: 2014-08-11 21:42-0500\n"
-"PO-Revision-Date: 2014-08-11 21:42-0500\n"
+"POT-Creation-Date: 2014-09-11 22:32-0500\n"
+"PO-Revision-Date: 2014-09-11 22:32-0500\n"
 "Last-Translator: Darren Cooney <darren.cooney@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_CA\n"
@@ -126,9 +126,9 @@ msgstr ""
 #: ../admin/admin.php:491
 msgid ""
 "<p class=\"addon-intro\">You can generate shortcodes while editing pages!</"
-"p><p>Look for the Ajax Load More [A] icon in the content editor toolbar and "
-"the <a href=\"?page=ajax-load-more-shortcode-builder\">shortcode builder</a> "
-"will open."
+"p><p>Click the Ajax Load More icon in the content editor toolbar and the <a "
+"href=\"?page=ajax-load-more-shortcode-builder\">shortcode builder</a> will "
+"open in an overlay window."
 msgstr ""
 
 #: ../admin/admin.php:548
@@ -207,70 +207,70 @@ msgid ""
 "The Custom Repeaters add-on will add <strong>five</strong> additional <a "
 "href=\"?page=ajax-load-more-repeaters\">repeaters</a> and allow you to "
 "select unique repeaters for different content types throughout your theme.</"
-"p>                   \n"
-"                     <p>Simply construct your <a href=\"?page=ajax-load-more-"
-"repeaters\">repeater templates</a> however you like, then select a template "
-"from the list of available templates while building your <a href=\"?"
-"page=ajax-load-more-shortcode-builder\">shortcode</a>.</p>"
+"p>"
 msgstr ""
 
-#: ../admin/admin.php:652
+#: ../admin/admin.php:651 ../admin/admin.php:655
 msgid "About Add-ons"
 msgstr ""
 
-#: ../admin/admin.php:653
+#: ../admin/admin.php:652 ../admin/admin.php:656
 msgid ""
 "Add-ons are installed as a separate plugin and will receive plug-in update "
 "notifications. "
 msgstr ""
 
-#: ../admin/admin.php:695
+#: ../admin/admin.php:698
 msgid "Container Type"
 msgstr ""
 
-#: ../admin/admin.php:702
+#: ../admin/admin.php:706
 msgid "Container Classes"
 msgstr ""
 
-#: ../admin/admin.php:709
+#: ../admin/admin.php:714
+msgid "Editor Shortcode Button"
+msgstr ""
+
+#: ../admin/admin.php:722
 msgid "Disable CSS"
 msgstr ""
 
-#: ../admin/admin.php:716
+#: ../admin/admin.php:730
 msgid "Button Color"
 msgstr ""
 
-#: ../admin/admin.php:733
+#: ../admin/admin.php:747
 msgid ""
 "Customize your version of Ajax Load More by updating the fields below.</p><p "
 "class=\"small\">All changes will be applied globally throughout your theme."
 msgstr ""
 
-#: ../admin/admin.php:762
+#: ../admin/admin.php:776
 msgid "I want to use my own CSS styles"
 msgstr ""
 
-#: ../admin/admin.php:763
+#: ../admin/admin.php:777
 msgid "View Ajax Load More CSS"
 msgstr ""
 
-#: ../admin/admin.php:782
-msgid "Enable HTML5 elements within Ajax Load More's output"
+#: ../admin/admin.php:796
+msgid "Disable shortcode button from content editors"
 msgstr ""
 
-#: ../admin/admin.php:796
+#: ../admin/admin.php:810
 msgid "Add classes to Ajax Load More container"
 msgstr ""
 
-#: ../admin/admin.php:815 ../admin/admin.php:818
+#: ../admin/admin.php:829 ../admin/admin.php:832
 msgid "Ajax Posts Here"
 msgstr ""
 
-#: ../admin/admin.php:869
+#: ../admin/admin.php:883
 msgid "Choose your load more button color"
 msgstr ""
 
-#: ../admin/admin.php:880
+#: ../admin/admin.php:894
 msgid "Preview"
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Insert Shortcode"
 msgstr ""
 
-#: ../admin/editor.php:14
+#: ../admin/editor.php:19
 msgid "You are not allowed to be here"
 msgstr ""
 
@@ -304,7 +304,7 @@ msgstr ""
 
 #: ../admin/includes/cta/extend.php:1
 msgid ""
-"Unlock additional repeaters with the <a href=\"?page=ajax-load-more-add-ons"
+"Unlock additional templates with the <a href=\"?page=ajax-load-more-add-ons"
 "\" target=\"_parent\">Custom Repeaters add-on</a>"
 msgstr ""
 
@@ -316,11 +316,11 @@ msgstr ""
 msgid "Help/Resources"
 msgstr ""
 
-#: ../admin/includes/cta/resources.php:9
+#: ../admin/includes/cta/resources.php:25
 msgid ""
 "<a href=\"https://github.com/dcooney/wordpress-ajax-load-more\" target="
-"\"blank\" class=\"visit\"><i class=\"fa fa-github\"></i> Latest development "
-"build on Github</a>"
+"\"blank\" class=\"visit\"><i class=\"fa fa-github\"></i> Latest build on "
+"Github</a>"
 msgstr ""
 
 #: ../admin/includes/cta/writeable.php:2
@@ -336,13 +336,13 @@ msgid "Write Access Denied!"
 msgstr ""
 
 #: ../admin/shortcode-builder/shortcode-builder.php:8
-msgid "Repeater"
+msgid "Template"
 msgstr ""
 
 #: ../admin/shortcode-builder/shortcode-builder.php:11
 msgid ""
-"Choose your <a href=\"admin.php?page=ajax-load-more-repeaters\" target="
-"\"_parent\">repeater</a>."
+"Select your <a href=\"admin.php?page=ajax-load-more-repeaters\" target="
+"\"_parent\">repeater template</a>."
 msgstr ""
 
 #: ../admin/shortcode-builder/shortcode-builder.php:36

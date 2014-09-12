@@ -197,7 +197,7 @@ function alm_settings_page(){ ?>
 		<div class="wrap">
 		<div class="header-wrap">
          <h2><?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span></h2>
-         <p>A simple solution for lazy loading WordPress posts and pages with Ajax</p>
+         <p>A WordPress plugin for lazy loading posts with Ajax</p>
          </div>
 		   <div class="alm-main">
 		   	<div class="group">
@@ -700,6 +700,7 @@ function alm_admin_init(){
 	    'ajax-load-more',
 	    'alm_general_settings'
 	);
+	
 	add_settings_field( 
 		'_alm_classname', 
 		__('Container Classes', ALM_NAME ), 
@@ -707,6 +708,15 @@ function alm_admin_init(){
 		'ajax-load-more', 
 		'alm_general_settings' 
 	);
+	
+	add_settings_field( 
+		'_alm_hide_btn', 
+		__('Editor Shortcode Button', ALM_NAME ), 
+		'alm_hide_btn_callback', 
+		'ajax-load-more', 
+		'alm_general_settings' 
+	);
+	
 	add_settings_field( 
 		'_alm_disable_css', 
 		__('Disable CSS', ALM_NAME ), 
@@ -714,6 +724,7 @@ function alm_admin_init(){
 		'ajax-load-more', 
 		'alm_general_settings' 
 	);
+	
 	add_settings_field( 
 		'_alm_btn_color', 
 		__('Button Color', ALM_NAME ), 
@@ -770,25 +781,25 @@ function alm_disable_css_callback(){
 
 
 /*
-*  alm_html5_callback
-*  Enable HTML5 elements within AjaxLoadMore.
+*  alm_hide_btn_callback
+*  Disbale the ALM shortcode button in the WordPress content editor
 *
-*  @since 2.0.0
+*  @since 2.2.1
 */
 
-function alm_html5_callback(){
+function alm_hide_btn_callback(){
 	$options = get_option( 'alm_settings' );
-	if(!isset($options['_alm_html5'])) 
-	   $options['_alm_html5'] = '1';
+	if(!isset($options['_alm_hide_btn'])) 
+	   $options['_alm_hide_btn'] = '0';
 	
-	echo '<input type="hidden" name="alm_settings[_alm_html5]" value="0" />
-	<label><input type="checkbox" name="alm_settings[_alm_html5]" value="1"'. (($options['_alm_html5']) ? ' checked="checked"' : '') .' /> '.__('Enable HTML5 elements within Ajax Load More\'s output', ALM_NAME).'</label>';	
+	echo '<input type="hidden" name="alm_settings[_alm_hide_btn]" value="0" />
+	<label><input type="checkbox" name="alm_settings[_alm_hide_btn]" value="1"'. (($options['_alm_hide_btn']) ? ' checked="checked"' : '') .' /> '.__('Disable shortcode button from content editors', ALM_NAME).'</label>';	
 }
 
 
 /*
 *  alm_class_callback
-*  Enable HTML5 elements within AjaxLoadMore.
+*  Add classes to the Ajax Load More wrapper
 *
 *  @since 2.0.0
 */

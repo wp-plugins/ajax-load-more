@@ -3,7 +3,7 @@
  * http://wordpress.org/plugins/ajax-load-more/
  * https://github.com/dcooney/wordpress-ajax-load-more
  *
- * Copyright 2014 Connekt Media - http://cnkt.ca/ajax-load-more/
+ * Copyright 2014 Connekt Media - http://connekthq.com
  * Free to use under the GPLv2 license.
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -44,7 +44,7 @@
 			$pause = false;
 		}
 		
-		// Select the repeater
+		// Select the repeater template
 		if ($repeater === undefined) {
 			$repeater = 'default';
 		}
@@ -54,8 +54,9 @@
 			$max_pages = 5;
 		}
 		if ($max_pages === 'none') {
-			$max_pages = 100000;
+			$max_pages = 1000000;
 		}
+		
 		// select the transition 
 		if ($transition === undefined) {
 			$transition = 'slide';
@@ -64,18 +65,21 @@
 		} else {
 			$transition = 'slide';
 		}
+		
 		// Define offset
 		if ($content.data('offset') === undefined) {
 			$offset = 0;
 		} else {
 			$offset = $content.data('offset');
 		}
+		
 		// Define button text
 		if ($content.data('button-label') === undefined) {
 			$button_label = 'Older Posts';
 		} else {
 			$button_label = $content.data('button-label');
 		}
+		
 		// Define on Scroll event
 		if ($content.data('scroll') === undefined) {
 			$scroll = true;
@@ -83,15 +87,15 @@
 			$scroll = false;
 		} else {
 			$scroll = true;
-		}
+		}		
 		
-		// Append load more button tp .ajax-load-more
-		$el.append('<div class="'+$prefix+'btn-wrap"><button id="load-more" class="'+$prefix+'load-more-btn more">' + $button_label + '</button></div>');
-		var $button = $('.alm-load-more-btn', $el);
-		
-		//Parse Post Type for multiple entries
+		// Parse multiple Post Types  
 		var $post_type = $content.data('post-type');
 		$post_type = $post_type.split(",");
+		
+		// Append 'load More' button to .ajax-load-more-wrap
+		$el.append('<div class="'+$prefix+'btn-wrap"><button id="load-more" class="'+$prefix+'load-more-btn more">' + $button_label + '</button></div>');
+		var $button = $('.alm-load-more-btn', $el);
 		
 		
 		/* AjaxLoadMore.loadPosts()
@@ -177,8 +181,12 @@
 		};
 		
 		
-		// Button click event
-		$button.click(function() {
+		/* Button onClick()
+		* 
+		*  Load more button click event
+		*  @since 1.0.0
+		*/
+		$button.on('click', function() {
 			if($pause === true){
 				$pause = false;
 				AjaxLoadMore.loadPosts();		
@@ -188,7 +196,7 @@
 				page++;
 				AjaxLoadMore.loadPosts();
 			}
-		});
+		});		
 		
 		
 		/* AjaxLoadMore.isVisible()
@@ -202,16 +210,16 @@
    		   visible = true;
    		}
    		return visible;
-		}
+		};
 		
 		
-		/* AjaxLoadMore.isVisible()
+		/* Window scroll and touchmove events
 		* 
-		*  Check to see if element is visible before loading posts
-		*  @since 2.1.2
+		*  Load posts as user scrolls the page
+		*  @since 1.0
 		*/
 		if ($scroll) {
-			$window.scroll(function() {
+			$window.bind("scroll touchstart", function() {
 			   if(AjaxLoadMore.isVisible()){	
    				var content_offset = $button.offset();
    				if (!$loading && !$finished && $window.scrollTop() >= Math.round(content_offset.top - ($window.height() - 150)) && page < ($max_pages - 1) && proceed) {
@@ -221,7 +229,7 @@
    				}
 				}
 			});
-		}
+		}		
 		
 		
 		//Check for pause variable
@@ -233,7 +241,7 @@
 		}		
 		
 		
-		//flag to prevent unnecessary loading of post on init. Hold for 2 seconds.
+		//flag to prevent unnecessary loading of post on init. Hold for 1 second
 		setTimeout(function() {
 			proceed = true;
 		}, 1000);   
@@ -246,19 +254,22 @@
 		};	
 	};
 	
-	/* ajaxloadmore()
+	// End $.ajaxloadmore
+	
+	
+	/* $.fn.ajaxloadmore()
 	* 
 	*  Initiate all instances of Ajax load More
 	*  @since 2.1.2
    */
 	$.fn.ajaxloadmore = function() {
 		return this.each(function() {
-			new $.ajaxloadmore($(this));
+			$.ajaxloadmore($(this));
 		});
-	}
+	};
 	
    /* 
-	*  Init Ajax load More if div is present on screen
+	*  Initiate Ajax load More if div is present on screen
 	*  @since 2.1.2
    */ 
 	if($(".ajax-load-more-wrap").length)   

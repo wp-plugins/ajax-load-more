@@ -757,14 +757,19 @@ table.highlight{
    background: #fff;
    padding: 20px;
    margin: 0 0 20px;
-   border-radius: 3px;
-   border: 1px solid #ccc;
-   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-   -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
    position: relative;
    display: block;
    clear: both;	
+}
+.ajax-load-more .alm-main .group,
+.ajax-load-more .alm-sidebar .cta{
+   border: 1px solid #ccc;
+   -webkit-border-radius: 3px; 
+   -moz-border-radius: 3px; 
+   border-radius: 3px; 
+   -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+   -moz-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 .ajax-load-more .alm-main.full{
    width: 100%;
@@ -917,11 +922,6 @@ a.btn{
 	.ajax-load-more .alm-sidebar .cta{
 	   background: #fff;
 	   padding: 20px;
-	   border: 1px solid #ccc;
-	   border-radius: 3px; 
-	   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-	   -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-	   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 	   margin: 0 0 20px;
 	   overflow: hidden;
 	   position: relative;	
