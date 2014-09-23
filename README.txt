@@ -1,10 +1,10 @@
 === Ajax Load More ===
 Contributors: dcooney
 Donate link: http://connekthq.com/donate/
-Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category
+Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, post format, wmpl
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,11 +63,24 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 = Demos =
 * **[Default](http://connekthq.com/plugins/ajax-load-more/)** - Out of the box functionality and styling
 * **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
+* **[Multiple Instances](http://connekthq.com/plugins/ajax-load-more/examples/multiple-instances/)** - Include multiple Ajax Load More' on a single page
 * **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
+* **[Search Results](http://connekthq.com/plugins/ajax-load-more/examples/search-results/)** - Returning results based on search terms
 
 *The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
 
+
+= Callback Functions =
+
+**On Complete**
+The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
+To utilize the almComplete() function simply place the following code inside your sites javascript file.
+
+    $.fn.almComplete = function(alm = null){
+    	// Your on complete code goes here
+    }
+    
 
 = Add-ons =
 
@@ -169,6 +182,11 @@ How to install Ajax Load More.
 6. Shortcode and implementation examples
 
 == Changelog ==
+
+= 2.2.2 =
+* Adding callback function that is dispatched once a successful ajax call is made. $.fn.almComplete(alm=null). 
+* Adding WPML support for ICL_LANGUAGE_CODE - A 'lang' atributed is added dynamically if WPML is installed.
+* Making JS variables and functions publically accessible.
 
 = 2.2.1 =
 * Fixed php notice/warning that would trigger if WP_DEBUG was enabled. 

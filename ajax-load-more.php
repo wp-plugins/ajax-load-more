@@ -6,14 +6,14 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.2.1
+Version: 2.2.2
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.2.1');
-define('ALM_RELEASE', 'September 11, 2014');
+define('ALM_VERSION', '2.2.2');
+define('ALM_RELEASE', 'September 23, 2014');
 
 /*
 *  alm_install
@@ -174,8 +174,10 @@ if( !class_exists('AjaxLoadMore') ):
 			$btn_color = ' '.$options['_alm_btn_color'];
 		}
 		
+		$lang = defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : '';
+		
 		$ajaxloadmore = '<div id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'">';
-		$ajaxloadmore .= '<'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'>';
+		$ajaxloadmore .= '<'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-lang="'.$lang.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'>';
 		$ajaxloadmore .= '</div>';
 		
 		return $ajaxloadmore;
@@ -219,8 +221,8 @@ if( !class_exists('AjaxLoadMore') ):
 		$exclude = (isset($_GET['exclude'])) ? $_GET['exclude'] : '';
 		$numPosts = (isset($_GET['numPosts'])) ? $_GET['numPosts'] : 6;
 		$page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
-		$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;
-
+		$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;		
+		$lang = (isset($_GET['lang'])) ? $_GET['lang'] : '';
 
 		// Set up initial args
 
@@ -233,7 +235,8 @@ if( !class_exists('AjaxLoadMore') ):
 			'offset' => $offset + ($numPosts*$page),
 			's' => $s,
 			'order' => $order,
-			'orderby' => $orderby,
+			'orderby' => $orderby,			
+			'lang' => $lang,
 			'post_status' => 'publish',
 			'ignore_sticky_posts' => false,
 		);
