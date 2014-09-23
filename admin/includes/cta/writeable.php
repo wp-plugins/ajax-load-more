@@ -3,7 +3,7 @@
 	<div class="item">
 	<?php
 		//Test server for write capabilities
-	$filename =  ALM_PATH .'admin/includes/test-writable.txt';
+	$filename =  ALM_PATH .'core/repeater/default.php';
 	if (is_writable($filename))
 	    echo '<p><i class="fa fa-check"></i><strong>'.__('Write Access Enabled!').'</strong></p><p class="desc">Good news! Your server is configured to read and write files within the plugin directory.';
 	else
