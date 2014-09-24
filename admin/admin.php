@@ -281,7 +281,7 @@ function alm_repeater_page(){ ?>
             <?php
             	if (!has_action('alm_get_custom_repeaters')) {
             	echo '<div class="row no-brd">';
-					include( ALM_PATH. 'admin/includes/cta/extend.php');
+					include( ALM_PATH . 'admin/includes/cta/extend.php');
             	echo '</div>';
 				  }
             ?>
