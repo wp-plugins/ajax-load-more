@@ -63,6 +63,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 = Demos =
 * **[Default](http://connekthq.com/plugins/ajax-load-more/)** - Out of the box functionality and styling
 * **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
+* **[Mansory](http://connekthq.com/plugins/ajax-load-more/examples/masonry/)** - Creating a flexible grid layout with Masonry JS
 * **[Multiple Instances](http://connekthq.com/plugins/ajax-load-more/examples/multiple-instances/)** - Include multiple Ajax Load More' on a single page
 * **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
 * **[Search Results](http://connekthq.com/plugins/ajax-load-more/examples/search-results/)** - Returning results based on search terms
@@ -74,6 +75,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 = Callback Functions =
 
 **On Complete**
+
 The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
 To utilize the almComplete() function simply place the following code inside your sites javascript file.
 
