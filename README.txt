@@ -27,7 +27,7 @@ Build complex WordPress queries using our shortcode builder then add the shortco
 
 Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
-
+***
 
 = Shortcode Parameters =
 
@@ -54,7 +54,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 *   **transition** - Choose a posts reveal transition (slide/fade). Default = 'slide' 
 *   **button_label** - The label text for Load More button. Default = 'Older Posts'
 
-
+***
 
 = Example Shortcode =
 
@@ -70,9 +70,10 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 
 *The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
-
+***
 
 = Callback Functions =
+
 
 **On Complete**
 
@@ -82,7 +83,8 @@ To utilize the almComplete() function simply place the following code inside you
     $.fn.almComplete = function(alm = null){
     	// Your on complete code goes here
     }
-    
+
+***    
 
 = Add-ons =
 
@@ -93,6 +95,7 @@ The following Add-ons are available to increase the functionality of Ajax Load M
 The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will add an additional five repeater templates allowing you to create unique templates for different content types throughout your theme.
 [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
+***
 
 = Tested Browsers =
 
@@ -104,12 +107,12 @@ The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repe
 * Android (Native + Chrome)
 * BB10
 
-
+***
 
 = Website =
 http://connekthq.com/ajax-load-more/
 
-
+***
 
 = Please Rate Ajax Load More! =
 
