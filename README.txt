@@ -80,7 +80,7 @@ Ajax Load More accepts a number of paramaters to pass to the WordPress query. Th
 The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
 To utilize the almComplete() function simply place the following code inside your sites javascript file.
 
-    $.fn.almComplete = function(alm = null){
+    $.fn.almComplete = function(alm){
     	// Your on complete code goes here
     }
 
@@ -189,7 +189,7 @@ How to install Ajax Load More.
 == Changelog ==
 
 = 2.2.2 =
-* Adding callback function that is dispatched once a successful ajax call is made. $.fn.almComplete(alm=null). 
+* Adding callback function that is dispatched once a successful ajax call is made. $.fn.almComplete(alm). 
 * Adding WPML support for ICL_LANGUAGE_CODE - A 'lang' atributed is added dynamically if WPML is installed.
 * Making JS variables and functions publically accessible.
 
