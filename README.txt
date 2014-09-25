@@ -31,7 +31,7 @@ Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for 
 
 = Shortcode Parameters =
 
-Ajax Load More accepts a number of paramaters to pass to the WordPress query. These parameters are passed via shortcode - don't worry, creating your shortcode is simple with our Shortcode Builder.
+Ajax Load More accepts a number of parameters that are passed to the WordPress query. These parameters are transferred via shortcode - don't worry, creating your shortcode is simple with our intuitive Shortcode Builder.
  
 *   **repeater** - Choose a repeater template (Add-on available). Default = ‘default‘
 *   **post_type** - Comma separated list of post types. Default = ‘post’
