@@ -170,14 +170,14 @@
             <div class="inner">
                <div class="inner">
                   <label for="meta-key" class="full"><?php _e('Field Key (Name):', ALM_NAME); ?></label>
-                  <input class="alm_element" name="meta-key" type="text" id="meta-key" value="" placeholder="<?php _e('field_name', ALM_NAME); ?>">   
+                  <input class="alm_element" name="meta-key" type="text" id="meta-key" value="" placeholder="<?php _e('Enter custom field key(name)', ALM_NAME); ?>">   
                </div>            
             </div>
             <div id="meta-query-extended">
                <?php // Meta Value ?>
                <div class="inner border-top">
                   <label for="meta-value" class="full"><?php _e('Field Value:', ALM_NAME); ?></label>
-                  <input class="alm_element" name="meta-value" type="text" id="meta-value" value="" placeholder="<?php _e('field_value', ALM_NAME); ?>">
+                  <input class="alm_element" name="meta-value" type="text" id="meta-value" value="" placeholder="<?php _e('Enter custom field value', ALM_NAME); ?>">
                </div>    
                <?php // Meta Compare ?>           
                <div class="inner border-top">
