@@ -6,14 +6,14 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.2.2
+Version: 2.2.3
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.2.2');
-define('ALM_RELEASE', 'September 23, 2014');
+define('ALM_VERSION', '2.2.3');
+define('ALM_RELEASE', 'October 6, 2014');
 
 /*
 *  alm_install
@@ -141,10 +141,13 @@ if( !class_exists('AjaxLoadMore') ):
 				'category' => '',
 				'taxonomy' => '',
 				'taxonomy_terms' => '',
-				'taxonomy_operator' => '',
+				'taxonomy_operator' => '',	
+				'meta_key' => '',
+				'meta_value' => '',
+				'meta_compare' => '',	
 				'tag' => '',
 				'author' => '',
-				'search' => '',
+				'search' => '',						
 				'order' => '',
 				'orderby' => '',
 				'exclude' => '',
@@ -177,7 +180,7 @@ if( !class_exists('AjaxLoadMore') ):
 		$lang = defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : '';
 		
 		$ajaxloadmore = '<div id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'">';
-		$ajaxloadmore .= '<'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-lang="'.$lang.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'>';
+		$ajaxloadmore .= '<'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-meta-key="'.$meta_key.'" data-meta-value="'.$meta_value.'" data-meta-compare="'.$meta_compare.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-lang="'.$lang.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'>';
 		$ajaxloadmore .= '</div>';
 		
 		return $ajaxloadmore;
@@ -216,6 +219,14 @@ if( !class_exists('AjaxLoadMore') ):
 		$post_format = (isset($_GET['postFormat'])) ? $_GET['postFormat'] : '';
 		$tag = (isset($_GET['tag'])) ? $_GET['tag'] : '';
 		$s = (isset($_GET['search'])) ? $_GET['search'] : '';
+		
+		$meta_key = (isset($_GET['meta_key'])) ? $_GET['meta_key'] : '';
+		$meta_value = (isset($_GET['meta_value'])) ? $_GET['meta_value'] : '';
+		$meta_compare = (isset($_GET['meta_compare'])) ? $_GET['meta_compare'] : '';
+		if($meta_compare == ''){
+			$meta_compare = '=';
+		}
+		
 		$order = (isset($_GET['order'])) ? $_GET['order'] : 'DESC';
 		$orderby = (isset($_GET['orderby'])) ? $_GET['orderby'] : 'date';
 		$exclude = (isset($_GET['exclude'])) ? $_GET['exclude'] : '';
@@ -233,6 +244,13 @@ if( !class_exists('AjaxLoadMore') ):
 			'author' => $author_id,
 			'posts_per_page' => $numPosts,
 			'offset' => $offset + ($numPosts*$page),
+			
+			/*
+'meta_key' => $meta_key,
+      	'meta_value' => $meta_value,
+      	'meta_compare' => $meta_compare,
+*/
+      	
 			's' => $s,
 			'order' => $order,
 			'orderby' => $orderby,			
@@ -289,6 +307,20 @@ if( !class_exists('AjaxLoadMore') ):
 			        'field' => 'slug',
 			        'terms' => $the_terms,
 			        'operator' => $taxonomy_operator
+				),
+			);
+	    }
+	    
+	    // Meta query
+		if(!empty($meta_key) && !empty($meta_value)){
+	    echo $meta_key . ' - ';
+	    echo $meta_value . ' - ';	
+	    echo $meta_compare;	
+			$args['meta_query'] = array(
+				array(
+			        'key' => $meta_key,
+			        'value' => $meta_value,
+			        'compare' => $meta_compare,
 				),
 			);
 	    }

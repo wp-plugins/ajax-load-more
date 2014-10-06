@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, post format, wmpl
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,9 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **taxonomy** - Query by custom taxonomy name. Default = null
 *   **taxonomy_terms** - Comma separated list of custom taxonomy terms(slug). Default = null
 *   **taxonomy_operator** - Operator to compare Taxonomy Terms against (IN/NOT IN). Default = ‘IN’
+*   **meta_key** - Custom field key(name). Default = null
+*   **meta_value** - Custom field value. Default = null
+*   **meta_compare** - Operator to compare meta_key and meta_value against (=/!=/>/>=/</<= etc.). Default = ‘=’
 *   **author** - Query by author id. Default = null
 *   **search** - Query search term (‘s’). Default = null
 *   **order** - Display posts in ASC(ascending) or DESC(descending) order. Default = ‘DESC’
@@ -188,6 +191,13 @@ How to install Ajax Load More.
 6. Shortcode and implementation examples
 
 == Changelog ==
+
+= 2.2.3 =
+* Adding query by Custom Field value(Meta Query). 
+* Improved error handling for easier debugging.
+* Fixed issue with pause = "true" and scroll = "true". Pause should always take precendence over scroll. 
+* Code clean up, improving overall quality for easier merges and updates.
+
 
 = 2.2.2 =
 * Adding callback function that is dispatched once a successful ajax call is made. $.fn.almComplete(alm). 
