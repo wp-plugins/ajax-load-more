@@ -244,24 +244,20 @@ if( !class_exists('AjaxLoadMore') ):
 			'author' => $author_id,
 			'posts_per_page' => $numPosts,
 			'offset' => $offset + ($numPosts*$page),
-			
-			/*
-'meta_key' => $meta_key,
-      	'meta_value' => $meta_value,
-      	'meta_compare' => $meta_compare,
-*/
-      	
-			's' => $s,
 			'order' => $order,
 			'orderby' => $orderby,			
 			'lang' => $lang,
 			'post_status' => 'publish',
 			'ignore_sticky_posts' => false,
 		);
+		
+		// Search Term
+		if(!empty($s)){
+			$args['s'] = $s;
+		}
 
 
 		// Exclude posts if needed - See plugin examples for more info on excluding posts
-
 		if(!empty($exclude)){
 			$exclude=explode(",",$exclude);
 			$args['post__not_in'] = $exclude;
