@@ -73,6 +73,8 @@ if( !class_exists('AjaxLoadMore') ):
 		add_action('wp_ajax_nopriv_ajax_load_more_init', array(&$this, 'alm_query_posts'));
 		add_action('wp_enqueue_scripts', array(&$this, 'alm_enqueue_scripts'));		
 		add_action('alm_get_repeater', array(&$this, 'alm_get_current_repeater'));		
+		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'alm_action_links'));
+
 		add_shortcode('ajax_load_more', array(&$this, 'alm_shortcode'));		
 		
 		// Allow shortcodes in widget areas
@@ -99,6 +101,21 @@ if( !class_exists('AjaxLoadMore') ):
 			include_once('admin/admin.php');
 		}		
    }
+   
+	/*
+	*  alm_action_links
+	*  Add plugin action links to WP plugin screen
+	*
+	*  @since 2.2.3
+	*/   
+   
+   function alm_action_links( $links ) {
+      $links[] = '<a href="'. get_admin_url(null, 'admin.php?page=ajax-load-more') .'">Settings</a>';
+      $links[] = '<a href="'. get_admin_url(null, 'admin.php?page=ajax-load-more-shortcode-builder') .'">Shortcode  Builder</a>';
+      return $links;
+   }
+
+
 
 	/*
 	*  alm_enqueue_scripts
@@ -244,20 +261,24 @@ if( !class_exists('AjaxLoadMore') ):
 			'author' => $author_id,
 			'posts_per_page' => $numPosts,
 			'offset' => $offset + ($numPosts*$page),
+			
+			/*
+'meta_key' => $meta_key,
+      	'meta_value' => $meta_value,
+      	'meta_compare' => $meta_compare,
+*/
+      	
+			's' => $s,
 			'order' => $order,
 			'orderby' => $orderby,			
 			'lang' => $lang,
 			'post_status' => 'publish',
 			'ignore_sticky_posts' => false,
 		);
-		
-		// Search Term
-		if(!empty($s)){
-			$args['s'] = $s;
-		}
 
 
 		// Exclude posts if needed - See plugin examples for more info on excluding posts
+
 		if(!empty($exclude)){
 			$exclude=explode(",",$exclude);
 			$args['post__not_in'] = $exclude;

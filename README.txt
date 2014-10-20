@@ -184,11 +184,12 @@ How to install Ajax Load More.
 == Screenshots ==
 
 1. Settings screen
-2. The collection of available repeaters
-3. Shortcode Builder (Admin screen)
-4. Shortcode Builder (Page Edit screen)
-5. Content Editor shortcode icon
-6. Shortcode and implementation examples
+2. Available Repeater Templates
+3. Custom Repeaters Add-On
+4. Shortcode Builder (Admin screen)
+5. Shortcode Builder (Page Edit screen)
+6. Content Editor shortcode icon
+7. Shortcode and implementation examples
 
 == Changelog ==
 
