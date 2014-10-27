@@ -195,29 +195,52 @@ function alm_enqueue_admin_scripts(){
 function alm_settings_page(){ ?>
 	<div class="admin ajax-load-more settings" id="alm-settings">
 		<div class="wrap">
-		<div class="header-wrap">
-         <h2><?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span></h2>
-         <p>A WordPress plugin for lazy loading posts with Ajax</p>
-         </div>
-		   <div class="alm-main">
+   		<div class="header-wrap">
+            <h2><?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span></h2>
+            <p>A WordPress plugin for lazy loading posts with Ajax</p>
+         </div>         
+   		<?php if( isset($_GET['settings-updated']) ) { ?>
+             <div id="message" class="updated inline">
+                 <p><strong><?php _e('Settings saved.') ?></strong></p>
+             </div>
+         <?php } ?>
+		   <div class="cnkt-main">
 		   	<div class="group">
-	   			<form action="options.php" method="post">
+	   			<form action="options.php" method="post" id="alm_OptionsForm">
 	   				<?php 
 	   					settings_fields( 'alm-setting-group' );
 	   					do_settings_sections( 'ajax-load-more' );	
 	   					//get the older values, wont work the first time
 	   					$options = get_option( '_alm_settings' ); ?>	
-	   					<div class="row no-brd">	       
-	   		            <?php submit_button('Save Settings'); ?>	
+	   					<div class="row no-brd alm-save-settings">	       
+	   		            <?php submit_button('Save Settings', 'large', 'secondary'); ?>
+                        <div class="loading"></div>	
 	   					</div>	        
-	   			</form>	
+	   			</form>
+	   			<script type="text/javascript">
+                  jQuery(document).ready(function() {
+                     jQuery('#alm_OptionsForm').submit(function() { 
+                        jQuery('.alm-save-settings .loading').fadeIn();
+                        jQuery(this).ajaxSubmit({
+                           success: function(){
+                              jQuery('.alm-save-settings .loading').fadeOut(250, function(){
+                                 window.location.reload();
+                              });
+                           },
+                           error: function(){
+                              alert("<?php _e('Sorry, settings could not be saved.', USP_NAME); ?>");
+                           }
+                        }); 
+                        return false; 
+                     });
+                  });
+               </script> 	
 		   	</div>
 		   </div>
-		   <div class="alm-sidebar">
+		   <div class="cnkt-sidebar">
 				<?php include( plugin_dir_path( __FILE__ ) . 'includes/cta/resources.php');	?>
 				<?php include( plugin_dir_path( __FILE__ ) . 'includes/cta/about.php');	?>
-		   </div>	
-		   	
+		   </div>		   	
 		</div>
 	</div>
 <?php
@@ -239,7 +262,7 @@ function alm_repeater_page(){ ?>
 			<h2><?php _e('Ajax Load More: Repeater Templates', ALM_NAME); ?></h2>
 			<p><?php _e('The library of available templates to use throughout your theme', ALM_NAME); ?></p>  
 		</div>
-		<div class="alm-main form-table repeaters">		
+		<div class="cnkt-main form-table repeaters">		
 		
 		   <!-- Repeaters -->
 		   <div class="group">
@@ -381,7 +404,7 @@ function alm_repeater_page(){ ?>
 		   </div>
 		   <!-- End Repeaters -->		   
 	   </div>
-	   <div class="alm-sidebar">
+	   <div class="cnkt-sidebar">
 	   		<div class="cta">
 				<h3><?php _e('Templating Help', ALM_NAME); ?></h3>
 				<div class="item">
@@ -483,7 +506,7 @@ function alm_shortcode_builder_page(){ ?>
 			<h2><?php _e('Ajax Load More: Shortcode Builder', ALM_NAME); ?></h2>
 			<p><?php _e('Create your own Ajax Load More <a href="http://en.support.wordpress.com/shortcodes/" target="_blank">shortcode</a> by adjusting the values below', ALM_NAME); ?></p>  
 		</div>
-		<div class="alm-main">
+		<div class="cnkt-main">
 		   <div class="group">
 			   <?php include( plugin_dir_path( __FILE__ ) . 'shortcode-builder/shortcode-builder.php');	?>
 			   <div class="row no-brd">
@@ -491,7 +514,7 @@ function alm_shortcode_builder_page(){ ?>
 			   </div>
 		   </div>
 	   </div>
-	   <div class="alm-sidebar">
+	   <div class="cnkt-sidebar">
 		   	<div class="cta">
 					<h3><?php _e('Shortcode Output', ALM_NAME); ?></h3>
 					<p><?php _e('Copy and paste the following shortcode into the content editor or widget area of your theme.', ALM_NAME); ?></p>
@@ -563,7 +586,7 @@ function alm_example_page(){ ?>
    			<h2><?php _e('Ajax Load More: Examples', ALM_NAME); ?></h2>
    			<p><?php _e('A collection of everyday shortcode usages and implementation examples', ALM_NAME); ?></p>  
 		</div>
-		<div class="alm-main forceColors">
+		<div class="cnkt-main forceColors">
 		   <div class="group">
 			   <div class="row gist">
 			      <h3 class="heading"><?php _e('Author.php', ALM_NAME); ?></h3>
@@ -605,7 +628,7 @@ function alm_example_page(){ ?>
 			   </div>
 		   </div>
 	   </div>	   
-	   <div class="alm-sidebar">
+	   <div class="cnkt-sidebar">
 	   		<div class="cta">
 					<h3><?php _e('Request Examples', ALM_NAME); ?></h3>
 					<p><?php _e('If you\'re having issue\'s with functionality, please submit example requests through the <a href="https://github.com/dcooney/wordpress-ajax-load-more" target="_blank">GitHub repository</a>. ', ALM_NAME); ?></p>
@@ -635,7 +658,7 @@ function alm_add_ons_page(){ ?>
 	   		<h2><?php _e('Ajax Load More: Add-ons', ALM_NAME); ?></h2>
 	   		<p><?php _e('The following Add-ons are available to increase the functionality of Ajax Load More.', ALM_NAME); ?></p>  
 		</div>
-		<div class="alm-main">
+		<div class="cnkt-main">
 		   <!-- Custom Repeater -->
 		   <div class="group">
 			   <div class="row no-brd">
@@ -661,7 +684,7 @@ function alm_add_ons_page(){ ?>
 		   <!-- End Custom Repeater -->
 	   </div>	   
 	   
-	   <div class="alm-sidebar">
+	   <div class="cnkt-sidebar">
 	   	<div class="cta">
 			<h3><?php _e('About Add-ons', ALM_NAME); ?></h3>
 			<p><?php _e('Add-ons are installed as a separate plugin and will receive plug-in update notifications. ', ALM_NAME); ?></p>

@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, post format, wmpl
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,12 +193,17 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+= 2.2.4 =
+* Improving WordPress query arguments.
+* Removing empty query parameters which were conflicting with various hooks and filters reported by ALM users.
+* Updated admin notifications.
+* Updated plugin action links to plugin listing.
+
 = 2.2.3 =
 * Adding query by Custom Field value(Meta Query). 
 * Improved error handling for easier debugging.
 * Fixed issue with pause = "true" and scroll = "true". Pause should always take precendence over scroll. 
 * Code clean up, improving overall quality for easier merges and updates.
-
 
 = 2.2.2 =
 * Adding callback function that is dispatched once a successful ajax call is made. $.fn.almComplete(alm). 
