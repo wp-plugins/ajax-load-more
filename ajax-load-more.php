@@ -256,41 +256,22 @@ if( !class_exists('AjaxLoadMore') ):
 
 		$args = array(
 			'post_type' => $postType,
+			'category_name' => $category,
+			'tag' => $tag,
+			'author' => $author_id,
 			'posts_per_page' => $numPosts,
 			'offset' => $offset + ($numPosts*$page),
+			's' => $s,
 			'order' => $order,
-			'orderby' => $orderby,	
+			'orderby' => $orderby,			
+			'lang' => $lang,
 			'post_status' => 'publish',
 			'ignore_sticky_posts' => false,
 		);
-      
-      // Category
-		if(!empty($category)){
-			$args['category'] = $category;
-		}
-      
-      // Tag
-		if(!empty($tag)){
-			$args['tag'] = $tag;
-		}
-      
-      // Author
-		if(!empty($author)){
-			$args['author'] = $author;
-		}
-      
-      // Search Term
-		if(!empty($s)){
-			$args['s'] = $s;
-		}
-      
-      // Language
-		if(!empty($lang)){
-			$args['lang'] = $lang;
-		}
 
-		// Exclude posts
-		// - Please see plugin examples for more info on excluding posts
+
+		// Exclude posts if needed - See plugin examples for more info on excluding posts
+
 		if(!empty($exclude)){
 			$exclude=explode(",",$exclude);
 			$args['post__not_in'] = $exclude;
