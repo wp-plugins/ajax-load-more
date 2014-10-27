@@ -197,7 +197,7 @@ How to install Ajax Load More.
 * Improving WordPress query arguments.
 * Removing empty query parameters which were conflicting with various hooks and filters reported by ALM users.
 * Updated admin notifications.
-* Updated plugin action links to plugin listing.
+* Added plugin action links to plugin listing.
 
 = 2.2.3 =
 * Adding query by Custom Field value(Meta Query). 
