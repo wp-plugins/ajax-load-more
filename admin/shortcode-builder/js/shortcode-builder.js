@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
    "use strict"; 
    
-   $(".row select, .alm-main select").select2();    
+   $(".row select, .cnkt-main select").select2();    
    
    var _alm = {},
        output_div = $('#shortcode_output'),
