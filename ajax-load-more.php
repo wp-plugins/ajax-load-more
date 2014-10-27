@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.2.4
+Version: 2.2.5
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.2.4');
+define('ALM_VERSION', '2.2.5');
 define('ALM_RELEASE', 'October 27, 2014');
 
 /*
@@ -266,7 +266,7 @@ if( !class_exists('AjaxLoadMore') ):
       
       // Category
 		if(!empty($category)){
-			$args['category'] = $category;
+			$args['category_name'] = $category;
 		}
       
       // Tag
