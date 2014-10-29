@@ -6,14 +6,14 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.2.5
+Version: 2.2.6
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.2.5');
-define('ALM_RELEASE', 'October 27, 2014');
+define('ALM_VERSION', '2.2.6');
+define('ALM_RELEASE', 'October 29, 2014');
 
 /*
 *  alm_install
@@ -239,10 +239,7 @@ if( !class_exists('AjaxLoadMore') ):
 		
 		$meta_key = (isset($_GET['meta_key'])) ? $_GET['meta_key'] : '';
 		$meta_value = (isset($_GET['meta_value'])) ? $_GET['meta_value'] : '';
-		$meta_compare = (isset($_GET['meta_compare'])) ? $_GET['meta_compare'] : '';
-		if($meta_compare == ''){
-			$meta_compare = '=';
-		}
+		$meta_compare = (isset($_GET['meta_compare'])) ? $_GET['meta_compare'] : '=';
 		
 		$order = (isset($_GET['order'])) ? $_GET['order'] : 'DESC';
 		$orderby = (isset($_GET['orderby'])) ? $_GET['orderby'] : 'date';
@@ -342,9 +339,6 @@ if( !class_exists('AjaxLoadMore') ):
 	    
 	    // Meta Query
 		if(!empty($meta_key) && !empty($meta_value)){
-	    echo $meta_key . ' - ';
-	    echo $meta_value . ' - ';	
-	    echo $meta_compare;	
 			$args['meta_query'] = array(
 				array(
 			        'key' => $meta_key,

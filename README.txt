@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, post format, wmpl
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 2.2.5
+Stable tag: 2.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,11 @@ How to install Ajax Load More.
 7. Shortcode and implementation examples
 
 == Changelog ==
+
+= 2.2.6 =
+* Bug fix for meta_query parameters.
+* Further improvements to WordPress query arguments from 2.2.4.
+* Update plugin .pot file.
 
 = 2.2.5 =
 * Urgent fix for category queries.

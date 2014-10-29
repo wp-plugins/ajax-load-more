@@ -197,11 +197,11 @@ function alm_settings_page(){ ?>
 		<div class="wrap">
    		<div class="header-wrap">
             <h2><?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span></h2>
-            <p>A WordPress plugin for lazy loading posts with Ajax</p>
+            <p><?php _e('A WordPress plugin for lazy loading posts with Ajax', ALM_NAME); ?></p>
          </div>         
    		<?php if( isset($_GET['settings-updated']) ) { ?>
              <div id="message" class="updated inline">
-                 <p><strong><?php _e('Settings saved.') ?></strong></p>
+                 <p><strong><?php _e('Ajax Load More settings have been saved.') ?></strong></p>
              </div>
          <?php } ?>
 		   <div class="cnkt-main">
@@ -228,7 +228,7 @@ function alm_settings_page(){ ?>
                               });
                            },
                            error: function(){
-                              alert("<?php _e('Sorry, settings could not be saved.', USP_NAME); ?>");
+                              alert("<?php _e('Sorry, settings could not be saved.', ALM_NAME); ?>");
                            }
                         }); 
                         return false; 
@@ -742,7 +742,7 @@ function alm_admin_init(){
 	
 	add_settings_field( 
 		'_alm_hide_btn', 
-		__('Editor Shortcode Button', ALM_NAME ), 
+		__('Editor Button', ALM_NAME ), 
 		'alm_hide_btn_callback', 
 		'ajax-load-more', 
 		'alm_general_settings' 
