@@ -272,7 +272,7 @@ if( !class_exists('AjaxLoadMore') ):
 		}
       
       // Author
-		if(!empty($author)){
+		if(!empty($author_id)){
 			$args['author'] = $author_id;
 		}
       
