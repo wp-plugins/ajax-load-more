@@ -273,7 +273,7 @@ if( !class_exists('AjaxLoadMore') ):
       
       // Author
 		if(!empty($author)){
-			$args['author'] = $author;
+			$args['author'] = $author_id;
 		}
       
       // Search Term
