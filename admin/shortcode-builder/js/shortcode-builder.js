@@ -262,8 +262,7 @@ jQuery(document).ready(function($) {
    //Select 'post' by default
    $('.post_types input[type=checkbox]#chk-post').prop('checked', true).addClass('changed'); 
    
-   
-   $('.alm_element').on('change keyup', function() {
+   $(document).on('change keyup', '.alm_element', function() {
       $(this).addClass('changed');      
 
       // If post type is not selected, select 'post'.

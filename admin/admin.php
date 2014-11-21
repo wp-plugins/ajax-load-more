@@ -559,8 +559,7 @@ function alm_get_tax_terms(){
 	if ( !empty( $terms ) && !is_wp_error( $terms ) ){		
 		$returnVal .= '<ul>';
 		foreach ( $terms as $term ) {
-			//print_r($term);
-			$returnVal .='<li><input type="checkbox" name="tax-term-'.$term->slug.'" id="tax-term-'.$term->slug.'" data-type="'.$term->slug.'"><label for="tax-term-'.$term->slug.'">'.$term->name.'</label></li>';		
+			$returnVal .='<li ><input type="checkbox" class="alm_element" name="tax-term-'.$term->slug.'" id="tax-term-'.$term->slug.'" data-type="'.$term->slug.'"><label for="tax-term-'.$term->slug.'">'.$term->name.'</label></li>';		
 		}
 		$returnVal .= '</ul>';		
 		echo $returnVal;

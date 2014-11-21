@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Load More\n"
-"POT-Creation-Date: 2014-10-29 12:38-0500\n"
-"PO-Revision-Date: 2014-10-29 12:38-0500\n"
+"POT-Creation-Date: 2014-11-21 10:23-0500\n"
+"PO-Revision-Date: 2014-11-21 10:23-0500\n"
 "Last-Translator: Darren Cooney <darren.cooney@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_CA\n"
@@ -128,7 +128,7 @@ msgid ""
 "shortcodes/\" target=\"_blank\">shortcode</a> by adjusting the values below"
 msgstr ""
 
-#: ../admin/admin.php:513 ../admin/admin.php:627
+#: ../admin/admin.php:513 ../admin/admin.php:626
 msgid "Back to Top"
 msgstr ""
 
@@ -158,78 +158,78 @@ msgid ""
 "open in an overlay window."
 msgstr ""
 
-#: ../admin/admin.php:586
+#: ../admin/admin.php:585
 msgid "Ajax Load More: Examples"
 msgstr ""
 
-#: ../admin/admin.php:587
+#: ../admin/admin.php:586
 msgid "A collection of everyday shortcode usages and implementation examples"
 msgstr ""
 
-#: ../admin/admin.php:592
+#: ../admin/admin.php:591
 msgid "Author.php"
 msgstr ""
 
-#: ../admin/admin.php:594
+#: ../admin/admin.php:593
 msgid "Shortcode for use on author archive pages."
 msgstr ""
 
-#: ../admin/admin.php:601
+#: ../admin/admin.php:600
 msgid "Category.php"
 msgstr ""
 
-#: ../admin/admin.php:603
+#: ../admin/admin.php:602
 msgid "Shortcode for use on category archive pages."
 msgstr ""
 
-#: ../admin/admin.php:610
+#: ../admin/admin.php:609
 msgid "Excluding Posts"
 msgstr ""
 
-#: ../admin/admin.php:612
+#: ../admin/admin.php:611
 msgid "Shortcode for excluding an array of posts."
 msgstr ""
 
-#: ../admin/admin.php:618
+#: ../admin/admin.php:617
 msgid "Tag.php"
 msgstr ""
 
-#: ../admin/admin.php:620
+#: ../admin/admin.php:619
 msgid "Shortcode for use on tag archive pages."
 msgstr ""
 
-#: ../admin/admin.php:633
+#: ../admin/admin.php:632
 msgid "Request Examples"
 msgstr ""
 
-#: ../admin/admin.php:634
+#: ../admin/admin.php:633
 msgid ""
 "If you're having issue's with functionality, please submit example requests "
 "through the <a href=\"https://github.com/dcooney/wordpress-ajax-load-more\" "
 "target=\"_blank\">GitHub repository</a>. "
 msgstr ""
 
-#: ../admin/admin.php:658
+#: ../admin/admin.php:657
 msgid "Ajax Load More: Add-ons"
 msgstr ""
 
-#: ../admin/admin.php:659
+#: ../admin/admin.php:658
 msgid ""
 "The following Add-ons are available to increase the functionality of Ajax "
 "Load More."
 msgstr ""
 
-#: ../admin/admin.php:665
+#: ../admin/admin.php:664
 msgid "Custom Repeaters"
 msgstr ""
 
-#: ../admin/admin.php:671
+#: ../admin/admin.php:670
 msgid ""
 "Unlock additional repeater templates and keep your WordPress theme looking "
 "and feeling fresh."
 msgstr ""
 
-#: ../admin/admin.php:672
+#: ../admin/admin.php:671
 msgid ""
 "The Custom Repeaters add-on will add <strong>five</strong> additional <a "
 "href=\"?page=ajax-load-more-repeaters\">repeaters</a> and allow you to "
@@ -237,67 +237,67 @@ msgid ""
 "p>"
 msgstr ""
 
-#: ../admin/admin.php:689 ../admin/admin.php:693
+#: ../admin/admin.php:688 ../admin/admin.php:692
 msgid "About Add-ons"
 msgstr ""
 
-#: ../admin/admin.php:690 ../admin/admin.php:694
+#: ../admin/admin.php:689 ../admin/admin.php:693
 msgid ""
 "Add-ons are installed as a separate plugin and will receive plug-in update "
 "notifications. "
 msgstr ""
 
-#: ../admin/admin.php:729
+#: ../admin/admin.php:728
 msgid "Container Type"
 msgstr ""
 
-#: ../admin/admin.php:737
+#: ../admin/admin.php:736
 msgid "Container Classes"
 msgstr ""
 
-#: ../admin/admin.php:745
+#: ../admin/admin.php:744
 msgid "Editor Button"
 msgstr ""
 
-#: ../admin/admin.php:753
+#: ../admin/admin.php:752
 msgid "Disable CSS"
 msgstr ""
 
-#: ../admin/admin.php:761
+#: ../admin/admin.php:760
 msgid "Button Color"
 msgstr ""
 
-#: ../admin/admin.php:778
+#: ../admin/admin.php:777
 msgid ""
 "Customize your version of Ajax Load More by updating the fields below.</p><p "
 "class=\"small\">All changes will be applied globally throughout your theme."
 msgstr ""
 
-#: ../admin/admin.php:807
+#: ../admin/admin.php:806
 msgid "I want to use my own CSS styles"
 msgstr ""
 
-#: ../admin/admin.php:808
+#: ../admin/admin.php:807
 msgid "View Ajax Load More CSS"
 msgstr ""
 
-#: ../admin/admin.php:827
+#: ../admin/admin.php:826
 msgid "Hide shortcode button in WYSIWYG editor"
 msgstr ""
 
-#: ../admin/admin.php:841
+#: ../admin/admin.php:840
 msgid "Add classes to Ajax Load More container"
 msgstr ""
 
-#: ../admin/admin.php:860 ../admin/admin.php:863
+#: ../admin/admin.php:859 ../admin/admin.php:862
 msgid "Ajax Posts Here"
 msgstr ""
 
-#: ../admin/admin.php:914
+#: ../admin/admin.php:913
 msgid "Choose your load more button color"
 msgstr ""
 
-#: ../admin/admin.php:925
+#: ../admin/admin.php:924
 msgid "Preview"
 msgstr ""
 

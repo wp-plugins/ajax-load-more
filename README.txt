@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, post format, wmpl
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 2.2.6
+Stable tag: 2.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,10 @@ How to install Ajax Load More.
 7. Shortcode and implementation examples
 
 == Changelog ==
+
+= 2.2.7 =
+* Fix for query by Standard post format.
+* Fix for Shortcode Builder where Custom Taxonomies were not building correctly.
 
 = 2.2.6 =
 * Bug fix for meta_query parameters.
