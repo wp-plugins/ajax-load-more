@@ -346,7 +346,12 @@ if( !class_exists('AjaxLoadMore') ):
 			        'compare' => $meta_compare,
 				),
 			);
-	    }
+	   }
+	   
+	   // Meta_key, used for ordering by meta value
+      if(!empty($meta_key)){
+         $args['meta_key'] = $meta_key;
+      }
 		
 
 		// WP_Query()
