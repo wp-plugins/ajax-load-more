@@ -36,7 +36,7 @@
       alm.pause = alm.content.data('pause');
       alm.offset = alm.content.data('offset');
       alm.transition = alm.content.data('transition');
-      alm.lang = alm.content.data('lang'), 
+      alm.lang = alm.content.data('lang');
       alm.posts_per_page = alm.content.data('posts-per-page');
 
       $(window).scrollTop(0); //Prevent loading of unnessasry posts - move user to top of page
