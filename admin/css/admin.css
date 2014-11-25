@@ -652,17 +652,17 @@
 
 .header-wrap{
 	background: url(../img/alm-logo-48x48.png) no-repeat left 12px;
-	padding-left: 56px;
+	padding-left: 62px;
 	min-height: 48px;
 	overflow: hidden;
-	padding-top: 10px;
+	padding-top: 11px;
 }
 	.ajax-load-more .header-wrap h2{
 		padding-top: 0;
 		font-size: 26px;
 	}
 	.ajax-load-more .header-wrap h2 + p{
-		margin-top: -2px;
+		margin-top: -3px;
 		opacity: 0.8;
 	}
 	
