@@ -157,7 +157,7 @@ function alm_enqueue_admin_scripts(){
    //Load Admin CSS
    wp_enqueue_style( 'admin-css', ALM_ADMIN_URL. 'css/admin.css');
    wp_enqueue_style( 'core-css', ALM_URL. '/core/css/ajax-load-more.css');
-   wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+   wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
    
    //Load CodeMirror Syntax Highlighting if on Repater Template page 
    $screen = get_current_screen();
@@ -247,7 +247,6 @@ function alm_settings_page(){ ?>
 }
 
 
-
 /*
 *  alm_repeater_page
 *  Custom Repeaters
@@ -267,7 +266,7 @@ function alm_repeater_page(){ ?>
 		   <!-- Repeaters -->
 		   <div class="group">
 		   <?php 
-		   	if (has_action('alm_custom_repeaters')){ ?>
+		   	if (has_action('alm_custom_repeaters') || has_action('alm_unlimited_repeaters')){ ?>
 				<span class="toggle-all"><span class="inner-wrap"><em class="collapse"><?php _e('Collapse All', ALM_NAME); ?></em><em class="expand"><?php _e('Expand All', ALM_NAME); ?></em></span></span> 
 			<?php } ?>
 			
@@ -284,7 +283,7 @@ function alm_repeater_page(){ ?>
 	            ?> 
 	            <h3 class="heading"><?php _e('Default Template', ALM_NAME); ?></h3>
 	            <div class="expand-wrap">  
-		            <div class="wrap repeater-wrap" data-name="default">
+		            <div class="wrap repeater-wrap" data-name="default" data-type="default">
 		               <label class="template-title" for="template-default"><?php _e('Enter the HTML and PHP code for the default template', ALM_NAME); ?></label>		            
 			            <textarea rows="10" id="template-default" class="_alm_repeater"><?php echo $contents; ?></textarea>
 			            <script>
@@ -305,17 +304,36 @@ function alm_repeater_page(){ ?>
 	            </div>
 			   </div>			   
             <?php
+               
+			      // Custom Repeaters - /cta/extend.php
+			      // Removed in 2.2.8
             	if (!has_action('alm_get_custom_repeaters')) {
-            	echo '<div class="row no-brd">';
-					include( ALM_PATH . 'admin/includes/cta/extend.php');
-            	echo '</div>';
-				  }
+            	   // echo '<div class="row no-brd">';
+                  // include( ALM_PATH . 'admin/includes/cta/extend.php');
+                  // echo '</div>';
+				   }
+				   
+				   // Custom Repeaters v2 - /cta/extend.php
+            	if (!has_action('alm_get_unlimited_repeaters')) {
+            	
+            	   if (!has_action('alm_get_custom_repeaters')) { // If Custom Repeaters v1 is NOT installed
+               	   echo '<div class="row no-brd">';
+                     include( ALM_PATH . 'admin/includes/cta/extend.php');
+                     echo '</div>';
+                  }
+                  
+				   }
             ?>
 			   <!-- End Default -->			   
 			   <?php 
 			   	if (has_action('alm_custom_repeaters'))
 					do_action('alm_custom_repeaters'); 
-				?>		   
+				?>	
+				<?php 
+			   	if (has_action('alm_unlimited_repeaters'))
+					do_action('alm_unlimited_repeaters'); 
+				?>
+					   
 				<script>
 					jQuery(document).ready(function($) {					   
 					   "use strict";
@@ -333,7 +351,8 @@ function alm_repeater_page(){ ?>
 								el = $('textarea._alm_repeater', container),
 								btn = btn,
 								value = '',
-								repeater = container.data('name'),
+								repeater = container.data('name'), // Get templete name
+								type = container.data('type'), // Get template type (default/repeater/unlimited)
 								alias = ($('input._alm_repeater_alias', container).length) ? $('input._alm_repeater_alias', container).val() : '',
 								responseText = $(".saved-response", container);
 								
@@ -365,6 +384,7 @@ function alm_repeater_page(){ ?>
 										action: 'alm_save_repeater',
 										value: value, 
 										repeater: repeater,
+										type: type,
 										alias: alias,
 										nonce: alm_admin_localize.alm_admin_nonce,
 									},
@@ -391,12 +411,10 @@ function alm_repeater_page(){ ?>
 							}
 						}
 						
-						$('input.save-repeater').each(function(){
-							$(this).click(function() {
-								var btn = $(this),
-								    editorId = btn.data('editor-id');								
-								_alm_admin.saveRepeater(btn, editorId);
-							});
+						$(document).on('click', 'input.save-repeater' ,function(){
+							var btn = $(this),
+							    editorId = btn.data('editor-id');								
+							_alm_admin.saveRepeater(btn, editorId);
 						});
 								
 					});		
@@ -443,15 +461,23 @@ function alm_save_repeater(){
 	// Check our nonce, if they don't match then bounce!
 	if (! wp_verify_nonce( $nonce, 'alm_repeater_nonce' ))
 		die('Get Bounced!');
-	
-	//Write to repeater file
+		
+   // Get variables   
 	$c = Trim(stripslashes($_POST["value"])); // Repeater Value
 	$n = Trim(stripslashes($_POST["repeater"])); // Repeater name
+	$t = Trim(stripslashes($_POST["type"])); // Repeater name
 	$a = Trim(stripslashes($_POST["alias"])); // Repeater alias
-	if($n === 'default')
+	
+	// Write to repeater file
+	if($t === 'default'){
 		$f = ALM_PATH. 'core/repeater/'.$n .'.php'; // File
-	else
+   }
+   elseif($t === 'unlimited'){      
+		$f = ALM_UNLIMITED_PATH. 'repeaters/'.$n .'.php'; // File
+   }
+	else{
 		$f = ALM_REPEATER_PATH. 'repeaters/'.$n .'.php'; // File
+   }
 	
 		
    $o_error = '<span class="saved-error"><b>'. __('Error Opening File', ALM_NAME) .'</b></span>';
@@ -462,24 +488,33 @@ function alm_save_repeater(){
    $w_error .= '<em>'. $f .'</em>';
    $w_error .=  __('Please check your file path and ensure your server is configured to allow Ajax Load More to read and write files within the /ajax-load-more/ plugin directory', ALM_NAME);
    
-   //Open file
+   // Open file
 	$o = fopen($f, 'w+') or die($o_error); 
 	
-	//Save/Write the file
-	$w = fwrite($o, $c) or die($w_error); 
-	//$r = fread($o, 100000); //Read it
-	fclose($o); //now close it	
+	// Save/Write the file
+	$w = fwrite($o, $c) or die($w_error);
+	
+	// $r = fread($o, 100000); //Read it
+	fclose($o); //now close it
 	
 	//Save to database
 	global $wpdb;
-	$table_name = $wpdb->prefix . "alm";		
-	if($n === 'default'){	   
+	$table_name = $wpdb->prefix . "alm";	
+		
+	if($t === 'default')	{	   
 	   $data_update = array('repeaterDefault' => "$c", 'pluginVersion' => ALM_VERSION);
 	   $data_where = array('name' => "default");
-   }else{      
+   }
+   elseif($t === 'unlimited'){ // Unlimited Repeaters	  
+      $table_name = $wpdb->prefix . "alm_unlimited"; 
+	   $data_update = array('repeaterDefault' => "$c", 'alias' => "$a", 'pluginVersion' => ALM_UNLIMITED_VERSION);
+	   $data_where = array('name' => $n);
+   }
+   else{ // Custom Repeaters
 	   $data_update = array('repeaterDefault' => "$c", 'alias' => "$a", 'pluginVersion' => ALM_REPEATER_VERSION);
       $data_where = array('name' => $n);
    }
+   
 	$wpdb->update($table_name , $data_update, $data_where);
 	
 	//Our results
@@ -559,7 +594,8 @@ function alm_get_tax_terms(){
 	if ( !empty( $terms ) && !is_wp_error( $terms ) ){		
 		$returnVal .= '<ul>';
 		foreach ( $terms as $term ) {
-			$returnVal .='<li ><input type="checkbox" class="alm_element" name="tax-term-'.$term->slug.'" id="tax-term-'.$term->slug.'" data-type="'.$term->slug.'"><label for="tax-term-'.$term->slug.'">'.$term->name.'</label></li>';		
+			//print_r($term);
+			$returnVal .='<li><input type="checkbox" class="alm_element" name="tax-term-'.$term->slug.'" id="tax-term-'.$term->slug.'" data-type="'.$term->slug.'"><label for="tax-term-'.$term->slug.'">'.$term->name.'</label></li>';		
 		}
 		$returnVal .= '</ul>';		
 		echo $returnVal;
@@ -621,8 +657,18 @@ function alm_example_page(){ ?>
 	                  <script src="https://gist.github.com/dcooney/fc4276bebbdd05af64d1.js"></script>
 	   		      </div>
 			      </div>
+			   </div>
+			   
+			   <div class="row gist">
+			      <h3 class="heading"><?php _e('Archive.php', ALM_NAME); ?></h3>
+			      <div class="expand-wrap">
+			         <p><?php _e('Shortcode for use on generic archive page.', ALM_NAME); ?></p>
+			         <div class="inner">
+	                  <script src="https://gist.github.com/dcooney/ebe912c7772e669f1370.js"></script>
+	   		      </div>
+			      </div>
 			   </div>			   
-			   <div class="row">
+			   <div class="row no-brd">
 					<p class="back2top"><a href="#wpcontent"><i class="fa fa-chevron-up"></i> <?php _e('Back to Top', ALM_NAME); ?></a></p>					
 			   </div>
 		   </div>
@@ -658,39 +704,37 @@ function alm_add_ons_page(){ ?>
 	   		<p><?php _e('The following Add-ons are available to increase the functionality of Ajax Load More.', ALM_NAME); ?></p>  
 		</div>
 		<div class="cnkt-main">
-		   <!-- Custom Repeater -->
+		   
+		   <!-- Unlimited Repeater -->
 		   <div class="group">
 			   <div class="row no-brd">
-			      <h3 class="add-on-title"><?php _e('Custom Repeaters', ALM_NAME); ?></h3>
 			      <div class="expand-wrap">
                   <div class="section-title">
-                     <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/repeater-add-ons.jpg">                         
+                     <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/unlimited-add-ons.jpg">                         
                   </div>
                   <div class="wrap">
-                     <p class="addon-intro"><?php _e('Unlock additional repeater templates and keep your WordPress theme looking and feeling fresh.', ALM_NAME); ?></p>
-                     <p><?php _e('The Custom Repeaters add-on will add <strong>five</strong> additional <a href="?page=ajax-load-more-repeaters">repeaters</a> and allow you to select unique repeaters for different content types throughout your theme.</p>', ALM_NAME); ?>                     
+                     <h2 class="addon-title"><?php _e('Custom Repeaters', ALM_NAME); ?></h2>
+                     <p class="addon-intro"><?php _e('Unlock the ability to add an infinite number repeater templates.', ALM_NAME); ?></p>
+                     <p><?php _e('Create, delete and modify <a href="?page=ajax-load-more-repeaters">repeater templates</a> as you need them with absolutely zero restrictions. The Custom Repeater add-on allows you to create unique layouts for different content types throughout your theme.</p>', ALM_NAME); ?>                     
                   </div>           
                </div>
 			   </div>			   
             <?php
-               if (has_action('alm_repeater_installed')){
+               if (has_action('alm_unlimited_installed')){
                   echo '<a class="btn installed" href="#"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{
-                  echo '<a class="btn" href="http://connekthq.com/plugins/ajax-load-more/custom-repeaters/" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
+                  echo '<a class="btn" href="http://connekthq.com/plugins/ajax-load-more/unlimited-repeaters/" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
                }
             ?> 		   
 		   </div>
-		   <!-- End Custom Repeater -->
+		   <!-- End Unlimited Repeater -->
+		   
 	   </div>	   
 	   
 	   <div class="cnkt-sidebar">
 	   	<div class="cta">
-			<h3><?php _e('About Add-ons', ALM_NAME); ?></h3>
-			<p><?php _e('Add-ons are installed as a separate plugin and will receive plug-in update notifications. ', ALM_NAME); ?></p>
-	   	</div>
-	   	<div class="cta">
-			<h3><?php _e('About Add-ons', ALM_NAME); ?></h3>
-			<p><?php _e('Add-ons are installed as a separate plugin and will receive plug-in update notifications. ', ALM_NAME); ?></p>
+			<h3><?php _e('About the Add-ons', ALM_NAME); ?></h3>
+			<p><?php _e('Add-ons are available to extend and enhance the core functionality of Ajax Load More.</p><p>All add-ons are installed as stand alone plugins and will receive plugin update notifications.', ALM_NAME); ?></p>
 	   	</div>
 			<?php include( plugin_dir_path( __FILE__ ) . 'includes/cta/writeable.php'); ?>
 	   </div>	   

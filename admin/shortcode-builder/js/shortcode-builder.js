@@ -262,7 +262,8 @@ jQuery(document).ready(function($) {
    //Select 'post' by default
    $('.post_types input[type=checkbox]#chk-post').prop('checked', true).addClass('changed'); 
    
-   $(document).on('change keyup', '.alm_element', function() {
+   
+   $(document).on('change keyup', '.alm_element', function() {      
       $(this).addClass('changed');      
 
       // If post type is not selected, select 'post'.
@@ -316,7 +317,7 @@ jQuery(document).ready(function($) {
    *  @since 2.0.0
    */ 
    
-	$('h3.heading').click(function(){
+	$(document).on('click', 'h3.heading', function(){
 		var el = $(this);
 		if($(el).hasClass('open')){
 			$(el).next('.expand-wrap').slideDown(100, 'alm_easeInOutQuad', function(){
@@ -329,7 +330,7 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
-    $('.toggle-all').click(function(e){ 
+	$(document).on('click', '.toggle-all', function(){
         var el = $(this);
 		if($(el).hasClass('closed')){
 		    $(el).removeClass('closed');

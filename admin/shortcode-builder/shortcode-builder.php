@@ -16,12 +16,26 @@
 	if (has_action('alm_get_custom_repeaters')) {
 	  do_action('alm_get_custom_repeaters');
 	}
+	if (has_action('alm_get_unlimited_repeaters')) {
+	  do_action('alm_get_unlimited_repeaters');
+	}
 	echo '</select>';
 	
 	echo '</div></div>';
+	
+	// Custom Repeaters - /cta/extend.php
+	// Removed in 2.2.8	
 	if (!has_action('alm_get_custom_repeaters')) {
-	  include( ALM_PATH . 'admin/includes/cta/extend.php');
+	  //include( ALM_PATH . 'admin/includes/cta/extend.php');
 	}
+	
+	// Custom Repeaters v2 - /cta/extend.php
+	if (!has_action('alm_get_unlimited_repeaters')) {
+	   if (!has_action('alm_get_custom_repeaters')) {
+         include( ALM_PATH . 'admin/includes/cta/extend.php');
+	  }
+	}
+	
 	echo '</div>';
 	echo '</div>';
  	
@@ -168,11 +182,9 @@
          </div>
          <div class="wrap">
             <div class="inner">
-               <div class="inner">
-                  <label for="meta-key" class="full"><?php _e('Field Key (Name):', ALM_NAME); ?></label>
-                  <input class="alm_element" name="meta-key" type="text" id="meta-key" value="" placeholder="<?php _e('Enter custom field key(name)', ALM_NAME); ?>">   
-               </div>            
-            </div>
+               <label for="meta-key" class="full"><?php _e('Field Key (Name):', ALM_NAME); ?></label>
+               <input class="alm_element" name="meta-key" type="text" id="meta-key" value="" placeholder="<?php _e('Enter custom field key(name)', ALM_NAME); ?>">   
+            </div> 
             <div id="meta-query-extended">
                <?php // Meta Value ?>
                <div class="inner border-top">

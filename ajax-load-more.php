@@ -6,14 +6,14 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.2.7
+Version: 2.2.8
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */
 
 		
-define('ALM_VERSION', '2.2.7');
-define('ALM_RELEASE', 'November 21, 2014');
+define('ALM_VERSION', '2.2.8');
+define('ALM_RELEASE', 'November 25, 2014');
 
 /*
 *  alm_install
@@ -220,7 +220,10 @@ if( !class_exists('AjaxLoadMore') ):
 			die('Get Bounced!');
 		}
 
-		$repeater = (isset($_GET['repeater'])) ? $_GET['repeater'] : 'default';
+		$repeater = (isset($_GET['repeater'])) ? $_GET['repeater'] : 'default';		
+		$type = preg_split('/(?=\d)/', $repeater, 2); // split $repeater vale at number to determine type
+		$type = $type[0]; // default | repeater | template_	
+		
 		$postType = (isset($_GET['postType'])) ? $_GET['postType'] : 'post';
 		$postFormat = (isset($_GET['postFormat'])) ? $_GET['postFormat'] : '';
 		$category = (isset($_GET['category'])) ? $_GET['category'] : '';
@@ -337,7 +340,7 @@ if( !class_exists('AjaxLoadMore') ):
 			);
 	    }
 	    
-	    // Meta Query
+	   // Meta Query
 		if(!empty($meta_key) && !empty($meta_value)){
 			$args['meta_query'] = array(
 				array(
@@ -348,7 +351,7 @@ if( !class_exists('AjaxLoadMore') ):
 			);
 	   }
 	   
-	   // Meta_key, used for ordering by meta value
+      // Meta_key, used for ordering by meta value
       if(!empty($meta_key)){
          $args['meta_key'] = $meta_key;
       }
@@ -360,29 +363,33 @@ if( !class_exists('AjaxLoadMore') ):
 		// Run the loop
 		if ($alm_query->have_posts()) :
 			while ($alm_query->have_posts()): $alm_query->the_post();			
-			$file = $repeater;
+			$template = $repeater;
 			$include = '';
 			$found = false;
-			if (has_action('alm_repeater_installed')){// If Custom Repeaters add-on is installed
-			   $repeaterLength = ALM_REPEATER_LENGTH;
-			   if(!defined('ALM_REPEATER_LENGTH')){
-   			   $repeaterLength = 6;
-			   }
-			   for ($i = 2; $i <= $repeaterLength + 2; $i++) {
-			      $repeaterVal = 'repeater' . $i;
-   				if($file == $repeaterVal){
-   					$include = ALM_REPEATER_PATH . 'repeaters/'. $file .'.php';      					
-         			//confirm file exists
-         			if(!file_exists($include)){		
-         			   $include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';   
-         			}					   
-   					$found = true;
-   				}
-				}
-				if(!$found){
-   				$include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';
-				}	
-			}else{				
+			
+			// If is Custom Repeaters add-on
+			if( $type == 'repeater' && has_action('alm_repeater_installed' ))
+			{ 
+				$include = ALM_REPEATER_PATH . 'repeaters/'. $template .'.php';      					
+   			
+   			if(!file_exists($include)){ //confirm file exists        			
+   			   $include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php'; 
+   			}	
+   			
+			}
+         // If is Unlimited add-ons
+			elseif( $type == 'template_' && has_action('alm_unlimited_installed' ))
+			{
+				$include = ALM_UNLIMITED_REPEATER_PATH. ''.$template.'.php';      					
+   			
+   			if(!file_exists($include)){ //confirm file exists        			
+   			   $include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php'; 
+   			}
+			
+			}
+			// Default repeater
+			else
+			{				
 				$include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';
 			}				
 							

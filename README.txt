@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, post format, wmpl
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 2.2.7
+Stable tag: 2.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,7 +96,7 @@ The following Add-ons are available to increase the functionality of Ajax Load M
 
 **Custom Repeaters**
 
-The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will add an additional five repeater templates allowing you to create unique templates for different content types throughout your theme.
+The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.
 [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 
 ***
@@ -151,7 +151,12 @@ Yes, visit the Repeater Template section in your WordPress admin.
 
 = How are my repeater templates saved? =
 
-Repeater template data is saved to the your WordPress database as well as written directly to a repeater template .php file in the ajax-load-more plugin directory.
+Repeater template data is saved into your WordPress database as well as written directly to a repeater template .php file in the ajax-load-more plugin directory.
+
+= Can I use custom fields in a repeater? =
+
+Yes, but you will need to define $post at the top of the repeater before requesting your custom fields. Like so:
+global $post;
 
 
 == Installation ==
@@ -193,9 +198,20 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+
+= 2.2.8 =
+* Adding required functionlaity for the NEW Ajax Load More Custom Repeaters v2 add-on - http://connekthq.com/plugins/ajax-load-more/custom-repeaters/
+* Improved debug messaging for Ajax Load More and Add-Ons.
+* Adding fix for ordering by meta value.
+* Admin stying updates.
+* Updated FAQs
+* Fix meta_query query and orderby meta value 
+
+
 = 2.2.7 =
 * Fix for query by Standard post format.
 * Fix for Shortcode Builder where Custom Taxonomies were not building correctly.
+
 
 = 2.2.6 =
 * Bug fix for meta_query parameters.
