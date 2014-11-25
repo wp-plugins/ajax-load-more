@@ -622,7 +622,18 @@ function alm_example_page(){ ?>
    			<p><?php _e('A collection of everyday shortcode usages and implementation examples', ALM_NAME); ?></p>  
 		</div>
 		<div class="cnkt-main forceColors">
-		   <div class="group">
+		   <div class="group">		   	
+			   
+			   <div class="row gist">
+			      <h3 class="heading"><?php _e('Archive.php', ALM_NAME); ?></h3>
+			      <div class="expand-wrap">
+			         <p><?php _e('Shortcode for use on generic archive page.', ALM_NAME); ?></p>
+			         <div class="inner">
+	                  <script src="https://gist.github.com/dcooney/ebe912c7772e669f1370.js"></script>
+	   		      </div>
+			      </div>
+			   </div>
+			   
 			   <div class="row gist">
 			      <h3 class="heading"><?php _e('Author.php', ALM_NAME); ?></h3>
 			      <div class="expand-wrap">
@@ -658,20 +669,12 @@ function alm_example_page(){ ?>
 	   		      </div>
 			      </div>
 			   </div>
-			   
-			   <div class="row gist">
-			      <h3 class="heading"><?php _e('Archive.php', ALM_NAME); ?></h3>
-			      <div class="expand-wrap">
-			         <p><?php _e('Shortcode for use on generic archive page.', ALM_NAME); ?></p>
-			         <div class="inner">
-	                  <script src="https://gist.github.com/dcooney/ebe912c7772e669f1370.js"></script>
-	   		      </div>
-			      </div>
-			   </div>			   
+			   			   
 			   <div class="row no-brd">
 					<p class="back2top"><a href="#wpcontent"><i class="fa fa-chevron-up"></i> <?php _e('Back to Top', ALM_NAME); ?></a></p>					
 			   </div>
 		   </div>
+		   
 	   </div>	   
 	   <div class="cnkt-sidebar">
 	   		<div class="cta">
