@@ -200,7 +200,7 @@ How to install Ajax Load More.
 
 
 = 2.2.8 =
-* Adding required functionlaity for the NEW Ajax Load More Custom Repeaters v2 add-on - http://connekthq.com/plugins/ajax-load-more/custom-repeaters/
+* Adding required functionality for the NEW Ajax Load More Custom Repeaters v2 add-on - http://connekthq.com/plugins/ajax-load-more/custom-repeaters/
 * Improved debug messaging for Ajax Load More and Add-Ons.
 * Adding fix for ordering by meta value.
 * Admin stying updates.
