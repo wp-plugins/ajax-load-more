@@ -355,6 +355,14 @@ if( !class_exists('AjaxLoadMore') ):
       if(!empty($meta_key)){
          $args['meta_key'] = $meta_key;
       }
+      
+		
+		// Set current page number for determining item number		
+		if($page == 0){
+         $alm_page_count = 1;
+		}else{   		
+		   $alm_page_count = $page + 1;
+		}
 		
 
 		// WP_Query()
@@ -362,6 +370,9 @@ if( !class_exists('AjaxLoadMore') ):
 		
 		// Run the loop
 		if ($alm_query->have_posts()) :
+		
+		   $alm_loop_count = 0;
+		   
 			while ($alm_query->have_posts()): $alm_query->the_post();			
 			$template = $repeater;
 			$include = '';
@@ -392,6 +403,12 @@ if( !class_exists('AjaxLoadMore') ):
 			{				
 				$include = plugin_dir_path( __FILE__ ) . 'core/repeater/default.php';
 			}				
+			
+			// Get page number and current item in overall loop				
+			$alm_loop_count++;         
+         $alm_page = $alm_page_count;         
+         $alm_total = ($alm_page_count * $numPosts) - $numPosts + $alm_loop_count;
+         $alm_item = $alm_total;	
 							
 			//Include repeater template	
 			include( $include );	
