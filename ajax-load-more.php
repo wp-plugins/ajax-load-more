@@ -42,16 +42,7 @@ function alm_install() {
 		
 		//Insert default data in newly created table
 		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $defaultRepeater, 'pluginVersion' => ALM_VERSION));
-	}
-	
-	// Updated 2.0.5
-	// Check column 'name' exists in $wpdb - this is an upgrade checker.	
-	$row = $wpdb->get_results("SELECT COLUMN_NAME FROM $table_name.COLUMNS WHERE column_name = 'name'");
-	if(empty($row)){
-      $wpdb->query("ALTER TABLE $table_name ADD name text NOT NULL");
-      $wpdb->update($table_name , array('name' => 'default'), array('id' => 1));
-   }
-			
+	}	
 }
 
 
