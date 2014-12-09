@@ -1,6 +1,33 @@
 <span class="toggle-all"><span class="inner-wrap"><em class="collapse"><?php _e('Collapse All', ALM_NAME); ?></em><em class="expand"><?php _e('Expand All', ALM_NAME); ?></em></span></span>
 
 
+
+<?php if(has_action('alm_seo_installed')){ ?>
+<!-- SEO -->
+<div class="row input seo" id="alm-seo">
+   <h3 class="heading"><?php _e('SEO (Search Engine Optimization)', ALM_NAME); ?></h3>
+   <div class="expand-wrap">
+      <div class="section-title">
+		 	<p><?php _e('Enable address bar URL rewrites as users page through ajax loaded content.', ALM_NAME); ?></p>
+		 </div>
+      <div class="wrap">
+         <div class="inner">	               
+            <ul>
+                <li>
+                 <input class="alm_element" type="radio" name="seo" value="true" id="seo-true" >
+                 <label for="seo-true"><?php _e('True', ALM_NAME); ?></label>
+                </li>
+                <li>
+                 <input class="alm_element" type="radio" name="seo" value="false" id="seo-false" checked>
+                 <label for="seo-false"><?php _e('False', ALM_NAME); ?></label>
+                </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div> 
+<?php } ?>   
+
 <?php
 	
  	// List available repeaters
@@ -471,7 +498,6 @@
          </div>
       </div>
    </div>
+   
    <div class="clear"></div>  
-   
-   
    

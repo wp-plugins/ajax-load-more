@@ -31,8 +31,7 @@ function alm_admin_vars() { ?>
 /**
 * alm_core_update
 * Update default repeater on plugin update.
-* Add 'name' column if it doesnt exist.
-* If plugin versions do not match the plugin has been updated and we need to update our repeaters.
+* If plugin versions do not match or the plugin has been updated and we need to update our repeaters.
 *
 * @since 2.0.5
 */
@@ -178,7 +177,8 @@ function alm_enqueue_admin_scripts(){
       
    }
    
-   //Load JS
+   //Load JS   
+   wp_enqueue_script( 'jquery-form' );
    wp_enqueue_script( 'select2', ALM_ADMIN_URL. 'js/libs/select2.min.js', array( 'jquery' ));
    wp_enqueue_script( 'shortcode-builder', ALM_ADMIN_URL. 'shortcode-builder/js/shortcode-builder.js', array( 'jquery' ));
 }
@@ -213,7 +213,7 @@ function alm_settings_page(){ ?>
 	   					//get the older values, wont work the first time
 	   					$options = get_option( '_alm_settings' ); ?>	
 	   					<div class="row no-brd alm-save-settings">	       
-	   		            <?php submit_button('Save Settings', 'large', 'secondary'); ?>
+	   		            <?php submit_button('Save Settings'); ?>
                         <div class="loading"></div>	
 	   					</div>	        
 	   			</form>
@@ -704,11 +704,11 @@ function alm_add_ons_page(){ ?>
 	<div class="wrap">
 		<div class="header-wrap">
 	   		<h2><?php _e('Ajax Load More: Add-ons', ALM_NAME); ?></h2>
-	   		<p><?php _e('The following Add-ons are available to increase the functionality of Ajax Load More.', ALM_NAME); ?></p>  
+	   		<p><?php _e('Add-ons are available to extend and enhance the core functionality of Ajax Load More.', ALM_NAME); ?></p>  
 		</div>
 		<div class="cnkt-main">
 		   
-		   <!-- Unlimited Repeater -->
+		   <!-- Custom Repeaters -->
 		   <div class="group">
 			   <div class="row no-brd">
 			      <div class="expand-wrap">
@@ -717,27 +717,53 @@ function alm_add_ons_page(){ ?>
                   </div>
                   <div class="wrap">
                      <h2 class="addon-title"><?php _e('Custom Repeaters', ALM_NAME); ?></h2>
-                     <p class="addon-intro"><?php _e('Unlock the ability to add an infinite number repeater templates.', ALM_NAME); ?></p>
-                     <p><?php _e('Create, delete and modify <a href="?page=ajax-load-more-repeaters">repeater templates</a> as you need them with absolutely zero restrictions. The Custom Repeater add-on allows you to create unique layouts for different content types throughout your theme.</p>', ALM_NAME); ?>                     
+                     <p class="addon-intro"><?php _e('Extend Ajax Load More with unlimited repeater templates.', ALM_NAME); ?></p>
+                     <p><?php _e('Create, delete and modify <a href="?page=ajax-load-more-repeaters">repeater templates</a> as you need them with absolutely zero restrictions.</p>', ALM_NAME); ?>                     
                   </div>           
                </div>
 			   </div>			   
             <?php
+            	$cr_url = 'http://connekthq.com/plugins/ajax-load-more/custom-repeaters/';
                if (has_action('alm_unlimited_installed')){
-                  echo '<a class="btn installed" href="#"><i class="fa fa-check-square"></i> Installed</a> ';
+                  echo '<a class="btn installed" href="'. $cr_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{
-                  echo '<a class="btn" href="http://connekthq.com/plugins/ajax-load-more/unlimited-repeaters/" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
+                  echo '<a class="btn" href="'. $cr_url .'" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
                }
             ?> 		   
 		   </div>
-		   <!-- End Unlimited Repeater -->
+		   <!-- End Custom Repeaters --> 
+		   
+		   <!-- SEO -->
+		   <div class="group">
+			   <div class="row no-brd">
+			      <div class="expand-wrap">
+                  <div class="section-title">
+                     <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/seo-add-ons.jpg">                         
+                  </div>
+                  <div class="wrap">
+                     <h2 class="addon-title"><?php _e('Search Engine Optimization', ALM_NAME); ?></h2>
+                     <p class="addon-intro"><?php _e('Generate unique paging URLs with every Ajax Load More query.', ALM_NAME); ?></p>
+                     <p><?php _e('The SEO add-on will optimize your ajax loaded content for search engines and site visitors by generating unique paging URLs with every query.</p>', ALM_NAME); ?>                     
+                  </div>           
+               </div>
+			   </div>			   
+            <?php
+            	$seo_url = 'http://connekthq.com/plugins/ajax-load-more/seo/';
+               if (has_action('alm_seo_installed')){
+                  echo '<a class="btn installed" href="'. $seo_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
+               }else{
+                  echo '<a class="btn" href="'. $seo_url .'" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
+               }
+            ?> 		   
+		   </div>
+		   <!-- End SEO -->
 		   
 	   </div>	   
 	   
 	   <div class="cnkt-sidebar">
 	   	<div class="cta">
-			<h3><?php _e('About the Add-ons', ALM_NAME); ?></h3>
-			<p><?php _e('Add-ons are available to extend and enhance the core functionality of Ajax Load More.</p><p>All add-ons are installed as stand alone plugins and will receive plugin update notifications.', ALM_NAME); ?></p>
+			<h3><?php _e('Add-on Updates', ALM_NAME); ?></h3>
+			<p><?php _e('All add-ons are installed as stand alone plugins and will receive plugin update notifications.', ALM_NAME); ?></p>
 	   	</div>
 			<?php include( plugin_dir_path( __FILE__ ) . 'includes/cta/writeable.php'); ?>
 	   </div>	   
@@ -757,6 +783,7 @@ function alm_add_ons_page(){ ?>
 
 add_action( 'admin_init', 'alm_admin_init');
 function alm_admin_init(){
+
 	register_setting( 
 		'alm-setting-group', 
 		'alm_settings', 
@@ -765,7 +792,7 @@ function alm_admin_init(){
 	
 	add_settings_section( 
 		'alm_general_settings',  
-		'General Settings', 
+		'Global Settings', 
 		'alm_general_settings_callback', 
 		'ajax-load-more' 
 	);
@@ -809,6 +836,38 @@ function alm_admin_init(){
 		'ajax-load-more', 
 		'alm_general_settings' 
 	);	
+	
+	if(has_action('alm_seo_installed')){	
+	
+	   add_settings_section( 
+   		'alm_seo_settings',  
+   		'SEO Settings', 
+   		'alm_seo_settings_callback', 
+   		'ajax-load-more' 
+   	);
+   	add_settings_field( 
+   		'_alm_seo_permalinks', 
+   		__('SEO Permalinks', ALM_NAME ), 
+   		'_alm_seo_permalinks_callback', 
+   		'ajax-load-more', 
+   		'alm_seo_settings' 
+   	);	
+   	add_settings_field( 
+   		'_alm_seo_scroll', 
+   		__('Scroll to Page', ALM_NAME ), 
+   		'_alm_seo_scroll_callback', 
+   		'ajax-load-more', 
+   		'alm_seo_settings' 
+   	);	
+   	add_settings_field( 
+   		'_alm_seo_speed', 
+   		__('Scroll Speed', ALM_NAME ), 
+   		'_alm_seo_speed_callback', 
+   		'ajax-load-more', 
+   		'alm_seo_settings' 
+   	);	
+   	
+	}
 }
 
 
@@ -821,7 +880,7 @@ function alm_admin_init(){
 */
 
 function alm_general_settings_callback() {
-    echo '<p>' . __('Customize your version of Ajax Load More by updating the fields below.</p><p class="small">All changes will be applied globally throughout your theme.', ALM_NAME) . '</p>';
+    echo '<p>' . __('Customize your version of Ajax Load More by updating the fields below.', ALM_NAME) . '</p>';
 }
 
 
@@ -968,7 +1027,7 @@ function alm_btn_color_callback() {
     $html .= '<option value="white" ' . $selected6 .'>White</option>';
     $html .= '</select>';
      
-    $html .= '<div class="ajax-load-more-wrap '.$color.'"><span>'.__('Preview', ALM_NAME) .'</span><button class="alm-load-more-btn loading" disabled="disabled">Show More</button></div>';
+    $html .= '<div class="clear"></div><div class="ajax-load-more-wrap '.$color.'"><span>'.__('Preview', ALM_NAME) .'</span><button class="alm-load-more-btn loading" disabled="disabled">Show More</button></div>';
     echo $html;
     ?>
     <script>
@@ -999,6 +1058,109 @@ function alm_btn_color_callback() {
 	   
     </script>
     <?php 
+}
+
+
+/*
+*  alm_seo_settings_callback
+*  SEO Setting Heading
+*
+*  @since 2.3.0
+*/
+
+function alm_seo_settings_callback() {
+   $html = '<p>' . __('Customize your installation of the <a href="http://connekthq.com/plugins/ajax-load-more/seo/">Search Engine Optimization</a> add-on.', ALM_NAME) . '</p>';
+   
+   echo $html;
+}
+
+
+
+/*
+*  _alm_seo_permalinks
+*  Select permalink type
+*
+*  @since 2.3.0
+*/
+	
+function _alm_seo_permalinks_callback() {
+ 
+    $options = get_option( 'alm_settings' );
+    
+    if(!isset($options['_alm_seo_permalinks'])) 
+	   $options['_alm_seo_permalinks'] = 'pretty';
+	   
+     
+    $html  = '<p style="padding-bottom: 15px; overflow: hidden;">Select your WordPress <a href="options-permalink.php"><strong>Permalink structure</strong></a>.</p>'; 
+    $html .= '<input type="radio" id="_alm_seo_type_one" name="alm_settings[_alm_seo_permalinks]" value="pretty"' . checked( 'pretty', $options['_alm_seo_permalinks'], false ) . '/>';
+    $html .= '<label for="_alm_seo_type_one">'.__('Pretty Permalinks (mod_rewrite) <br/><span>http://example.com/2012/post-name/</span>', ALM_NAME).'</label><br/>';
+     
+    $html .= '<input type="radio" id="_alm_seo_type_two" name="alm_settings[_alm_seo_permalinks]" value="default"' . checked( 'default', $options['_alm_seo_permalinks'], false ) . '/>';
+    $html .= '<label for="_alm_seo_type_two">'.__('Default (Ugly) <br/><span>http://example.com/?p=N</span>', ALM_NAME).'</label>';
+     
+    echo $html;
+ 
+}
+
+
+
+/*
+*  _alm_seo_scroll_callback
+*  Set the speed of auto scroll
+*
+*  @since 2.3.0
+*/
+	
+function _alm_seo_scroll_callback() {
+ 
+    $options = get_option( 'alm_settings' );
+    
+    if(!isset($options['_alm_seo_scroll'])) 
+	   $options['_alm_seo_scroll'] = '1';
+	
+	$html = '<input type="hidden" name="alm_settings[_alm_seo_scroll]" value="0" />';
+	$html .= '<input type="checkbox" name="alm_settings[_alm_seo_scroll]" id="alm_scroll_page" value="1"'. (($options['_alm_seo_scroll']) ? ' checked="checked"' : '') .' />';
+	$html .= '<label for="alm_scroll_page">'.__('Enable window scrolling.<br/><span>If scrolling is enabled, the users window will scroll to the current page on \'Load More\' button click and while interacting with the forward and back browser buttons.</span>', ALM_NAME).'</label>';	
+	
+	echo $html;
+}
+
+
+
+/*
+*  _alm_seo_speed_callback
+*  Set the speed of auto scroll
+*
+*  @since 2.3.0
+*/
+	
+function _alm_seo_speed_callback() {
+ 
+    $options = get_option( 'alm_settings' );
+    
+    if(!isset($options['_alm_seo_speed'])) 
+	   $options['_alm_seo_speed'] = '1000';
+     
+		
+	echo '<label for="alm_settings[_alm_seo_speed]">'.__('Set the scrolling speed of the page in milliseconds. <br/><span>e.g. 1 second = 1000</span>', ALM_NAME).'</label><br/><input type="number" class="sm" id="alm_settings[_alm_seo_speed]" name="alm_settings[_alm_seo_speed]" step="50" min="0" value="'.$options['_alm_seo_speed'].'" placeholder="1000" /> ';	
+	
+	?>
+	<script>
+		// Check if Scroll to Page  != true
+		if(!jQuery('input#alm_scroll_page').is(":checked")){ 
+	      jQuery('input#alm_scroll_page').parent().parent('tr').next('tr').hide();
+    	}
+    	jQuery('input#alm_scroll_page').change(function() {
+    		var el = jQuery(this);
+	      if(el.is(":checked")) {
+	      	el.parent().parent('tr').next('tr').show();
+	      }else{		      
+	      	el.parent().parent('tr').next('tr').hide();
+	      }
+	   });
+	   
+    </script>
+<?php  
 }
 
 

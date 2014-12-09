@@ -6,15 +6,12 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.2.8
+Version: 2.3.0
 License: GPL
 Copyright: Darren Cooney & Connekt Media
-*/
-
-		
-define('ALM_VERSION', '2.2.8');
-define('ALM_RELEASE', 'November 25, 2014');
-
+*/		
+define('ALM_VERSION', '2.3.0');
+define('ALM_RELEASE', 'December 9, 2014');
 /*
 *  alm_install
 *  Create table for storing repeater
@@ -42,23 +39,19 @@ function alm_install() {
 		
 		//Insert default data in newly created table
 		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $defaultRepeater, 'pluginVersion' => ALM_VERSION));
-	}	
+	}			
 }
 
 
 
 if( !class_exists('AjaxLoadMore') ):
-
-	class AjaxLoadMore {
-	
-	function __construct(){
-	   
+	class AjaxLoadMore {	
+	function __construct(){	   
 		define('ALM_PATH', plugin_dir_path(__FILE__));
 		define('ALM_URL', plugins_url('', __FILE__));
 		define('ALM_ADMIN_URL', plugins_url('admin/', __FILE__));
 		define('ALM_NAME', '_ajax_load_more');
-		define('ALM_TITLE', 'Ajax Load More');
-		
+		define('ALM_TITLE', 'Ajax Load More');		
 		
 		add_action('wp_ajax_ajax_load_more_init', array(&$this, 'alm_query_posts'));
 		add_action('wp_ajax_nopriv_ajax_load_more_init', array(&$this, 'alm_query_posts'));
@@ -143,6 +136,7 @@ if( !class_exists('AjaxLoadMore') ):
 	function alm_shortcode( $atts, $content = null ) {
 		$options = get_option( 'alm_settings' ); //Get plugin options
 		extract(shortcode_atts(array(
+				'seo' => false,
 				'repeater' => 'default',
 				'post_type' => 'post',
 				'post_format' => '',
@@ -165,9 +159,9 @@ if( !class_exists('AjaxLoadMore') ):
 				'max_pages' => '5',
 				'pause' => 'false',
 				'transition' => 'slide',
-				'button_label' => 'Older Posts'
+				'button_label' => 'Older Posts',			
 			),
-			$atts));
+      $atts));
          
       // Get container elements (ul | div)
 		$container_element = 'ul';
@@ -188,7 +182,91 @@ if( !class_exists('AjaxLoadMore') ):
 		$lang = defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : '';
 		
 		$ajaxloadmore = '<div id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'">';
-		$ajaxloadmore .= '<'.$container_element.' class="alm-listing'. $classname . '" data-repeater="'.$repeater.'" data-post-type="'.$post_type.'" data-post-format="'.$post_format.'" data-category="'.$category.'" data-taxonomy="'.$taxonomy.'" data-taxonomy-terms="'.$taxonomy_terms.'" data-taxonomy-operator="'.$taxonomy_operator.'" data-tag="'.$tag.'" data-meta-key="'.$meta_key.'" data-meta-value="'.$meta_value.'" data-meta-compare="'.$meta_compare.'" data-author="'.$author.'" data-search="'.$search.'" data-order="'.$order.'" data-orderby="'.$orderby.'" data-exclude="'.$exclude.'" data-offset="'.$offset.'" data-posts-per-page="'.$posts_per_page.'" data-lang="'.$lang.'" data-scroll="'.$scroll.'" data-max-pages="'.$max_pages.'"  data-pause="'. $pause .'" data-button-label="'.$button_label.'" data-transition="'.$transition.'"></'.$container_element.'>';
+		$ajaxloadmore .= '<'.$container_element.' class="alm-listing'. $classname . '"';
+		$ajaxloadmore .= ' data-repeater="'.$repeater.'"';
+		$ajaxloadmore .= ' data-post-type="'.$post_type.'"';
+		$ajaxloadmore .= ' data-post-format="'.$post_format.'"';
+		$ajaxloadmore .= ' data-category="'.$category.'"';
+		$ajaxloadmore .= ' data-taxonomy="'.$taxonomy.'"';
+		$ajaxloadmore .= ' data-taxonomy-terms="'.$taxonomy_terms.'"';
+		$ajaxloadmore .= ' data-taxonomy-operator="'.$taxonomy_operator.'"';
+		$ajaxloadmore .= ' data-tag="'.$tag.'"';
+		$ajaxloadmore .= ' data-meta-key="'.$meta_key.'"';
+		$ajaxloadmore .= ' data-meta-value="'.$meta_value.'"';
+		$ajaxloadmore .= ' data-meta-compare="'.$meta_compare.'"';
+		$ajaxloadmore .= ' data-author="'.$author.'"';
+		$ajaxloadmore .= ' data-search="'.$search.'"';
+		$ajaxloadmore .= ' data-order="'.$order.'"';
+		$ajaxloadmore .= ' data-orderby="'.$orderby.'"';
+		$ajaxloadmore .= ' data-exclude="'.$exclude.'"';
+		$ajaxloadmore .= ' data-offset="'.$offset.'"';	
+		
+		// Posts per page	
+		$wp_posts_per_page = get_option( 'posts_per_page' );
+		
+		/* If posts per page on settings -> reading is great than shortcode value
+		   & the SEO add-on is installed. 
+         Set $posts_per_page to be new value
+		*/
+		if($wp_posts_per_page > $posts_per_page && has_action('alm_seo_installed') && $seo)
+   		$posts_per_page = $wp_posts_per_page;
+		
+      $ajaxloadmore .= ' data-posts-per-page="'.$posts_per_page.'"';
+      
+		$ajaxloadmore .= ' data-lang="'.$lang.'"';
+		$ajaxloadmore .= ' data-scroll="'.$scroll.'"';
+		$ajaxloadmore .= ' data-max-pages="'.$max_pages.'"';
+		$ajaxloadmore .= ' data-pause="'.$pause.'"';
+		$ajaxloadmore .= ' data-button-label="'.$button_label.'"';
+		$ajaxloadmore .= ' data-transition="'.$transition.'"';
+		
+		if(has_action('alm_seo_installed') && $seo){
+		   
+		   // Get scroll speed
+		   $seo_scroll_speed = '1000';
+   		if(isset($options['_alm_seo_speed'])){
+   			$seo_scroll_speed = ''.$options['_alm_seo_speed'];
+   		}
+   		
+		   // Enabled Scrolling
+			$ajaxloadmore .= ' data-test-seo-scroll="'.$options['_alm_seo_scroll'].'"';			
+			$seo_enable_scroll = $options['_alm_seo_scroll'];
+   		if(!isset($seo_enable_scroll) || empty($seo_enable_scroll)){
+   			$seo_enable_scroll = 'true';   
+         }else{	
+      		if($seo_enable_scroll == '1'){
+      		   $seo_enable_scroll = 'true';
+            }else{
+      		   $seo_enable_scroll = 'false';
+      		}
+   		}
+   		
+   		// Permalink Structure
+   		$seo_permalink = 'pretty';
+   		if(isset($options['_alm_seo_permalinks'])){
+   			$seo_permalink = ''.$options['_alm_seo_permalinks'];
+   		}
+		   
+		   // Get $paged var from WP
+		   if ( get_query_var('paged') ) {
+           $current_page = get_query_var('paged');
+         } elseif ( get_query_var('page') ) {
+           $current_page = get_query_var('page');
+         } else {
+           $current_page = 1;
+         }	
+			$ajaxloadmore .= ' data-seo="'.$seo.'"';		
+			$ajaxloadmore .= ' data-seo-start-page="'.$current_page.'"';	
+			$ajaxloadmore .= ' data-seo-scroll="'.$seo_enable_scroll.'"';
+			$ajaxloadmore .= ' data-seo-scroll-speed="'.$seo_scroll_speed.'"';
+			$ajaxloadmore .= ' data-seo-permalink="'.$seo_permalink.'"';	
+			
+			//Get posts per page option from /wp-admin/options-reading.php			
+         //$ajaxloadmore .= ' data-posts-per-page="'.$posts_per_page.'"';
+			
+      }      
+		
+		$ajaxloadmore .= '></'.$container_element.'>';
 		$ajaxloadmore .= '</div>';
 		
 		return $ajaxloadmore;
@@ -243,8 +321,8 @@ if( !class_exists('AjaxLoadMore') ):
 		$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;		
 		$lang = (isset($_GET['lang'])) ? $_GET['lang'] : '';
 
-		// Set up initial args
-
+		// Set up initial args      
+      $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		$args = array(
 			'post_type' => $postType,
 			'posts_per_page' => $numPosts,
@@ -253,6 +331,7 @@ if( !class_exists('AjaxLoadMore') ):
 			'orderby' => $orderby,	
 			'post_status' => 'publish',
 			'ignore_sticky_posts' => false,
+			'paged' => $paged,
 		);
       
       // Category
@@ -283,7 +362,7 @@ if( !class_exists('AjaxLoadMore') ):
 		// Exclude posts
 		// - Please see plugin examples for more info on excluding posts
 		if(!empty($exclude)){
-			$exclude=explode(",",$exclude);
+			$exclude = explode(",",$exclude);
 			$args['post__not_in'] = $exclude;
 		}
 
@@ -367,7 +446,8 @@ if( !class_exists('AjaxLoadMore') ):
 			while ($alm_query->have_posts()): $alm_query->the_post();			
 			$template = $repeater;
 			$include = '';
-			$found = false;
+			$found = false;			
+			array_push($exclude, $post->ID); // Push post IDs into exclude array
 			
 			// If is Custom Repeaters add-on
 			if( $type == 'repeater' && has_action('alm_repeater_installed' ))

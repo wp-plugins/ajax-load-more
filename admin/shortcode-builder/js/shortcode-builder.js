@@ -18,7 +18,16 @@ jQuery(document).ready(function($) {
    */     
 
    _alm.buildShortcode = function(){
-      output = '[ajax_load_more';
+      output = '[ajax_load_more';    
+      
+      
+      // ---------------------------
+      // - SEO      
+      // ---------------------------
+      
+      var seo = $('.seo input[name=seo]:checked').val(); 
+      if(seo !== 'false' && seo != undefined)
+         output += ' seo="'+seo+'"';   
       
       // ---------------------------
       // - Repeater
@@ -198,9 +207,10 @@ jQuery(document).ready(function($) {
       // - Posts Per Page       
       // ---------------------------
       
-      var posts_per_page = $('.posts_per_page select').val();  
+      var posts_per_page = $('.posts_per_page select').val();        
       if(posts_per_page > 0 && posts_per_page !== 5 && $('.posts_per_page select').hasClass('changed'))
-         output += ' posts_per_page="'+posts_per_page+'"';            
+         output += ' posts_per_page="'+posts_per_page+'"';     
+            
       
       
       // ---------------------------
@@ -245,7 +255,7 @@ jQuery(document).ready(function($) {
       var btn_lbl = $('.btn-label input').val();    
       btn_lbl = $.trim(btn_lbl);       
       if(btn_lbl !== '' && $('.btn-label input').hasClass('changed')) 
-         output += ' button_label="'+btn_lbl+'"';         
+         output += ' button_label="'+btn_lbl+'"';        
       
       
       output += ']';  //Close shortcode          
@@ -261,6 +271,8 @@ jQuery(document).ready(function($) {
    
    //Select 'post' by default
    $('.post_types input[type=checkbox]#chk-post').prop('checked', true).addClass('changed'); 
+   //Select SEO 'false' by default
+   $('.seo input[type=radio]#seo-false').prop('checked', true).addClass('changed'); 
    
    
    $(document).on('change keyup', '.alm_element', function() {      
@@ -270,10 +282,11 @@ jQuery(document).ready(function($) {
       if(!$('.post_types input[type=checkbox]:checked').length > 0){
          $('.post_types input[type=checkbox]#chk-post').prop('checked', true);
       } 
+      
       // If Tax Term Operator is not selected, select 'IN'.
       if(!$('#tax-operator-select input[type=radio]:checked').length > 0){
          $('#tax-operator-select input[type=radio]#tax-in-radio').prop('checked', true);
-      }      
+      }     
       
       _alm.buildShortcode();
    });

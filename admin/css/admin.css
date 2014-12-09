@@ -15,7 +15,7 @@
    color:#666;
    position: relative;
    font-family: 'Open Sans', sans-serif;
-   max-width: 1500px;
+   max-width: 1100px;
 }
 
 .ajax-load-more *{
@@ -212,7 +212,8 @@
    overflow:hidden;
 }
 .ajax-load-more #taxonomy-extended,
-.ajax-load-more #meta-query-extended{
+.ajax-load-more #meta-query-extended,
+.ajax-load-more #seo-extended{
    display: none;
    overflow: hidden;
 }
@@ -232,6 +233,7 @@
 	font-size: 14px;
 	padding: 5px 8px;
 	width: auto;
+	margin-top: 0;
 	display: inline-block; 
 	clear: both;
 	border-radius: 3px;
@@ -258,6 +260,10 @@
 
 .checkboxes{}
 .checkboxes input,
+.radio input{
+   margin-top: 2px;
+}
+.checkboxes input,
 .checkboxes label,
 .radio input,
 .radio label{
@@ -270,13 +276,40 @@
 .radio input{
 	margin-left: 3px;
 }
-.ajax-load-more input[type=text]{
+.ajax-load-more input[type=text],
+.ajax-load-more input[type=number]{
    padding: 10px;
    line-height: 1.3;
    border: 1px solid #ccc;
    width: 60%;  
 }
+
+.ajax-load-more input[type=number].sm{
+   width: 100px;
+}
+
+.ajax-load-more ::-webkit-input-placeholder {
+   color: #999;
+   font-style: italic;
+}
+
+.ajax-load-more :-moz-placeholder { /* Firefox 18- */
+   color: #999;  
+   font-style: italic;
+}
+
+.ajax-load-more ::-moz-placeholder {  /* Firefox 19+ */
+   color: #999; 
+   font-style: italic; 
+}
+
+.ajax-load-more :-ms-input-placeholder {  
+   color: #999;  
+   font-style: italic;
+}
+
 .ajax-load-more input[type=text],
+.ajax-load-more input[type=number],
 .ajax-load-more textarea{
    background: #f7f7f7;	
 }
@@ -578,14 +611,22 @@
    display: inline-block;
    clear: both;
    float: none;   
+   vertical-align: top;
+   padding: 0 0 10px;
+   max-width: 90%;
+}
+.form-table input[type=radio],
+.form-table input[type=checkbox]{
+   vertical-align: top;   
+   margin-top: 0 !important;
+   max-width: 8%;
 }
    .form-table label + textarea{
       margin-top: 10px;
    }
    .form-table label span{
-	   opacity: 0.5;
 	   font-size: 13px;
-	   font-style: italic;
+	   color: #999;
    }
 
 .admin.ajax-load-more .form-table textarea{
@@ -606,25 +647,24 @@
       resize: none;      
    }
 
-.admin.ajax-load-more input[type=radio],
-.admin.ajax-load-more input[type=checkbox]{
-   margin-top: 0 !important;
-}
 .admin.ajax-load-more .form-table input[type=radio],
 .admin.ajax-load-more .form-table input[type=checkbox]{
-	margin-top: -4px !important;
 	margin-right: 10px;
+   margin-top: 0 !important;
 }
 
 .admin.ajax-load-more.settings input[type=text],
+.admin.ajax-load-more.settings input[type=number],
 .admin.ajax-load-more.settings .select2-container{
    margin-top:10px;
 }
 .admin.ajax-load-more.settings .ajax-load-more-wrap {
 	position: relative;
-	top:10px;
-	padding: 10px 0;
-	border-top: 1px dashed #ccc;
+	top: 10px;
+	padding: 10px;
+	border: 1px dashed #ccc;
+	display: inline-block;
+	margin-top:10px;
 }
 	.admin.ajax-load-more.settings .ajax-load-more-wrap button{
 		margin: 0 !important;
@@ -643,11 +683,11 @@
 /* Table Overrides */
 .admin.ajax-load-more.settings .form-table td,
 .admin.ajax-load-more.settings .form-table th{
-   padding: 20px 0;
+   padding: 30px 0;
 }
 
-.admin.ajax-load-more.settings .form-table th{
-   padding-top: 25px;
+.admin.ajax-load-more.settings .form-table p{
+   margin-top: 0;
 }
 
 .header-wrap{
@@ -676,17 +716,17 @@
 	top: -2px;
 }
 .ajax-load-more h2.addon-title{   
-   font-size: 24px !important;
+   font-size: 22px !important;
    font-weight: 600 !important;
-   color: #666 !important;
+   color: #555 !important;
    padding: 0;
-   margin: 0 0 10px;
-   padding: 0 0 10px;
+   margin: 0 0 16px;
+   padding: 0 0 14px;
    border-bottom: 1px solid #efefef;
 }
 .ajax-load-more p.addon-intro{
-   font-size: 20px !important;
-   line-height: 27px !important;
+   font-size: 18px !important;
+   line-height: 23px !important;
    color: #999 !important;
 }
 
@@ -707,7 +747,7 @@
 }
 .ajax-load-more p.desc{
 	font-size: 12px !important;
-	padding: 0 0 8px 24px;
+	padding: 0 0 8px 30px;
 }
 
 .ajax-load-more p.back2top{
