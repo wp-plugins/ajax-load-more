@@ -6,11 +6,11 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.3.0
+Version: 2.3.1
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */		
-define('ALM_VERSION', '2.3.0');
+define('ALM_VERSION', '2.3.1');
 define('ALM_RELEASE', 'December 9, 2014');
 /*
 *  alm_install
@@ -447,7 +447,7 @@ if( !class_exists('AjaxLoadMore') ):
 			$template = $repeater;
 			$include = '';
 			$found = false;			
-			array_push($exclude, $post->ID); // Push post IDs into exclude array
+			//array_push($exclude, $post->ID); // Push post IDs into exclude array
 			
 			// If is Custom Repeaters add-on
 			if( $type == 'repeater' && has_action('alm_repeater_installed' ))
