@@ -71,6 +71,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 * **[Multiple Instances](http://connekthq.com/plugins/ajax-load-more/examples/multiple-instances/)** - Include multiple Ajax Load More' on a single page
 * **[Pause Loading](http://connekthq.com/plugins/ajax-load-more/examples/pause-loading/)** - Posts will not load until initiated by the user
 * **[Search Results](http://connekthq.com/plugins/ajax-load-more/examples/search-results/)** - Returning results based on search terms
+* **[SEO Paging](http://connekthq.com/plugins/ajax-load-more/examples/seo-paging/)** - Generate unique paging URLs with each Ajax Load More query
 
 *The [Custom Repeater Add-On](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/) has been installed for use on each of our product demos*
 
