@@ -3,7 +3,7 @@ Contributors: dcooney
 Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl
 Requires at least: 3.6
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
