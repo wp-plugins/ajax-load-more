@@ -385,7 +385,7 @@ jQuery(document).ready(function($) {
    
    $(window).scroll(function(){
       var scrollT = $(window).scrollTop(),
-          target = 54;
+          target = 60;
           
       if(scrollT > target)
          $('.table-of-contents').addClass('attached');
