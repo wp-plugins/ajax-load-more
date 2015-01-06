@@ -1,10 +1,10 @@
 === Ajax Load More ===
 Contributors: dcooney
 Donate link: http://connekthq.com/donate/
-Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl
+Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl, archives, date
 Requires at least: 3.6
 Tested up to: 4.1
-Stable tag: 2.3.1
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,7 +21,7 @@ Build complex WordPress queries using our shortcode builder then add the shortco
 
 * **Multiple Instances** - One, two, three or ten - you can now include multiple instances of Ajax Load More on a single page.
 * **Shortcode Builder** - Easily create your own Ajax Load More shortcode by adjusting the various WordPress query parameters in our easy-to-use shortcode builder.(see Shortcode Parameters).
-* **Query Parameters** - Ajax Load More allows you to query WordPress by many different content types. Query by Post Type, Post Format, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
+* **Query Parameters** - Ajax Load More allows you to query WordPress by many different content types. Query by Post Type, Post Format, Date, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
 * **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 
@@ -40,6 +40,10 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **tag** - Query by tag name. Default = null
 *   **taxonomy** - Query by custom taxonomy name. Default = null
 *   **taxonomy_terms** - Comma separated list of custom taxonomy terms(slug). Default = null
+*   **taxonomy_operator** - Operator to compare Taxonomy Terms against (IN/NOT IN). Default = ‘IN’
+*   **day** - Day of the week. Default = null
+*   **month** - Month of the year. Default = null
+*   **year** - Year of post. Default = null
 *   **taxonomy_operator** - Operator to compare Taxonomy Terms against (IN/NOT IN). Default = ‘IN’
 *   **meta_key** - Custom field key(name). Default = null
 *   **meta_value** - Custom field value. Default = null
@@ -63,7 +67,19 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 = Example Shortcode =
 
     [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]
+
+***
     
+= Variables =
+
+Ajax Load More passes the following PHP variables to each repeater template - these template variables can help you style and transform your repeater templates.
+ 
+*   **$alm_page** - Returns the current page number. 'echo $alm_page;'
+*   **$alm_item** - Returns the current item number within your loop. 'echo $alm_item;'
+*   **$alm_found_posts** - Returns the total number of posts found within the entire WordPress query. 'echo $alm_found_posts;'
+    
+***
+
 = Demos =
 * **[Default](http://connekthq.com/plugins/ajax-load-more/)** - Out of the box functionality and styling
 * **[Fade Transition](http://connekthq.com/plugins/ajax-load-more/examples/fade-transition/)** - Elements fade in as posts are loaded
@@ -203,6 +219,14 @@ How to install Ajax Load More.
 7. Shortcode and implementation examples
 
 == Changelog ==
+
+
+= 2.4.0 =
+* Adding date query parameters - users can now query by day, month and year.
+* Admin UX improvements including sticky navigation in shortcode builder.
+* Updated ALM examples page with date query and improved archive.php.
+* Fixed PHP warning related to hiding Ajax Load More button in editor and Custom Repeaters v1.
+* Added language support for Polylang and qTranslate plugins.
 
 
 = 2.3.1 =

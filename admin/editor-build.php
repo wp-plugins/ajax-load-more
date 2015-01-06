@@ -32,7 +32,7 @@ tinyMCEPopup.onInit.add(AjaxLoadMoreModal.init, AjaxLoadMoreModal);
 <?php $is_modal = true; ?>
 </head>
 <body>
-<div id="alm-container" class="ajax-load-more">	
+<div id="alm-container" class="ajax-load-more shortcode-builder">	
 	<select class="jump-menu">
 		<option value="null" selected="selected">-- <?php _e('Jump to section', ALM_NAME); ?> --</option>	
 	</select>
