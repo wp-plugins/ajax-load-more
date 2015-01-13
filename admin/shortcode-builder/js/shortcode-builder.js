@@ -196,6 +196,14 @@ jQuery(document).ready(function($) {
       if(orderby !== 'date') 
          output += ' orderby="'+orderby+'"'; 
          
+          
+      // ---------------------------
+      // - Post Status      
+      // ---------------------------
+      var post_status = $('select#post-status').val();   
+      if(post_status !== 'publish') 
+         output += ' post_status="'+post_status+'"'; 
+         
          
       // ---------------------------
       // - Exclude posts      
@@ -361,7 +369,7 @@ jQuery(document).ready(function($) {
    
 	
 	/* Table of Contents */
-	$('.table-of-contents .toc').append('<option value="#">-- Jump to Section --</option>');
+	$('.table-of-contents .toc').append('<option value="#">-- Jump to Option --</option>');
 	$('.table-of-contents .toc').append(jumpOptions).select2();	
 	
 	$('.table-of-contents .toc').change(function() {
@@ -380,10 +388,14 @@ jQuery(document).ready(function($) {
    almResizeTOC();
    
    $(window).resize(function() {
-      almResizeTOC() 
+      almResizeTOC();
    });
    
    $(window).scroll(function(){
+      almSidebarAttach();
+   });
+   
+   function almSidebarAttach(){
       var scrollT = $(window).scrollTop(),
           target = 60;
           
@@ -391,7 +403,8 @@ jQuery(document).ready(function($) {
          $('.table-of-contents').addClass('attached');
       else
          $('.table-of-contents').removeClass('attached');
-   });
+   }
+   almSidebarAttach();
     
    /*
    *  Expand/Collapse shortcode headings

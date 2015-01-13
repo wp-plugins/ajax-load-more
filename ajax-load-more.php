@@ -6,12 +6,12 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.4.0
+Version: 2.4.1
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */		
-define('ALM_VERSION', '2.4.0');
-define('ALM_RELEASE', 'January 5, 2015');
+define('ALM_VERSION', '2.4.1');
+define('ALM_RELEASE', 'January 13, 2015');
 /*
 *  alm_install
 *  Create table for storing repeater
@@ -68,7 +68,10 @@ if( !class_exists('AjaxLoadMore') ):
 		load_plugin_textdomain( 'ajax-load-more', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 		
 		// includes Admin  core
-		$this->alm_before_theme();					
+		$this->alm_before_theme();		
+		
+		// set up variables
+		$total = 0;					
 	}	
 		
 	
@@ -137,7 +140,7 @@ if( !class_exists('AjaxLoadMore') ):
 	function alm_shortcode( $atts, $content = null ) {
 		$options = get_option( 'alm_settings' ); //Get plugin options
 		extract(shortcode_atts(array(
-				'seo' => false,
+				'seo' => 'false',
 				'repeater' => 'default',
 				'post_type' => 'post',
 				'post_format' => '',
@@ -154,6 +157,7 @@ if( !class_exists('AjaxLoadMore') ):
 				'day' => '',
 				'author' => '',
 				'search' => '',						
+				'post_status' => 'publish',					
 				'order' => '',
 				'orderby' => '',
 				'exclude' => '',
@@ -182,6 +186,11 @@ if( !class_exists('AjaxLoadMore') ):
 		if(isset($options['_alm_btn_color'])){
 			$btn_color = ' '.$options['_alm_btn_color'];
 		}
+		// Get btn classnames
+		$button_classname = '';
+		if(isset($options['_alm_btn_classname'])){
+			$button_classname = $options['_alm_btn_classname'];
+		}
 		
 		// Language support 
 		
@@ -198,7 +207,7 @@ if( !class_exists('AjaxLoadMore') ):
 		
 		
 		$ajaxloadmore = '<div id="ajax-load-more" class="ajax-load-more-wrap '. $btn_color .'">';
-		$ajaxloadmore .= '<'.$container_element.' class="alm-listing'. $classname . '"';
+		$ajaxloadmore .= '<'.$container_element.' class="alm-listing alm-ajax'. $classname . '"';
 		$ajaxloadmore .= ' data-repeater="'.$repeater.'"';
 		$ajaxloadmore .= ' data-post-type="'.$post_type.'"';
 		$ajaxloadmore .= ' data-post-format="'.$post_format.'"';
@@ -215,6 +224,7 @@ if( !class_exists('AjaxLoadMore') ):
 		$ajaxloadmore .= ' data-day="'.$day.'"';
 		$ajaxloadmore .= ' data-author="'.$author.'"';
 		$ajaxloadmore .= ' data-search="'.$search.'"';
+		$ajaxloadmore .= ' data-post-status="'.$post_status.'"';
 		$ajaxloadmore .= ' data-order="'.$order.'"';
 		$ajaxloadmore .= ' data-orderby="'.$orderby.'"';
 		$ajaxloadmore .= ' data-exclude="'.$exclude.'"';
@@ -227,7 +237,7 @@ if( !class_exists('AjaxLoadMore') ):
 		   & the SEO add-on is installed. 
          Set $posts_per_page to be new value
 		*/
-		if($wp_posts_per_page > $posts_per_page && has_action('alm_seo_installed') && $seo)
+		if($wp_posts_per_page > $posts_per_page && has_action('alm_seo_installed') && $seo === 'true')
    		$posts_per_page = $wp_posts_per_page;
 		
       $ajaxloadmore .= ' data-posts-per-page="'.$posts_per_page.'"';
@@ -237,9 +247,10 @@ if( !class_exists('AjaxLoadMore') ):
 		$ajaxloadmore .= ' data-max-pages="'.$max_pages.'"';
 		$ajaxloadmore .= ' data-pause="'.$pause.'"';
 		$ajaxloadmore .= ' data-button-label="'.$button_label.'"';
+		$ajaxloadmore .= ' data-button-class="'.$button_classname.'"';
 		$ajaxloadmore .= ' data-transition="'.$transition.'"';
 		
-		if(has_action('alm_seo_installed') && $seo){
+		if(has_action('alm_seo_installed') && $seo === 'true'){
 		   
 		   // Get scroll speed
 		   $seo_scroll_speed = '1000';
@@ -331,10 +342,11 @@ if( !class_exists('AjaxLoadMore') ):
 		$month = (isset($_GET['month'])) ? $_GET['month'] : '';
 		$day = (isset($_GET['day'])) ? $_GET['day'] : '';
 		
+		$post_status = (isset($_GET['post_status'])) ? $_GET['post_status'] : 'publish';
 		$order = (isset($_GET['order'])) ? $_GET['order'] : 'DESC';
 		$orderby = (isset($_GET['orderby'])) ? $_GET['orderby'] : 'date';
 		$exclude = (isset($_GET['exclude'])) ? $_GET['exclude'] : '';
-		$numPosts = (isset($_GET['numPosts'])) ? $_GET['numPosts'] : 6;
+		$numPosts = (isset($_GET['numPosts'])) ? $_GET['numPosts'] : 5;
 		$page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
 		$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;		
 		$lang = (isset($_GET['lang'])) ? $_GET['lang'] : '';
@@ -347,7 +359,7 @@ if( !class_exists('AjaxLoadMore') ):
 			'offset' => $offset + ($numPosts*$page),
 			'order' => $order,
 			'orderby' => $orderby,	
-			'post_status' => 'publish',
+			'post_status' => $post_status,
 			'ignore_sticky_posts' => false,
 			'paged' => $paged,
 		);
@@ -379,6 +391,7 @@ if( !class_exists('AjaxLoadMore') ):
 
 		// Exclude posts
 		// - Please see plugin examples for more info on excluding posts
+		
 		if(!empty($exclude)){
 			$exclude = explode(",",$exclude);
 			$args['post__not_in'] = $exclude;
@@ -418,7 +431,6 @@ if( !class_exists('AjaxLoadMore') ):
 		if(!empty($taxonomy)){	
 			$the_terms = explode(", ", $taxonomy_terms);	
 			$args['tax_query'] = array(
-				'relation' => 'OR',
 				array(
 			        'taxonomy' => $taxonomy,
 			        'field' => 'slug',
@@ -467,7 +479,7 @@ if( !class_exists('AjaxLoadMore') ):
 
 		// WP_Query()
 		$alm_query = new WP_Query( $args );
-		
+		$total = $alm_query->found_posts - $offset;
 		// Run the loop
 		if ($alm_query->have_posts()) :
 		
@@ -508,9 +520,8 @@ if( !class_exists('AjaxLoadMore') ):
 			// Get page number and current item in overall loop				
 			$alm_loop_count++;         
          $alm_page = $alm_page_count;         
-         $alm_total = ($alm_page_count * $numPosts) - $numPosts + $alm_loop_count;
-         $alm_item = $alm_total;	         
-         $alm_found_posts = $alm_query->found_posts;
+         $alm_item = ($alm_page_count * $numPosts) - $numPosts + $alm_loop_count;	         
+         $alm_found_posts = $total;
 							
 			//Include repeater template	
 			include( $include );	

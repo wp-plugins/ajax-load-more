@@ -156,33 +156,33 @@ function alm_load_admin_js(){
 function alm_enqueue_admin_scripts(){
 
    //Load Admin CSS
-   wp_enqueue_style( 'admin-css', ALM_ADMIN_URL. 'css/admin.css');
-   wp_enqueue_style( 'core-css', ALM_URL. '/core/css/ajax-load-more.css');
-   wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+   wp_enqueue_style( 'alm-admin-css', ALM_ADMIN_URL. 'css/admin.css');
+   wp_enqueue_style( 'alm-core-css', ALM_URL. '/core/css/ajax-load-more.css');
+   wp_enqueue_style( 'alm-font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
    
    //Load CodeMirror Syntax Highlighting if on Repater Template page 
    $screen = get_current_screen();
    if ( in_array( $screen->id, array( 'ajax-load-more_page_ajax-load-more-repeaters') ) ){  
       
       //CodeMirror CSS
-      wp_enqueue_style( 'codemirror-css', ALM_ADMIN_URL. 'codemirror/lib/codemirror.css' );
+      wp_enqueue_style( 'alm-codemirror-css', ALM_ADMIN_URL. 'codemirror/lib/codemirror.css' );
             
       //CodeMirror JS
-      wp_enqueue_script( 'codemirror', ALM_ADMIN_URL. 'codemirror/lib/codemirror.js');    
-      wp_enqueue_script( 'codemirror-matchbrackets', ALM_ADMIN_URL. 'codemirror/addon/edit/matchbrackets.js' );
-      wp_enqueue_script( 'codemirror-htmlmixed', ALM_ADMIN_URL. 'codemirror/mode/htmlmixed/htmlmixed.js' );
-      wp_enqueue_script( 'codemirror-xml', ALM_ADMIN_URL. 'codemirror/mode/xml/xml.js' );
-      wp_enqueue_script( 'codemirror-javascript', ALM_ADMIN_URL. 'codemirror/mode/javascript/javascript.js' );
-      wp_enqueue_script( 'codemirror-mode-css', ALM_ADMIN_URL. 'codemirror/mode/css/css.js' );
-      wp_enqueue_script( 'codemirror-clike', ALM_ADMIN_URL. 'codemirror/mode/clike/clike.js' );
-      wp_enqueue_script( 'codemirror-php', ALM_ADMIN_URL. 'codemirror/mode/php/php.js' );
+      wp_enqueue_script( 'alm-codemirror', ALM_ADMIN_URL. 'codemirror/lib/codemirror.js');    
+      wp_enqueue_script( 'alm-codemirror-matchbrackets', ALM_ADMIN_URL. 'codemirror/addon/edit/matchbrackets.js' );
+      wp_enqueue_script( 'alm-codemirror-htmlmixed', ALM_ADMIN_URL. 'codemirror/mode/htmlmixed/htmlmixed.js' );
+      wp_enqueue_script( 'alm-codemirror-xml', ALM_ADMIN_URL. 'codemirror/mode/xml/xml.js' );
+      wp_enqueue_script( 'alm-codemirror-javascript', ALM_ADMIN_URL. 'codemirror/mode/javascript/javascript.js' );
+      wp_enqueue_script( 'alm-codemirror-mode-css', ALM_ADMIN_URL. 'codemirror/mode/css/css.js' );
+      wp_enqueue_script( 'alm-codemirror-clike', ALM_ADMIN_URL. 'codemirror/mode/clike/clike.js' );
+      wp_enqueue_script( 'alm-codemirror-php', ALM_ADMIN_URL. 'codemirror/mode/php/php.js' );
       
    }
    
    //Load JS   
    wp_enqueue_script( 'jquery-form' );
-   wp_enqueue_script( 'select2', ALM_ADMIN_URL. 'js/libs/select2.min.js', array( 'jquery' ));
-   wp_enqueue_script( 'shortcode-builder', ALM_ADMIN_URL. 'shortcode-builder/js/shortcode-builder.js', array( 'jquery' ));
+   wp_enqueue_script( 'alm-select2', ALM_ADMIN_URL. 'js/libs/select2.min.js', array( 'jquery' ));
+   wp_enqueue_script( 'alm-shortcode-builder', ALM_ADMIN_URL. 'shortcode-builder/js/shortcode-builder.js', array( 'jquery' ));
 }
 
 
@@ -961,7 +961,17 @@ function alm_admin_init(){
 		'alm_btn_color_callback', 
 		'ajax-load-more', 
 		'alm_general_settings' 
+	);
+	
+	add_settings_field( 
+		'_alm_btn_classname', 
+		__('Button Classes', ALM_NAME ), 
+		'alm_btn_class_callback', 
+		'ajax-load-more', 
+		'alm_general_settings' 
 	);	
+	
+	
 	
 	if(has_action('alm_seo_installed')){	
 	
@@ -1177,14 +1187,35 @@ function alm_btn_color_callback() {
     		var el = jQuery(this);
 	      if(el.is(":checked")) {
 	      	el.parent().parent().parent('tr').next('tr').hide();
+	      	el.parent().parent().parent('tr').next('tr').next('tr').hide();
 	      }else{		      
 	      	el.parent().parent().parent('tr').next('tr').show();
+	      	el.parent().parent().parent('tr').next('tr').next('tr').show();
 	      }
 	   });
 	   
     </script>
     <?php 
 }
+
+
+
+/*
+*  alm_btn_class_callback
+*  Add classes to the Ajax Load More button
+*
+*  @since 2.4.1
+*/
+
+function alm_btn_class_callback(){
+	$options = get_option( 'alm_settings' );
+    
+   if(!isset($options['_alm_btn_classname'])) 
+	   $options['_alm_btn_classname'] = '';
+		
+	echo '<label for="alm_settings[_alm_btn_classname]">'.__('Add classes to the <em>Load More</em> button', ALM_NAME).'</label><br/><input type="text" id="alm_settings[_alm_btn_classname]" name="alm_settings[_alm_btn_classname]" value="'.$options['_alm_btn_classname'].'" placeholder="button rounded etc..." /> ';	
+}
+
 
 
 /*

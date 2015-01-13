@@ -307,7 +307,29 @@
             </div>
          </div>
       </div>
-   </div>
+   </div>   
+   
+   <!-- Post Status -->
+   <div class="row input post-status" id="alm-post-status">
+      <h3 class="heading"><?php _e('Post Status', ALM_NAME); ?></h3>
+      <div class="expand-wrap">
+         <div class="section-title">
+   		 	<p><?php _e('Query by post status.', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">               
+               <select class="alm_element" name="post-status" id="post-status">
+                   <option value="publish" selected="selected">Published</option>
+                   <option value="future">Future</option>
+                   <option value="draft">Draft</option>
+                   <option value="pending">Pending</option>
+                   <option value="private">Private</option>
+                   <option value="trash">Trash</option>
+               </select>
+            </div>
+         </div>
+      </div>
+   </div>   
     
    <!-- Ordering -->
    <div class="row ordering" id="alm-order">

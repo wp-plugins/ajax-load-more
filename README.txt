@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl, archives, date
 Requires at least: 3.6
 Tested up to: 4.1
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,16 +69,6 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
     [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]
 
 ***
-    
-= Variables =
-
-Ajax Load More passes the following PHP variables to each repeater template - these template variables can help you style and transform your repeater templates.
- 
-*   **$alm_page** - Returns the current page number. 'echo $alm_page;'
-*   **$alm_item** - Returns the current item number within your loop. 'echo $alm_item;'
-*   **$alm_found_posts** - Returns the total number of posts found within the entire WordPress query. 'echo $alm_found_posts;'
-    
-***
 
 = Demos =
 * **[Default](http://connekthq.com/plugins/ajax-load-more/)** - Out of the box functionality and styling
@@ -122,6 +112,16 @@ The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repe
 The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.
 [Get More Information](http://connekthq.com/plugins/ajax-load-more/seo/)
 
+***
+    
+= Variables =
+
+Ajax Load More passes the following PHP variables to each repeater template - these template variables can help you style and transform your repeater templates.
+ 
+*   **$alm_page** - Returns the current page number. 'echo $alm_page;'
+*   **$alm_item** - Returns the current item number within your loop. 'echo $alm_item;'
+*   **$alm_found_posts** - Returns the total number of posts found within the entire WordPress query. 'echo $alm_found_posts;'
+    
 ***
 
 = Tested Browsers =
@@ -220,6 +220,13 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+
+= 2.4.1 =
+* Adding query by Post Status(http://codex.wordpress.org/Class_Reference/WP_Query#Status_Parameters).
+* Adding 'load more' button class field to Ajax Load More settings page.
+* Fix for querying by custom taxonomy and category/tags/etc.
+* Fix for $alm_found_posts - now subtracting 'offset' value to get actual returned result total.
+* Fix for SEO add-on and pause="true". If SEO is true and page is greater 1, pause will be automatically set to false.
 
 = 2.4.0 =
 * Adding date query parameters - users can now query by day, month and year.
