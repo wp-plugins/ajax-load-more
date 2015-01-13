@@ -163,7 +163,7 @@ Your server must be able to read/write/create files. Ajax Load More creates the 
 
 Yes, Ajax Load more uses admin-ajax and nonces in order to protect URLs and forms from being misused.
 
-= Can I make modifications to the plugin code? =
+= Can I make modifications to the plugin code? = 
 
 Sure, but please be aware that if modifications are made it may affect future updates of the plugin.
 
