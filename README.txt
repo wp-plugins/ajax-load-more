@@ -50,6 +50,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **meta_compare** - Operator to compare meta_key and meta_value against (=/!=/>/>=/</<= etc.). Default = ‘=’
 *   **author** - Query by author id. Default = null
 *   **search** - Query search term (‘s’). Default = null
+*   **post_status** - Display posts by their current status (publish, future, draft, pending, private, trash). Default = ‘publish’
 *   **order** - Display posts in ASC(ascending) or DESC(descending) order. Default = ‘DESC’
 *   **orderby** - Order posts by date, title, name, menu order, random, author, post ID or comment count.  Default = ‘date’
 *   **exclude** - Comma separated list of post ID’s to exclude from query. Default = null 
