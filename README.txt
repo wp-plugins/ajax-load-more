@@ -19,10 +19,10 @@ Build complex WordPress queries using our shortcode builder then add the shortco
 
 = Features =
 
-* **Multiple Instances** - One, two, three or ten - you can now include multiple instances of Ajax Load More on a single page.
 * **Shortcode Builder** - Easily create your own Ajax Load More shortcode by adjusting the various WordPress query parameters in our easy-to-use shortcode builder.(see Shortcode Parameters).
 * **Query Parameters** - Ajax Load More allows you to query WordPress by many different content types. Query by Post Type, Post Format, Date, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
 * **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
+* **Multiple Instances** - One, two, three or ten - you can now include multiple instances of Ajax Load More on a single page.
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 
 Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
@@ -99,19 +99,20 @@ To utilize the almComplete() function simply place the following code inside you
 
 ***    
 
-= Add-ons =
-
-The following Add-ons are available to increase the functionality of Ajax Load More.
-
-**Custom Repeaters**
-
-The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.
-[Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
-
-**Search Engine Optimization**
-
-The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.
-[Get More Information](http://connekthq.com/plugins/ajax-load-more/seo/)
+> #### Add-ons 
+> 
+> The following Add-ons are available to increase the functionality of Ajax Load More.
+> 
+> **Custom Repeaters**
+> 
+> The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.
+> [youtube http://www.youtube.com/watch?v=EQ57i6dkOew]
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
+> 
+> **Search Engine Optimization**
+> 
+> The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/seo/)
 
 ***
     
