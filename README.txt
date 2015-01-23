@@ -65,12 +65,9 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 
 ***
 
-= Example Shortcodes =
-Content Editor
-    [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade"]
+= Example Shortcode =
+`[ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]`
     
-Template
-    echo do_shortcode('[ajax_load_more post_type="post" repeater="default" button_label="Older Posts"]');
 
 ***
 
@@ -91,7 +88,7 @@ Template
 The following functions are avaialble to be dispatched by Ajax Load More. 
 
 
-**Ajax Complete** <br/>
+**Ajax Complete**
 The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
 To utilize the almComplete() function simply place the following code inside your sites javascript file.
 
