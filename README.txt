@@ -65,9 +65,12 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 
 ***
 
-= Example Shortcode =
-
-    [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade" button_label="Older Posts"]
+= Example Shortcodes =
+Content Editor
+    [ajax_load_more post_type="post, portfolio" repeater="default" posts_per_page="5" transition="fade"]
+    
+Template
+    echo do_shortcode('[ajax_load_more post_type="post" repeater="default" button_label="Older Posts"]');
 
 ***
 
@@ -88,8 +91,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 The following functions are avaialble to be dispatched by Ajax Load More. 
 
 
-**Ajax Complete**
-
+**Ajax Complete** <br/>
 The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
 To utilize the almComplete() function simply place the following code inside your sites javascript file.
 
@@ -102,11 +104,11 @@ To utilize the almComplete() function simply place the following code inside you
 > ### Add-ons 
 > The following Add-ons are available to increase the functionality of Ajax Load More.
 > 
-> ####Custom Repeaters
+> #### Custom Repeaters
 > The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 > 
-> ####Search Engine Optimization
+> #### Search Engine Optimization
 > The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/seo/)
 
