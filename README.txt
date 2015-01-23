@@ -100,17 +100,13 @@ To utilize the almComplete() function simply place the following code inside you
 ***    
 
 > #### Add-ons 
-> 
 > The following Add-ons are available to increase the functionality of Ajax Load More.
 > 
-> **Custom Repeaters**
-> 
+> ###Custom Repeaters
 > The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.
-> [youtube http://www.youtube.com/watch?v=EQ57i6dkOew]
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
 > 
-> **Search Engine Optimization**
-> 
+> ###Search Engine Optimization
 > The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/seo/)
 
