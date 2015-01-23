@@ -98,9 +98,9 @@ To utilize the almComplete() function simply place the following code inside you
 
 ***    
 
-> ### Add-ons 
-> The following Add-ons are available to increase the functionality of Ajax Load More.
-> 
+= Add-ons =
+ The following Add-ons are available to increase the functionality of Ajax Load More.
+
 > #### Custom Repeaters
 > The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
