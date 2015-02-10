@@ -1,9 +1,60 @@
 <span class="toggle-all"><span class="inner-wrap"><em class="collapse"><?php _e('Collapse All', ALM_NAME); ?></em><em class="expand"><?php _e('Expand All', ALM_NAME); ?></em></span></span>
 
+<?php 
+   $alm_options = get_option( 'alm_settings' );         
+   if(!isset($alm_options['_alm_disable_dynamic'])) // Check if '_alm_disable_dynamic is set within settings
+	   $alm_options['_alm_disable_dynamic'] = '0';		
+	   
+	$disable_dynamic_content = $alm_options['_alm_disable_dynamic'];   
+?>
+
+<?php if(has_action('alm_preload_installed')){ ?>
+<!-- PRELOAD -->
+<div class="row input preload add-on" id="alm-preload">
+   <h3 class="heading"><?php _e('Preloaded', ALM_NAME); ?></h3>
+   <div class="expand-wrap">
+      <div class="section-title">
+		 	<p><?php _e('Preload posts prior to making Ajax requests.', ALM_NAME); ?></p>
+		 </div>
+      <div class="wrap">
+         <div class="inner">	               
+            <ul>
+                <li>
+                 <input class="alm_element" type="radio" name="preload" value="true" id="preload-true" >
+                 <label for="preload-true"><?php _e('True', ALM_NAME); ?></label>
+                </li>
+                <li>
+                 <input class="alm_element" type="radio" name="preload" value="false" id="preload-false" checked>
+                 <label for="preload-false"><?php _e('False', ALM_NAME); ?></label>
+                </li>
+            </ul>
+         </div>
+      </div>
+      <div class="clear"></div>
+      <div class="preload_amount">        
+         <div class="clear"></div>
+         <hr>
+         <div class="section-title">
+            <h4>Preload Amount</h4>
+   		 	<p><?php _e('Enter the number of posts to preload.', ALM_NAME); ?></p>   		 	
+   		 </div>
+         <div class="wrap">
+            <div class="inner">            
+               <input type="number" class="alm_element numbers-only" name="preload-amount" id="preload-amount" step="1" min="1" value="5">  
+            </div>
+         </div>          
+         <?php if(has_action('alm_seo_installed')){ ?>
+		 	  <!-- <p class="warning-callout">If using <strong>Preload</strong> and <strong>SEO</strong> together, the value of <strong>preload_amount</strong> will be determined by the value set within the <strong>posts_per_page</strong> parameter.</p> -->
+		 	<?php } ?>
+      </div> 
+   </div>
+</div> 
+<?php } ?>
+
 
 <?php if(has_action('alm_seo_installed')){ ?>
 <!-- SEO -->
-<div class="row input seo" id="alm-seo">
+<div class="row input seo add-on" id="alm-seo">
    <h3 class="heading"><?php _e('SEO (Search Engine Optimization)', ALM_NAME); ?></h3>
    <div class="expand-wrap">
       <div class="section-title">
@@ -23,6 +74,9 @@
             </ul>
          </div>
       </div>
+      <?php if(has_action('alm_preload_installed')){ ?>
+	 	  <p class="warning-callout"><?php _e('At this time it is not possible to use <strong>preloaded</strong> and <strong>SEO</strong> together - We are still working out the kinks but you can expect a fix to be released shortly.', ALM_NAME); ?></p>
+	 	<?php } ?>
    </div>
 </div> 
 <?php } ?>   
@@ -34,7 +88,7 @@
 	echo '<h3 class="heading">'.__('Template', ALM_NAME). '</h3>';
 	echo '<div class="expand-wrap">';
 	echo '<div class="section-title">';
-	echo '<p>'.__('Select a <a href="admin.php?page=ajax-load-more-repeaters" target="_parent">repeater template</a>.', ALM_NAME). '</p>';
+	echo '<p>'.__('Select which <a href="admin.php?page=ajax-load-more-repeaters" target="_parent">repeater template</a> you would like to use.', ALM_NAME). '</p>';
 	echo '</div>';
 	echo '<div class="wrap"><div class="inner">';
 	echo '<select name="repeater-select" id="repeater-select" class="alm_element">';
@@ -49,17 +103,9 @@
 	
 	echo '</div></div>';
 	
-	// Custom Repeaters - /cta/extend.php
-	// Removed in 2.2.8	
-	if (!has_action('alm_get_custom_repeaters')) {
-	  //include( ALM_PATH . 'admin/includes/cta/extend.php');
-	}
-	
 	// Custom Repeaters v2 - /cta/extend.php
-	if (!has_action('alm_get_unlimited_repeaters')) {
-	   if (!has_action('alm_get_custom_repeaters')) {
-         include( ALM_PATH . 'admin/includes/cta/extend.php');
-	  }
+	if (!has_action('alm_get_unlimited_repeaters') && !has_action('alm_get_custom_repeaters')) {
+      include( ALM_PATH . 'admin/includes/cta/extend.php');
 	}
 	
 	echo '</div>';
@@ -104,7 +150,7 @@
    		echo '</div>';
    		echo '<div class="wrap"><div class="inner"><select class="alm_element" name="post-format-select" id="post-format-select">';
    		echo '<option value="" selected="selected">-- ' . __('Select Post Format', ALM_NAME) . ' --</option>';
-   		echo '<option name="chk-standard" id="chk-standard" value="chk-standard">' . __('Standard', ALM_NAME) . '</option>';		
+   		echo '<option name="chk-standard" id="chk-standard" value="standard">' . __('Standard', ALM_NAME) . '</option>';		
    	   foreach( $post_formats[0] as $post_format ){
             echo '<option name="chk-'.$post_format.'" id="chk-'.$post_format.'" value="'.$post_format.'">'.ucwords($post_format).'</option>';
    	   }	   
@@ -117,43 +163,112 @@
    
    // List Categories	    
 	$cats = get_categories();
-	if($cats){
-		echo '<div class="row checkboxes categories" id="alm-categories">';
-		echo '<h3 class="heading">' . __('Category', ALM_NAME) . '</h3>';
-		echo '<div class="expand-wrap">';
-		echo '<div class="section-title">';
-		echo '<p>' . __('Select a Category to query(by slug).', ALM_NAME) . '<br/>&raquo; <a href="admin.php?page=ajax-load-more-examples#example-catgory">view example</a></p>';
-		echo '</div>';
-		echo '<div class="wrap"><div class="inner"><select class="alm_element" name="category-select" id="category-select">';
-		echo '<option value="" selected="selected">-- ' . __('Select Category', ALM_NAME) . ' --</option>';
-	    foreach( $cats as $cat ){
-         echo '<option name="chk-'.$cat->slug.'" id="chk-'.$cat->slug.'" value="'.$cat->slug.'">'.$cat->name.'</option>';
-	    }
-	    echo '</select></div></div>';
-	    echo '</div>';
-	    echo '</div>';
-    }
+	if($cats){ ?>		
+	<div class="row checkboxes categories" id="alm-categories">
+      <h3 class="heading"><?php _e('Category', ALM_NAME); ?></h3>
+      <div class="expand-wrap">
+         <div class="section-title">
+            <h4>Include</h4>
+            <p><?php _e('A comma separated list of categories to include by slug. (design, research etc...)', ALM_NAME); ?><br/>
+            &raquo; <a href="admin.php?page=ajax-load-more-examples#example-category">
+            <?php _e('view example', ALM_NAME); ?></a></p>
+         </div>
+         <div class="wrap">
+            <div class="inner">            
+               <?php
+               if(!$disable_dynamic_content){
+                  echo '<select class="alm_element multiple" name="category-select" id="category-select" multiple="multiple">';
+                  foreach( $cats as $cat ){
+                     echo '<option name="chk-'.$cat->slug.'" id="chk-'.$cat->slug.'" value="'.$cat->slug.'">'.$cat->name.'</option>';
+                  }
+                  echo '</select>';
+               }else{
+                  echo '<input type="text" class="alm_element" name="category-select" id="category-select" placeholder="design, development, science etc...">';
+               }
+               ?>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <hr/>
+      
+         <div class="section-title">         
+            <h4><?php _e('Exclude', ALM_NAME); ?></h4>
+            <p><?php _e('A comma separated list of categories to exclude by ID. (3, 12, 35 etc..)', ALM_NAME); ?></p>
+         </div>
+         <div class="wrap">
+            <div class="inner">           
+               <?php
+               if(!$disable_dynamic_content){
+                  echo '<select class="alm_element multiple" name="category-exclude-select" id="category-exclude-select" multiple="multiple">';
+                  foreach( $cats as $cat ){
+                     echo '<option name="chk-'.$cat->term_id.'" id="chk-'.$cat->term_id.'" value="'.$cat->term_id.'">'.$cat->name.'</option>';
+                  }
+                  echo '</select>';
+               }else{
+                  echo '<input type="text" class="alm_element numbers-only" name="category-exclude-select" id="category-exclude-select" placeholder="10, 12, 19 etc...">';
+               }
+               ?>
+            </div>
+            <div class="clear"></div>
+         </div>     
+      </div>
+   </div>
+    
+    <?php }
     
     // Tags	    
 	$tags = get_tags();
-	if($tags){
-		echo '<div class="row checkboxes tags" id="alm-tags">';
-		echo '<h3 class="heading">' . __('Tag', ALM_NAME) . '</h3>';
-		echo '<div class="expand-wrap">';
-		echo '<div class="section-title">';
-		echo '<p>' . __('Select a Tag to query(by slug).', ALM_NAME) . '<br/>&raquo; <a href="admin.php?page=ajax-load-more-examples#example-tag">view example</a></p>';
-		echo '</div>';
-		echo '<div class="wrap"><div class="inner"><select class="alm_element" name="tag-select" id="tag-select">';
-		echo '<option value="" selected="selected">-- ' . __('Select Tag', ALM_NAME) . ' --</option>';
-	    foreach( $tags as $tag ){
-         echo '<option name="chk-'.$tag->slug.'" id="chk-'.$tag->slug.'" value="'.$tag->slug.'">'.$tag->name.'</option>';
-	    }
-	    echo '</select></div></div>';
-	    echo '</div>';
-	    echo '</div>';
-    }
+	if($tags){ ?>
+	<div class="row checkboxes tags" id="alm-tags">
+		<h3 class="heading"><?php _e('Tag', ALM_NAME); ?></h3>
+		<div class="expand-wrap">
+   		<div class="section-title">
+   		<h4><?php _e('Include', ALM_NAME); ?></h4>
+   		<p><?php _e('A comma separated list of tags to include by slug. (toronto, canada etc...)', ALM_NAME); ?><br/>&raquo; <a href="admin.php?page=ajax-load-more-examples#example-tag">view example</a></p>
+   		</div>
+   		<div class="wrap">
+   		   <div class="inner">
+              <?php
+         	  if(!$disable_dynamic_content){
+         	     echo '<select class="alm_element multiple" name="tag-select" id="tag-select" multiple="multiple">';
+             	  foreach( $tags as $tag ){
+                     echo '<option name="chk-'.$tag->slug.'" id="chk-'.$tag->slug.'" value="'.$tag->slug.'">'.$tag->name.'</option>';
+            	  }
+            	  echo '</select>';
+         	  }else{
+            	  echo '<input type="text" class="alm_element" name="tag-select" id="tag-select" placeholder="hockey, puck, crosby etc...">';
+         	  }
+         	   ?>
+            </div>
+   	  </div>
+   	  <div class="clear"></div>
+         <hr/>
+      
+         <div class="section-title">         
+            <h4><?php _e('Exclude', ALM_NAME); ?></h4>
+            <p><?php _e('A comma separated list of tags to exclude by ID. (30, 12, 99 etc..)', ALM_NAME); ?></p>
+         </div>
+         <div class="wrap">
+            <div class="inner">           
+               <?php
+               if(!$disable_dynamic_content){
+                  echo '<select class="alm_element multiple" name="tag-exclude-select" id="tag-exclude-select" multiple="multiple">';
+                  foreach( $tags as $tag ){
+                     echo '<option name="chk-'.$tag->term_id.'" id="chk-'.$tag->term_id.'" value="'.$tag->term_id.'">'.$tag->name.'</option>';
+                  }
+                  echo '</select>';
+               }else{
+                  echo '<input type="text" class="alm_element numbers-only" name="tag-exclude-select" id="tag-exclude-select" placeholder="10, 12, 19 etc...">';
+               }
+               ?>
+            </div>
+            <div class="clear"></div>
+         </div>
+	  </div>
+   </div>
+   <?php } ?>
     
-    
+   <?php
 	// Taxonomies
 	$tax_args = array(
 		'public'   => true,
@@ -238,20 +353,25 @@
          </div>
          <div class="wrap">
             <div class="inner">
-               <label for="meta-key" class="full"><?php _e('Field Key (Name):', ALM_NAME); ?></label>
+               <?php // Meta Key ?>
+               <label for="meta-key" class="full"><?php _e('Key (Name):', ALM_NAME); ?></label>
                <input class="alm_element" name="meta-key" type="text" id="meta-key" value="" placeholder="<?php _e('Enter custom field key(name)', ALM_NAME); ?>">   
             </div> 
             <div id="meta-query-extended">
                <?php // Meta Value ?>
                <div class="inner border-top">
-                  <label for="meta-value" class="full"><?php _e('Field Value:', ALM_NAME); ?></label>
+                  <label for="meta-value" class="full"><?php _e('Value:', ALM_NAME); ?></label>
                   <input class="alm_element" name="meta-value" type="text" id="meta-value" value="" placeholder="<?php _e('Enter custom field value', ALM_NAME); ?>">
                </div>    
                <?php // Meta Compare ?>           
                <div class="inner border-top">
-                  <label for="meta-compare" class="full"><?php _e('Field Operator:', ALM_NAME); ?></label>
+                  <label for="meta-compare" class="full"><?php _e('Operator:', ALM_NAME); ?></label>
                   <select class="alm_element" id="meta-compare" name="meta-compare">
-                     <option value="=" selected="selected">= &nbsp;&nbsp; (equals)</option>
+                     <option value="IN" selected="selected">IN</option>
+                     <option value="NOT IN">NOT IN</option>
+                     <option value="BETWEEN">BETWEEN</option>
+                     <option value="NOT BETWEEN">NOT BETWEEN</option>
+                     <option value="=">= &nbsp;&nbsp; (equals)</option>
                      <option value="!=">!= &nbsp; (does NOT equal)</option>
                      <option value=">">> &nbsp;&nbsp; (greater than)</option>
                      <option value=">=">>= &nbsp;(greater than or equal to)</option>
@@ -259,10 +379,6 @@
                      <option value="<=">&lt;= &nbsp;(less than or equal to)</option>
                      <option value="LIKE">LIKE</option>
                      <option value="NOT LIKE">NOT LIKE</option>
-                     <option value="IN">IN</option>
-                     <option value="NOT IN">NOT IN</option>
-                     <option value="BETWEEN">BETWEEN</option>
-                     <option value="NOT BETWEEN">NOT BETWEEN</option>
                      <option value="EXISTS">EXISTS</option>
                      <option value="NOT EXISTS">NOT EXISTS</option>
                   </select>
@@ -282,17 +398,22 @@
 		echo '<div class="section-title">';
 		echo '<p>' . __('Select an Author to query(by ID).', ALM_NAME) . '<br/>&raquo; <a href="admin.php?page=ajax-load-more-examples#example-author">view example</a></p>';
 		echo '</div>';
-		echo '<div class="wrap"><div class="inner"><select class="alm_element" name="author-select" id="author-select">';
-		echo '<option value="" selected="selected">-- ' . __('Select Author', ALM_NAME) . ' --</option>';
-	    foreach( $authors as $author ){
-         echo '<option name="chk-'.$author->user_login.'" id="chk-'.$author->user_login.'" value="'.$author->ID.'">'.$author->display_name.'</option>';
-	    }
-	    echo '</select></div></div>';
-	    echo '</div>';
-	    echo '</div>';
+		echo '<div class="wrap"><div class="inner">';
+		if(!$disable_dynamic_content){
+		   echo '<select class="alm_element" name="author-select" id="author-select">';
+   		echo '<option value="" selected="selected">-- ' . __('Select Author', ALM_NAME) . ' --</option>';
+   	   foreach( $authors as $author ){
+            echo '<option name="chk-'.$author->user_login.'" id="chk-'.$author->user_login.'" value="'.$author->ID.'">'.$author->display_name.'</option>';
+   	    }
+   	   echo '</select>';
+	   }else{
+   	  echo '<input type="text" class="alm_element numbers-only" name="author-select" id="author-select" placeholder="1">';
+	   }	   
+	   echo '</div></div>';
+	   echo '</div>';
+	   echo '</div>';
     }
-   ?>
-    
+   ?>    
     
    <!-- Search term -->
    <div class="row input search-term" id="alm-search">
@@ -307,14 +428,14 @@
             </div>
          </div>
       </div>
-   </div>   
+   </div>     
    
    <!-- Post Status -->
    <div class="row input post-status" id="alm-post-status">
       <h3 class="heading"><?php _e('Post Status', ALM_NAME); ?></h3>
       <div class="expand-wrap">
          <div class="section-title">
-   		 	<p><?php _e('Query by post status.', ALM_NAME); ?></p>
+   		 	<p><?php _e('Select status of the post.', ALM_NAME); ?></p>
    		 </div>
          <div class="wrap">
             <div class="inner">               
@@ -329,14 +450,14 @@
             </div>
          </div>
       </div>
-   </div>   
+   </div>
     
    <!-- Ordering -->
    <div class="row ordering" id="alm-order">
       <h3 class="heading"><?php _e('Ordering', ALM_NAME); ?></h3>
       <div class="expand-wrap">
          <div class="section-title">
-   		 	<p><?php _e('Sort retrieved posts by Order and Orderby parameters.', ALM_NAME); ?></p>
+   		 	<p><?php _e('Sort posts by Order and Orderby parameters.', ALM_NAME); ?></p>
    		 </div>
          <div class="wrap">
             <div class="inner half">
@@ -353,7 +474,7 @@
                    <option value="title">Title</option>
                    <option value="name">Name (slug)</option>
                    <option value="menu_order">Menu Order</option>
-                   <!-- <option value="rand">Random</option> -->
+                   <option value="rand">Random</option>
                    <option value="author">Author</option>
                    <option value="ID">ID</option>
                    <option value="comment_count">Comment Count</option>
@@ -392,7 +513,7 @@
          </div>
       </div>
    </div>
-   
+      
    <!-- Display posts -->
    <div class="row input posts_per_page" id="alm-post-page">
       <h3 class="heading"><?php _e('Posts Per Page', ALM_NAME); ?></h3>
@@ -406,57 +527,14 @@
             </div>
          </div>
       </div>
-   </div>      
-   
-   
-   <!-- Allow Scrolling Load -->
-   <div class="row checkbox scroll_load" id="alm-scroll">
-      <h3 class="heading"><?php _e('Load Posts on Scroll', ALM_NAME); ?></h3>
-      <div class="expand-wrap">
-         <div class="section-title">
-   		 	<p><?php _e('Load more posts as the user scrolls the page.', ALM_NAME); ?></p>
-   		 </div>
-         <div class="wrap">
-            <div class="inner">	               
-               <ul>
-               <li>
-               <input class="alm_element" type="radio" name="scroll" value="t" id="scroll_t" checked>
-               <label for="scroll_t"><?php _e('True', ALM_NAME); ?></label>
-               </li>
-               <li>
-               <input class="alm_element" type="radio" name="scroll" value="f" id="scroll_f">
-               <label for="scroll_f"><?php _e('False', ALM_NAME); ?></label>
-               </li>
-               </ul>
-            </div>
-         </div>
-      </div>
-   </div>
-   
-   
-   <!-- Max Pages -->
-   <div class="row input max_pages" id="alm-max-pages">
-      <h3 class="heading"><?php _e('Max Pages', ALM_NAME); ?></h3>
-      <div class="expand-wrap">
-         <div class="section-title">
-   		 	<p><?php _e('Maximum number of pages to load while scrolling.', ALM_NAME); ?></p>
-   		 </div>
-         <div class="wrap">
-            <div class="inner">
-            
-               <input type="number" class="alm_element numbers-only" name="max-select" id="max-select" step="1" min="0" value="5">  
-            </div>
-         </div>
-      </div>
-   </div>
-   
-   
+   </div>   
+         
    <!-- Pause Post Loading -->
    <div class="row checkbox pause_load" id="alm-pause">
-      <h3 class="heading"><?php _e('Pause Loading of Posts', ALM_NAME); ?></h3>
+      <h3 class="heading"><?php _e('Pause', ALM_NAME); ?></h3>
       <div class="expand-wrap">
          <div class="section-title">
-   		 	<p><?php _e('Do not load posts until user clicks <em>load</em> button.', ALM_NAME); ?></p>
+   		 	<p><?php _e('Do <u>NOT</u> load any posts until user the clicks <em>Load More</em> button.', ALM_NAME); ?></p>
    		 </div>
          <div class="wrap">
             <div class="inner">	               
@@ -473,8 +551,46 @@
             </div>
          </div>
       </div>
-   </div>
-   
+   </div>   
+      
+   <!-- Allow Scrolling Load -->
+   <div class="row checkbox scroll_load" id="alm-scroll">
+      <h3 class="heading"><?php _e('Scrolling', ALM_NAME); ?></h3>
+      <div class="expand-wrap">
+         <div class="section-title">
+            <h4>Enable Scrolling</h4>
+   		 	<p><?php _e('Load more posts as the user scrolls the page.', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">	               
+               <ul>
+                  <li>
+                     <input class="alm_element" type="radio" name="scroll" value="t" id="scroll_t" checked>
+                     <label for="scroll_t"><?php _e('True', ALM_NAME); ?></label>
+                  </li>
+                  <li>
+                     <input class="alm_element" type="radio" name="scroll" value="f" id="scroll_f">
+                     <label for="scroll_f"><?php _e('False', ALM_NAME); ?></label>
+                  </li>
+               </ul>
+            </div>
+         </div> 
+         <div class="clear"></div>
+         <div class="max_pages">        
+            <div class="clear"></div>
+            <hr>
+            <div class="section-title">
+               <h4>Maximum Pages</h4>
+      		 	<p><?php _e('Maximum number of pages to load while scrolling. (0 = unlimited)', ALM_NAME); ?></p>
+      		 </div>
+            <div class="wrap">
+               <div class="inner">            
+                  <input type="number" class="alm_element numbers-only" name="max-select" id="max-select" step="1" min="0" value="5">  
+               </div>
+            </div> 
+         </div>        
+      </div>
+   </div>    
    
    <!-- Transition -->
    <div class="row input transition" id="alm-transition">
@@ -494,13 +610,31 @@
                     <input class="alm_element" type="radio" name="transition" value="fade" id="transition-fade">
                     <label for="transition-fade"><?php _e('Fade', ALM_NAME); ?></label>
                    </li>
+                   <li>
+                    <input class="alm_element" type="radio" name="transition" value="none" id="transition-none">
+                    <label for="transition-none"><?php _e('None', ALM_NAME); ?></label>
+                   </li>
                </ul>
             </div>
          </div>
       </div>
    </div>  
    
-   
+   <!-- Destroy After -->
+   <div class="row input destroy-after" id="alm-destroy-after">
+      <h3 class="heading"><?php _e('Destroy After', ALM_NAME); ?></h3>
+      <div class="expand-wrap">
+         <div class="section-title">
+   		 	<p><?php _e('Remove ajax load more functionality after \'<em>n</em>\' number of pages have been loaded.', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">            
+               <input type="number" class="alm_element numbers-only" name="destroy-after" id="disable-after" step="1" min="0" value="">  
+            </div>
+         </div>
+      </div>
+   </div>  
+      
    <!-- Button Text -->
    <div class="row input btn-label" id="alm-btn-label">
       <h3 class="heading"><?php _e('Button Label', ALM_NAME); ?></h3>
