@@ -220,8 +220,8 @@ How to install Ajax Load More.
 1. Settings screen
 2. Available Repeater Templates
 3. Custom Repeaters Add-On
-4. Shortcode Builder (Admin screen)
-5. Shortcode Builder (Page Edit screen)
+4. Shortcode Builder
+5. Edit Page Shortcode Builder
 6. Content Editor shortcode icon
 7. Shortcode and implementation examples
 
