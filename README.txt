@@ -65,7 +65,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **button_label** - The label text for Load More button. Default = 'Older Posts'
 *   **seo** - Enable address bar URL rewrites as users page through content - <a href="http://connekthq.com/plugins/ajax-load-more/search-engine-optimization/">add-on only</a> (true/false). Default = ‘false’
 *   **preloaded** - Should Ajax Load More preload posts? - <a href="http://connekthq.com/plugins/ajax-load-more/preloaded/">add-on only</a> (true/false). Default = ‘false’
-*   **preloaded_amount** - The amount of posts to preload. Default = ‘5’
+*   **preloaded_amount** - The amount of posts to preload. - <a href="http://connekthq.com/plugins/ajax-load-more/preloaded/">add-on only</a> Default = ‘5’
 
 ***
 
