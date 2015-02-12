@@ -275,8 +275,8 @@
                   
                   // Disbale After param
                   if (alm.destroy_after !== undefined) {
-                     console.log(alm.destroy_after);
-                     console.log(alm.page);
+                     //console.log(alm.destroy_after);
+                     //console.log(alm.page);
                      var currentPage = alm.page + 1; // Add 1 because alm.page starts at 0
                      if(alm.preload) currentPage++;
                      
