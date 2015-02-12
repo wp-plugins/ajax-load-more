@@ -230,7 +230,7 @@ How to install Ajax Load More.
 
 = 2.5.1 =
 * FIX - Dynamic population of category, tag and author content within Shortcode Builder - now this actually works as requested and no database queries happen if this setting is true.
-* FIX - Small issue with console.log in core js.
+* FIX - Small issue with new destory_after parameter in core js.
 * UPDATE - Updated language .pot file.
 * UPDATE - Small admin interface tweaks.
 

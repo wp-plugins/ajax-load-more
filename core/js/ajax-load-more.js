@@ -273,8 +273,8 @@
                      alm.finished = true;
                   }
                   
-                  // Disbale After param
-                  if (alm.destroy_after !== undefined) {
+                  // Destroy After param
+                  if (alm.destroy_after !== undefined && alm.destroy_after !== '') {
                      //console.log(alm.destroy_after);
                      //console.log(alm.page);
                      var currentPage = alm.page + 1; // Add 1 because alm.page starts at 0
