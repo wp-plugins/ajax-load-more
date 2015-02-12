@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl, archives, date
 Requires at least: 3.6
 Tested up to: 4.1
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -227,6 +227,11 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+
+= 2.5.1 =
+* FIX - Dynamic population of category, tag and author content within Shortcode Builder - now this actually works as requested and no database queries happen if this setting is true.
+* UPDATE - Updated language .pot file.
+* UPDATE - Small admin interface tweaks.
 
 = 2.5.0 =
 * NEW - Adding query by multiple categories and tags.

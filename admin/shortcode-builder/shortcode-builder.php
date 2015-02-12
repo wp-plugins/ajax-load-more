@@ -161,8 +161,13 @@
        
    }
    
-   // List Categories	    
-	$cats = get_categories();
+   // List Categories
+   
+   if($disable_dynamic_content){
+	   $cats = 'null';
+   }else{
+	   $cats = get_categories();
+   }
 	if($cats){ ?>		
 	<div class="row checkboxes categories" id="alm-categories">
       <h3 class="heading"><?php _e('Category', ALM_NAME); ?></h3>
@@ -188,6 +193,7 @@
                ?>
             </div>
          </div>
+         
          <div class="clear"></div>
          <hr/>
       
@@ -217,7 +223,11 @@
     <?php }
     
     // Tags	    
-	$tags = get_tags();
+	if($disable_dynamic_content){
+	   $tags = 'null';
+   }else{
+	   $tags = get_tags();
+   }
 	if($tags){ ?>
 	<div class="row checkboxes tags" id="alm-tags">
 		<h3 class="heading"><?php _e('Tag', ALM_NAME); ?></h3>
@@ -389,8 +399,12 @@
    </div>
    
    
-   <?php // List Authors	   
-	$authors = get_users();
+   <?php // List Authors
+	if($disable_dynamic_content){
+	   $authors = 'null';
+   }else{
+	   $authors = get_users();
+   }	   	
 	if($authors){
 		echo '<div class="row checkboxes authors" id="alm-authors">';
 		echo '<h3 class="heading">' . __('Author', ALM_NAME) . '</h3>';
