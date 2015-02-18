@@ -108,8 +108,8 @@
       if (alm.max_pages === undefined) {
          alm.max_pages = 5;
       }
-      if (alm.max_pages === '0') {
-         alm.max_pages = 1000000;
+      if (alm.max_pages === 0) {
+         alm.max_pages = 1000;
       }
 
       // select the transition 
@@ -338,14 +338,17 @@
          alm.window.bind("scroll touchstart", function () {
             if (alm.AjaxLoadMore.isVisible()) {
                var content_offset = alm.button.offset();
-               if (!alm.loading && !alm.finished && alm.window.scrollTop() >= Math.round(content_offset.top - (alm.window.height() - 150)) && alm.page < (alm.max_pages - 1) && alm.proceed && !alm.pause) {
-                  alm.loading = true;
+               if (!alm.loading && !alm.finished && (alm.window.scrollTop() >= Math.round(content_offset.top - (alm.window.height() - 150))) && alm.page < (alm.max_pages - 1) && alm.proceed && !alm.pause) {
+                  
+            console.log(alm.scroll);
                   alm.page++;
                   alm.AjaxLoadMore.loadPosts();
                }
             }
          });
       }
+      
+      console.log(alm.scroll);
 
       /* Init Ajax load More
        * 

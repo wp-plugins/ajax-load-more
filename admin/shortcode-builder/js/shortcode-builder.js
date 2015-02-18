@@ -327,7 +327,7 @@ jQuery(document).ready(function($) {
       }else{
          $('.max_pages').slideDown(100, 'alm_easeInOutQuad');
          var max_pages = $('.max_pages input').val();         
-         if(max_pages > 0 && max_pages != 5)           
+         if(max_pages != 5)           
             output += ' max_pages="'+$('.max_pages input').val()+'"';         
       }        
 
