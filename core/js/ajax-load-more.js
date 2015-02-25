@@ -11,7 +11,7 @@
  * Twitter: @KaptonKaos
  */
  
-(function ($) {
+(function ($) {	
    "use strict";
    
    $(window).scrollTop(0); //Prevent loading of unnessasry posts - move user to top of page
@@ -338,17 +338,13 @@
          alm.window.bind("scroll touchstart", function () {
             if (alm.AjaxLoadMore.isVisible()) {
                var content_offset = alm.button.offset();
-               if (!alm.loading && !alm.finished && (alm.window.scrollTop() >= Math.round(content_offset.top - (alm.window.height() - 150))) && alm.page < (alm.max_pages - 1) && alm.proceed && !alm.pause) {
-                  
-            console.log(alm.scroll);
+               if (!alm.loading && !alm.finished && (alm.window.scrollTop() >= Math.round(content_offset.top - (alm.window.height() - 150))) && alm.page < (alm.max_pages - 1) && alm.proceed && !alm.pause) {                  
                   alm.page++;
                   alm.AjaxLoadMore.loadPosts();
                }
             }
          });
       }
-      
-      console.log(alm.scroll);
 
       /* Init Ajax load More
        * 
