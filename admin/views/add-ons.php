@@ -16,7 +16,7 @@
                   <div class="wrap">
                      <h2 class="addon-title"><?php _e('Cache', ALM_NAME); ?></h2>
                      <p class="addon-intro"><?php _e('Improve your website performance with the Ajax Load More caching engine.', ALM_NAME); ?></p>
-                     <p><?php _e('The Cache add-on creates static HTML files of Ajax Load More requests then serves those static pages to your visitors.', ALM_NAME); ?></p>                   
+                     <p><?php _e('The Cache add-on creates static HTML files of Ajax Load More server requests then delivers those static files to your visitors.', ALM_NAME); ?></p>                   
                   </div>           
                </div>
 			   </div>			   
