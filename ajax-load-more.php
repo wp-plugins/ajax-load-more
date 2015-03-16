@@ -356,7 +356,7 @@ if( !class_exists('AjaxLoadMore') ):
       		
    		   // Enabled Scrolling			
    			$seo_enable_scroll = $options['_alm_seo_scroll'];
-      		if(!isset($seo_enable_scroll) || empty($seo_enable_scroll)){
+      		if(!isset($seo_enable_scroll)){
       			$seo_enable_scroll = 'true';   
             }else{	
          		if($seo_enable_scroll == '1'){
