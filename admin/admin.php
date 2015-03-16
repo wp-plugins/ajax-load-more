@@ -783,7 +783,7 @@ function alm_btn_color_callback() {
 	 if($color == 'grey') $selected5 = 'selected="selected"';
 		
 	 $selected6 = '';   
-	 if($color == 'white') $selected5 = 'selected="selected"';
+	 if($color == 'white') $selected6 = 'selected="selected"';
 		
     $html =  '<label for="alm_settings_btn_color">'.__('Choose your <strong>Load More</strong> button color', ALM_NAME).'.</label><br/>';
     $html .= '<select id="alm_settings_btn_color" name="alm_settings[_alm_btn_color]">';
