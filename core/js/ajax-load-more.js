@@ -1,7 +1,7 @@
 /*
- * WordPress Ajax Load More
+ * Ajax Load More
  * http://wordpress.org/plugins/ajax-load-more/
- * https://github.com/dcooney/wordpress-ajax-load-more
+ * https://github.com/dcooney/wordpress-ajax-load-more/
  *
  * Copyright 2015 Connekt Media - http://connekthq.com
  * Free to use under the GPLv2 license.
@@ -14,7 +14,7 @@
 (function ($) {	
    "use strict";
    
-  // $(window).scrollTop(0); //Prevent loading of unnessasry posts - move user to top of page
+   $(window).scrollTop(0); //Prevent loading of unnessasry posts - move user to top of page
       
    $.ajaxloadmore = function (el) {
    
@@ -34,34 +34,34 @@
       alm.el = el;
       alm.content = $('.alm-listing.alm-ajax', alm.el);
       alm.prefix = 'alm-';
-      alm.cache = alm.content.data('cache'); // cache (true/false) 
-      alm.cache_id = alm.content.data('cache-id'); // cache value 
-      alm.cache_path = alm.content.data('cache-path'); // cache path 
-      alm.cache_logged_in = alm.content.data('cache-logged-in'); // cache logged in (settings) 
-      alm.repeater = alm.content.data('repeater');
-      alm.scroll_distance = alm.content.data('scroll-distance');
-      alm.max_pages = alm.content.data('max-pages');
-      alm.pause = alm.content.data('pause'); // true | false  
-      alm.transition = alm.content.data('transition');
-      alm.destroy_after = alm.content.data('destroy-after');
-      alm.lang = alm.content.data('lang');
-      alm.posts_per_page = alm.content.data('posts-per-page');  
-      alm.seo = alm.content.data('seo'); // true | false   
-      alm.preloaded = alm.content.data('preloaded'); // true | false 
-      alm.preloaded_amount = alm.content.data('preloaded-amount'); // 0 - ?      
+      alm.cache = alm.content.attr('data-cache'); // cache (true/false) 
+      alm.cache_id = alm.content.attr('data-cache-id'); // cache value 
+      alm.cache_path = alm.content.attr('data-cache-path'); // cache path 
+      alm.cache_logged_in = alm.content.attr('data-cache-logged-in'); // cache logged in (settings) 
+      alm.repeater = alm.content.attr('data-repeater');
+      alm.scroll_distance = alm.content.attr('data-scroll-distance');
+      alm.max_pages = alm.content.attr('data-max-pages');
+      alm.pause = alm.content.attr('data-pause'); // true | false  
+      alm.transition = alm.content.attr('data-transition');
+      alm.destroy_after = alm.content.attr('data-destroy-after');
+      alm.lang = alm.content.attr('data-lang');
+      alm.posts_per_page = alm.content.attr('data-posts-per-page');  
+      alm.seo = alm.content.attr('data-seo'); // true | false   
+      alm.preloaded = alm.content.attr('data-preloaded'); // true | false 
+      alm.preloaded_amount = alm.content.attr('data-preloaded-amount'); // 0 - ?      
 
 
       /* Define offset */
-      if (alm.content.data('offset') === undefined)
+      if (alm.content.attr('data-offset') === undefined)
          alm.offset = 0;
       else
-         alm.offset = alm.content.data('offset');
+         alm.offset = alm.content.attr('data-offset');
       
       
       /* Cache */
       if (alm.cache === undefined)
          alm.cache = false;
-         
+           
       if (alm.cache_logged_in === undefined)
          alm.cache_logged_in = false;      
          
@@ -70,13 +70,14 @@
        * Check preloaded posts to ensure posts_per_page > alm.total_posts
        * - if posts_per_page <= total_posts disable ajax load more
        */
-      if(alm.preloaded){
+      if(alm.preloaded === 'true'){
          alm.preload_wrap = alm.content.prev('.alm-preloaded');
-         alm.total_posts = alm.preload_wrap.data('total-posts');
+         alm.total_posts = parseInt(alm.preload_wrap.attr('data-total-posts'));
          if (alm.preloaded_amount === undefined)
             alm.preloaded_amount = false;
-         if(alm.total_posts <= alm.preloaded_amount)
+         if(alm.total_posts <= alm.preloaded_amount){
             alm.disable_ajax = true;
+         }
       }
       
       
@@ -84,14 +85,14 @@
       if (alm.seo === undefined)
          alm.seo = false;
       
-      alm.permalink = alm.content.data('seo-permalink');
-      alm.start_page = alm.content.data('seo-start-page');
+      alm.permalink = alm.content.attr('data-seo-permalink');
+      alm.start_page = alm.content.attr('data-seo-start-page');
       
       if(alm.start_page){      
 	      
-         alm.seo_scroll = alm.content.data('seo-scroll');
-         alm.seo_scroll_speed = alm.content.data('seo-scroll-speed');
-         alm.seo_scrolltop = alm.content.data('seo-scrolltop');
+         alm.seo_scroll = alm.content.attr('data-seo-scroll');
+         alm.seo_scroll_speed = alm.content.attr('data-seo-scroll-speed');
+         alm.seo_scrolltop = alm.content.attr('data-seo-scrolltop');
          
 	      alm.isPaged = false; 	      
 	      
@@ -144,29 +145,29 @@
       if (alm.destroy_after !== undefined) {}
 
       // Button Label & classes */
-      if (alm.content.data('button-label') === undefined)
+      if (alm.content.attr('data-button-label') === undefined)
          alm.button_label = 'Older Posts';
       else
-         alm.button_label = alm.content.data('button-label');
+         alm.button_label = alm.content.attr('data-button-label');
          
         
-      if (alm.content.data('button-class') === undefined)
+      if (alm.content.attr('data-button-class') === undefined)
          alm.button_class = '';
       else
-         alm.button_class = ' ' + alm.content.data('button-class');
+         alm.button_class = ' ' + alm.content.attr('data-button-class');
       
 
       /* Define on Scroll event */
-      if (alm.content.data('scroll') === undefined)
+      if (alm.content.attr('data-scroll') === undefined)
          alm.scroll = true;
-      else if (alm.content.data('scroll') === false)
+      else if (alm.content.attr('data-scroll') === 'false')
          alm.scroll = false;
       else
          alm.scroll = true;
    
 
       /* Parse multiple Post Types */  
-      alm.post_type = alm.content.data('post-type');
+      alm.post_type = alm.content.attr('data-post-type');
       alm.post_type = alm.post_type.split(",");
 
       /* Append 'load More' button to .ajax-load-more-wrap */
@@ -187,7 +188,7 @@
             alm.button.addClass('loading');
             alm.loading = true;
             
-            if(alm.cache && !alm.cache_logged_in){ // If cache = true
+            if(alm.cache === 'true' && !alm.cache_logged_in){ // If cache = true
                
                var cachePage = alm.cache_path + '/page-' + alm.page +'.html';       
                $.get(cachePage, function( data ) {               
@@ -225,26 +226,27 @@
                cache_id: alm.cache_id,
                repeater: alm.repeater,
                postType: alm.post_type,
-               post_format: alm.content.data('post-format'),
-               category: alm.content.data('category'),
-               category__not_in: alm.content.data('category__not_in'),
-               tag: alm.content.data('tag'),
-               tag__not_in: alm.content.data('tag__not_in'),
-               taxonomy: alm.content.data('taxonomy'),
-               taxonomy_terms: alm.content.data('taxonomy-terms'),
-               taxonomy_operator: alm.content.data('taxonomy-operator'),
-               meta_key: alm.content.data('meta-key'),
-               meta_value: alm.content.data('meta-value'),
-               meta_compare: alm.content.data('meta-compare'),
-               author: alm.content.data('author'),
-               year: alm.content.data('year'),
-               month: alm.content.data('month'),
-               day: alm.content.data('day'),
-               post_status: alm.content.data('post-status'),
-               order: alm.content.data('order'),
-               orderby: alm.content.data('orderby'),
-               search: alm.content.data('search'),
-               exclude: alm.content.data('exclude'),
+               post_format: alm.content.attr('data-post-format'),
+               category: alm.content.attr('data-category'),
+               category__not_in: alm.content.attr('data-category-not-in'),
+               tag: alm.content.attr('data-tag'),
+               tag__not_in: alm.content.attr('data-tag-not-in'),
+               taxonomy: alm.content.attr('data-taxonomy'),
+               taxonomy_terms: alm.content.attr('data-taxonomy-terms'),
+               taxonomy_operator: alm.content.attr('data-taxonomy-operator'),
+               meta_key: alm.content.attr('data-meta-key'),
+               meta_value: alm.content.attr('data-meta-value'),
+               meta_compare: alm.content.attr('data-meta-compare'),
+               author: alm.content.attr('data-author'),
+               year: alm.content.attr('data-year'),
+               month: alm.content.attr('data-month'),
+               day: alm.content.attr('data-day'),
+               post_status: alm.content.attr('data-post-status'),
+               order: alm.content.attr('data-order'),
+               orderby: alm.content.attr('data-orderby'),
+               post__in: alm.content.attr('data-post-in'),
+               exclude: alm.content.attr('data-exclude'),
+               search: alm.content.attr('data-search'),
                posts_per_page: alm.posts_per_page,
                pageNumber: alm.page,
                offset: alm.offset,
@@ -290,7 +292,7 @@
             }
             
             if(alm.isPaged){ 
-               alm.posts_per_page = alm.content.data('posts-per-page'); // Reset our posts per page variable
+               alm.posts_per_page = alm.content.attr('data-posts-per-page'); // Reset our posts per page variable
                alm.page = alm.start_page - 1; // Set our new page #
             }                     
          }
@@ -350,9 +352,10 @@
          // Destroy After param
          if (alm.destroy_after !== undefined && alm.destroy_after !== '') {
             var currentPage = alm.page + 1; // Add 1 because alm.page starts at 0
+            
             if(alm.preload) currentPage++;
             
-            if(currentPage === alm.destroy_after){ // - Disable ALM is page = alm.destroy_after value
+            if(currentPage == alm.destroy_after){ // - Disable ALM is page = alm.destroy_after value
                alm.disable_ajax = true;
                alm.button.delay(alm.speed).fadeOut(alm.speed);
             }
@@ -382,7 +385,7 @@
        */
        
       alm.button.on('click', function () {
-         if (alm.pause === true) {
+         if (alm.pause === 'true') {
             alm.pause = false;
             alm.AjaxLoadMore.loadPosts();
          }
@@ -409,7 +412,7 @@
          return alm.visible;
       };
       
-
+      
 
       /* Window scroll and touchmove events
        * 
@@ -420,7 +423,7 @@
          alm.window.bind("scroll touchstart", function () {
             if (alm.AjaxLoadMore.isVisible()) {
                var content_offset = alm.button.offset();               
-               if (!alm.loading && !alm.finished && (alm.window.scrollTop() >= Math.round(content_offset.top - (alm.window.height() - alm.scroll_distance))) && alm.page < (alm.max_pages - 1) && alm.proceed && !alm.pause) {                  
+               if (!alm.loading && !alm.finished && (alm.window.scrollTop() >= Math.round(content_offset.top - (alm.window.height() - alm.scroll_distance))) && alm.page < (alm.max_pages - 1) && alm.proceed && alm.pause !== 'true') {                  
                   alm.page++;
                   alm.AjaxLoadMore.loadPosts();
                }
@@ -439,7 +442,7 @@
          alm.finished = true;
          alm.button.addClass('done');
       }else{
-         if (alm.pause === true) {
+         if (alm.pause === 'true') {
             alm.button.text(alm.button_label);
             alm.loading = false;
          } else {
@@ -464,6 +467,71 @@
    // End $.ajaxloadmore
    
    
+   
+   /* $.fn.almFilter(type, speed, data)
+    * 
+    *  Filter Ajax Load More
+    *  @type ('slide', 'fade', null);
+    *  @speed '300';
+    *  @data obj; 
+    *
+    *  @since 2.6.1
+    */
+   $.fn.almFilter = function (transition, speed, data) {
+      
+      $(".ajax-load-more-wrap").each(function (e) {
+         var el = $(this);         
+         if(transition === 'slide'){ // Slide transition
+            el.slideUp(speed, function(){
+               $('.alm-listing', el).html(''); // Clear listings
+               $('.alm-btn-wrap', el).remove(); // remove buttons   
+               el.fadeIn(speed);    
+                
+               $.fn.almSetFilters(el, data);
+                  
+            });
+         }else if(transition === 'fade'){ // Fade transition
+            el.fadeOut(speed, function(){
+               $('.alm-listing', el).html(''); // Clear listings 
+               $('.alm-btn-wrap', el).remove(); // remove buttons   
+               el.fadeIn(speed);     
+               
+               $.fn.almSetFilters(el, data);
+                          
+            });
+         }else{
+            $('.alm-listing', el).html(''); // Clear listings
+            $('.alm-btn-wrap', el).remove(); // remove buttons   
+            el.fadeIn(speed);     
+            
+            $.fn.almSetFilters(el, data);
+                
+         }        
+         
+      });
+   };
+   
+   
+   
+   /* $.fn.almSetFilters(el, data)
+    * 
+    *  Set filter parameters on .alm-listing element
+    *
+    *  @since 2.6.1
+    */
+   $.fn.almSetFilters = function(el, data){
+      $.each(data, function(key, value) {
+         key = key.replace(/\W+/g, '-').replace(/([a-z\d])([A-Z])/g, '$1-$2'); // Convert camelCase data() object back to dash (-)
+         $('.alm-listing', el).attr('data-'+key, value);
+      });
+      
+      if ($.isFunction($.fn.almFilterComplete))
+         $.fn.almFilterComplete();
+         
+      $(".ajax-load-more-wrap").ajaxloadmore(); // re-initiate Ajax Load More
+   };
+   
+   
 
    /* $.fn.ajaxloadmore()
     * 
@@ -474,7 +542,9 @@
       return this.each(function () {
          $(this).data('alm', new $.ajaxloadmore($(this)));
       });
-   }
+   };
+   
+   
 
    /* 
     *  Initiate Ajax load More if div is present on screen

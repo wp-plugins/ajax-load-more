@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.6.0
+Version: 2.6.1
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define('ALM_VERSION', '2.6.0');
-define('ALM_RELEASE', 'March 12, 2015');
+define('ALM_VERSION', '2.6.1');
+define('ALM_RELEASE', 'April 6, 2015');
 
 /*
 *  alm_install
@@ -172,6 +172,7 @@ if( !class_exists('AjaxLoadMore') ):
 				'post_status' => '',					
 				'order' => 'DESC',
 				'orderby' => 'date',
+				'post__in' => '',
 				'exclude' => '',
 				'offset' => '0',
 				'posts_per_page' => '5',
@@ -248,6 +249,7 @@ if( !class_exists('AjaxLoadMore') ):
          		'month'              => $month,
          		'day'                => $day,
          		'author'             => $author,
+         		'post__in'           => $post__in,
          		'search'             => $search,
          		'post_status'        => $post_status,
          		'order'              => $order,
@@ -292,13 +294,15 @@ if( !class_exists('AjaxLoadMore') ):
    		
    		//Cache Add-on
    		if(has_action('alm_cache_installed')){   
-   		   $ajaxloadmore .= ' data-cache="'.$cache.'"';
-   		   $ajaxloadmore .= ' data-cache-id="'.$cache_id.'"';
-            $ajaxloadmore .= ' data-cache-path="'.ALM_CACHE_URL.'/_cache/'.$cache_id.'"';
-            
-            // Check for known users
-            if(isset($options['_alm_cache_known_users']) && $options['_alm_cache_known_users'] === '1' && is_user_logged_in()) 
-   		      $ajaxloadmore .= ' data-cache-logged-in="true"';   		     
+      		if($cache === 'true'){
+      		   $ajaxloadmore .= ' data-cache="'.$cache.'"';
+      		   $ajaxloadmore .= ' data-cache-id="'.$cache_id.'"';
+               $ajaxloadmore .= ' data-cache-path="'.ALM_CACHE_URL.'/_cache/'.$cache_id.'"';
+               
+               // Check for known users
+               if(isset($options['_alm_cache_known_users']) && $options['_alm_cache_known_users'] === '1' && is_user_logged_in()) 
+      		      $ajaxloadmore .= ' data-cache-logged-in="true"';   
+   		   }		     
    		}
    		
    		// Preloaded Add-on
@@ -312,9 +316,9 @@ if( !class_exists('AjaxLoadMore') ):
    		$ajaxloadmore .= ' data-post-type="'.$post_type.'"';
    		$ajaxloadmore .= ' data-post-format="'.$post_format.'"';
    		$ajaxloadmore .= ' data-category="'.$category.'"';
-   		$ajaxloadmore .= ' data-category__not_in="'.$category__not_in.'"';
+   		$ajaxloadmore .= ' data-category-not-in="'.$category__not_in.'"';
    		$ajaxloadmore .= ' data-tag="'.$tag.'"';
-   		$ajaxloadmore .= ' data-tag__not_in="'.$tag__not_in.'"';
+   		$ajaxloadmore .= ' data-tag-not-in="'.$tag__not_in.'"';
    		$ajaxloadmore .= ' data-taxonomy="'.$taxonomy.'"';
    		$ajaxloadmore .= ' data-taxonomy-terms="'.$taxonomy_terms.'"';
    		$ajaxloadmore .= ' data-taxonomy-operator="'.$taxonomy_operator.'"';
@@ -325,11 +329,12 @@ if( !class_exists('AjaxLoadMore') ):
    		$ajaxloadmore .= ' data-month="'.$month.'"';
    		$ajaxloadmore .= ' data-day="'.$day.'"';
    		$ajaxloadmore .= ' data-author="'.$author.'"';
+   		$ajaxloadmore .= ' data-post-in="'.$post__in.'"';
+   		$ajaxloadmore .= ' data-exclude="'.$exclude.'"';
    		$ajaxloadmore .= ' data-search="'.$search.'"';
    		$ajaxloadmore .= ' data-post-status="'.$post_status.'"';
    		$ajaxloadmore .= ' data-order="'.$order.'"';
    		$ajaxloadmore .= ' data-orderby="'.$orderby.'"';
-   		$ajaxloadmore .= ' data-exclude="'.$exclude.'"';
    		$ajaxloadmore .= ' data-offset="'.$offset.'"';	
    		$ajaxloadmore .= ' data-posts-per-page="'.$posts_per_page.'"';         
    		$ajaxloadmore .= ' data-lang="'.$lang.'"';
@@ -457,7 +462,8 @@ if( !class_exists('AjaxLoadMore') ):
    		$order = (isset($_GET['order'])) ? $_GET['order'] : 'DESC';
    		$orderby = (isset($_GET['orderby'])) ? $_GET['orderby'] : 'date';
    		
-   		// Exclude, Offset, Status
+   		// Include, Exclude, Offset, Status
+   		$post__in = (isset($_GET['post__in'])) ? $_GET['post__in'] : '';	
    		$exclude = (isset($_GET['exclude'])) ? $_GET['exclude'] : '';		
    		$offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;
    		$post_status = $_GET['post_status'];
@@ -543,6 +549,18 @@ if( !class_exists('AjaxLoadMore') ):
          // Author
    		if(!empty($author_id)){
    			$args['author'] = $author_id;
+   		}     
+         
+   		// Include posts
+   		if(!empty($post__in)){
+   			$post__in = explode(",",$post__in);
+   			$args['post__in'] = $post__in;
+   		}  
+         
+   		// Exclude posts
+   		if(!empty($exclude)){
+   			$exclude = explode(",",$exclude);
+   			$args['post__not_in'] = $exclude;
    		}
          
          // Search Term
@@ -553,13 +571,7 @@ if( !class_exists('AjaxLoadMore') ):
          // Meta_key, used for ordering by meta value
          if(!empty($meta_key)){
             $args['meta_key'] = $meta_key;
-         }         
-         
-   		// Exclude posts
-   		if(!empty($exclude)){
-   			$exclude = explode(",",$exclude);
-   			$args['post__not_in'] = $exclude;
-   		}
+         }    
    		
          // Language
    		if(!empty($lang)){

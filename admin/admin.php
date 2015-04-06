@@ -77,8 +77,8 @@ function alm_core_update() {
 		   //Write to repeater file
 		   $data = $wpdb->get_var("SELECT repeaterDefault FROM $table_name WHERE name = 'default'");
 			$f = ALM_PATH. 'core/repeater/default.php'; // File
-			$o = fopen($f, 'w+'); //Open file
-			$w = fwrite($o, $data); //Save the file
+			$o = fopen($f, 'w+') or die(__('Unable to open the default repeater template.', ALM_NAME)); //Open file
+			$w = fwrite($o, $data) or die(__('Unable to save the default repeater.', ALM_NAME)); //Save the file
 			$r = fread($o, 100000); //Read it
 			fclose($o); //now close it
 	    }

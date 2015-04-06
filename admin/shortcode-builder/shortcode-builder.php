@@ -481,7 +481,34 @@
             </div>
          </div>
       </div>
-   </div>     
+   </div>   
+    
+   <!-- Post Parameters -->
+   <div class="row input post-in" id="alm-post-in">
+      <h3 class="heading"><?php _e('Post Parameters', ALM_NAME); ?></h3>
+      <div class="expand-wrap">
+         <div class="section-title">
+            <h4>Include</h4>
+   		 	<p><?php _e('A comma separated list of post ID\'s to query.', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">
+               <input name="post__in" class="alm_element numbers-only" type="text" id="post__in" value="" placeholder="<?php _e('225, 340, 818, etc...', ALM_NAME); ?>">
+            </div>
+         </div>
+         <div class="clear"></div>
+         <hr/>
+         <div class="section-title">
+            <h4>Exclude</h4>
+   		 	<p><?php _e('A comma separated list of post ID\'s to exclude from query.', ALM_NAME); ?><br/>&raquo; <a href="admin.php?page=ajax-load-more-examples#example-exclude">view example</a></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">
+               <input class="alm_element numbers-only" name="exclude-posts" type="text" id="exclude-posts" value="" placeholder="199, 216, 345, etc...">
+            </div>
+         </div>
+      </div>
+   </div>   
    
    <!-- Post Status -->
    <div class="row input post-status" id="alm-post-status">
@@ -536,21 +563,6 @@
          </div>
       </div>
    </div>   
-   
-   <!-- Exclude posts -->
-   <div class="row input exclude" id="alm-exclude-posts">
-      <h3 class="heading"><?php _e('Exclude', ALM_NAME); ?></h3>
-      <div class="expand-wrap">
-         <div class="section-title">
-   		 	<p><?php _e('A comma separated list of post ID\'s to exclude from query.', ALM_NAME); ?><br/>&raquo; <a href="admin.php?page=ajax-load-more-examples#example-exclude">view example</a></p>
-   		 </div>
-         <div class="wrap">
-            <div class="inner">
-               <input class="alm_element" name="exclude-posts" type="text" id="exclude-posts" value="" placeholder="199, 216, 345, 565">
-            </div>
-         </div>
-      </div>
-   </div>
    
    <!-- Offset -->
    <div class="row input offset" id="alm-offset">
