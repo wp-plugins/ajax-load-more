@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.6.1
+Version: 2.6.2
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define('ALM_VERSION', '2.6.1');
-define('ALM_RELEASE', 'April 6, 2015');
+define('ALM_VERSION', '2.6.2');
+define('ALM_RELEASE', 'April 8, 2015');
 
 /*
 *  alm_install
@@ -116,21 +116,36 @@ if( !class_exists('AjaxLoadMore') ):
    	*/
    
    	function alm_enqueue_scripts(){
-   		$options = get_option( 'alm_settings' );
+   		
    		//wp_enqueue_script( 'ajax-load-more', plugins_url( '/core/js/ajax-load-more.js', __FILE__ ), array('jquery'),  '1.1', true );
    		wp_enqueue_script( 'ajax-load-more', plugins_url( '/core/js/ajax-load-more.min.js', __FILE__ ), array('jquery'),  '1.1', true );
+   		
+   		$options = get_option( 'alm_settings' );
+   		
+   		// Prevent loading of unnessasry posts - move user to top of page
+   		$scrolltop = 'false';
+   		if(!isset($options['_alm_scroll_top']) || $options['_alm_scroll_top'] != '1'){ // if unset or false
+   			$scrolltop = 'false';
+   		}else{ // if checked
+      		$scrolltop = 'true';
+   		}
+   		
+   		// 
+   		if(!isset($options['_alm_disable_css']) || $options['_alm_disable_css'] != '1'){
+   			wp_enqueue_style( 'ajax-load-more', plugins_url('/core/css/ajax-load-more.css', __FILE__ ));
+   		}
+   		
    		wp_localize_script(
    			'ajax-load-more',
    			'alm_localize',
    			array(
    				'ajaxurl'   => admin_url('admin-ajax.php'),
    				'alm_nonce' => wp_create_nonce( "ajax_load_more_nonce" ),
-   				'pluginurl' => ALM_URL
+   				'pluginurl' => ALM_URL,
+   				'scrolltop' => $scrolltop,
    			)
    		);
-   		if(!isset($options['_alm_disable_css']) || $options['_alm_disable_css'] != '1'){
-   			wp_enqueue_style( 'ajax-load-more', plugins_url('/core/css/ajax-load-more.css', __FILE__ ));
-   		}
+   		
    	}
    	
    
@@ -481,6 +496,9 @@ if( !class_exists('AjaxLoadMore') ):
    		   $old_offset = $preloaded_amount;  	
    		   $offset = $offset + $preloaded_amount;	
          }
+         
+         //SEO
+   		$seo_start_page = (isset($_GET['seo_start_page'])) ? $_GET['seo_start_page'] : 1;         
    		
    		// Language (Is this needed?)   			
    		$lang = (isset($_GET['lang'])) ? $_GET['lang'] : '';
@@ -601,11 +619,11 @@ if( !class_exists('AjaxLoadMore') ):
          }
          
          
-         // CREATE CACHE FOLDER 
+         // Create cache directory 
          if(!empty($cache_id) && has_action('alm_cache_create_dir')){            
             $url = $_SERVER['HTTP_REFERER'];
             apply_filters('alm_cache_create_dir', $cache_id, $url);            
-            $page_cache = '';
+            $page_cache = ''; // set our page cache variable
          }
          
    		// Run the loop
@@ -618,14 +636,18 @@ if( !class_exists('AjaxLoadMore') ):
    				include( alm_get_current_repeater($repeater, $type) );//Include repeater template
    				
    				// If cache is enabled
+   				// Build cache include and store in $page_cache variable
+   				
    				if(!empty($cache_id) && has_action('alm_cache_inc')){
    				   $page_cache .= apply_filters('alm_cache_inc', $repeater, $type, $alm_page, $alm_found_posts, $alm_item);
       			}
    					   					
             endwhile; wp_reset_query();
          
-         // If cache is enabled
-         if(!empty($cache_id) && has_action('alm_cache_file')){
+         // If cache is enabled and seo_start_page is 1 (meaning, a user has not requested /page/12/)
+         // - Only create cached files if the user visits pages in order 1, 2, 3 etc.
+         
+         if(!empty($cache_id) && has_action('alm_cache_file') && $seo_start_page == 1){
             apply_filters('alm_cache_file', $cache_id, $page, $page_cache);
          }
          

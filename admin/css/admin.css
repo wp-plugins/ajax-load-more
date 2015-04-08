@@ -794,6 +794,7 @@
 	border: 1px dashed #ccc;
 	display: inline-block;
 	margin-top:10px;
+	margin-bottom: 10px;
 }
 	.admin.ajax-load-more.settings .ajax-load-more-wrap button{
 		margin: 0 !important;
@@ -812,7 +813,7 @@
 /* Table Overrides */
 .admin.ajax-load-more.settings .form-table td,
 .admin.ajax-load-more.settings .form-table th{
-   padding: 30px 0;
+   padding: 20px 0 16px;
 }
 
 .admin.ajax-load-more.settings .form-table p{
@@ -1754,7 +1755,7 @@ p.cache-stats{
       min-height: 20px;
       width: 100%;
       display:inline-block;
-      padding: 1px 0 0 26px;
+      padding: 1px 0 0 30px;
       margin: 0 0 5px;
       font-size: 14px;
       line-height: 1.4;
@@ -1764,14 +1765,25 @@ p.cache-stats{
    .ajax-load-more .form-table input[type=radio] + label{
       background: #fff url(../img/bkg-radio_off.png) no-repeat left top;
    }
-   
-      .shortcode-builder input[type=checkbox]:checked + label,
-      .ajax-load-more .form-table input[type=checkbox]:checked + label{   
+      
+      .shortcode-builder input[type=checkbox]:hover + label,
+      .ajax-load-more .form-table input[type=checkbox]:hover + label{ /* hover */
          background-image: url(../img/bkg-chkbox_on.png);
       }   
-      .shortcode-builder input[type=radio]:checked + label,
-      .ajax-load-more .form-table input[type=radio]:checked + label{   
+      
+      .shortcode-builder input[type=radio]:hover + label,
+      .ajax-load-more .form-table input[type=radio]:hover + label{ /* hover */   
          background-image: url(../img/bkg-radio_on.png);
+      }  
+   
+      .shortcode-builder input[type=checkbox]:checked + label,
+      .ajax-load-more .form-table input[type=checkbox]:checked + label{ /* selected */   
+         background-image: url(../img/bkg-chkbox_selected.png);
+      } 
+      
+      .shortcode-builder input[type=radio]:checked + label,
+      .ajax-load-more .form-table input[type=radio]:checked + label{ /* selected */  
+         background-image: url(../img/bkg-radio_selected.png);
       }      
          
          .shortcode-builder input[type=checkbox] + label:hover,

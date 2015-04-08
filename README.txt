@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl, archives, date
 Requires at least: 3.6
 Tested up to: 4.1.1
-Stable tag: 2.6.1
+Stable tag: 2.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,12 +17,11 @@ Build complex WordPress queries using our shortcode builder then add the shortco
  
 
 = Features =
-
-* **Multiple Instances** - One, two, three or ten - you can now include multiple instances of Ajax Load More on a single page.
 * **Shortcode Builder** - Easily create your own Ajax Load More shortcode by adjusting the various WordPress query parameters in our easy-to-use shortcode builder.(see Shortcode Parameters).
 * **Query Parameters** - Ajax Load More allows you to query WordPress by many different content types. Query by Post Type, Post Format, Date, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
 * **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
+* **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
 
 Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
@@ -251,6 +250,11 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+
+= 2.6.2 =
+* NEW - Adding new ALM setting to move user to top of page on window load.
+* FIX - Fixed issue with Cache + SEO where initial user might end up caching multiple pages in a single query if the page requested was greater than 1.
+* FIX - Fix for scrolling to load posts when max_pages = 0 - issue was introduced in release 2.6.1
 
 = 2.6.1 =
 * NEW - Public function, almFilter(type, speed, data) function which will allow for filtering/resetting of a ajax load more object.
