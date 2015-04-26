@@ -481,6 +481,21 @@
             </div>
          </div>
       </div>
+   </div> 
+    
+   <!-- Custom Arguments -->
+   <div class="row input custom-arguments" id="alm-custom-args">
+      <h3 class="heading"><?php _e('Custom Arguments', ALM_NAME); ?></h3>
+      <div class="expand-wrap">
+         <div class="section-title">
+   		 	<p><?php _e('A comma separated list of custom value:pair arguments.<br/><br/>e.g. tag_slug__and:array(design), event_display:upcoming', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">
+               <input name="custom-args" class="alm_element" type="text" id="custom-args" value="" placeholder="<?php _e('event_display:upcoming', ALM_NAME); ?>">
+            </div>
+         </div>
+      </div>
    </div>   
     
    <!-- Post Parameters -->
@@ -554,7 +569,6 @@
                    <option value="title">Title</option>
                    <option value="name">Name (slug)</option>
                    <option value="menu_order">Menu Order</option>
-                   <option value="rand">Random</option>
                    <option value="author">Author</option>
                    <option value="ID">ID</option>
                    <option value="comment_count">Comment Count</option>

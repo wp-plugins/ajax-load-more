@@ -276,6 +276,16 @@ jQuery(document).ready(function($) {
       
       
       // ---------------------------
+      // - Custom Arguments      
+      // ---------------------------
+      
+      var custom_args = $('.custom-arguments input').val();    
+      custom_args = $.trim(custom_args);       
+      if(custom_args !== '') 
+         output += ' custom_args="'+custom_args+'"'; 
+      
+      
+      // ---------------------------
       // - Meta Key
       // ---------------------------
       var meta_key = $.trim($('input#meta-key').val()),

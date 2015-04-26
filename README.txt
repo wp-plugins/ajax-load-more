@@ -3,8 +3,8 @@ Contributors: dcooney
 Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl, archives, date
 Requires at least: 3.6
-Tested up to: 4.1.1
-Stable tag: 2.6.2
+Tested up to: 4.2
+Stable tag: 2.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **post__in** - Comma separated list of post ID’s to include in query. Default = null 
 *   **exclude** - Comma separated list of post ID’s to exclude from query. Default = null 
 *   **search** - Query search term (‘s’). Default = null
+*   **custom_args** - A comma separated list of custom value:pair arguments. e.g. tag_slug__and:array(design), event_display:upcoming. Default = null
 *   **post_status** - Select status of the post. Default = 'publish' 
 *   **order** - Display posts in ASC(ascending) or DESC(descending) order. Default = ‘DESC’
 *   **orderby** - Order posts by date, title, name, menu order, random, author, post ID or comment count.  Default = ‘date’
@@ -250,6 +251,12 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+
+= 2.6.3 =
+* NEW - Added new shortcode parameter 'custom_args' which will let users pass custom query params. e.g. custom_args="order:custom_meta_key, tag_slug__and:array(design,development)"
+* NEW - Added setting for implementing WP nonce for added security of Ajax functionality.
+* Update - Removed WP nonce for ALM query as this was causing issues with various caching plugins.
+* Update - Various UI improvements and enhancements
 
 = 2.6.2 =
 * NEW - Adding new ALM setting to move user to top of page on window load.

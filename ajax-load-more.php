@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.6.2
+Version: 2.6.3
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define('ALM_VERSION', '2.6.2');
-define('ALM_RELEASE', 'April 8, 2015');
+define('ALM_VERSION', '2.6.3');
+define('ALM_RELEASE', 'April 26, 2015');
 
 /*
 *  alm_install
@@ -184,6 +184,7 @@ if( !class_exists('AjaxLoadMore') ):
 				'day' => '',
 				'author' => '',
 				'search' => '',					
+				'custom_args' => '',				
 				'post_status' => '',					
 				'order' => 'DESC',
 				'orderby' => 'date',
@@ -197,7 +198,7 @@ if( !class_exists('AjaxLoadMore') ):
 				'pause' => 'false',
 				'destroy_after' => '',
 				'transition' => 'slide',
-				'button_label' => 'Older Posts',		
+				'button_label' => __('Older Posts', ALM_NAME),		
 			), $atts));
             
          // Get container elements (ul | div)
@@ -265,7 +266,8 @@ if( !class_exists('AjaxLoadMore') ):
          		'day'                => $day,
          		'author'             => $author,
          		'post__in'           => $post__in,
-         		'search'             => $search,
+         		'search'             => $search,			
+               'custom_args'        => $custom_args,
          		'post_status'        => $post_status,
          		'order'              => $order,
          		'orderby'            => $orderby,
@@ -347,6 +349,7 @@ if( !class_exists('AjaxLoadMore') ):
    		$ajaxloadmore .= ' data-post-in="'.$post__in.'"';
    		$ajaxloadmore .= ' data-exclude="'.$exclude.'"';
    		$ajaxloadmore .= ' data-search="'.$search.'"';
+   		$ajaxloadmore .= ' data-custom-args="'.$custom_args.'"';
    		$ajaxloadmore .= ' data-post-status="'.$post_status.'"';
    		$ajaxloadmore .= ' data-order="'.$order.'"';
    		$ajaxloadmore .= ' data-orderby="'.$orderby.'"';
@@ -434,10 +437,20 @@ if( !class_exists('AjaxLoadMore') ):
    	function alm_query_posts() {
    		
    		$nonce = $_GET['nonce'];
-   		if(!is_user_logged_in()){ // Skip nonce verification if user is logged in
-   		   // Check our nonce, if they don't match then bounce!
-   		   if (! wp_verify_nonce( $nonce, 'ajax_load_more_nonce' )) die('Error, could not verify WP nonce.');
+   		
+   		$options = get_option( 'alm_settings' );
+   		
+   		if(!is_user_logged_in()){ // Skip nonce verification if user is logged in   		   
+   		   
+   		   $options = get_option( 'alm_settings' );
+   		   
+   		   // check alm_settings for _alm_nonce_security
+   		   if(isset($options['_alm_nonce_security']) & $options['_alm_nonce_security'] == '1'){        		   		   
+      		   if (! wp_verify_nonce( $nonce, 'ajax_load_more_nonce' )) // Check our nonce, if they don't match then bounce!
+      		      die('Error, could not verify WP nonce.');      		      
+            }
          }
+         
    
    		$cache_id = (isset($_GET['cache_id'])) ? $_GET['cache_id'] : '';	
    		
@@ -470,7 +483,8 @@ if( !class_exists('AjaxLoadMore') ):
    		$meta_compare = $_GET['meta_compare'];
    		if($meta_compare == '') $meta_compare = 'IN'; 
    		
-   		$s = (isset($_GET['search'])) ? $_GET['search'] : '';
+   		$s = (isset($_GET['search'])) ? $_GET['search'] : '';   		
+   		$custom_args = (isset($_GET['custom_args'])) ? $_GET['custom_args'] : '';
    		$author_id = (isset($_GET['author'])) ? $_GET['author'] : '';
    		
    		// Ordering
@@ -585,6 +599,16 @@ if( !class_exists('AjaxLoadMore') ):
    		if(!empty($s)){
    			$args['s'] = $s;
    		}
+         
+         // Custom Args
+         
+   		if(!empty($custom_args)){
+   			$custom_args_array = explode(",",$custom_args); // Split the $custom_args at ','
+   			foreach($custom_args_array as $argument){ // Loop the $custom_args
+   			   $argument = explode(":",$argument);  // Split the $custom_args at ':' 
+   			   $args[$argument[0]] = $argument[1];
+   			}
+   		}
    	   
          // Meta_key, used for ordering by meta value
          if(!empty($meta_key)){
@@ -647,7 +671,7 @@ if( !class_exists('AjaxLoadMore') ):
          // If cache is enabled and seo_start_page is 1 (meaning, a user has not requested /page/12/)
          // - Only create cached files if the user visits pages in order 1, 2, 3 etc.
          
-         if(!empty($cache_id) && has_action('alm_cache_file') && $seo_start_page == 1){
+         if(!empty($cache_id) && has_action('alm_cache_installed') && $seo_start_page == 1){
             apply_filters('alm_cache_file', $cache_id, $page, $page_cache);
          }
          

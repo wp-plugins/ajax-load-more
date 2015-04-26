@@ -316,6 +316,9 @@
 	
 .ajax-load-more label{
 	padding: 5px 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
 }
 
 

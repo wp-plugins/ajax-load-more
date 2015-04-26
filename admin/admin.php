@@ -4,13 +4,9 @@
 
 add_action( 'admin_head', 'alm_admin_vars' );
 add_action( 'wp_ajax_alm_save_repeater', 'alm_save_repeater' ); // Ajax Save Repeater
-add_action( 'wp_ajax_nopriv_alm_save_repeater', 'alm_save_repeater' );
 add_action( 'wp_ajax_alm_update_repeater', 'alm_update_repeater' ); // Ajax Update Repeater
-add_action( 'wp_ajax_nopriv_alm_update_repeater', 'alm_update_repeater' );
 add_action( 'wp_ajax_alm_get_tax_terms', 'alm_get_tax_terms' ); // Ajax Get Taxonomy Terms
-add_action( 'wp_ajax_nopriv_alm_get_tax_terms', 'alm_get_tax_terms' );
 add_action( 'wp_ajax_alm_delete_cache', 'alm_delete_cache' ); // Delete Cache
-add_action( 'wp_ajax_nopriv_alm_delete_cache', 'alm_delete_cache' ); 
 
 
 /*
@@ -42,6 +38,15 @@ function alm_admin_vars() { ?>
 
 add_action('admin_init', 'alm_core_update');
 function alm_core_update() {  
+   
+   
+   if( !get_option( 'alm_version' ) )
+      add_option( 'alm_version', ALM_VERSION ); // Add 'alm_version' to WP options table
+   else  
+      update_option( 'alm_version', ALM_VERSION ); // Update 'alm_version'
+   
+   
+    
 	 global $wpdb;
 	 $table_name = $wpdb->prefix . "alm";	     
     // **********************************************
@@ -528,6 +533,14 @@ function alm_admin_init(){
 		'alm_general_settings' 
 	);
 	
+	add_settings_field(  // Nonce security
+		'_alm_nonce_security', 
+		__('Ajax Security', ALM_NAME ), 
+		'_alm_nonce_security_callback', 
+		'ajax-load-more', 
+		'alm_general_settings' 
+	);	
+	
 	add_settings_field(  // Scroll to top on load
 		'_alm_scroll_top', 
 		__('Top of Page', ALM_NAME ), 
@@ -843,13 +856,16 @@ function alm_btn_class_callback(){
 		// Check if Disable CSS  === true
 		if(jQuery('input#alm_disable_css_input').is(":checked")){
 	      jQuery('select#alm_settings_btn_color').parent().parent().hide(); // Hide button color
+         jQuery('input.btn-classes').parent().parent().hide(); // Hide Button Classes
     	}
     	jQuery('input#alm_disable_css_input').change(function() {
     		var el = jQuery(this);
 	      if(el.is(":checked")) {
 	      	el.parent().parent('tr').next('tr').hide(); // Hide button color
+	      	el.parent().parent('tr').next('tr').next('tr').hide(); // Hide Button Classes
 	      }else{		      
 	      	el.parent().parent('tr').next('tr').show(); // show button color
+	      	el.parent().parent('tr').next('tr').next('tr').show(); // show Button Classes
 	      }
 	   });
 	   
@@ -873,7 +889,28 @@ function _alm_scroll_top_callback(){
 	
 	$html =  '<input type="hidden" name="alm_settings[_alm_scroll_top]" value="0" />';
 	$html .= '<input type="checkbox" name="alm_settings[_alm_scroll_top]" id="_alm_scroll_top" value="1"'. (($options['_alm_scroll_top']) ? ' checked="checked"' : '') .' />';
-	$html .= '<label for="_alm_scroll_top">'.__('On initial page load, move the user\'s browser window to the top of the screen.<span style="display:block">This <u>may</u> help prevent the loading of unnecessary posts.', ALM_NAME).'</label>';	
+	$html .= '<label for="_alm_scroll_top">'.__('On initial page load, move the user\'s browser window to the top of the screen.<span style="display:block">This <u>may</u> help prevent the loading of unnecessary posts.</span>', ALM_NAME).'</label>';	
+	
+	echo $html;
+}
+
+
+
+/*
+*  _alm_nonce_security_callback
+*  Move window to top of screen on page load
+*
+*  @since 2.6.3
+*/
+
+function _alm_nonce_security_callback(){
+	$options = get_option( 'alm_settings' );		
+	if(!isset($options['_alm_nonce_security'])) 
+	   $options['_alm_nonce_security'] = '0';
+	
+	$html =  '<input type="hidden" name="alm_settings[_alm_nonce_security]" value="0" />';
+	$html .= '<input type="checkbox" name="alm_settings[_alm_nonce_security]" id="_alm_nonce_security" value="1"'. (($options['_alm_nonce_security']) ? ' checked="checked"' : '') .' />';
+	$html .= '<label for="_alm_nonce_security">'.__('Enable <a href="https://codex.wordpress.org/WordPress_Nonces" target="_blank">WP nonce</a> verification to help protect URLs against certain types of misuse, malicious or otherwise on each Ajax Load More query.', ALM_NAME).'</label>';	
 	
 	echo $html;
 }

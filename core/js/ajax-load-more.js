@@ -267,6 +267,7 @@
                post__in: alm.content.attr('data-post-in'),
                exclude: alm.content.attr('data-exclude'),
                search: alm.content.attr('data-search'),
+               custom_args: alm.content.attr('data-custom-args'),
                posts_per_page: alm.posts_per_page,
                pageNumber: alm.page,
                offset: alm.offset,
