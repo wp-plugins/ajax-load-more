@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Load More\n"
-"POT-Creation-Date: 2015-04-26 11:54-0500\n"
-"PO-Revision-Date: 2015-04-26 11:54-0500\n"
+"POT-Creation-Date: 2015-05-04 15:22-0500\n"
+"PO-Revision-Date: 2015-05-04 15:22-0500\n"
 "Last-Translator: Darren Cooney <darren.cooney@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_CA\n"
@@ -15,206 +15,209 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../admin/admin.php:85
-msgid "Unable to open the default repeater template."
-msgstr ""
-
-#: ../admin/admin.php:86
-msgid "Unable to save the default repeater."
-msgstr ""
-
-#: ../admin/admin.php:357
-msgid "Error Opening File"
-msgstr ""
-
-#: ../admin/admin.php:359 ../admin/admin.php:363
+#: ../admin/admin.php:68
 msgid ""
-"Please check your file path and ensure your server is configured to allow "
-"Ajax Load More to read and write files within the /ajax-load-more/ plugin "
-"directory"
+"[Ajax Load More] Unable to open the default repeater template (/core/"
+"repeater/default.php)."
 msgstr ""
 
-#: ../admin/admin.php:361
-msgid "Error Saving File"
+#: ../admin/admin.php:72
+msgid ""
+"[Ajax Load More] Unable to save the default repeater (/core/repeater/default."
+"php)."
 msgstr ""
 
-#: ../admin/admin.php:398
+#: ../admin/admin.php:350
+msgid ""
+"[Ajax Load More] Error opening repeater template - Please check your file "
+"path and ensure your server is configured to allow Ajax Load More to read "
+"and write files within the /ajax-load-more/core/repeater directory"
+msgstr ""
+
+#: ../admin/admin.php:354
+msgid ""
+"[Ajax Load More]Error saving repeater template - Please check your file path "
+"and ensure your server is configured to allow Ajax Load More to read and "
+"write files within the /ajax-load-more/core/repeater directory."
+msgstr ""
+
+#: ../admin/admin.php:387
 msgid "Error Writing File"
 msgstr ""
 
-#: ../admin/admin.php:506
+#: ../admin/admin.php:495
 msgid "Container Type"
 msgstr ""
 
-#: ../admin/admin.php:514
+#: ../admin/admin.php:503
 msgid "Container Classes"
 msgstr ""
 
-#: ../admin/admin.php:522
+#: ../admin/admin.php:511
 msgid "Editor Button"
 msgstr ""
 
-#: ../admin/admin.php:530
+#: ../admin/admin.php:519
 msgid "Dynamic Content"
 msgstr ""
 
-#: ../admin/admin.php:538
+#: ../admin/admin.php:527
 msgid "Ajax Security"
 msgstr ""
 
-#: ../admin/admin.php:546
+#: ../admin/admin.php:535
 msgid "Top of Page"
 msgstr ""
 
-#: ../admin/admin.php:554
+#: ../admin/admin.php:543
 msgid "Disable CSS"
 msgstr ""
 
-#: ../admin/admin.php:562
+#: ../admin/admin.php:551
 msgid "Button Color"
 msgstr ""
 
-#: ../admin/admin.php:570
+#: ../admin/admin.php:559
 msgid "Button Classes"
 msgstr ""
 
-#: ../admin/admin.php:586
+#: ../admin/admin.php:575
 msgid "Published Posts"
 msgstr ""
 
-#: ../admin/admin.php:593
+#: ../admin/admin.php:582
 msgid "Known Users"
 msgstr ""
 
-#: ../admin/admin.php:612
+#: ../admin/admin.php:601
 msgid "SEO Permalinks"
 msgstr ""
 
-#: ../admin/admin.php:619
+#: ../admin/admin.php:608
 msgid "Scroll to Page"
 msgstr ""
 
-#: ../admin/admin.php:626
+#: ../admin/admin.php:615
 msgid "Scroll Speed"
 msgstr ""
 
-#: ../admin/admin.php:633
+#: ../admin/admin.php:622
 msgid "Scroll Top"
 msgstr ""
 
-#: ../admin/admin.php:652
+#: ../admin/admin.php:641
 msgid "Customize your version of Ajax Load More by updating the fields below."
 msgstr ""
 
-#: ../admin/admin.php:683
+#: ../admin/admin.php:672
 msgid "I want to use my own CSS styles."
 msgstr ""
 
-#: ../admin/admin.php:683
+#: ../admin/admin.php:672
 msgid "View Ajax Load More CSS"
 msgstr ""
 
-#: ../admin/admin.php:703
+#: ../admin/admin.php:692
 msgid "Hide shortcode button in WYSIWYG editor."
 msgstr ""
 
-#: ../admin/admin.php:724
+#: ../admin/admin.php:713
 msgid ""
 "Disable dynamic population of categories, tags and authors in the Shortcode "
 "Builder.<span style=\"display:block\">Recommended if you have an "
 "extraordinary number of categories, tags and/or authors."
 msgstr ""
 
-#: ../admin/admin.php:740
+#: ../admin/admin.php:729
 msgid "Add classes to Ajax Load More container."
 msgstr ""
 
-#: ../admin/admin.php:762 ../admin/admin.php:765
+#: ../admin/admin.php:751 ../admin/admin.php:754
 msgid "Ajax Posts Here"
 msgstr ""
 
-#: ../admin/admin.php:809
+#: ../admin/admin.php:798
 msgid "Choose your <strong>Load More</strong> button color"
 msgstr ""
 
-#: ../admin/admin.php:820
+#: ../admin/admin.php:809
 msgid "Preview"
 msgstr ""
 
-#: ../admin/admin.php:839
+#: ../admin/admin.php:828
 msgid "Add classes to your <strong>Load More</strong> button"
 msgstr ""
 
-#: ../admin/admin.php:892
+#: ../admin/admin.php:881
 msgid ""
 "On initial page load, move the user's browser window to the top of the "
 "screen.<span style=\"display:block\">This <u>may</u> help prevent the "
 "loading of unnecessary posts.</span>"
 msgstr ""
 
-#: ../admin/admin.php:913
+#: ../admin/admin.php:902
 msgid ""
 "Enable <a href=\"https://codex.wordpress.org/WordPress_Nonces\" target="
 "\"_blank\">WP nonce</a> verification to help protect URLs against certain "
 "types of misuse, malicious or otherwise on each Ajax Load More query."
 msgstr ""
 
-#: ../admin/admin.php:928
+#: ../admin/admin.php:917
 msgid ""
 "Customize your installation of the <a href=\"http://connekthq.com/plugins/"
 "ajax-load-more/cache/\">Cache</a> add-on."
 msgstr ""
 
-#: ../admin/admin.php:950
+#: ../admin/admin.php:939
 msgid "Delete cache when new posts are published."
 msgstr ""
 
-#: ../admin/admin.php:951
+#: ../admin/admin.php:940
 msgid ""
 "Cache will be fully cleared whenever a post, page or Custom Post Type is "
 "published or updated."
 msgstr ""
 
-#: ../admin/admin.php:976
+#: ../admin/admin.php:965
 msgid "Don't cache files for logged in users."
 msgstr ""
 
-#: ../admin/admin.php:977
+#: ../admin/admin.php:966
 msgid ""
 "Logged in users will retrieve content directly from the database and will "
 "not view any cached content."
 msgstr ""
 
-#: ../admin/admin.php:994
+#: ../admin/admin.php:983
 msgid ""
 "Customize your installation of the <a href=\"http://connekthq.com/plugins/"
 "ajax-load-more/seo/\">Search Engine Optimization</a> add-on."
 msgstr ""
 
-#: ../admin/admin.php:1018
+#: ../admin/admin.php:1007
 msgid ""
 "Pretty Permalinks (mod_rewrite) <br/><span>http://example.com/2012/post-name/"
 "</span>"
 msgstr ""
 
-#: ../admin/admin.php:1021
+#: ../admin/admin.php:1010
 msgid "Default (Ugly) <br/><span>http://example.com/?p=N</span>"
 msgstr ""
 
-#: ../admin/admin.php:1045
+#: ../admin/admin.php:1034
 msgid ""
 "Enable window scrolling.<br/><span>If scrolling is enabled, the users window "
 "will scroll to the current page on 'Load More' button click and while "
 "interacting with the forward and back browser buttons.</span>"
 msgstr ""
 
-#: ../admin/admin.php:1067
+#: ../admin/admin.php:1056
 msgid ""
 "Set the scrolling speed of the page in milliseconds. <br/><span>e.g. 1 "
 "second = 1000</span>"
 msgstr ""
 
-#: ../admin/admin.php:1088
+#: ../admin/admin.php:1077
 msgid "Set the scrolltop position of the window when scrolling to post."
 msgstr ""
 
@@ -728,7 +731,7 @@ msgid "Customize the <em>Load More</em> button label."
 msgstr ""
 
 #: ../admin/shortcode-builder/shortcode-builder.php:739
-#: ../ajax-load-more.php:201
+#: ../ajax-load-more.php:207
 msgid "Older Posts"
 msgstr ""
 
@@ -985,11 +988,11 @@ msgstr ""
 msgid "Clear all Shortcode Builder settings"
 msgstr ""
 
-#: ../ajax-load-more.php:104
+#: ../ajax-load-more.php:110
 msgid "Settings"
 msgstr ""
 
-#: ../ajax-load-more.php:105
+#: ../ajax-load-more.php:111
 msgid "Shortcode  Builder"
 msgstr ""
 

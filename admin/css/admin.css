@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,600);
 
 
 /*
@@ -1737,6 +1737,20 @@ p.cache-stats{
 		color: #fff;
 		text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.1);
 	}
+	
+	
+/*
+* Error Handling
+*
+* @since 2.6
+*/
+
+.alm-error{
+   position: absolute;
+   z-index: 9999;
+   background: #fff;
+   padding: 10px;
+}
 
 		
 /*

@@ -55,38 +55,43 @@
 
 
       /* Define offset */
-      if (alm.content.attr('data-offset') === undefined)
+      if (alm.content.attr('data-offset') === undefined){
          alm.offset = 0;
-      else
+      }else{
          alm.offset = alm.content.attr('data-offset');
-      
+      }
       
       /* Cache */
-      if (alm.cache === undefined)
+      if (alm.cache === undefined){
          alm.cache = false;
+      }
            
-      if (alm.cache_logged_in === undefined)
+      if (alm.cache_logged_in === undefined){
          alm.cache_logged_in = false;      
+      }
          
          
       /* Preloaded */
       /* Check preloaded posts to ensure posts_per_page > alm.total_posts - if posts_per_page <= total_posts disable ajax load more */
-      if(alm.preloaded === 'true'){
+      if (alm.preloaded === 'true'){
          alm.preload_wrap = alm.content.prev('.alm-preloaded');
          alm.total_posts = parseInt(alm.preload_wrap.attr('data-total-posts'));
-         if (alm.preloaded_amount === undefined)
+         if (alm.preloaded_amount === undefined){
             alm.preloaded_amount = false;
-         if(alm.total_posts <= alm.preloaded_amount){
+         }
+         if (alm.total_posts <= alm.preloaded_amount){
             alm.disable_ajax = true;
          }
       }
       
       
       /* SEO  */                 	   
-      if (alm.seo === undefined) 
+      if (alm.seo === undefined){
          alm.seo = false;      
-      if (alm.seo === 'true') 
-         alm.seo = true; // Convert string to boolean         
+      }
+      if (alm.seo === 'true'){
+         alm.seo = true; // Convert string to boolean  
+      }       
       
       alm.permalink = alm.content.attr('data-seo-permalink');
       alm.start_page = alm.content.attr('data-seo-start-page');
@@ -99,7 +104,7 @@
          
 	      alm.isPaged = false; 	      
 	      
-	      if(alm.start_page > 1) {
+	      if (alm.start_page > 1) {
 	         alm.isPaged = true; // Is this a $paged page > 1 ?	      
             alm.posts_per_page = alm.start_page * alm.posts_per_page;   
 	      }  
@@ -110,37 +115,44 @@
       /* Check for pause on init
        * Pause could be used to hold the loading of posts for a button click.
        */
-      if (alm.pause === undefined || (alm.seo && alm.start_page > 1)) // SEO only
-         alm.pause = false;     
-      if (alm.preloaded && alm.start_page >= 1) // SEO + Preloaded
+      if (alm.pause === undefined || (alm.seo && alm.start_page > 1)){// SEO only
+         alm.pause = false;  
+      }   
+      if (alm.preloaded && alm.start_page >= 1){ // SEO + Preloaded
          alm.pause = false;
+      }
       
 
       /* Select the repeater template */
-      if (alm.repeater === undefined) 
+      if (alm.repeater === undefined){
          alm.repeater = 'default';
+      }
       
 
       /* Max number of pages to load while scrolling */
-      if (alm.max_pages === undefined)
+      if (alm.max_pages === undefined){
          alm.max_pages = 5;
+      }
          
-      if (alm.max_pages === 0) 
+      if (alm.max_pages === 0){
          alm.max_pages = 1000;
+      }
       
-      if (alm.scroll_distance === undefined) 
+      if (alm.scroll_distance === undefined){
          alm.scroll_distance = 150;
+      }
       
 
       /* Select the transition */ 
-      if (alm.transition === undefined) 
+      if (alm.transition === undefined){
          alm.transition = 'slide';
-      else if (alm.transition === "fade")
+      }else if (alm.transition === "fade"){
          alm.transition = 'fade';
-      else if (alm.transition === "none") 
+      }else if (alm.transition === "none"){ 
          alm.transition = 'none';
-      else 
+      }else {
          alm.transition = 'slide';
+      }
       
 
       /* Destroy After */ 
@@ -148,27 +160,27 @@
       
 
       /* Button Label */
-      if (alm.content.attr('data-button-label') === undefined)
+      if (alm.content.attr('data-button-label') === undefined){
          alm.button_label = 'Older Posts';
-      else
+      }else{
          alm.button_label = alm.content.attr('data-button-label');
-         
+      }  
          
       /* Button Class */  
-      if (alm.content.attr('data-button-class') === undefined)
+      if (alm.content.attr('data-button-class') === undefined){
          alm.button_class = '';
-      else
+      }else{
          alm.button_class = ' ' + alm.content.attr('data-button-class');
-      
+      }
 
       /* Define scroll event */
-      if (alm.content.attr('data-scroll') === undefined)
+      if (alm.content.attr('data-scroll') === undefined){
          alm.scroll = true;
-      else if (alm.content.attr('data-scroll') === 'false')
+      }else if (alm.content.attr('data-scroll') === 'false'){
          alm.scroll = false;
-      else
+      }else{
          alm.scroll = true;
-   
+      }
 
       /* Parse multiple Post Types */  
       alm.post_type = alm.content.attr('data-post-type');
@@ -350,11 +362,13 @@
                   }
                });
             }
+            
 				
 				// ALM Complete 
             if ($.isFunction($.fn.almComplete)) {
                $.fn.almComplete(alm);
             }
+            
             
             // ALM SEO
             // - Only run if a single instance is on the page.
@@ -374,7 +388,9 @@
          if (alm.destroy_after !== undefined && alm.destroy_after !== '') {
             var currentPage = alm.page + 1; // Add 1 because alm.page starts at 0
             
-            if(alm.preload) currentPage++;
+            if(alm.preload){
+               currentPage++;
+            }
             
             if(currentPage == alm.destroy_after){ // - Disable ALM is page = alm.destroy_after value
                alm.disable_ajax = true;
@@ -571,9 +587,9 @@
     *  Initiate Ajax load More if div is present on screen
     *  @since 2.1.2
     */
-   if ($(".ajax-load-more-wrap").length) 
+   if ($(".ajax-load-more-wrap").length){
       $(".ajax-load-more-wrap").ajaxloadmore();
-      
+   }
       
 
 })(jQuery);

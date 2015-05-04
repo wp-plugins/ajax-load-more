@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.6.3
+Version: 2.6.3.1
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define('ALM_VERSION', '2.6.3');
-define('ALM_RELEASE', 'April 26, 2015');
+define('ALM_VERSION', '2.6.3.1');
+define('ALM_RELEASE', 'May 4, 2015');
 
 /*
 *  alm_install
@@ -41,7 +41,13 @@ function alm_install() {
 		
 		//Insert the default data in created table
 		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $defaultRepeater, 'pluginVersion' => ALM_VERSION));
-	}			
+	}	
+	
+	if( !get_option( 'alm_version' ) )
+      add_option( 'alm_version', ALM_VERSION ); // Add 'alm_version' to WP options table
+   else  
+      update_option( 'alm_version', ALM_VERSION ); // Update 'alm_version'
+      		
 }
 
 

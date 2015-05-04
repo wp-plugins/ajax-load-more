@@ -2,11 +2,13 @@
 
 /* Admin function */
 
-add_action( 'admin_head', 'alm_admin_vars' );
+add_action( 'plugins_loaded', 'alm_core_update' ); // Core Update
+add_action( 'admin_head', 'alm_admin_vars' ); // Localized Vars
 add_action( 'wp_ajax_alm_save_repeater', 'alm_save_repeater' ); // Ajax Save Repeater
 add_action( 'wp_ajax_alm_update_repeater', 'alm_update_repeater' ); // Ajax Update Repeater
 add_action( 'wp_ajax_alm_get_tax_terms', 'alm_get_tax_terms' ); // Ajax Get Taxonomy Terms
 add_action( 'wp_ajax_alm_delete_cache', 'alm_delete_cache' ); // Delete Cache
+
 
 
 /*
@@ -36,56 +38,44 @@ function alm_admin_vars() { ?>
 * @since 2.0.5
 */
 
-add_action('admin_init', 'alm_core_update');
 function alm_core_update() {  
    
-   
-   if( !get_option( 'alm_version' ) )
+    if( !get_option( 'alm_version' ) )
       add_option( 'alm_version', ALM_VERSION ); // Add 'alm_version' to WP options table
-   else  
+    else  
       update_option( 'alm_version', ALM_VERSION ); // Update 'alm_version'
    
-   
-    
+    //$installed_ver = get_option( "alm_version" ); // Get value from WP Option tbl
+     
 	 global $wpdb;
 	 $table_name = $wpdb->prefix . "alm";	     
     // **********************************************
 	 // If table exists
 	 // **********************************************
-	 if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
-	 
-	    // Updated 2.0.5
-       // Check column 'name' exists in $wpdb - this is an upgrade checker.	
-       $row = $wpdb->get_col("Show columns from $table_name like 'name'");
-       if(empty($row)){
-         $wpdb->query("ALTER TABLE $table_name ADD name TEXT NOT NULL");
-         $wpdb->update($table_name , array('name' => 'default'), array('id' => 1));
-       }
-       // ********
-       // @TO-DO - Upgrade test, will remove in future versions
-       // REMOVED - 2.1.3
-       // ********
-       $test = $wpdb->get_col("Show columns from $table_name like 'test'");
-       if(!empty($test)){
-         $wpdb->query("ALTER TABLE $table_name DROP test");
-       }    
-       
-       //Add column for repeater template alias
-       $alias = $wpdb->get_col("Show columns from $table_name like 'alias'");
-       if(empty($alias)){
-         $wpdb->query("ALTER TABLE $table_name ADD alias TEXT NOT NULL");
-       }       
+	 if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {      
 	 
        // Compare versions of repeaters, if template versions do not match, update the repeater with value from DB	       
 	    $version = $wpdb->get_var("SELECT pluginVersion FROM $table_name WHERE name = 'default'");	        
 	    if($version != ALM_VERSION){ // First, make sure versions do not match.
+		   
 		   //Write to repeater file
 		   $data = $wpdb->get_var("SELECT repeaterDefault FROM $table_name WHERE name = 'default'");
 			$f = ALM_PATH. 'core/repeater/default.php'; // File
-			$o = fopen($f, 'w+') or die(__('Unable to open the default repeater template.', ALM_NAME)); //Open file
-			$w = fwrite($o, $data) or die(__('Unable to save the default repeater.', ALM_NAME)); //Save the file
-			$r = fread($o, 100000); //Read it
-			fclose($o); //now close it
+			
+			try {
+            $o = fopen($f, 'w+'); //Open file
+            if ( !$o ) {
+              throw new Exception(__('[Ajax Load More] Unable to open the default repeater template (/core/repeater/default.php).', ALM_NAME));
+            } 
+            $w = fwrite($o, $data); //Save the file
+            if ( !$w ) {
+              throw new Exception(__('[Ajax Load More] Unable to save the default repeater (/core/repeater/default.php).', ALM_NAME));
+            } 
+            fclose($o); //now close it
+            
+         } catch ( Exception $e ) {
+            echo '<script>console.log("' .$e->getMessage(). '");</script>';
+         } 
 	    }
     }   
     
@@ -104,7 +94,7 @@ function alm_core_update() {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 		
-		//Insert default data in newly created table
+		//Insert default data into created table
 		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $createRepeater, 'pluginVersion' => ALM_VERSION));
    }
 }
@@ -353,23 +343,22 @@ function alm_save_repeater(){
 		$f = ALM_REPEATER_PATH. 'repeaters/'.$n .'.php'; // File
    }
 	
-		
-   $o_error = '<span class="saved-error"><b>'. __('Error Opening File', ALM_NAME) .'</b></span>';
-   $o_error .= '<em>'. $f .'</em>';
-   $o_error .=  __('Please check your file path and ensure your server is configured to allow Ajax Load More to read and write files within the /ajax-load-more/ plugin directory', ALM_NAME);
-   
-   $w_error = '<span class="saved-error"><b>'. __('Error Saving File', ALM_NAME) .'</b></span>';
-   $w_error .= '<em>'. $f .'</em>';
-   $w_error .=  __('Please check your file path and ensure your server is configured to allow Ajax Load More to read and write files within the /ajax-load-more/ plugin directory', ALM_NAME);
-   
-   // Open file
-	$o = fopen($f, 'w+') or die($o_error); 
 	
-	// Save/Write the file
-	$w = fwrite($o, $c) or die($w_error);
-	
-	// $r = fread($o, 100000); //Read it
-	fclose($o); //now close it
+	try {
+      $o = fopen($f, 'w+'); //Open file
+      if ( !$o ) {
+        throw new Exception(__('[Ajax Load More] Error opening repeater template - Please check your file path and ensure your server is configured to allow Ajax Load More to read and write files within the /ajax-load-more/core/repeater directory', ALM_NAME));
+      } 
+      $w = fwrite($o, $c); //Save the file
+      if ( !$w ) {
+        throw new Exception(__('[Ajax Load More]Error saving repeater template - Please check your file path and ensure your server is configured to allow Ajax Load More to read and write files within the /ajax-load-more/core/repeater directory.', ALM_NAME));
+      } 
+      fclose($o); //now close it
+      
+   } catch ( Exception $e ) {
+      //echo $e;
+      echo '<script>console.log("' .$e->getMessage(). '");</script>';
+   }
 	
 	//Save to database
 	global $wpdb;
