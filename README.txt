@@ -3,8 +3,8 @@ Contributors: dcooney
 Donate link: http://connekthq.com/donate/
 Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl, archives, date
 Requires at least: 3.6
-Tested up to: 4.2
-Stable tag: 2.6.3.1
+Tested up to: 4.2.2
+Stable tag: 2.6.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -250,6 +250,13 @@ How to install Ajax Load More.
 7. Shortcode and implementation examples
 
 == Changelog ==
+
+
+= 2.6.3.2 =
+* FIX - Fixed bug with Preloaded + SEO and scrolling to current page in core Ajax Load More JS.
+* UPDATE - Moved SEO and Cache add-on settings and controls from ALM core to SEO core.
+* NEW - Added Google Analytics Pageview support to SEO add-on.
+* UPDATE - Various admin UI improvements.
 
 
 = 2.6.3.1 =

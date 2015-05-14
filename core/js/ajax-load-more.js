@@ -82,6 +82,8 @@
          if (alm.total_posts <= alm.preloaded_amount){
             alm.disable_ajax = true;
          }
+      }else{
+	      alm.preloaded = 'false';
       }
       
       
@@ -94,6 +96,7 @@
       }       
       
       alm.permalink = alm.content.attr('data-seo-permalink');
+      alm.pageview = alm.content.attr('data-seo-pageview');
       alm.start_page = alm.content.attr('data-seo-start-page');
       
       if(alm.start_page){      

@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.6.3.1
+Version: 2.6.3.2
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define('ALM_VERSION', '2.6.3.1');
-define('ALM_RELEASE', 'May 4, 2015');
+define('ALM_VERSION', '2.6.3.2');
+define('ALM_RELEASE', 'May 14, 2015');
 
 /*
 *  alm_install
@@ -315,18 +315,11 @@ if( !class_exists('AjaxLoadMore') ):
    		
    		$ajaxloadmore .= '<'.$container_element.' class="alm-listing alm-ajax'. $classname . '"'; // Build ALM container 
    		
-   		//Cache Add-on
-   		if(has_action('alm_cache_installed')){   
-      		if($cache === 'true'){
-      		   $ajaxloadmore .= ' data-cache="'.$cache.'"';
-      		   $ajaxloadmore .= ' data-cache-id="'.$cache_id.'"';
-               $ajaxloadmore .= ' data-cache-path="'.ALM_CACHE_URL.'/_cache/'.$cache_id.'"';
-               
-               // Check for known users
-               if(isset($options['_alm_cache_known_users']) && $options['_alm_cache_known_users'] === '1' && is_user_logged_in()) 
-      		      $ajaxloadmore .= ' data-cache-logged-in="true"';   
-   		   }		     
-   		}
+   		//Cache Add-on   		
+   		if(has_action('alm_cache_installed') && $cache === 'true'){   		   
+   		   $cache_return = apply_filters('alm_cache_shortcode', $cache, $cache_id, $options);   		   	
+   			$ajaxloadmore .= $cache_return;		
+         }
    		
    		// Preloaded Add-on
          if(has_action('alm_preload_installed') && $preloaded === 'true'){
@@ -371,57 +364,10 @@ if( !class_exists('AjaxLoadMore') ):
    		$ajaxloadmore .= ' data-destroy-after="'.$destroy_after.'"';
    		$ajaxloadmore .= ' data-transition="'.$transition.'"';   
    		   			
-   		// SEO Installed
-   		if(has_action('alm_seo_installed') && $seo === 'true'){
-   		   
-   		   // Get scroll speed and scrolltop
-   		   $seo_scroll_speed = '1000';
-   		   $seo_scrolltop = '30';
-      		if(isset($options['_alm_seo_speed']))
-      			$seo_scroll_speed = ''.$options['_alm_seo_speed'];
-      
-      		if(isset($options['_alm_seo_scrolltop']))
-      			$seo_scrolltop = ''.$options['_alm_seo_scrolltop'];
-      		
-   		   // Enabled Scrolling			
-   			$seo_enable_scroll = $options['_alm_seo_scroll'];
-      		if(!isset($seo_enable_scroll)){
-      			$seo_enable_scroll = 'true';   
-            }else{	
-         		if($seo_enable_scroll == '1'){
-         		   $seo_enable_scroll = 'true';
-               }else{
-         		   $seo_enable_scroll = 'false';
-         		}
-      		}
-      		
-      		// Permalink Structure
-      		$seo_permalink = 'pretty';
-      		if(isset($options['_alm_seo_permalinks'])){
-      			$seo_permalink = ''.$options['_alm_seo_permalinks'];
-      		}
-   		   
-   		   // Get $paged var from WP
-   		   if ( get_query_var('paged') ) {
-              $current_page = get_query_var('paged');
-            } elseif ( get_query_var('page') ) {
-              $current_page = get_query_var('page');
-            } else {
-              $current_page = 1;
-            }	
-            
-            // If preloaded then minus 1 page from SEO
-            if($preloaded === 'true'){
-               $current_page = $current_page - 1;
-            }
-            
-   			$ajaxloadmore .= ' data-seo="'.$seo.'"';		
-   			$ajaxloadmore .= ' data-seo-start-page="'.$current_page.'"';	
-   			$ajaxloadmore .= ' data-seo-scroll="'.$seo_enable_scroll.'"';
-   			$ajaxloadmore .= ' data-seo-scroll-speed="'.$seo_scroll_speed.'"';
-   			$ajaxloadmore .= ' data-seo-scrolltop="'.$seo_scrolltop.'"';
-   			$ajaxloadmore .= ' data-seo-permalink="'.$seo_permalink.'"';	
-   					
+   		// SEO Add-on
+   		if(has_action('alm_seo_installed') && $seo === 'true'){   		   
+   		   $seo_return = apply_filters('alm_seo_shortcode', $seo, $preloaded, $options);   		   	
+   			$ajaxloadmore .= $seo_return;		
          }      
    		
    		$ajaxloadmore .= '></'.$container_element.'>';
