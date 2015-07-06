@@ -112,20 +112,79 @@ add_action( 'admin_menu', 'alm_admin_menu' );
 function alm_admin_menu() {  
    $icon = 'dashicons-plus-alt';
    $icon = ALM_ADMIN_URL . "/img/alm-logo-16x16.png";
-   $alm_page = add_menu_page( 'Ajax Load More', 'Ajax Load More', 'edit_theme_options', 'ajax-load-more', 'alm_settings_page', $icon );
    
-   $alm_settings_page = add_submenu_page( 'ajax-load-more', 'Settings', 'Settings', 'edit_theme_options', 'ajax-load-more', 'alm_settings_page'); 
+   $alm_page = add_menu_page( 
+      'Ajax Load More', 
+      'Ajax Load More', 
+      'edit_theme_options', 
+      'ajax-load-more', 
+      'alm_settings_page',
+      $icon
+   );
    
-   $alm_template_page = add_submenu_page( 'ajax-load-more', 'Repeater Templates', 'Repeater Templates', 'edit_theme_options', 'ajax-load-more-repeaters', 'alm_repeater_page');
+   $alm_settings_page = add_submenu_page( 
+      'ajax-load-more', 
+      'Settings', 
+      'Settings', 
+      'edit_theme_options', 
+      'ajax-load-more', 
+      'alm_settings_page'
+   ); 
+   
+   $alm_template_page = add_submenu_page( 
+      'ajax-load-more', 
+      'Repeater Templates', 
+      'Repeater Templates', 
+      'edit_theme_options', 
+      'ajax-load-more-repeaters', 
+      'alm_repeater_page'
+   );
     
-   $alm_shortcode_page = add_submenu_page( 'ajax-load-more', 'Shortcode Builder', 'Shortcode Builder', 'edit_theme_options', 'ajax-load-more-shortcode-builder', 'alm_shortcode_builder_page');
+   $alm_shortcode_page = add_submenu_page( 
+      'ajax-load-more', 
+      'Shortcode Builder', 
+      'Shortcode Builder', 
+      'edit_theme_options', 
+      'ajax-load-more-shortcode-builder', 
+      'alm_shortcode_builder_page'
+   );
    
-   $alm_examples_page = add_submenu_page( 'ajax-load-more', 'Examples', 'Examples', 'edit_theme_options', 'ajax-load-more-examples', 'alm_example_page');  	
+   $alm_examples_page = add_submenu_page( 
+      'ajax-load-more', 
+      'Examples', 
+      'Examples', 
+      'edit_theme_options', 
+      'ajax-load-more-examples', 
+      'alm_example_page'
+   );  	
    	
-   $alm_addons_page = add_submenu_page( 'ajax-load-more', 'Add-ons', 'Add-ons', 'edit_theme_options', 'ajax-load-more-add-ons', 'alm_add_ons_page'); 
+   $alm_addons_page = add_submenu_page( 
+      'ajax-load-more', 
+      'Add-ons', 
+      'Add-ons', 
+      'edit_theme_options', 
+      'ajax-load-more-add-ons', 
+      'alm_add_ons_page'
+   ); 
+   
+   $alm_licenses_page = add_submenu_page(
+      'ajax-load-more', 
+      'Licenses', 
+      'Licenses', 
+      'edit_theme_options', 
+      'ajax-load-more-licenses', 
+      'alm_licenses_page'
+   ); 
    
    if(has_action('alm_cache_installed')){
-      $alm_cache_page = add_submenu_page( 'ajax-load-more', 'Cache', '<span style="color: #f2f5bf">Cache<span>', 'edit_theme_options', 'ajax-load-more-cache', 'alm_cache_page');
+      $alm_cache_page = add_submenu_page( 
+         'ajax-load-more', 
+         'Cache', 
+         '<span style="color: #f2f5bf; display:block; border-top: 1px solid #555; padding-top: 8px; border-radius: 3px;">Cache<span>', 
+         'edit_theme_options', 
+         'ajax-load-more-cache', 
+         'alm_cache_page'
+      );
       add_action( 'load-' . $alm_cache_page, 'alm_load_admin_js' );
       add_action( 'load-' . $alm_cache_page, 'alm_load_cache_admin_js' );
    }
@@ -136,6 +195,7 @@ function alm_admin_menu() {
    add_action( 'load-' . $alm_shortcode_page, 'alm_load_admin_js' );
    add_action( 'load-' . $alm_examples_page, 'alm_load_admin_js' );
    add_action( 'load-' . $alm_addons_page, 'alm_load_admin_js' );
+   add_action( 'load-' . $alm_licenses_page, 'alm_load_admin_js' );
 }   
       
 
@@ -265,6 +325,19 @@ function alm_example_page(){
 
 function alm_add_ons_page(){ 
    include_once( ALM_PATH . 'admin/views/add-ons.php');
+}
+
+
+
+/*
+*  alm_licenses_page
+*  Ajax Load More Licenses
+*
+*  @since 2.7.0
+*/
+
+function alm_licenses_page(){ 
+   include_once( ALM_PATH . 'admin/views/licenses.php');
 }
 
 
@@ -566,6 +639,24 @@ function alm_admin_init(){
 	// CACHE
 	if(has_action('alm_cache_settings')){	   
    	do_action('alm_cache_settings');   	
+   }	
+	
+	
+	// CUSTOM REPEATERS
+	if(has_action('alm_unlimited_settings')){	   
+   	do_action('alm_unlimited_settings');   	
+   }
+   
+	
+	// PAGINATION
+	if(has_action('alm_paging_settings')){	   
+   	do_action('alm_paging_settings');   	
+   }
+   
+	
+	// PRELOADED
+	if(has_action('alm_preloaded_settings')){	   
+   	do_action('alm_preloaded_settings');   	
    }
    
    
@@ -673,7 +764,7 @@ function alm_disable_dynamic_callback(){
 function alm_class_callback(){
 	$options = get_option( 'alm_settings' );
 		
-	$html = '<label for="alm_settings[_alm_classname]">'.__('Add classes to Ajax Load More container.', ALM_NAME).'</label><br/>';
+	$html = '<label for="alm_settings[_alm_classname]">'.__('Add classes to Ajax Load More container - these classes are applied globally and will appear with every instance of Ajax Load More.<span style="display:block">You can also add classes to the ALM container when building a shortcode.</span>', ALM_NAME).'</label><br/>';
 	$html .= '<input type="text" id="alm_settings[_alm_classname]" name="alm_settings[_alm_classname]" value="'.$options['_alm_classname'].'" placeholder="posts listing etc..." /> ';	
 	
 	echo $html;
@@ -753,7 +844,7 @@ function alm_btn_color_callback() {
     $html .= '<option value="white" ' . $selected6 .'>White</option>';
     $html .= '</select>';
      
-    $html .= '<div class="clear"></div><div class="ajax-load-more-wrap '.$color.'"><span>'.__('Preview', ALM_NAME) .'</span><button class="alm-load-more-btn loading" disabled="disabled">Load More</button></div>';
+    $html .= '<div class="clear"></div><div class="ajax-load-more-wrap core '.$color.'"><span>'.__('Preview', ALM_NAME) .'</span><button class="alm-load-more-btn loading" disabled="disabled">Load More</button></div>';
     echo $html;
 }
 
@@ -782,8 +873,8 @@ function alm_btn_class_callback(){
     	var colorArray = "default grey purple green red blue white";
     	jQuery("select#alm_settings_btn_color").change(function() {
     		var color = jQuery(this).val();
-			jQuery('.ajax-load-more-wrap').removeClass(colorArray);
-			jQuery('.ajax-load-more-wrap').addClass(color);
+			jQuery('.ajax-load-more-wrap.core').removeClass(colorArray);
+			jQuery('.ajax-load-more-wrap.core').addClass(color);
 		});
 		jQuery("select#alm_settings_btn_color").click(function(e){
 			e.preventDefault();
