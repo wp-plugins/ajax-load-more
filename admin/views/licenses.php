@@ -314,7 +314,7 @@
             <h3><?php _e('About Licenses', ALM_NAME); ?></h3>
             <div class="cta-wrap">
                <ul>
-               <li><?php _e('All licenses are valid for <strong>one year</strong> from the date of purchase.', ALM_NAME);?></li>
+               <li><?php _e('Add-on licenses will enable updates directly in your WP dashboard.', ALM_NAME);?></li>
                <li><?php _e('License keys are found in the purchase receipt email that was sent immediately after your successful purchase.', ALM_NAME);?></li>
                <li><?php _e('If you cannot locate your key please use the <a href="https://connekthq.com/contact/">contact form</a> on our website and reference the email address used when you completed the purchase.', ALM_NAME); ?></li>
                </ul>
