@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.7.0
+Version: 2.7.1
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define('ALM_VERSION', '2.7.0');
-define('ALM_RELEASE', 'July 5, 2015');
+define('ALM_VERSION', '2.7.1');
+define('ALM_RELEASE', 'July 9, 2015');
 define( 'ALM_STORE_URL', 'https://connekthq.com' ); // EDD CONSTANT - Store URL
 
 
@@ -562,37 +562,37 @@ if( !class_exists('AjaxLoadMore') ):
       		
       		// Parse multiple meta query    
             $total = count(explode(":", $meta_key)); // Total meta_query objects
-            $meta_key = explode(":", $meta_key); // convert to array
+            $meta_keys = explode(":", $meta_key); // convert to array
             $meta_value = explode(":", $meta_value); // convert to array
             $meta_compare = explode(":", $meta_compare); // convert to array
             
             if($total == 1){
       			$args['meta_query'] = array(
-      			   alm_get_meta_query($meta_key[0], $meta_value[0], $meta_compare[0]),
+      			   alm_get_meta_query($meta_keys[0], $meta_value[0], $meta_compare[0]),
       			);
    			}
    			if($total == 2){
       			$args['meta_query'] = array(
          			'relation' => $meta_relation,
-      			   alm_get_meta_query($meta_key[0], $meta_value[0], $meta_compare[0]),	
-      			   alm_get_meta_query($meta_key[1], $meta_value[1], $meta_compare[1]),		
+      			   alm_get_meta_query($meta_keys[0], $meta_value[0], $meta_compare[0]),	
+      			   alm_get_meta_query($meta_keys[1], $meta_value[1], $meta_compare[1]),		
       			);
    			}
    			if($total == 3){
       			$args['meta_query'] = array(
          			'relation' => $meta_relation,
-      			   alm_get_meta_query($meta_key[0], $meta_value[0], $meta_compare[0]),	
-      			   alm_get_meta_query($meta_key[1], $meta_value[1], $meta_compare[1]),	
-      			   alm_get_meta_query($meta_key[2], $meta_value[2], $meta_compare[2]),		
+      			   alm_get_meta_query($meta_keys[0], $meta_value[0], $meta_compare[0]),	
+      			   alm_get_meta_query($meta_keys[1], $meta_value[1], $meta_compare[1]),	
+      			   alm_get_meta_query($meta_keys[2], $meta_value[2], $meta_compare[2]),		
       			);
    			}
    			if($total == 4){
       			$args['meta_query'] = array(
          			'relation' => $meta_relation,
-      			   alm_get_meta_query($meta_key[0], $meta_value[0], $meta_compare[0]),	
-      			   alm_get_meta_query($meta_key[1], $meta_value[1], $meta_compare[1]),	
-      			   alm_get_meta_query($meta_key[2], $meta_value[2], $meta_compare[2]),	
-      			   alm_get_meta_query($meta_key[3], $meta_value[3], $meta_compare[3]),		
+      			   alm_get_meta_query($meta_keys[0], $meta_value[0], $meta_compare[0]),	
+      			   alm_get_meta_query($meta_keys[1], $meta_value[1], $meta_compare[1]),	
+      			   alm_get_meta_query($meta_keys[2], $meta_value[2], $meta_compare[2]),	
+      			   alm_get_meta_query($meta_keys[3], $meta_value[3], $meta_compare[3]),		
       			);
    			}
    			
@@ -600,10 +600,9 @@ if( !class_exists('AjaxLoadMore') ):
    	   
          // Meta_key, used for ordering by meta value
          if(!empty($meta_key)){
-            if(count($meta_key) == 1){
-               $args['meta_key'] = $meta_key[0];               
-            }
-         }  
+	         $meta_key_single = explode(":", $meta_key);
+            $args['meta_key'] = $meta_key_single[0];
+         } 
          
          // Author
    		if(!empty($author_id)){
