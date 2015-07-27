@@ -8,11 +8,11 @@ Stable tag: 2.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple solution for lazy loading & infinite scrolling your WordPress posts and pages with Ajax.
+A simple solution for lazy loading & infinite scrolling posts and pages with Ajax.
 
 == Description ==
 
-Ajax Load More is a simple yet powerful solution for lazy loading WordPress posts and pages with Ajax.
+Ajax Load More is a simple yet powerful solution for lazy loading/infinite scrolling WordPress posts and pages with Ajax.
 Build complex WordPress queries using our shortcode builder then add the shortcode to your pages via the content editor or directly into your template files.
  
 
