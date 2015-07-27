@@ -1,9 +1,9 @@
 === Ajax Load More ===
 Contributors: dcooney
 Donate link: http://connekthq.com/donate/
-Tags: ajax, query, loop, paging, filter, infinite scroll, infinite, dynamic, jquery, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post format, wmpl, archives, date
+Tags: ajax, query, ajax pagination, paging, filter, infinite scroll, infinite, pagination, loop, dynamic, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post_format, wmpl, archives, date
 Requires at least: 3.6
-Tested up to: 4.2.2
+Tested up to: 4.2.3
 Stable tag: 2.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
