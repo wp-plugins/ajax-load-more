@@ -111,20 +111,20 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
  The following Add-ons are available to increase the functionality of Ajax Load More.
 
 > #### Custom Repeaters
-> The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.<br />
-> [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters)
+> The **[Custom Repeaters](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/)** add-on will allow for **unlimited repeater templates** and provide the ability to create unique templates for different content types throughout your theme.<br />
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/)
 > 
 > #### Cache
-> The **[Cache](http://connekthq.com/plugins/ajax-load-more/cache)** creates static HTML files of Ajax Load More requests then serves those static pages to your visitors without querying the database.<br />
-> [Get More Information](http://connekthq.com/plugins/ajax-load-more/cache)
+> The **[Cache](http://connekthq.com/plugins/ajax-load-more/cache/)** creates static HTML files of Ajax Load More requests then serves those static pages to your visitors without querying the database.<br />
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/cache/)
 > 
 > #### Paging
-> The **[Paging](http://connekthq.com/plugins/ajax-load-more/paging)** add-on will transform Ajax Load More’s lazy load/infinite scroll functionality into a robust ajax powered navigation system.<br />
-> [Get More Information](http://connekthq.com/plugins/ajax-load-more/paging)
+> The **[Paging](http://connekthq.com/plugins/ajax-load-more/paging/)** add-on will transform Ajax Load More’s lazy load/infinite scroll functionality into a robust ajax powered navigation system.<br />
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/paging/)
 >
 > #### Preloaded
-> The **[Preloaded](http://connekthq.com/plugins/ajax-load-more/preloaded)** add-on will allow you to quickly and easily preload an initial set of posts before completing any Ajax requests to the server.<br />
-> [Get More Information](http://connekthq.com/plugins/ajax-load-more/preloaded)
+> The **[Preloaded](http://connekthq.com/plugins/ajax-load-more/preloaded/)** add-on will allow you to quickly and easily preload an initial set of posts before completing any Ajax requests to the server.<br />
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/preloaded/)
 > 
 > #### Search Engine Optimization
 > The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.<br />
