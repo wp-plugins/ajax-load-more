@@ -842,7 +842,7 @@ function _alm_error_notices_callback(){
 	
 	$html =  '<input type="hidden" name="alm_settings[_alm_error_notices]" value="0" />';
 	$html .= '<input type="checkbox" name="alm_settings[_alm_error_notices]" id="_alm_error_notices" value="1"'. (($options['_alm_error_notices']) ? ' checked="checked"' : '') .' />';
-	$html .= '<label for="_alm_error_notices">'.__('Display messaging regarding repeater template updates in the browser console.', ALM_NAME).'</label>';	
+	$html .= '<label for="_alm_error_notices">'.__('Display error messaging regarding repeater template updates in the browser console.', ALM_NAME).'</label>';	
 	
 	echo $html;
 }
