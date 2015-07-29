@@ -21,7 +21,7 @@
                </div>
 			   </div>			   
             <?php
-            	$cache_url = 'http://connekthq.com/plugins/ajax-load-more/cache/';
+            	$cache_url = 'https://connekthq.com/plugins/ajax-load-more/add-ons/cache/?utm_source=WP%20Admin&utm_medium=ALM%20Add-ons&utm_campaign=Cache';
                if (has_action('alm_cache_installed')){
                   echo '<a class="cnkt-button installed" href="'. $cache_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{
@@ -47,7 +47,7 @@
                </div>
 			   </div>			   
             <?php
-            	$cr_url = 'http://connekthq.com/plugins/ajax-load-more/custom-repeaters/';
+            	$cr_url = 'https://connekthq.com/plugins/ajax-load-more/add-ons/custom-repeaters/?utm_source=WP%20Admin&utm_medium=ALM%20Add-ons&utm_campaign=Custom%20Repeaters';
                if (has_action('alm_unlimited_installed')){
                   echo '<a class="cnkt-button installed" href="'. $cr_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{
@@ -73,7 +73,7 @@
                </div>
 			   </div>			   
             <?php
-            	$paging_url = 'http://connekthq.com/plugins/ajax-load-more/paging/';
+            	$paging_url = 'https://connekthq.com/plugins/ajax-load-more/add-ons/paging/?utm_source=WP%20Admin&utm_medium=ALM%20Add-ons&utm_campaign=Paging';
                if (has_action('alm_paging_installed')){
                   echo '<a class="cnkt-button installed" href="'. $paging_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{
@@ -99,11 +99,11 @@
                </div>
 			   </div>			   
             <?php
-            	$cr_url = 'http://connekthq.com/plugins/ajax-load-more/preloaded/';
+            	$preload_url = 'https://connekthq.com/plugins/ajax-load-more/add-ons/preloaded/?utm_source=WP%20Admin&utm_medium=ALM%20Add-ons&utm_campaign=Preloaded';
                if (has_action('alm_preload_installed')){
-                  echo '<a class="cnkt-button installed" href="'. $cr_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
+                  echo '<a class="cnkt-button installed" href="'. $preload_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{
-                  echo '<a class="cnkt-button" href="'. $cr_url .'" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
+                  echo '<a class="cnkt-button" href="'. $preload_url .'" target="_blank"><i class="fa fa-download"></i> Purchase &amp; Install</a>';
                }
             ?> 		   
 		   </div>
@@ -125,7 +125,7 @@
                </div>
 			   </div>			   
             <?php
-            	$seo_url = 'http://connekthq.com/plugins/ajax-load-more/seo/';
+            	$seo_url = 'https://connekthq.com/plugins/ajax-load-more/add-ons/seo/?utm_source=WP%20Admin&utm_medium=ALM%20Add-ons&utm_campaign=SEO';
                if (has_action('alm_seo_installed')){
                   echo '<a class="cnkt-button installed" href="'. $seo_url .'" target="_blank"><i class="fa fa-check-square"></i> Installed</a> ';
                }else{

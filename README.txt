@@ -22,7 +22,7 @@ Build complex WordPress queries using the custom shortcode builder and then add 
 * **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 * **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
-* **Multisite Compatibility** - With the release of ALM 2.7.2 you can now manage repeater templates across all the sites in your network.
+* **Multisite Compatibility** - With the release of ALM 2.7.2 you can now manage your repeater templates across all the sites in your network. Each repeater template will be site specific so you don’t need to worry about sites sharing templates.
 
 Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
@@ -121,7 +121,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 > #### Paging
 > The **[Paging](http://connekthq.com/plugins/ajax-load-more/paging)** add-on will transform Ajax Load More’s lazy load/infinite scroll functionality into a robust ajax powered navigation system.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/paging)
-> > 
+>
 > #### Preloaded
 > The **[Preloaded](http://connekthq.com/plugins/ajax-load-more/preloaded)** add-on will allow you to quickly and easily preload an initial set of posts before completing any Ajax requests to the server.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/preloaded)
