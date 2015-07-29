@@ -43,6 +43,7 @@
 	   	</div>
 	   </div>
 	   <div class="cnkt-sidebar">
+			<?php include_once( ALM_PATH . 'admin/includes/cta/mailinglist.php');	?>
 			<?php include_once( ALM_PATH . 'admin/includes/cta/resources.php');	?>
 			<?php include_once( ALM_PATH . 'admin/includes/cta/about.php');	?>
 	   </div>		   	

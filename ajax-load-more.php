@@ -6,31 +6,77 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.7.1
+Version: 2.7.2
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define('ALM_VERSION', '2.7.1');
-define('ALM_RELEASE', 'July 9, 2015');
+define( 'ALM_VERSION', '2.7.2' );
+define( 'ALM_RELEASE', 'July 28, 2015' );
 define( 'ALM_STORE_URL', 'https://connekthq.com' ); // EDD CONSTANT - Store URL
 
 
 /*
 *  alm_install
+*  
+*  Activation hook
 *  Create table for storing repeater
 *
 *  @since 2.0.0
 */
 
+function alm_install($network_wide) {   
+	
+   global $wpdb;
+	add_option( "alm_version", ALM_VERSION ); // Add to WP Option tbl	   	
+	
+   if ( is_multisite() && $network_wide ) {      
+      
+      // Get all blogs in the network and activate plugin on each one
+      $blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+      foreach ( $blog_ids as $blog_id ) {
+         switch_to_blog( $blog_id );
+         alm_create_table();
+         restore_current_blog();
+      }
+   } else {
+      alm_create_table();
+   }
+   	
+}
 register_activation_hook( __FILE__, 'alm_install' );
-function alm_install() {   	
+add_action( 'wpmu_new_blog', 'alm_install' );
+
+/* Create table function */
+function alm_create_table(){
+	
 	global $wpdb;	
 	$table_name = $wpdb->prefix . "alm";
+	$blog_id = $wpdb->blogid;
+	
 	$defaultRepeater = '<li <?php if (!has_post_thumbnail()) { ?> class="no-img"<?php } ?>><?php if ( has_post_thumbnail() ) { the_post_thumbnail(array(100,100));}?><h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3><p class="entry-meta"><?php the_time("F d, Y"); ?></p><?php the_excerpt(); ?></li>';	
+	
+	/* MULTISITE */
+   /* if this is a multisite blog and it's not id = 1, create default template */
+   if($blog_id > 1){	   
+	   
+	   $dir = ALM_PATH. 'core/repeater/'. $blog_id;
+	   if( !is_dir($dir) ){
+	      mkdir($dir);
+	   }
+	   
+	   $file = ALM_PATH. 'core/repeater/'. $blog_id .'/default.php';
+   	if( !file_exists($file) ){
+         $tmp = fopen($file, 'w');
+			$w = fwrite($tmp, $defaultRepeater);
+			fclose($tmp);
+   	}
+   	
+	} 
 		
 	//Create table, if it doesn't already exist.	
 	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {	
+		
 		$sql = "CREATE TABLE $table_name (
 			id mediumint(9) NOT NULL AUTO_INCREMENT,
 			name text NOT NULL,
@@ -43,14 +89,11 @@ function alm_install() {
 		
 		//Insert the default data in created table
 		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $defaultRepeater, 'pluginVersion' => ALM_VERSION));
+		
 	}	
 	
-	if( !get_option( 'alm_version' ) )
-      add_option( 'alm_version', ALM_VERSION ); // Add 'alm_version' to WP options table
-   else  
-      update_option( 'alm_version', ALM_VERSION ); // Update 'alm_version'
-      		
 }
+
 
 
 

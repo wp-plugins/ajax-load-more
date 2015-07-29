@@ -1,10 +1,10 @@
 === Ajax Load More ===
 Contributors: dcooney
 Donate link: http://connekthq.com/donate/
-Tags: ajax, query, ajax pagination, paging, filter, infinite scroll, infinite, pagination, loop, dynamic, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, post_format, wmpl, archives, date
+Tags: ajax, query, lazy load, lazy loading, ajax pagination, paging, filter, infinite scroll, infinite, pagination, loop, dynamic, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, archives, date
 Requires at least: 3.6
 Tested up to: 4.2.3
-Stable tag: 2.7.1
+Stable tag: 2.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,8 +12,8 @@ A simple solution for lazy loading/infinite scrolling posts and pages with Ajax.
 
 == Description ==
 
-Ajax Load More is a simple yet powerful solution for lazy loading/infinite scrolling WordPress posts and pages with Ajax.
-Build complex WordPress queries using our shortcode builder then add the shortcode to your pages via the content editor or directly into your template files.
+Ajax Load More is a powerful solution for infinite scrolling WordPress posts and pages using Ajax.
+Build complex WordPress queries using the custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
  
 
 = Features =
@@ -22,6 +22,7 @@ Build complex WordPress queries using our shortcode builder then add the shortco
 * **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 * **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
+* **Multisite Compatibility** - With the release of ALM 2.7.2 you can now manage your repeater templates across all the sites in your network. Each repeater template will be site specific so you don’t need to worry about sites sharing templates.
 
 Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
@@ -262,6 +263,13 @@ How to install Ajax Load More.
 7. Shortcode and implementation examples
 
 == Changelog ==
+
+
+= 2.7.2 =
+* NEW - Adding multisite support for Repeater Templates - if using a multisite, please deactivate then re-activate Ajax Load More.
+* NEW - Completely rebuilt update script for repeater templates to be more efficient and integrate with multisite installations.
+* UPDATE - Split up ALM setting fields into Global and Admin settings for increased usability.
+* NEW - Added new setting field for Error Reporting - User can now choose to display error notices regarding repeater template updating in the browser console.
 
 
 = 2.7.1 =

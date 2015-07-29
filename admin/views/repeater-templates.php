@@ -15,8 +15,16 @@
 			
 			   <!-- Default -->
 			   <div class="row template default-repeater">
-	   		   <?php         
-	               $filename = ALM_PATH. 'core/repeater/default.php';
+	   		   <?php      
+		   		   global $wpdb;
+						$table_name = $wpdb->prefix . "alm";
+						$blog_id = $wpdb->blogid;  
+						if($blog_id > 1){	
+							$filename = ALM_PATH. 'core/repeater/'. $blog_id .'/default.php';
+						}else{
+							$filename = ALM_PATH. 'core/repeater/default.php';			
+						} 
+							               
 	               $handle = fopen ($filename, "r");
       				$contents = '';
       				if(filesize ($filename) != 0){

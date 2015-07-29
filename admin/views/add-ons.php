@@ -140,7 +140,7 @@
 	   <div class="cnkt-sidebar">
 	   	<div class="cta">
 			<h3><?php _e('Add-on Updates', ALM_NAME); ?></h3>
-			<p><?php _e('All add-ons are installed as stand alone plugins and will receive plugin update notifications directly within the <a href="plugins.php">WordPress Plugin dashboard</a>.', ALM_NAME); ?></p>
+			<p><?php _e('All add-ons are installed as stand alone plugins and with a valid license key will receive plugin update notifications directly within the <a href="plugins.php">WordPress Plugin dashboard</a>.', ALM_NAME); ?></p>
 	   	</div>
 			<?php include_once( ALM_PATH . 'admin/includes/cta/writeable.php'); ?>
 	   </div>	   

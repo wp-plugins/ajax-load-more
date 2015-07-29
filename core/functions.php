@@ -18,26 +18,55 @@ function alm_get_current_repeater($repeater, $type) {
 		$include = ALM_REPEATER_PATH . 'repeaters/'. $template .'.php';      					
 		
 		if(!file_exists($include)) //confirm file exists        			
-		   $include = ALM_PATH . 'core/repeater/default.php'; 
+		   alm_get_default_repeater(); 
 		
 	}
    // If is Unlimited Repeaters (Custom Repeaters v2)
 	elseif( $type == 'template_' && has_action('alm_unlimited_installed' ))
 	{
-		$include = ALM_UNLIMITED_REPEATER_PATH. ''.$template.'.php';      					
+		global $wpdb;
+		$blog_id = $wpdb->blogid;
+		
+		if($blog_id > 1){	
+			$include = ALM_UNLIMITED_PATH. 'repeaters/'. $blog_id .'/'.$template .'.php';
+		}else{
+			$include = ALM_UNLIMITED_PATH. 'repeaters/'.$repeater .'.php';		
+		}   					
 		
 		if(!file_exists($include)) //confirm file exists        			
-		   $include = ALM_PATH . 'core/repeater/default.php'; 			
+		   alm_get_default_repeater(); 			
 	
 	}
 	// Default repeater
 	else
 	{				
-		$include = ALM_PATH . 'core/repeater/default.php';
+		$include = alm_get_default_repeater();
 	}
 	
 	return $include;
 }
+
+/*
+*  alm_get_default_repeater
+*  Get the default repeater template for current blog
+*
+*  @return $include (file path)
+*  @since 2.5.0
+*/
+
+function alm_get_default_repeater() {
+	global $wpdb;
+	$blog_id = $wpdb->blogid;
+	
+	if($blog_id > 1){	
+		$file = ALM_PATH. 'core/repeater/'. $blog_id .'/default.php'; // File
+	}else{
+		$file = ALM_PATH. 'core/repeater/default.php';			
+	}
+	
+	return $file;
+}
+
 
 
 

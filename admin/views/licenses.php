@@ -88,7 +88,7 @@
 		         <div class="license-title">       
    		         <div class="status <?php if($alm_unlimited_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>   
          			<h2><?php _e('Custom Repeaters v2', ALM_NAME); ?></h2> 
-         			<a class="cnkt-button installed" href="http://connekthq.com/plugins/ajax-load-more/paging/" target="_blank"><i class="fa fa-check-square"></i> Installed</a>	
+         			<a class="cnkt-button installed" href="http://connekthq.com/plugins/ajax-load-more/custom-repeaters/" target="_blank"><i class="fa fa-check-square"></i> Installed</a>	
 		         </div>	
                <div class="license-wrap">
    			      <form method="post" action="options.php">               			
