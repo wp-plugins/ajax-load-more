@@ -13,7 +13,7 @@ A simple solution for lazy loading/infinite scrolling posts and pages with Ajax.
 == Description ==
 
 Ajax Load More is a powerful solution for infinite scrolling WordPress posts and pages using Ajax.
-Build complex WordPress queries using the custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
+Build complex WordPress querreadme updateies using the custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
  
 
 = Features =
@@ -22,7 +22,7 @@ Build complex WordPress queries using the custom shortcode builder and then add 
 * **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 * **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
-* **Multisite Compatibility** - With the release of ALM 2.7.2 you can now manage repeater templates across all sites in your network.
+* **Multisite Compatibility** - As of Ajax Load More 2.7.2 you can now manage repeater templates across all sites in your network.
 
 Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
