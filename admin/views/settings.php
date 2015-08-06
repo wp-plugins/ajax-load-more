@@ -11,6 +11,26 @@
       <?php } ?>
 	   <div class="cnkt-main">
 	   	<div class="group">
+   	   	<?php
+      	   	if(has_action('alm_cache_settings') || has_action('alm_paging_settings') || has_action('alm_seo_settings') || has_action('alm_theme_repeaters_settings')) {
+       	   ?>
+   	   	<ul class="alm-settings-nav">
+      	   	<li><a href="javascript:void(0);"><?php _e('Global Settings', ALM_NAME); ?></a></li>
+      	   	<li><a href="javascript:void(0);"><?php _e('Admin', ALM_NAME); ?></a></li>
+      	   	<?php 
+         	   	if(has_action('alm_cache_settings')) 
+                     echo '<li><a href="javascript:void(0);">'.__('Cache', ALM_NAME).'</a></li>';
+         	   	if(has_action('alm_paging_settings')) 
+                     echo '<li><a href="javascript:void(0);">'.__('Paging', ALM_NAME).'</a></li>';
+                  if(has_action('alm_seo_settings')) 
+                     echo '<li><a href="javascript:void(0);">'.__('SEO', ALM_NAME).'</a></li>';
+                  if(has_action('alm_theme_repeaters_settings')) 
+                     echo '<li><a href="javascript:void(0);">'.__('Theme Repeaters', ALM_NAME).'</a></li>';         	   	 
+         	   ?>
+   	   	</ul>
+   	   	<?php
+      	   	}
+      	   ?>
    			<form action="options.php" method="post" id="alm_OptionsForm">
    				<?php 
    					settings_fields( 'alm-setting-group' );
@@ -45,6 +65,7 @@
 	   <div class="cnkt-sidebar">
 			<?php include_once( ALM_PATH . 'admin/includes/cta/mailinglist.php');	?>
 			<?php include_once( ALM_PATH . 'admin/includes/cta/resources.php');	?>
+			<?php include_once( ALM_PATH . 'admin/includes/cta/add-ons.php');	?>
 			<?php include_once( ALM_PATH . 'admin/includes/cta/about.php');	?>
 	   </div>		   	
 	</div>

@@ -1,7 +1,7 @@
 <div class="cta mailing-list" id="alm-mailing-list">
 	<div class="head-wrap">
-	<h3><?php _e('Subscribe to Newsletter', ALM_NAME); ?></h3>
-	<p><?php _e('Get product updates and release notifications delivered (infrequently) to your inbox.', ALM_NAME); ?></p>
+	<h3><?php _e('Product Updates', ALM_NAME); ?></h3>
+	<p><?php _e('Recieve product updates and release notifications delivered (infrequently) directly to your inbox.', ALM_NAME); ?></p>
 	</div>
 	<form action="" method="post" id="alm-mc-embedded" name="mc-embedded-subscribe-form" class="validate" data-path="<?php echo ALM_ADMIN_URL; ?>includes/mailchimp/mailchimp-info.php" novalidate>   	
       <div class="form-wrap">

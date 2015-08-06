@@ -264,6 +264,42 @@
    border: 1px solid #efefef;
 }
 
+.ajax-load-more .alm-settings-nav{
+   margin: 0 0 5px;
+   padding: 0;
+   overflow: hidden;
+   position: relative;
+   width: calc(100% + 40px);
+   top: -20px;
+   left: -20px;
+   border-bottom: 1px solid #efefef;
+   background: #f7f7f7;
+   border-radius: 3px 3px 0 0;
+}
+   .alm-settings-nav li{
+      float: left;
+      margin: 0;
+      padding: 0;
+      font-weight: 600;
+      background: none;
+      font-size: 13px;
+   }
+
+      .alm-settings-nav a{
+         text-decoration: none;
+         padding: 8px 16px 8px 16px;
+         border-left: 1px solid #ebebeb;
+         display: block;
+      }
+      	.alm-settings-nav a:hover{
+	      	color: #fff;
+	     		background-color: #ff5a58;	
+	      }
+      .alm-settings-nav li:first-of-type a{
+         border: none;
+			border-radius: 3px 0 0 0;
+      }
+
 
 .meta-query-wrap{}
    .ajax-load-more #meta-query-extended .meta-query-wrap .inner{
@@ -595,6 +631,16 @@
 		padding-left: 21px !important;
 		color: #999;
 	}
+	
+   .ajax-load-more .section-title p span,
+   .admin.ajax-load-more.settings .form-table p.notify span{
+      display: inline-block;
+      padding: 0 4px;
+      border-radius: 2px;
+      background: #f7f7f7;
+      border: 1px solid #efefef;
+      color: #666;
+   }
 	.ajax-load-more .section-title h4{
 		padding-left: 21px !important;
 		margin: 0 0 10px;   	
@@ -904,6 +950,13 @@
 .admin.ajax-load-more.settings .form-table p{
    margin-top: 0;
 }
+.admin.ajax-load-more.settings .form-table p.notify{
+   font-size: 12px;
+   padding: 5px 0;
+   margin: 5px 0 20px;
+   overflow: hidden;
+   color: #999;
+}
 
 .header-wrap{
 	background: url(../img/alm-logo-48x48.png) no-repeat left 12px;
@@ -931,17 +984,15 @@
 	top: -2px;
 }
 .ajax-load-more h2.addon-title{   
-   font-size: 22px !important;
+   font-size: 19px !important;
    font-weight: 600 !important;
-   color: #555 !important;
+   color: #444 !important;
    padding: 0;
-   margin: 0 0 16px;
-   padding: 0 0 14px;
-   border-bottom: 1px solid #efefef;
+   margin: 0 0 10px;
 }
 .ajax-load-more p.addon-intro{
-   font-size: 18px !important;
-   line-height: 23px !important;
+   font-size: 16px !important;
+   line-height: 22px !important;
    color: #999 !important;
 }
 
@@ -1080,7 +1131,8 @@ table.highlight{
    clear: both;	
 }
 .ajax-load-more .cnkt-main .group,
-.ajax-load-more .cnkt-sidebar .cta{
+.ajax-load-more .cnkt-sidebar .cta,
+.call-out.light{
    border: 1px solid #ccc;
    -webkit-border-radius: 3px; 
    -moz-border-radius: 3px; 
@@ -1140,24 +1192,46 @@ table.highlight{
 #alm-add-ons {}
 #alm-add-ons .group{
    overflow: hidden;
+   width: 31.333%;
+   display: inline-block;
+   vertical-align: top;
+   text-align: center;
+   margin: 0 1.5% 2% 0;
+   word-spacing : -4px;
+   padding: 0;
 }
-#alm-add-ons .row .wrap{
-   padding-bottom: 60px;
-   width: 55%;
+#alm-add-ons .group .expand-wrap{
+   display: block;
+   padding-bottom: 40px;
+   position: relative;
+   word-spacing : 0;
 }
-#alm-add-ons .section-title{
-   width: 45%;
-}
-#alm-add-ons .group .section-title p{
-   padding-left: 0 !important;
-}
-#alm-add-ons .group a.cnkt-button{
+#alm-add-ons .group span.cnkt-button{
    position: absolute;
-   bottom: 20px;
-   right: 20px;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   display: block;
    font-size: 14px;
    padding: 8px 14px;
 }
+#alm-add-ons .group img{
+   padding: 12px 18px 12px;  
+}
+#alm-add-ons .group a{
+   text-decoration: none;
+   display: block;
+   padding: 15px;
+}
+   #alm-add-ons .group:hover{
+      border-color: #999;
+      -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+   }
+   #alm-add-ons .group a:hover h2{
+      color: #ff5a58 !important;
+   }
 
 /* Add-on Callout! */
 .call-out{
@@ -1172,6 +1246,23 @@ table.highlight{
    font-weight: 600;
    position: relative;
 }
+   .call-out.light{
+      background: #fdfdec;
+      width: 97.666%;
+   }
+   .call-out.light p{
+      margin: 0;
+      padding: 0 30px;
+      text-align: center;
+      font-weight: 400;
+   }
+   .call-out.light p a{
+      color: #ff5a58 !important;
+   }
+   .call-out.light p a:hover{
+      text-decoration: underline;  
+   }
+   
    #alm-builder .call-out,
    .forceColors .call-out{ /* Shortcode builder */
       width: 90%;
@@ -1198,7 +1289,8 @@ table.highlight{
    .call-out a:hover{
       color: #222 !important;
    }
-   a.cnkt-button{
+   a.cnkt-button,
+   span.cnkt-button{
       padding: 6px 10px;
       display: inline-block;
       background: #73d3b9;
@@ -1212,35 +1304,41 @@ table.highlight{
       font-weight: 600;
    }
       a.cnkt-button:hover,
-      a.cnkt-button:hover i{
+      a.cnkt-button:hover i,
+      .group:hover span.cnkt-button,
+      .group:hover span.cnkt-button i{
          background-color: #935eaf;
          border-color: #935eaf;
          color:#fff !important;
          box-shadow: none;
       }
-      a.cnkt-button:active{
+      a.cnkt-button:active,      
+      .group:active span.cnkt-button{
          background-color: #83519d;
          border-color: #935eaf;
          color:#fff !important;
          box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.1);
          outline: none;
       }
-      a.cnkt-button i{
+      a.cnkt-button i,
+      span.cnkt-button i{
          color: #397666;
          margin-right: 3px;
          position: relative;
          top:1px;
          background: none !important;
       }
-      a.cnkt-button.installed{
-         background: #efefef !important;
-         border-color: #ccc !important;
-         color:#666 !important;
-         cursor: default;
-         box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.1) !important;
+      a.cnkt-button.installed,
+      span.cnkt-button.installed,
+      .group span.cnkt-button.installed{
+         background: #f7f7f7 !important;
+         border-color: #efefef !important;
+         color:#888 !important;
+         box-shadow: none !important;
       }
       a.cnkt-button.installed i,
-      a.cnkt-button.installed:hover i{
+      span.cnkt-button.installed i,
+      .group:hover span.cnkt-button.installed i{
          background: none !important;
          color: #5da592 !important;
          top: 0;
@@ -1791,6 +1889,26 @@ table.highlight{
    padding: 0;
    margin: 10px 0;
 }
+.alm-dir-listing.theme-repeaters{
+   padding: 15px;
+   margin: 0;
+}
+.alm-dir-listing.theme-repeaters ul{
+   border: none;  
+   padding: 0;
+   margin: 0;
+}
+
+.alm-dir-listing.theme-repeaters p.theme-title{
+   font-weight: 600;
+   margin: 0 0 15px;
+   padding: 0 5px;
+}
+.alm-dir-listing.theme-repeaters i{
+   color: #ccc;
+   font-size: 1.1em;
+}
+
 .alm-dir-listing.deleting{
    opacity: 0.5;
    background: #fff url(../img/loader-unlimited.gif) no-repeat center center; 
@@ -1854,9 +1972,22 @@ table.highlight{
          font-size: 13px; 
          background: transparent url(../img/directory-list.gif) no-repeat left center;
       }
+      .alm-dir-listing.theme-repeaters ul li{
+         display: block;  
+         width: 100%;
+         padding-top: 12px;
+      }
+      .alm-dir-listing.theme-repeaters ul li label{
+         display: block;
+         width: 100%;
+      }
+      
       .alm-dir-listing ul li:last-child,
       .alm-dir-listing ul li:nth-last-child(2){
          background-image: url(../img/directory-list-btm.gif);
+      }
+      .alm-dir-listing.theme-repeaters ul li:nth-last-child(2){
+         background: transparent url(../img/directory-list.gif) no-repeat left center;
       }
       .alm-dir-listing ul li a{
          text-decoration: none;
@@ -2025,11 +2156,13 @@ p.cache-stats{
       .shortcode-builder input[type=checkbox]:checked + label,
       .ajax-load-more .form-table input[type=checkbox]:checked + label{ /* selected */   
          background-image: url(../img/bkg-chkbox_selected.png);
+         color: #000;
       } 
       
       .shortcode-builder input[type=radio]:checked + label,
       .ajax-load-more .form-table input[type=radio]:checked + label{ /* selected */  
          background-image: url(../img/bkg-radio_selected.png);
+         color: #000;
       }      
          
          .shortcode-builder input[type=checkbox] + label:hover,
@@ -2311,14 +2444,72 @@ p.cache-stats{
       top:-9999px;
    }
    #alm-mailing-list .form-wrap #response{
-      padding-top: 10px;  
+      padding-top: 6px;  
       font-size: 13px;
       display: none;
       text-align: center;
+      position: absolute;
+      left: 0;
+      top:0;
+      width: 100%;
+      height: 100%;
+      background: #f7f7f7;
+      z-index: 1;
    }	       	
    #alm-mailing-list .form-wrap #response p{
       font-style: normal !important;      
    }	
+   
+   
+   
+/*
+* Local templates Add-on
+*
+* @since 2.7.3
+*/   
+
+.select-theme-repeater{
+   display: block;
+   position: relative;
+}
+   .select-theme-repeater .or{
+      position: absolute;
+      left: 70px;
+      top: -20px;
+      background: #fefeed;
+      color: #333;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      z-index: 1;
+      font-weight: 700;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      border-radius: 100%;  
+      text-transform: uppercase;
+      border: 1px solid #e7e7e7;    
+      font-size: 13px;
+   }
+   
+.alm-template-section-nav{
+   display: block;
+   margin: 0 0;
+   padding: 0;
+}
+   .alm-template-section-nav li{
+      display: inline-block;
+      vertical-align: top;
+   }
+      .alm-template-section-nav li a{
+         padding: 5px;
+         display: block;  
+      }
+      .alm-template-section-nav li.active a{
+         background: #ff0000;
+      }
+   
+   
 /*
 * Admin screen media queries
 *
@@ -2352,6 +2543,12 @@ p.cache-stats{
      clear: both;
      margin: 10px 0 20px;
      width: 100%;
+   }
+   #alm-add-ons .group{
+      width: 48%;
+   }
+   .call-out.light {
+      padding: 15px !important;
    }
 }
 
@@ -2399,6 +2596,19 @@ p.cache-stats{
 	.ajax-load-more .row .wrap.full{
    	padding: 10px;
 	}
+	
+	 #alm-add-ons .group{
+      width: 100%;
+      display: block;
+      margin: 0 0 2% 0;
+   }
+   .call-out.light {
+      background: #fdfdec none repeat scroll 0 0;
+      width: 100%;
+   }
+   .call-out.light p{
+      padding: 0;  
+   }
 
 }
 

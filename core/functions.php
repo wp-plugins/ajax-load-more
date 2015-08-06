@@ -46,6 +46,8 @@ function alm_get_current_repeater($repeater, $type) {
 	return $include;
 }
 
+
+
 /*
 *  alm_get_default_repeater
 *  Get the default repeater template for current blog
@@ -66,7 +68,6 @@ function alm_get_default_repeater() {
 	
 	return $file;
 }
-
 
 
 

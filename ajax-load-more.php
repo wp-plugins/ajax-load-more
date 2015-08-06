@@ -6,13 +6,13 @@ Description: A simple solution for lazy loading WordPress posts and pages with A
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.7.2
+Version: 2.7.3
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 	
-define( 'ALM_VERSION', '2.7.2' );
-define( 'ALM_RELEASE', 'July 28, 2015' );
+define( 'ALM_VERSION', '2.7.3' );
+define( 'ALM_RELEASE', 'August 6, 2015' );
 define( 'ALM_STORE_URL', 'https://connekthq.com' ); // EDD CONSTANT - Store URL
 
 
@@ -81,6 +81,7 @@ function alm_create_table(){
 			id mediumint(9) NOT NULL AUTO_INCREMENT,
 			name text NOT NULL,
 			repeaterDefault longtext NOT NULL,
+			repeaterType text NOT NULL,
 			pluginVersion text NOT NULL,
 			UNIQUE KEY id (id)
 		);";		
@@ -88,7 +89,7 @@ function alm_create_table(){
 		dbDelta( $sql );
 		
 		//Insert the default data in created table
-		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $defaultRepeater, 'pluginVersion' => ALM_VERSION));
+		$wpdb->insert($table_name , array('name' => 'default', 'repeaterDefault' => $defaultRepeater, 'repeaterType' => 'default', 'pluginVersion' => ALM_VERSION));
 		
 	}	
 	
@@ -115,7 +116,8 @@ if( !class_exists('AjaxLoadMore') ):
    		
    		add_action( 'wp_enqueue_scripts', array(&$this, 'alm_enqueue_scripts') );			
    		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'alm_action_links') );
-   
+   		add_filter( 'plugin_row_meta', array(&$this, 'alm_plugin_meta_links'), 10, 2 );
+   		   
    		add_shortcode( 'ajax_load_more', array(&$this, 'alm_shortcode') );		
    		
    		// Allow shortcodes in widget areas
@@ -158,9 +160,30 @@ if( !class_exists('AjaxLoadMore') ):
       
       function alm_action_links( $links ) {
          $links[] = '<a href="'. get_admin_url(null, 'admin.php?page=ajax-load-more') .'">'.__('Settings', ALM_NAME).'</a>';
-         $links[] = '<a href="'. get_admin_url(null, 'admin.php?page=ajax-load-more-shortcode-builder') .'">'.__('Shortcode  Builder', ALM_NAME).'</a>';
          return $links;
       }
+      
+      
+      
+      /*
+   	*  alm_plugin_meta_links
+   	*  Add plugin meta links to WP plugin screen
+   	*
+   	*  @since 2.7.2.1
+   	*/   
+      
+      function alm_plugin_meta_links( $links, $file ) {
+         if ( strpos( $file, 'ajax-load-more.php' ) !== false ) {
+      		$new_links = array(
+					'<a href="admin.php?page=ajax-load-more-shortcode-builder">Shortcode  Builder</a>',
+					'<a href="admin.php?page=ajax-load-more-add-ons">Add-ons</a>',
+				);
+      		
+      		$links = array_merge( $links, $new_links );
+      	}
+	
+         return $links;      
+	   }
    
    
    
@@ -227,6 +250,7 @@ if( !class_exists('AjaxLoadMore') ):
 				'preloaded_amount' => '5',
 				'seo' => 'false',
 				'repeater' => 'default',
+				'theme_repeater' => 'null',
 				'post_type' => 'post',
 				'post_format' => '',
 				'category' => '',	
@@ -259,6 +283,7 @@ if( !class_exists('AjaxLoadMore') ):
 				'pause' => 'false',
 				'destroy_after' => '',
 				'transition' => 'slide',
+				'images_loaded' => 'false',
 				'button_label' => __('Older Posts', ALM_NAME),	
 				'css_classes' => '',		
 			), $atts));
@@ -366,8 +391,13 @@ if( !class_exists('AjaxLoadMore') ):
    				$alm_found_posts = $alm_total_posts;
    			   while ($alm_preload_query->have_posts()) : $alm_preload_query->the_post();
    			   	$alm_loop_count++;
-	   	         $alm_item = $alm_loop_count; // Get current item in loop 
-   			   	$output .= apply_filters('alm_preload_inc', $repeater, $preloaded_type, $alm_found_posts, $alm_page, $alm_item);
+	   	         $alm_item = $alm_loop_count; // Get current item in loop  
+	   	         if($theme_repeater != 'null' && has_filter('alm_get_theme_repeater')){
+   	   	         $preloaded_type = null;
+      			   	$output .= apply_filters('alm_preload_inc', $repeater, $preloaded_type, $theme_repeater, $alm_found_posts, $alm_page, $alm_item);
+      			   }else{
+      			   	$output .= apply_filters('alm_preload_inc', $repeater, $preloaded_type, $theme_repeater, $alm_found_posts, $alm_page, $alm_item);
+      			   }
                endwhile;
                wp_reset_query();
    			endif;
@@ -407,6 +437,8 @@ if( !class_exists('AjaxLoadMore') ):
          } 
    		
    		$ajaxloadmore .= ' data-repeater="'.$repeater.'"';
+   		if($theme_repeater != 'null') 
+   			$ajaxloadmore .= ' data-theme-repeater="'.$theme_repeater.'"';
    		$ajaxloadmore .= ' data-post-type="'.$post_type.'"';
    		$ajaxloadmore .= ' data-post-format="'.$post_format.'"';
    		$ajaxloadmore .= ' data-category="'.$category.'"';
@@ -442,6 +474,7 @@ if( !class_exists('AjaxLoadMore') ):
          $ajaxloadmore .= ' data-button-class="'.$button_classname.'"';
    		$ajaxloadmore .= ' data-destroy-after="'.$destroy_after.'"';
    		$ajaxloadmore .= ' data-transition="'.$transition.'"';
+   		$ajaxloadmore .= ' data-images-loaded="'.$images_loaded.'"';
    		   		
    		$ajaxloadmore .= '></'.$container_element.'>';
    		
@@ -484,6 +517,8 @@ if( !class_exists('AjaxLoadMore') ):
    		$repeater = (isset($_GET['repeater'])) ? $_GET['repeater'] : 'default';		
    		$type = preg_split('/(?=\d)/', $repeater, 2); // split $repeater value at number to determine type
    		$type = $type[0]; // default | repeater | template_	
+   		
+   		$theme_repeater = (isset($_GET['theme_repeater'])) ? $_GET['theme_repeater'] : 'null';	
    		
    		$postType = (isset($_GET['post_type'])) ? $_GET['post_type'] : 'post';
    		$post_format = (isset($_GET['post_format'])) ? $_GET['post_format'] : '';
@@ -731,7 +766,11 @@ if( !class_exists('AjaxLoadMore') ):
 	   	         $alm_page = $alm_page_count; // Get page number      
 	   	         $alm_item = ($alm_page_count * $numPosts) - $numPosts + $alm_loop_count; // Get current item            
 	   				
-	   				include( alm_get_current_repeater($repeater, $type) );//Include repeater template
+	   				if($theme_repeater != 'null' && has_filter('alm_get_theme_repeater')){
+		   				do_action('alm_get_theme_repeater', $theme_repeater);
+						}else{
+							include( alm_get_current_repeater($repeater, $type) );//Include repeater template
+						}
 	   				
 	   				// If cache is enabled
 	   				// Build cache include and store in $page_cache variable   				

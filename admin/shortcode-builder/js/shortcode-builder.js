@@ -181,11 +181,19 @@ jQuery(document).ready(function($) {
       // - Repeater
       // ---------------------------
       
-      var repeater = $('.repeater select').val(); 
-      if(repeater != '' && repeater != undefined && repeater != 'default') 
-         output += ' repeater="'+repeater+'"';
+      var repeater = $('select#repeater-select').val(),
+      	 theme_repeater = $('select#theme-repeater-select').val();
+      	 
+      if(theme_repeater != 'null' && theme_repeater != '' && theme_repeater != undefined){
+	      output += ' theme_repeater="'+theme_repeater+'"';
+      }else{
+	      if(repeater != '' && repeater != undefined && repeater != 'default'){
+		      output += ' repeater="'+repeater+'"';      
+	      }	      
+      }  
       
       
+         
       // ---------------------------
       // - Post Types
       // ---------------------------
@@ -463,7 +471,7 @@ jQuery(document).ready(function($) {
       
       var pause_load = $('.pause_load input[name=pause]:checked').val();     
       if(pause_load === 't')          
-            output += ' pause="true"';       
+            output += ' pause="true"';          
             
       
       
@@ -494,6 +502,15 @@ jQuery(document).ready(function($) {
       var transition = $('.transition input[name=transition]:checked').val(); 
       if(transition !== 'slide')
          output += ' transition="'+transition+'"';
+      
+      
+      // ---------------------------
+      // - Images loaded      
+      // ---------------------------
+      
+      var images_loaded = $('.images_loaded input[name=images_loaded]:checked').val();     
+      if(images_loaded === 't')          
+            output += ' images_loaded="true"';
 
       
       // ---------------------------
@@ -547,13 +564,24 @@ jQuery(document).ready(function($) {
    $('.seo input[type=radio]#seo-false').prop('checked', true).addClass('changed'); 
    
    
-   $(document).on('change keyup', '.alm_element', function() {      
-      $(this).addClass('changed');      
+   $(document).on('change keyup', '.alm_element', function() {     
+	   var el = $(this); 
+      el.addClass('changed');     
+      
+      // reset repeater templates 
+		if(el.attr('id') === 'repeater-select'){
+			$('select#theme-repeater-select').select2('val','');
+		}	
+		if(el.attr('id') === 'theme-repeater-select'){
+			if($('#theme-repeater-select').val() !== 'null' && $('#theme-repeater-select').val() !== ''){
+				$('select#repeater-select').select2('val','default');
+			}
+		}	
 
       // If post type is not selected, select 'post'.
       if(!$('.post_types input[type=checkbox]:checked').length > 0){
          $('.post_types input[type=checkbox]#chk-post').prop('checked', true);
-      } 
+      }       
       
       // If Tax Term Operator is not selected, select 'IN'.
       if(!$('#tax-operator-select input[type=radio]:checked').length > 0){

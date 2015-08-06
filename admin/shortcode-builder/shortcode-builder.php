@@ -203,6 +203,9 @@
 	echo '<h3 class="heading">'.__('Template', ALM_NAME). '</h3>';
 	echo '<div class="expand-wrap">';
 	echo '<div class="section-title">';
+	if (has_action('alm_theme_repeaters_selection')){
+		echo '<h4>'.__('Repeater Template', ALM_NAME).'</h4>';
+	}
 	echo '<p>'.__('Select which <a href="admin.php?page=ajax-load-more-repeaters" target="_parent">repeater template</a> you would like to use.', ALM_NAME). '</p>';
 	echo '</div>';
 	echo '<div class="wrap"><div class="inner">';
@@ -217,6 +220,12 @@
 	echo '</select>';
 	
 	echo '</div></div>';
+	
+	
+   if (has_action('alm_theme_repeaters_selection')){
+      do_action('alm_theme_repeaters_selection');  
+   }    		               
+                     
 	
 	// Custom Repeaters v2 - /cta/extend.php
 	if (!has_action('alm_get_unlimited_repeaters') && !has_action('alm_get_custom_repeaters')) {
@@ -563,7 +572,6 @@
             </div>
          </div>
       </div>
-      <p class="warning-callout"><em>custom_args</em> syntax has changed and can now accept an array of values.</p>
    </div>   
     
    <!-- Post Parameters -->
@@ -662,7 +670,7 @@
       </div>
    </div>
       
-   <!-- Display posts -->
+   <!-- Posts Per Page -->
    <div class="row input posts_per_page" id="alm-post-page">
       <h3 class="heading"><?php _e('Posts Per Page', ALM_NAME); ?></h3>
       <div class="expand-wrap">
@@ -677,7 +685,7 @@
       </div>
    </div>   
          
-   <!-- Pause Post Loading -->
+   <!-- Pause -->
    <div class="row checkbox pause_load" id="alm-pause">
       <h3 class="heading"><?php _e('Pause', ALM_NAME); ?></h3>
       <div class="expand-wrap">
@@ -699,7 +707,7 @@
             </div>
          </div>
       </div>
-   </div>   
+   </div>    
       
    <!-- Allow Scrolling Load -->
    <div class="row checkbox scroll_load" id="alm-scroll">
@@ -780,6 +788,30 @@
          </div>
       </div>
    </div>  
+         
+   <!-- Images Loaded -->
+   <div class="row checkbox images_loaded" id="alm-images-loaded">
+      <h3 class="heading"><?php _e('Images Loaded', ALM_NAME); ?></h3>
+      <div class="expand-wrap">
+         <div class="section-title">
+   		 	<p><?php _e('Wait for all images to load before displaying ajax loaded content.', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">	               
+               <ul>
+                   <li>
+                    <input class="alm_element" type="radio" name="images_loaded" value="t" id="images_loaded_t">
+                    <label for="images_loaded_t"><?php _e('True', ALM_NAME); ?></label>
+                   </li>
+                   <li>
+                    <input class="alm_element" type="radio" name="images_loaded" value="f" id="images_loaded_f" checked>
+                    <label for="images_loaded_f"><?php _e('False', ALM_NAME); ?></label>
+                   </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
    
    <!-- Destroy After -->
    <div class="row input destroy-after" id="alm-destroy-after">

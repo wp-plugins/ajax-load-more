@@ -42,7 +42,7 @@ function alm_core_update() {
    
 	if(!get_option( 'alm_version')){ // Add 'alm_version' to WP options table if it does not exist
 		add_option( 'alm_version', ALM_VERSION ); 
-	}	
+	}  
 	
 	$alm_installed_ver = get_option( "alm_version" ); // Get value from WP Option tbl
 	if ( $alm_installed_ver != ALM_VERSION ) {
@@ -745,6 +745,12 @@ function alm_admin_init(){
 	if(has_action('alm_seo_settings')){	
 		do_action('alm_seo_settings');   	
 	}
+	
+	
+	// THEME REPEATERS
+	if(has_action('alm_theme_repeaters_settings')){	   
+   	do_action('alm_theme_repeaters_settings');   	
+   }	
 }
 
 

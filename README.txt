@@ -3,8 +3,8 @@ Contributors: dcooney
 Donate link: http://connekthq.com/donate/
 Tags: ajax, query, lazy load, lazy loading, ajax pagination, paging, filter, infinite scroll, infinite, pagination, loop, dynamic, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, archives, date
 Requires at least: 3.6
-Tested up to: 4.2.3
-Stable tag: 2.7.2
+Tested up to: 4.2.4
+Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ A simple solution for lazy loading/infinite scrolling posts and pages with Ajax.
 == Description ==
 
 Ajax Load More is a powerful solution for infinite scrolling WordPress posts and pages using Ajax.
-Build complex WordPress queries using the custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
+Build complex WordPress querreadme updateies using the custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
  
 
 = Features =
@@ -33,6 +33,7 @@ Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for 
 Ajax Load More accepts a number of parameters that are passed to the WordPress query. These parameters are transferred via shortcode - don't worry, creating your shortcode is simple with our intuitive Shortcode Builder.
  
 *   **repeater** - Choose a repeater template (<a href="http://connekthq.com/plugins/ajax-load-more/custom-repeaters/">Add-on available</a>). Default = ‘default’
+*   **theme_repeater** - Select from a list of template files in your current theme directory (<a href="http://connekthq.com/plugins/ajax-load-more/add-ons/theme-repeaters/">Add-on only</a>). Default = null
 *   **post_type** - Comma separated list of post types. Default = ‘post’
 *   **post_format** - Query by post format. Default = null
 *   **category** - A comma separated list of categories to include by slug. Default = null
@@ -65,6 +66,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **max_pages** - Maximum number of pages to load while user is scrolling (activated on when scroll = true). Default = '5' 
 *   **pause** - Do not load posts until user clicks the Load More button (true/false). Default = 'false'
 *   **transition** - Choose a posts reveal transition (slide/fade/none). Default = 'slide' 
+*   **images_loaded** - Wait for all images to load before displaying ajax loaded content (true/false). Default = 'false' 
 *   **destroy_after** - Remove ajax load more functionality after 'n' number of pages have been loaded. Default = null
 *   **button_label** - The label text for Load More button. Default = 'Older Posts'
 *   **css_classes** - Add custom CSS classes to the Ajax Load More container. Default = null
@@ -263,6 +265,12 @@ How to install Ajax Load More.
 7. Shortcode and implementation examples
 
 == Changelog ==
+
+
+= 2.7.3 =
+* NEW - Adding required support and functionality for new Theme Repeaters add-on - https://connekthq.com/plugins/ajax-load-more/add-ons/theme-repeaters/
+* NEW - Added new shortcode parameter 'images_loaded' which will allow you to wait for all images to load before displaying ajax loaded content.
+* UPDATE - General admin UI enhancements to settings screen.
 
 
 = 2.7.2 =

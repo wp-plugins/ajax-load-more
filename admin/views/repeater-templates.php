@@ -33,8 +33,11 @@
       				fclose ($handle);
 	            ?> 
 	            <h3 class="heading"><?php _e('Default Template', ALM_NAME); ?></h3>
-	            <div class="expand-wrap">  
-		            <div class="wrap repeater-wrap" data-name="default" data-type="default">		            
+	            
+	            <div class="expand-wrap">        
+   	            
+		            <div class="wrap repeater-wrap" data-name="default" data-type="default">		
+   		                       
 							<label class="template-title" for="template-default"><?php _e('Enter the HTML and PHP code for the default template', ALM_NAME); ?></label>		            
 			            <textarea rows="10" id="template-default" class="_alm_repeater"><?php echo $contents; ?></textarea>
 			            <script>
@@ -44,18 +47,19 @@
                           lineWrapping: true,
                           indentUnit: 0,
                           matchBrackets: true,
-                          //theme: 'pastel-on-dark',
                           viewportMargin: Infinity,
                           extraKeys: {"Ctrl-Space": "autocomplete"},
                         });
-                      </script>
+                     </script>      		            
 							<input type="submit" value="<?php _e('Save Template', ALM_NAME); ?>" class="button button-primary save-repeater" data-editor-id="template-default">
 		            	<div class="saved-response">&nbsp;</div>  
 							<?php include( ALM_PATH . 'admin/includes/components/repeater-options.php'); ?>        	
 		            </div>
-	            </div>	
+		               		               	            
+	            </div>	            	
 			   </div>
-			   <!-- End Default -->			   
+			   <!-- End Default -->		
+			   	   
             <?php               
 				   // Custom Repeaters v2 - /cta/extend.php
             	if (!has_action('alm_get_unlimited_repeaters') && !has_action('alm_get_custom_repeaters')){ // If Custom Repeaters is NOT installed
@@ -63,13 +67,12 @@
                   include( ALM_PATH . 'admin/includes/cta/extend.php');
                   echo '</div>';                  
 				   }
-            ?>
-			   <!-- End Default -->			   
-			   <?php 
+				   
+				    
 			   	if (has_action('alm_custom_repeaters')) // List custom repeaters v1
 						do_action('alm_custom_repeaters'); 
-				?>	
-				<?php 
+						
+						
 			   	if (has_action('alm_unlimited_repeaters')) // List custom repeaters v2
 						do_action('alm_unlimited_repeaters'); 
 				?>

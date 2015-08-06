@@ -16,6 +16,7 @@
    		      // alm_preload_installed
    		      // alm_paging_installed
    		      // alm_seo_installed   
+   		      // alm_theme_repeaters_installed
    		   ?>
    		   
    		   <?php 
@@ -33,7 +34,6 @@
 		         <div class="license-title"> 
    		         <div class="status <?php if($alm_cache_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>        
          			<h2><?php _e('Cache', ALM_NAME); ?></h2> 
-         			<a class="cnkt-button installed" href="http://connekthq.com/plugins/ajax-load-more/cache/" target="_blank"><i class="fa fa-check-square"></i> Installed</a>	
 		         </div>	
                <div class="license-wrap">
    			      <form method="post" action="options.php">               			
@@ -87,8 +87,7 @@
 	         <div class="license" id="license-paging">
 		         <div class="license-title">       
    		         <div class="status <?php if($alm_unlimited_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>   
-         			<h2><?php _e('Custom Repeaters v2', ALM_NAME); ?></h2> 
-         			<a class="cnkt-button installed" href="http://connekthq.com/plugins/ajax-load-more/custom-repeaters/" target="_blank"><i class="fa fa-check-square"></i> Installed</a>	
+         			<h2><?php _e('Custom Repeaters', ALM_NAME); ?></h2> 
 		         </div>	
                <div class="license-wrap">
    			      <form method="post" action="options.php">               			
@@ -129,11 +128,11 @@
             </div> 	
             <?php 
                }
-               // End PAGING 
+               // End Custom Repeaters v2 
             ?>
-		      
-		      
-		      <?php 
+            
+            
+            <?php 
    		      if (has_action('alm_paging_installed')){
    		      // PAGING 
 				   $alm_paging_license = get_option( 'alm_paging_license_key' );
@@ -143,7 +142,6 @@
 		         <div class="license-title">       
    		         <div class="status <?php if($alm_paging_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>   
          			<h2><?php _e('Paging', ALM_NAME); ?></h2> 
-         			<a class="cnkt-button installed" href="http://connekthq.com/plugins/ajax-load-more/paging/" target="_blank"><i class="fa fa-check-square"></i> Installed</a>	
 		         </div>	
                <div class="license-wrap">
    			      <form method="post" action="options.php">               			
@@ -197,7 +195,6 @@
                <div class="license-title">   
    		         <div class="status <?php if($alm_preloaded_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>       
             		<h2><?php _e('Preloaded', ALM_NAME); ?></h2> 
-            		<a class="cnkt-button installed" href="http://connekthq.com/plugins/ajax-load-more/preloaded/" target="_blank"><i class="fa fa-check-square"></i> Installed</a>	
                </div>	
                <div class="license-wrap">
                   <form method="post" action="options.php">               			
@@ -252,7 +249,6 @@
 		         <div class="license-title"> 
    		         <div class="status <?php if($alm_seo_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>        
          			<h2><?php _e('Search Engine Optimization', ALM_NAME); ?></h2> 
-         			<a class="cnkt-button installed" href="http://connekthq.com/plugins/ajax-load-more/seo/" target="_blank"><i class="fa fa-check-square"></i> Installed</a>	
 		         </div>	
                <div class="license-wrap">
    			      <form method="post" action="options.php">               			
@@ -294,6 +290,60 @@
             <?php 
                }
                // End SEO 
+            ?>
+            
+            
+            <?php 
+   		      if (has_action('alm_theme_repeaters_installed')){
+   		      // Theme Templates 
+				   $alm_theme_repeaters_license = get_option( 'alm_theme_repeaters_license_key' );
+               $alm_theme_repeaters_status = get_option( 'alm_theme_repeaters_license_status' );
+		      ?>
+	         <div class="license" id="license-theme_repeaters">
+		         <div class="license-title">       
+   		         <div class="status <?php if($alm_theme_repeaters_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>   
+         			<h2><?php _e('Theme Repeaters', ALM_NAME); ?></h2> 
+		         </div>	
+               <div class="license-wrap">
+   			      <form method="post" action="options.php">               			
+         			
+         			<?php settings_fields('alm_theme_repeaters_license'); ?>   
+         			<label class="description" for="alm_theme_repeaters_license_key"><?php _e('Enter License Key', ALM_NAME); ?></label>
+         			<div class="license-key-field">
+         			   <input id="alm_theme_repeaters_license_key" name="alm_theme_repeaters_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $alm_theme_repeaters_license ); ?>" placeholder="<?php _e('Enter License Key', ALM_NAME); ?>" />
+         			   <?php if( $alm_theme_repeaters_status !== false && $alm_theme_repeaters_status == 'valid' ) { ?>
+            		   <span class="status active">
+            		      <?php _e('Active', ALM_NAME); ?>
+            		   </span>
+            		   <?php } else { ?>
+            		   <span class="status inactive">
+            		      <?php _e('In-active', ALM_NAME); ?>
+            		   </span>
+            		   <?php } ?>
+         			</div>
+         			
+         			<?php wp_nonce_field( 'alm_theme_repeaters_license_nonce', 'alm_theme_repeaters_license_nonce' ); ?>
+         			<?php if($alm_theme_repeaters_status === '' || $alm_theme_repeaters_status !== 'valid') {
+            			submit_button(__('Save License Key', ALM_NAME), 'primary', '', false);
+         			} ?>
+         			
+         			<?php if( false !== $alm_theme_repeaters_license ) { ?>	
+         			   		
+            			<?php if( $alm_theme_repeaters_status !== false && $alm_theme_repeaters_status == 'valid' ) { ?>
+            				<input type="submit" class="button-secondary" name="alm_theme_repeaters_license_deactivate" value="<?php _e('De-activate License', ALM_NAME); ?>"/>            				
+            			<?php } else { ?>
+            			   <?php if(!empty($alm_theme_repeaters_license)){ ?>
+            				<input type="submit" class="button-secondary" name="alm_theme_repeaters_license_activate" value="<?php _e('Activate License', ALM_NAME); ?>"/>
+            				<?php } ?>
+            			<?php } ?>                  			
+         			<?php } ?>
+         			
+               	</form>
+			      </div> 
+            </div> 	
+            <?php 
+               }
+               // End Theme Repeaters 
             ?>
             
             
