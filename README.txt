@@ -131,6 +131,10 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 > #### Search Engine Optimization
 > The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/seo/)
+> 
+> #### Theme Repeaters
+> The **[Theme Repeaters](http://connekthq.com/plugins/ajax-load-more/add-ons/theme-repeaters/)** add-on will allow you load, edit and maintain templates from your current theme directory.<br />
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/add-ons/theme-repeaters/)
 
 ***
 
