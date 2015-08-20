@@ -3,7 +3,7 @@ Contributors: dcooney
 Donate link: http://connekthq.com/donate/
 Tags: ajax, query, lazy load, lazy loading, ajax pagination, paging, filter, infinite scroll, infinite, pagination, loop, dynamic, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, archives, date
 Requires at least: 3.6
-Tested up to: 4.2.4
+Tested up to: 4.3
 Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
