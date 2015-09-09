@@ -1,19 +1,19 @@
 === Ajax Load More ===
 Contributors: dcooney
 Donate link: http://connekthq.com/donate/
-Tags: ajax, query, lazy load, lazy loading, ajax pagination, paging, filter, infinite scroll, infinite, pagination, loop, dynamic, shortcode builder, shortcode, search, tags, category, post types, taxonomy, meta_query, archives, date
+Tags: infinite scroll, scroll, infinite, lazy load, lazy loading, pagination, ajax pagination, ajax, loop, query, dynamic, shortcode builder, wp_query, search, tags, category, post types, taxonomy, meta_query, archives, date
 Requires at least: 3.6
 Tested up to: 4.3
 Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple solution for lazy loading/infinite scrolling posts and pages with Ajax.
+A powerful solution to add infinite scroll / lazy load functionality to any website.
 
 == Description ==
 
 Ajax Load More is a powerful solution for infinite scrolling WordPress posts and pages using Ajax.
-Build complex WordPress querreadme updateies using the custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
+Build complex WordPress queries using the Ajax Load More custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
  
 
 = Features =
@@ -24,7 +24,7 @@ Build complex WordPress querreadme updateies using the custom shortcode builder 
 * **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
 * **Multisite Compatibility** - As of Ajax Load More 2.7.2 you can now manage repeater templates across all sites in your network.
 
-Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
+**Check out the [demo site](http://connekthq.com/plugins/ajax-load-more/) for more information!**
 
 ***
 
