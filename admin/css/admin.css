@@ -272,7 +272,7 @@
    width: calc(100% + 40px);
    top: -20px;
    left: -20px;
-   border-bottom: 1px solid #efefef;
+   border-bottom: 1px solid #ebebeb;
    background: #f7f7f7;
    border-radius: 3px 3px 0 0;
 }
@@ -445,12 +445,21 @@
    border: 1px solid #ccc;
    width: 60%;  
 }
+.ajax-load-more input[type=text].full{
+   width: 100%;
+}
 
 .ajax-load-more .wrap-30{
    width: 32.333%;
    padding-right: 3%;
    display: inline-block;
    vertical-align: top;
+}
+.ajax-load-more .wrap-30.wrap-50{
+   width: 48.6666%;
+}
+.ajax-load-more .wrap-30.wrap-50.padding-top{
+   padding-top: 15px;
 }
 .ajax-load-more .wrap-30 input[type=text].sm,
 .ajax-load-more .wrap-30 .select2-container{
@@ -879,6 +888,35 @@
 	   color: #999;
 	   padding-top: 4px;
    }
+   
+   .form-table .template-tags{
+	   overflow: hidden;
+	   border: 1px solid #eeeddf;
+	   padding: 6px 10px;
+	   background: #faf9ee;
+	   margin: 10px 0 0;
+	   border-radius: 3px;
+   }
+   	.form-table .template-tags h4,
+   	.form-table .template-tags li{
+	   	margin: 0 0 8px;	
+			padding:0;
+         font-size: 13px;
+	   }
+   	.form-table .template-tags li{	
+         margin: 2px 0;
+      }
+   	.form-table .template-tags ul{
+	   	margin: 0;	
+	   	padding: 0;
+	   }
+   	.form-table .template-tags pre{
+	   	display: inline-block;
+	   	min-width: 120px;	
+	   	padding: 0;
+	   	margin: 0;
+	   	color: #888;
+	   }
 
 .admin.ajax-load-more .form-table textarea{
    clear: both;
@@ -945,6 +983,9 @@
 .admin.ajax-load-more.settings .form-table td,
 .admin.ajax-load-more.settings .form-table th{
    padding: 20px 0 16px;
+}
+.admin.ajax-load-more.settings .form-table th{
+	padding-left: 17px;	
 }
 
 .admin.ajax-load-more.settings .form-table p{
@@ -2352,6 +2393,34 @@ p.cache-stats{
 */    
 
 #alm-mailing-list{}   
+	.ajax-load-more .cnkt-sidebar .cta.social .follow-btn{
+		display: inline-block;
+		background-color: #fff;
+		color: #333;
+		font-size: 24px;
+		padding: 0;
+		width: 44px;
+		height: 44px;
+		line-height: 44px;
+		text-align: center;
+		vertical-align: top;
+		border-radius: 4px;
+		margin: 5px 5px 20px 0;
+		opacity: 0.9;
+	}
+		
+		.ajax-load-more .cnkt-sidebar .cta.social .follow-btn.facebook{
+			background-color: #3b5998;
+			color: #fff;	
+		}
+		.ajax-load-more .cnkt-sidebar .cta.social .follow-btn.twitter{
+			background-color: #00aced;
+			color: #fff;	
+		}
+		.ajax-load-more .cnkt-sidebar .cta.social .follow-btn:hover{
+			box-shadow: 0 0 0 4px #efefef;
+			opacity: 1;
+		}
 
    #alm-mailing-list .form-wrap{
       background-color: #f7f7f7;
@@ -2544,6 +2613,10 @@ p.cache-stats{
      margin: 10px 0 20px;
      width: 100%;
    }
+   
+	.admin.ajax-load-more.settings .form-table th{
+		padding-left: 0;	
+	}
    #alm-add-ons .group{
       width: 48%;
    }

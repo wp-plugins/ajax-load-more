@@ -16,7 +16,8 @@
    <h3 class="heading"><?php _e('Cache', ALM_NAME); ?></h3>
    <div class="expand-wrap">
       <div class="section-title">
-		 	<p><?php _e('Turn on content caching for this Ajax Load More query.', ALM_NAME); ?></p>
+	      <h4>Enable Caching</h4>
+		 	<p><?php _e('Turn on content caching.', ALM_NAME); ?></p>
 		 </div>
       <div class="wrap">
          <div class="inner">	               
@@ -156,7 +157,7 @@
          <div class="clear"></div>
          <hr>
          <div class="section-title">
-            <h4>Preload Amount</h4>
+            <h4><?php _e('Preload Amount', ALM_NAME); ?></h4>
    		 	<p><?php _e('Enter the number of posts to preload.', ALM_NAME); ?></p>   		 	
    		 </div>
          <div class="wrap">
@@ -168,6 +169,50 @@
    </div>
 </div> 
 <?php } ?>
+
+
+<?php if(has_action('alm_prev_post_installed')){ ?>
+<!-- PREV POST -->
+<div class="row input previous-post add-on" id="alm-previous-post">
+   <h3 class="heading"><?php _e('Previous Post', ALM_NAME); ?></h3>
+   <div class="expand-wrap">
+      <div class="section-title">
+		 	<p><?php _e('Enable the infinite scrolling of single posts.', ALM_NAME); ?></p>
+		 </div>
+      <div class="wrap">
+         <div class="inner">	               
+            <ul>
+                <li>
+                 <input class="alm_element" type="radio" name="prev-post" value="true" id="prev-post-true" >
+                 <label for="prev-post-true"><?php _e('True', ALM_NAME); ?></label>
+                </li>
+                <li>
+                 <input class="alm_element" type="radio" name="prev-post" value="false" id="prev-post-false"  checked="checked">
+                 <label for="prev-post-false"><?php _e('False', ALM_NAME); ?></label>
+                </li>
+            </ul>
+         </div>
+      </div>
+      <div class="clear"></div>
+      <div class="prev_post_id" style="display: none;">        
+         <div class="clear"></div>
+         <hr>
+         <div class="section-title">
+            <h4><?php _e('Post ID', ALM_NAME); ?></h4>
+   		 	<p><?php _e('The current post ID to pass to Ajax Load More.', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">            
+               <input type="text" value="get_the_ID()" id="prev_post_id"  class="alm_element disabled-input" disabled="disabled">  
+            </div>
+         </div> 
+         <p class="warning-callout">
+            <?php _e('You must add the Previous Post shortcode directly to your single template file using the <a href="https://developer.wordpress.org/reference/functions/do_shortcode/" target="_blank">do_shortcode</a> method. &raquo; <a href="https://connekthq.com/plugins/ajax-load-more/add-ons/previous-post/" target="_blank">View documentation</a>', ALM_NAME); ?>
+         </p>
+      </div>
+   </div>
+</div> 
+<?php } ?>   
 
 
 <?php if(has_action('alm_seo_installed')){ ?>
@@ -579,7 +624,7 @@
       <h3 class="heading"><?php _e('Post Parameters', ALM_NAME); ?></h3>
       <div class="expand-wrap">
          <div class="section-title">
-            <h4>Include</h4>
+            <h4><?php _e('Include', ALM_NAME); ?></h4>
    		 	<p><?php _e('A comma separated list of post ID\'s to query.', ALM_NAME); ?></p>
    		 </div>
          <div class="wrap">
@@ -590,7 +635,7 @@
          <div class="clear"></div>
          <hr/>
          <div class="section-title">
-            <h4>Exclude</h4>
+            <h4><?php _e('Exclude', ALM_NAME); ?></h4>
    		 	<p><?php _e('A comma separated list of post ID\'s to exclude from query.', ALM_NAME); ?><br/>&raquo; <a href="admin.php?page=ajax-load-more-examples#example-exclude">view example</a></p>
    		 </div>
          <div class="wrap">
@@ -611,7 +656,7 @@
          <div class="wrap">
             <div class="inner">               
                <select class="alm_element" name="post-status" id="post-status">
-                   <option value="publish" selected="selected">Published</option>
+                   <option value="publish" selected="selected"><?php _e('Published', ALM_NAME); ?></option>
                    <option value="future">Future</option>
                    <option value="draft">Draft</option>
                    <option value="pending">Pending</option>
@@ -632,14 +677,14 @@
    		 </div>
          <div class="wrap">
             <div class="inner half">
-               <label class="full">Order:</label>
+               <label class="full"><?php _e('Order', ALM_NAME); ?>:</label>
                <select class="alm_element" name="post-order" id="post-order">
                    <option value="DESC" selected="selected">DESC (default)</option>
                    <option value="ASC">ASC</option>
                </select>
             </div>
             <div class="inner half">
-               <label class="full">Order By:</label>
+               <label class="full"><?php _e('Order By', ALM_NAME); ?>:</label>
                <select class="alm_element" name="post-orderby" id="post-orderby">
                    <option value="date" selected="selected">Date (default)</option>
                    <option value="title">Title</option>
@@ -714,7 +759,7 @@
       <h3 class="heading"><?php _e('Scrolling', ALM_NAME); ?></h3>
       <div class="expand-wrap">
          <div class="section-title">
-            <h4>Enable Scrolling</h4>
+            <h4><?php _e('Enable Scrolling', ALM_NAME); ?></h4>
    		 	<p><?php _e('Load more posts as the user scrolls the page.', ALM_NAME); ?></p>
    		 </div>
          <div class="wrap">
@@ -736,7 +781,7 @@
             <div class="clear"></div>
             <hr>
             <div class="section-title">
-               <h4>Scroll Distance</h4>
+               <h4><?php _e('Scroll Distance', ALM_NAME); ?></h4>
       		 	<p><?php _e('The distance from the bottom of the screen to trigger the loading of posts while scrolling. (Default = 150)', ALM_NAME); ?></p>
       		 </div>
             <div class="wrap">
@@ -749,7 +794,7 @@
             <div class="clear"></div>
             <hr>
             <div class="section-title">
-               <h4>Maximum Pages</h4>
+               <h4><?php _e('Maximum Pages', ALM_NAME); ?></h4>
       		 	<p><?php _e('Maximum number of pages to load while scrolling. (0 = unlimited)', ALM_NAME); ?></p>
       		 </div>
             <div class="wrap">
@@ -757,7 +802,27 @@
                   <input type="number" class="alm_element numbers-only" name="max-select" id="max-select" step="1" min="0" value="5">  
                </div>
             </div> 
-         </div>       
+         </div>
+         <div class="pause_override">        
+            <div class="clear"></div>
+            <hr>
+            <div class="section-title">
+               <h4><?php _e('Pause Override', ALM_NAME); ?></h4>
+      		 	<p><?php _e('Allow scrolling to override the Pause parameter and trigger the loading of posts on scroll.', ALM_NAME); ?></p>
+      		 </div>
+            <div class="wrap">
+               <ul>
+                  <li>
+                     <input class="alm_element" type="radio" name="pause_override" value="t" id="pause_override_t">
+                     <label for="pause_override_t"><?php _e('True', ALM_NAME); ?></label>
+                  </li>
+                  <li>
+                     <input class="alm_element" type="radio" name="pause_override" value="f" id="pause_override_f" checked="checked">
+                     <label for="pause_override_f"><?php _e('False', ALM_NAME); ?></label>
+                  </li>
+               </ul>
+            </div> 
+         </div>         
       </div>
    </div>    
    
@@ -772,7 +837,7 @@
             <div class="inner">	               
                <ul>
                    <li>
-                    <input class="alm_element" type="radio" name="transition" value="slide" id="transition-slide" checked>
+                    <input class="alm_element" type="radio" name="transition" value="slide" id="transition-slide" checked="checked">
                     <label for="transition-slide"><?php _e('Slide', ALM_NAME); ?></label>
                    </li>
                    <li>
@@ -804,7 +869,7 @@
                     <label for="images_loaded_t"><?php _e('True', ALM_NAME); ?></label>
                    </li>
                    <li>
-                    <input class="alm_element" type="radio" name="images_loaded" value="f" id="images_loaded_f" checked>
+                    <input class="alm_element" type="radio" name="images_loaded" value="f" id="images_loaded_f" checked="checked">
                     <label for="images_loaded_f"><?php _e('False', ALM_NAME); ?></label>
                    </li>
                </ul>
@@ -845,9 +910,31 @@
    
    <!-- Container Classes -->
    <div class="row input alm-classes" id="alm-classes">
-      <h3 class="heading"><?php _e('Container Classes', ALM_NAME); ?></h3>
+      <h3 class="heading"><?php _e('Container Options', ALM_NAME); ?></h3>
       <div class="expand-wrap">
+	      
          <div class="section-title">
+	         <h4><?php _e('Container Type', ALM_NAME); ?></h4>
+   		 	<p><?php _e('Override the global Container Type that was set on <a href="admin.php?page=ajax-load-more">ALM Settings page</a>.', ALM_NAME); ?></p>
+   		 </div>
+         <div class="wrap">
+            <div class="inner">
+	            <ul class="container_type">		             
+                   <li>
+                    <input type="radio" id="type-ul" value="ul" name="alm_container_type" class="alm_element">
+                    <label for="type-ul">&lt;ul&gt; &lt;/ul&gt;</label>
+                   </li>
+                   <li>
+                    <input type="radio" id="type-div" value="div" name="alm_container_type" class="alm_element">
+                    <label for="type-div">&lt;div&gt; &lt;/div&gt;</label>
+                   </li>
+               </ul>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <hr/>
+         <div class="section-title">
+	         <h4><?php _e('Container Classes', ALM_NAME); ?></h4>
    		 	<p><?php _e('Add custom CSS classes to the Ajax Load More container. <br/><br/> e.g. portfolio-listing large-12 etc', ALM_NAME); ?></p>
    		 </div>
          <div class="wrap">
@@ -855,6 +942,7 @@
                <input class="alm_element" name="container-classes" type="text" id="container-classes" placeholder="portfolio-listing large-12">
             </div>
          </div>
+         
       </div>
    </div>
    

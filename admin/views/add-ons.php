@@ -14,7 +14,7 @@
                   	
                <a href="<?php echo $cache_url; ?>">
    			      <div class="expand-wrap">
-                     <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/cache-add-ons.jpg">                         
+                     <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/cache-add-on.jpg">                         
                      <h2 class="addon-title"><?php _e('Cache', ALM_NAME); ?></h2>
                      <p class="addon-intro"><?php _e('Improve performance with the Ajax Load More caching engine.', ALM_NAME); ?></p>
                      <p><?php _e('The Cache add-on creates static HTML files of Ajax Load More requests then delivers those static files to your visitors.', ALM_NAME); ?></p>    
@@ -33,7 +33,7 @@
 		   <!-- End Cache -->
 		   
 		   
-		   <!-- Custom Repeaters v2 -->
+		   <!-- Custom Repeaters -->
 		   <div class="group">
 			   <div class="row no-brd">
    			   <?php $cr_url = 'https://connekthq.com/plugins/ajax-load-more/add-ons/custom-repeaters/?utm_source=WP%20Admin&utm_medium=ALM%20Add-ons&utm_campaign=Custom%20Repeaters'; ?>
@@ -56,7 +56,7 @@
 			   </div>		   
             		   
 		   </div>
-		   <!-- End Custom Repeaters v2 -->		   
+		   <!-- End Custom Repeaters -->		   
 		   
 		   
 		   <!-- Paging -->
@@ -69,8 +69,8 @@
 			      <div class="expand-wrap">
                   <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/paging-add-ons.jpg">          
                   <h2 class="addon-title"><?php _e('Paging', ALM_NAME); ?></h2>
-                  <p class="addon-intro"><?php _e('Extend Ajax Load More with a numbered paging navigation.', ALM_NAME); ?></p>
-                  <p><?php _e('The Paging add-on will transform Ajax Load More infinite scroll functionality into a robust ajax powered navigation system.', ALM_NAME); ?></p>   
+                  <p class="addon-intro"><?php _e('Extend Ajax Load More with a numbered navigation.', ALM_NAME); ?></p>
+                  <p><?php _e('The Paging add-on will transform the default infinite scroll functionality into a robust ajax powered navigation system.', ALM_NAME); ?></p>   
                   <?php
                      if (has_action('alm_paging_installed')){
                         echo '<span class="cnkt-button installed"><i class="fa fa-check-square"></i> Installed</span> ';
@@ -83,7 +83,7 @@
 			   </div>			   
             		   
 		   </div>
-		   <!-- End Custom Repeaters v2 --> 
+		   <!-- End Paging --> 
 		   
 		   
 		   <!-- Preloaded -->
@@ -110,6 +110,32 @@
 			   </div>				   
 		   </div>
 		   <!-- End Preloaded --> 
+		   
+		   
+		   <!-- Previous Post -->
+		   <div class="group">
+			   <div class="row no-brd">   			   
+   			   <?php
+      			   $prev_url = 'https://connekthq.com/plugins/ajax-load-more/add-ons/previous-post/?utm_source=WP%20Admin&utm_medium=ALM%20Add-ons&utm_campaign=Previous Post';
+      			?>
+   			   <a href="<?php echo $prev_url; ?>">
+   			      <div class="expand-wrap">
+                     <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/prev-post-add-on.jpg">  
+                     <h2 class="addon-title"><?php _e('Previous Post', ALM_NAME); ?></h2>
+                     <p class="addon-intro"><?php _e('An extension to enable infinite scrolling of single posts.', ALM_NAME); ?></p>
+                     <p><?php _e('The Previous Post add-on will load single posts as you scroll and update the browser URL to the current post.', ALM_NAME); ?></p>        	   
+                     <?php
+                        if (has_action('alm_prev_post_installed')){
+                           echo '<span class="cnkt-button installed"><i class="fa fa-check-square"></i> Installed</span> ';
+                        }else{
+                           echo '<span class="cnkt-button"><i class="fa fa-download"></i> Purchase &amp; Install</span>';
+                        }
+                     ?>            
+                  </div>
+   			   </a>
+			   </div>				   
+		   </div>
+		   <!-- End Previous Post --> 
 		   
 		   
 		   <!-- SEO -->
@@ -148,7 +174,7 @@
 			         <div class="expand-wrap">
                      <img src="<?php echo ALM_ADMIN_URL; ?>img/add-ons/theme-repeater-add-on.jpg"> 
                      <h2 class="addon-title"><?php _e('Theme Repeaters', ALM_NAME); ?></h2>
-                     <p class="addon-intro"><?php _e('Manage repeater templates within your current theme directory', ALM_NAME); ?></p>
+                     <p class="addon-intro"><?php _e('Manage repeater templates within your current theme directory.', ALM_NAME); ?></p>
                      <p><?php _e('The Theme Repeater add-on will allow you load, edit and maintain templates from your current theme directory.</p>', ALM_NAME); ?></p>    
                      <?php
                      	

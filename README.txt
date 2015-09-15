@@ -1,20 +1,20 @@
 === Ajax Load More ===
 Contributors: dcooney
 Donate link: http://connekthq.com/donate/
-Tags: infinite scroll, scroll, infinite, lazy load, lazy loading, pagination, ajax pagination, ajax, loop, query, dynamic, shortcode builder, wp_query, search, tags, category, post types, taxonomy, meta_query, archives, date
+Tags: infinite scroll, scroll, infinite, lazy load, lazy loading, pagination, ajax pagination, ajax, ajax posts, ajax load posts, loop, query, dynamic, shortcode builder, wp_query, search, tags, category, post types, taxonomy, meta_query, archives, date, infinite scrolling
 Requires at least: 3.6
 Tested up to: 4.3
-Stable tag: 2.7.3
+Stable tag: 2.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A powerful solution to add infinite scroll / lazy load functionality to any website.
+A powerful solution to add infinite scroll functionality to your website
 
 == Description ==
 
-Ajax Load More is a powerful solution for infinite scrolling WordPress posts and pages using Ajax.
+Ajax Load More is a robust and intuitive solution for infinite scrolling WordPress posts and pages with Ajax.
 Build complex WordPress queries using the Ajax Load More custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
- 
+
 
 = Features =
 * **Shortcode Builder** - Easily create your own Ajax Load More shortcode by adjusting the various WordPress query parameters in our easy-to-use shortcode builder.(see Shortcode Parameters).
@@ -24,7 +24,7 @@ Build complex WordPress queries using the Ajax Load More custom shortcode builde
 * **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
 * **Multisite Compatibility** - As of Ajax Load More 2.7.2 you can now manage repeater templates across all sites in your network.
 
-**Check out the [demo site](http://connekthq.com/plugins/ajax-load-more/) for more information!**
+Check out the **[demo site](http://connekthq.com/plugins/ajax-load-more/)** for more information!
 
 ***
 
@@ -49,7 +49,8 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **taxonomy_operator** - Operator to compare Taxonomy Terms against (IN/NOT IN). Default = ‘IN’
 *   **meta_key** - Custom field key(name). Default = null
 *   **meta_value** - Custom field value. Default = null
-*   **meta_compare** - Operator to compare meta_key and meta_value against (IN/NOT IN/=/!=/>/>=/</<= etc.). Default = ‘IN’
+*   **meta_compare** - Operator to compare meta_key and meta_value against. Default = ‘IN’
+*   **meta_type** - Custom field type. Default = ‘CHAR’
 *   **meta_relation** - Used with multiple custom field entries (AND/OR). Default = ‘AND’
 *   **author** - Query by author id. Default = null
 *   **post__in** - Comma separated list of post ID’s to include in query. Default = null 
@@ -64,11 +65,13 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 *   **scroll** - Load more posts as the user scrolls the page (true/false). Default = ‘true’
 *   **scroll_distance** - The distance from the bottom of the screen to trigger the loading of posts while scrolling. Default = '150'
 *   **max_pages** - Maximum number of pages to load while user is scrolling (activated on when scroll = true). Default = '5' 
+*   **pause_override** - Allow scrolling to override the Pause parameter and trigger the loading of posts on scroll. Default = null 
 *   **pause** - Do not load posts until user clicks the Load More button (true/false). Default = 'false'
 *   **transition** - Choose a posts reveal transition (slide/fade/none). Default = 'slide' 
 *   **images_loaded** - Wait for all images to load before displaying ajax loaded content (true/false). Default = 'false' 
 *   **destroy_after** - Remove ajax load more functionality after 'n' number of pages have been loaded. Default = null
 *   **button_label** - The label text for Load More button. Default = 'Older Posts'
+*   **container_type** - Override the global Container Type that was set on ALM Settings page. Default = null
 *   **css_classes** - Add custom CSS classes to the Ajax Load More container. Default = null
 *   **cache** - Turn on content caching for the specific Ajax Load More query. <a href="http://connekthq.com/plugins/ajax-load-more/cache/">add-on only</a> - (true/false). Default = ‘false’
 *   **cache_id** - A unique 10 digit ID for the cached query. <a href="http://connekthq.com/plugins/ajax-load-more/cache/">add-on only</a> - Default = A random 10 digit integer
@@ -127,6 +130,10 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 > #### Preloaded
 > The **[Preloaded](http://connekthq.com/plugins/ajax-load-more/preloaded/)** add-on will allow you to quickly and easily preload an initial set of posts before completing any Ajax requests to the server.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/preloaded/)
+>
+> #### Previous Post
+> The **[Preloaded](http://connekthq.com/plugins/ajax-load-more/previous-post/)** add-on will allow you to navigate single posts with Ajax Load More.<br />
+> [Get More Information](http://connekthq.com/plugins/ajax-load-more/previous-post/)
 > 
 > #### Search Engine Optimization
 > The **[SEO](http://connekthq.com/plugins/ajax-load-more/seo/)** add-on will optimize your ajax loaded content for search engines and site visitors by generating standard WordPress paging URLs with each Ajax Load More query.<br />
@@ -269,6 +276,17 @@ How to install Ajax Load More.
 7. Shortcode and implementation examples
 
 == Changelog ==
+
+
+= 2.8.0 =
+* NEW - Adding required support and functionality for new Previous Post add-on - https://connekthq.com/plugins/ajax-load-more/add-ons/previous-post/
+* NEW - Adding a set of filters to inject content into ALM containers.
+* NEW - Adding 'container_type' shortcode parameter that allows for override of the global Container Type.
+* NEW - Adding 'pause_override' shortcode parameter that will allow scrolling to override the Pause parameter and trigger the loading of posts on scroll.
+* NEW - Adding 'meta_type' shortcode parameter that will allow for specification of a custom field type..
+* UPDATE - Added unique id(classname/data-id) to each instance of ajax load more - this will allow for targeting of specific instances from outside elements.
+* FIX - Fixed JS issue with Paging add-on + SEO add-on URLs.
+* UPDATE - Various admin fixes and updates.
 
 
 = 2.7.3 =

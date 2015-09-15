@@ -2,7 +2,7 @@
 	<div class="wrap">
 		<div class="header-wrap">
          <h2><?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span></h2>
-         <p><?php _e('A WordPress plugin for lazy loading posts with Ajax', ALM_NAME); ?></p>
+         <p><?php _e('A powerful solution to add infinite scroll functionality to any website.', ALM_NAME); ?></p>
       </div>         
 		<?php if( isset($_GET['settings-updated']) ) { ?>
           <div id="message" class="updated inline">
@@ -12,7 +12,7 @@
 	   <div class="cnkt-main">
 	   	<div class="group">
    	   	<?php
-      	   	if(has_action('alm_cache_settings') || has_action('alm_paging_settings') || has_action('alm_seo_settings') || has_action('alm_theme_repeaters_settings')) {
+      	   	if(has_action('alm_cache_settings') || has_action('alm_next_post_settings')  || has_action('alm_paging_settings') || has_action('alm_seo_settings') || has_action('alm_theme_repeaters_settings')) {
        	   ?>
    	   	<ul class="alm-settings-nav">
       	   	<li><a href="javascript:void(0);"><?php _e('Global Settings', ALM_NAME); ?></a></li>
@@ -22,6 +22,8 @@
                      echo '<li><a href="javascript:void(0);">'.__('Cache', ALM_NAME).'</a></li>';
          	   	if(has_action('alm_paging_settings')) 
                      echo '<li><a href="javascript:void(0);">'.__('Paging', ALM_NAME).'</a></li>';
+         	   	if(has_action('alm_prev_post_settings')) 
+                     echo '<li><a href="javascript:void(0);">'.__('Previous Post', ALM_NAME).'</a></li>';
                   if(has_action('alm_seo_settings')) 
                      echo '<li><a href="javascript:void(0);">'.__('SEO', ALM_NAME).'</a></li>';
                   if(has_action('alm_theme_repeaters_settings')) 
@@ -63,10 +65,10 @@
 	   	</div>
 	   </div>
 	   <div class="cnkt-sidebar">
-			<?php include_once( ALM_PATH . 'admin/includes/cta/mailinglist.php');	?>
+			<?php include_once( ALM_PATH . 'admin/includes/cta/mailinglist.php'); ?>
 			<?php include_once( ALM_PATH . 'admin/includes/cta/resources.php');	?>
 			<?php include_once( ALM_PATH . 'admin/includes/cta/add-ons.php');	?>
-			<?php include_once( ALM_PATH . 'admin/includes/cta/about.php');	?>
+			<?php include_once( ALM_PATH . 'admin/includes/cta/about.php'); ?>
 	   </div>		   	
 	</div>
 </div>

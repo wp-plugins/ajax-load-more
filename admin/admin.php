@@ -735,6 +735,12 @@ function alm_admin_init(){
    }
    
 	
+	// PREVIOUS POST
+	if(has_action('alm_prev_post_settings')){	   
+   	do_action('alm_prev_post_settings');   	
+   }
+   
+	
 	// PRELOADED
 	if(has_action('alm_preloaded_settings')){	   
    	do_action('alm_preloaded_settings');   	
@@ -876,23 +882,6 @@ function alm_disable_dynamic_callback(){
 
 
 /*
-*  alm_class_callback
-*  Add classes to the Ajax Load More wrapper
-*
-*  @since 2.0.0
-*/
-
-function alm_class_callback(){
-	$options = get_option( 'alm_settings' );
-		
-	$html = '<label for="alm_settings[_alm_classname]">'.__('Add classes to Ajax Load More container - classes are applied globally and will appear with every instance of Ajax Load More.<span style="display:block">You can also add classes to the ALM container when building a shortcode.</span>', ALM_NAME).'</label><br/>';
-	$html .= '<input type="text" id="alm_settings[_alm_classname]" name="alm_settings[_alm_classname]" value="'.$options['_alm_classname'].'" placeholder="posts listing etc..." /> ';	
-	
-	echo $html;
-}
-
-
-/*
 *  alm_container_type_callback
 *  The type of container ul or div
 *
@@ -911,9 +900,28 @@ function alm_container_type_callback() {
      
     $html .= '<input type="radio" id="_alm_container_type_two" name="alm_settings[_alm_container_type]" value="2"' . checked( 2, $options['_alm_container_type'], false ) . '/>';
     $html .= '<label for="_alm_container_type_two">&lt;div&gt; <span>&lt;!-- '.__('Ajax Posts Here', ALM_NAME).' --&gt;</span> &lt;/div&gt;</label>';
+    
+    $html .= '<label style="cursor: default !important"><span style="display:block">'.__('You can modify the container type when building a shortcode.', ALM_NAME).'</span></label>';
      
     echo $html;
  
+}
+
+
+/*
+*  alm_class_callback
+*  Add classes to the Ajax Load More wrapper
+*
+*  @since 2.0.0
+*/
+
+function alm_class_callback(){
+	$options = get_option( 'alm_settings' );
+		
+	$html = '<label for="alm_settings[_alm_classname]">'.__('Add classes to Ajax Load More container - classes are applied globally and will appear with every instance of Ajax Load More. <span style="display:block">You can also add classes when building a shortcode.</span>', ALM_NAME).'</label><br/>';
+	$html .= '<input type="text" id="alm_settings[_alm_classname]" name="alm_settings[_alm_classname]" value="'.$options['_alm_classname'].'" placeholder="posts listing etc..." /> ';	
+	
+	echo $html;
 }
 
 
@@ -994,7 +1002,14 @@ function alm_btn_class_callback(){
     	var colorArray = "default grey purple green red blue white";
     	jQuery("select#alm_settings_btn_color").change(function() {
     		var color = jQuery(this).val();
-			jQuery('.ajax-load-more-wrap.core').removeClass(colorArray);
+    		// Remove other colors
+			jQuery('.ajax-load-more-wrap.core').removeClass('default');
+			jQuery('.ajax-load-more-wrap.core').removeClass('grey');
+			jQuery('.ajax-load-more-wrap.core').removeClass('purple');
+			jQuery('.ajax-load-more-wrap.core').removeClass('green');
+			jQuery('.ajax-load-more-wrap.core').removeClass('red');
+			jQuery('.ajax-load-more-wrap.core').removeClass('blue');
+			jQuery('.ajax-load-more-wrap.core').removeClass('white');
 			jQuery('.ajax-load-more-wrap.core').addClass(color);
 		});
 		jQuery("select#alm_settings_btn_color").click(function(e){

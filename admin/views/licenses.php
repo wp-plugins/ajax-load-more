@@ -15,6 +15,7 @@
    		      // alm_unlimited_installed
    		      // alm_preload_installed
    		      // alm_paging_installed
+   		      // alm_prev_post_installed
    		      // alm_seo_installed   
    		      // alm_theme_repeaters_installed
    		   ?>
@@ -191,7 +192,7 @@
                $alm_preloaded_license = get_option( 'alm_preloaded_license_key' );
                $alm_preloaded_status = get_option( 'alm_preloaded_license_status' );
             ?>
-            <div class="license" id="license-paging">
+            <div class="license" id="license-preloaded">
                <div class="license-title">   
    		         <div class="status <?php if($alm_preloaded_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>       
             		<h2><?php _e('Preloaded', ALM_NAME); ?></h2> 
@@ -236,6 +237,59 @@
             <?php 
                }
                // End PRELOADED 
+            ?>	
+            
+            <?php 
+               if (has_action('alm_prev_post_installed')){
+               // PREVIOUS POST 
+               $alm_prev_post_license = get_option( 'alm_prev_post_license_key' );
+               $alm_prev_post_status = get_option( 'alm_prev_post_license_status' );
+            ?>
+            <div class="license" id="license-previous-post">
+               <div class="license-title">   
+   		         <div class="status <?php if($alm_prev_post_status == 'valid'){echo 'valid';}else{echo 'invalid';} ?> "></div>       
+            		<h2><?php _e('Previous Post', ALM_NAME); ?></h2> 
+               </div>	
+               <div class="license-wrap">
+                  <form method="post" action="options.php">               			
+            		
+            		<?php settings_fields('alm_prev_post_license'); ?>   
+            		<label class="description" for="alm_prev_post_license_key"><?php _e('Enter License Key', ALM_NAME); ?></label>
+            		<div class="license-key-field">
+            		   <input id="alm_prev_post_license_key" name="alm_prev_post_license_key" type="text" class="regular-text" value="<?php esc_attr_e( $alm_prev_post_license ); ?>" placeholder="<?php _e('Enter License Key', ALM_NAME); ?>" />
+            		   <?php if( $alm_prev_post_status !== false && $alm_prev_post_status == 'valid' ) { ?>
+            		   <span class="status active">
+            		      <?php _e('Active', ALM_NAME); ?>
+            		   </span>
+            		   <?php } else { ?>
+            		   <span class="status inactive">
+            		      <?php _e('In-active', ALM_NAME); ?>
+            		   </span>
+            		   <?php } ?>
+            		</div>
+            		
+            		<?php wp_nonce_field( 'alm_prev_post_license_nonce', 'alm_prev_post_license_nonce' ); ?>
+            		<?php if($alm_prev_post_status === '' || $alm_prev_post_status !== 'valid') {
+            			submit_button(__('Save License Key', ALM_NAME), 'primary', '', false);
+            		} ?>
+            		
+            		<?php if( false !== $alm_prev_post_license ) { ?>	
+            		   		
+            			<?php if( $alm_prev_post_status !== false && $alm_prev_post_status == 'valid' ) { ?>
+            				<input type="submit" class="button-secondary" name="alm_prev_post_license_deactivate" value="<?php _e('De-activate License', ALM_NAME); ?>"/>    				
+            			<?php } else { ?>
+            			   <?php if(!empty($alm_prev_post_license)){ ?>
+            				<input type="submit" class="button-secondary" name="alm_prev_post_license_activate" value="<?php _e('Activate License', ALM_NAME); ?>"/>
+            				<?php } ?>
+            			<?php } ?>                  			
+            		<?php } ?>
+            		
+               	</form>
+               </div> 
+            </div> 	
+            <?php 
+               }
+               // End PREVIOUS POST 
             ?>	
             
             
