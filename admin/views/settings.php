@@ -2,7 +2,7 @@
 	<div class="wrap">
 		<div class="header-wrap">
          <h2><?php echo ALM_TITLE; ?> <span><?php echo ALM_VERSION; ?></span></h2>
-         <p><?php _e('A powerful solution to add infinite scroll functionality to any website.', ALM_NAME); ?></p>
+         <p><?php _e('A powerful plugin to add infinite scroll functionality to your website.', 'ajax-load-more'); ?></p>
       </div>         
 		<?php if( isset($_GET['settings-updated']) ) { ?>
           <div id="message" class="updated inline">
@@ -15,19 +15,19 @@
       	   	if(has_action('alm_cache_settings') || has_action('alm_next_post_settings')  || has_action('alm_paging_settings') || has_action('alm_seo_settings') || has_action('alm_theme_repeaters_settings')) {
        	   ?>
    	   	<ul class="alm-settings-nav">
-      	   	<li><a href="javascript:void(0);"><?php _e('Global Settings', ALM_NAME); ?></a></li>
-      	   	<li><a href="javascript:void(0);"><?php _e('Admin', ALM_NAME); ?></a></li>
+      	   	<li><a href="javascript:void(0);"><?php _e('Global Settings', 'ajax-load-more'); ?></a></li>
+      	   	<li><a href="javascript:void(0);"><?php _e('Admin', 'ajax-load-more'); ?></a></li>
       	   	<?php 
          	   	if(has_action('alm_cache_settings')) 
-                     echo '<li><a href="javascript:void(0);">'.__('Cache', ALM_NAME).'</a></li>';
+                     echo '<li><a href="javascript:void(0);">'.__('Cache', 'ajax-load-more').'</a></li>';
          	   	if(has_action('alm_paging_settings')) 
-                     echo '<li><a href="javascript:void(0);">'.__('Paging', ALM_NAME).'</a></li>';
+                     echo '<li><a href="javascript:void(0);">'.__('Paging', 'ajax-load-more').'</a></li>';
          	   	if(has_action('alm_prev_post_settings')) 
-                     echo '<li><a href="javascript:void(0);">'.__('Previous Post', ALM_NAME).'</a></li>';
+                     echo '<li><a href="javascript:void(0);">'.__('Previous Post', 'ajax-load-more').'</a></li>';
                   if(has_action('alm_seo_settings')) 
-                     echo '<li><a href="javascript:void(0);">'.__('SEO', ALM_NAME).'</a></li>';
+                     echo '<li><a href="javascript:void(0);">'.__('SEO', 'ajax-load-more').'</a></li>';
                   if(has_action('alm_theme_repeaters_settings')) 
-                     echo '<li><a href="javascript:void(0);">'.__('Theme Repeaters', ALM_NAME).'</a></li>';         	   	 
+                     echo '<li><a href="javascript:void(0);">'.__('Theme Repeaters', 'ajax-load-more').'</a></li>';         	   	 
          	   ?>
    	   	</ul>
    	   	<?php
@@ -55,7 +55,7 @@
                         });
                      },
                      error: function(){
-                        alert("<?php _e('Sorry, settings could not be saved.', ALM_NAME); ?>");
+                        alert("<?php _e('Sorry, settings could not be saved.', 'ajax-load-more'); ?>");
                      }
                   }); 
                   return false; 

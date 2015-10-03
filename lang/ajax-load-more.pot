@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Load More\n"
-"POT-Creation-Date: 2015-09-14 22:19-0500\n"
-"PO-Revision-Date: 2015-09-14 22:19-0500\n"
-"Last-Translator: Darren Cooney <darren.cooney@gmail.com>\n"
+"POT-Creation-Date: 2015-10-01 15:28-0500\n"
+"PO-Revision-Date: 2015-10-01 15:28-0500\n"
+"Last-Translator: Darren Cooney <dcooney@ecentricarts.com>\n"
 "Language-Team: \n"
 "Language: en_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -224,32 +224,59 @@ msgid "More Info"
 msgstr ""
 
 #: ../admin/includes/cta/mailinglist.php:3
-msgid "Stay Informed"
-msgstr ""
-
-#: ../admin/includes/cta/mailinglist.php:4
-msgid "Follow Ajax Load More"
-msgstr ""
-
-#: ../admin/includes/cta/mailinglist.php:8
 msgid "Join the Mailing List"
 msgstr ""
 
-#: ../admin/includes/cta/mailinglist.php:9
+#: ../admin/includes/cta/mailinglist.php:4
 msgid ""
-"Receive product updates delivered (infrequently) directly to your inbox."
+"Enter your email below to receive product updates delivered directly to your "
+"inbox."
 msgstr ""
 
-#: ../admin/includes/cta/mailinglist.php:15
+#: ../admin/includes/cta/mailinglist.php:10
 msgid "Email Address"
 msgstr ""
 
-#: ../admin/includes/cta/mailinglist.php:16
+#: ../admin/includes/cta/mailinglist.php:11
 msgid "Enter email address"
 msgstr ""
 
-#: ../admin/includes/cta/mailinglist.php:17
+#: ../admin/includes/cta/mailinglist.php:12
 msgid "Subscribe"
+msgstr ""
+
+#: ../admin/includes/cta/resources.php:2
+msgid "Resources"
+msgstr ""
+
+#: ../admin/includes/cta/resources.php:4
+msgid "Ajax Load More Demo Site"
+msgstr ""
+
+#: ../admin/includes/cta/resources.php:5
+msgid "Documentation"
+msgstr ""
+
+#: ../admin/includes/cta/resources.php:6
+msgid "Plugin Support/Issue"
+msgstr ""
+
+#: ../admin/includes/cta/resources.php:7
+msgid "Reviews"
+msgstr ""
+
+#: ../admin/includes/cta/resources.php:8
+#, fuzzy
+msgid "Facebook"
+msgstr "Partager sur Facebook"
+
+#: ../admin/includes/cta/resources.php:9
+#, fuzzy
+msgid "Twitter"
+msgstr "Partager sur Twitter"
+
+#: ../admin/includes/cta/resources.php:11
+msgid "Latest build on Github"
 msgstr ""
 
 #: ../admin/includes/cta/writeable.php:2
@@ -367,6 +394,10 @@ msgstr ""
 msgid "Cache"
 msgstr ""
 
+#: ../admin/shortcode-builder/shortcode-builder.php:19
+msgid "Enable Caching"
+msgstr ""
+
 #: ../admin/shortcode-builder/shortcode-builder.php:20
 msgid "Turn on content caching."
 msgstr ""
@@ -395,6 +426,10 @@ msgstr ""
 #: ../admin/shortcode-builder/shortcode-builder.php:821
 #: ../admin/shortcode-builder/shortcode-builder.php:873
 msgid "False"
+msgstr ""
+
+#: ../admin/shortcode-builder/shortcode-builder.php:41
+msgid "Cache ID"
 msgstr ""
 
 #: ../admin/shortcode-builder/shortcode-builder.php:42
@@ -546,6 +581,7 @@ msgid ""
 msgstr ""
 
 #: ../admin/shortcode-builder/shortcode-builder.php:348
+#: ../admin/shortcode-builder/shortcode-builder.php:639
 msgid "view example"
 msgstr ""
 
@@ -833,7 +869,7 @@ msgid "Customize the <em>Load More</em> button label."
 msgstr ""
 
 #: ../admin/shortcode-builder/shortcode-builder.php:905
-#: ../ajax-load-more.php:290
+#: ../ajax-load-more.php:287
 msgid "Older Posts"
 msgstr ""
 
@@ -1185,8 +1221,7 @@ msgid ""
 msgstr ""
 
 #: ../admin/views/settings.php:5
-msgid ""
-"A powerful solution to add infinite scroll functionality to any website."
+msgid "A powerful plugin to add infinite scroll functionality to your website."
 msgstr ""
 
 #: ../admin/views/settings.php:9
@@ -1233,7 +1268,7 @@ msgstr ""
 msgid "Clear all Shortcode Builder settings"
 msgstr ""
 
-#: ../ajax-load-more.php:162
+#: ../ajax-load-more.php:158
 msgid "Settings"
 msgstr ""
 
@@ -1270,12 +1305,6 @@ msgstr ""
 
 #~ msgid "share"
 #~ msgstr "Partager"
-
-#~ msgid "Share on Twitter"
-#~ msgstr "Partager sur Twitter"
-
-#~ msgid "Share on Facebook"
-#~ msgstr "Partager sur Facebook"
 
 #~ msgid "Share via Email"
 #~ msgstr "Partager par courriel"

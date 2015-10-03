@@ -1,8 +1,8 @@
 <div class="admin ajax-load-more" id="alm-repeaters">	
 	<div class="wrap">
 		<div class="header-wrap">
-			<h2><?php echo ALM_TITLE; ?>: <strong><?php _e('Repeater Templates', ALM_NAME); ?></strong></h2>
-			<p><?php _e('The library of available templates to use within your theme', ALM_NAME); ?></p>  
+			<h2><?php echo ALM_TITLE; ?>: <strong><?php _e('Repeater Templates', 'ajax-load-more'); ?></strong></h2>
+			<p><?php _e('The library of available templates to use within your theme', 'ajax-load-more'); ?></p>  
 		</div>
 		<div class="cnkt-main form-table repeaters">		
 		
@@ -10,7 +10,7 @@
 		   <div class="group">
 		   <?php 
 		   	if (has_action('alm_custom_repeaters') || has_action('alm_unlimited_repeaters')){ ?>
-				<span class="toggle-all"><span class="inner-wrap"><em class="collapse"><?php _e('Collapse All', ALM_NAME); ?></em><em class="expand"><?php _e('Expand All', ALM_NAME); ?></em></span></span> 
+				<span class="toggle-all"><span class="inner-wrap"><em class="collapse"><?php _e('Collapse All', 'ajax-load-more'); ?></em><em class="expand"><?php _e('Expand All', 'ajax-load-more'); ?></em></span></span> 
 			<?php } ?>
 			
 			   <!-- Default -->
@@ -32,13 +32,13 @@
       				}
       				fclose ($handle);
 	            ?> 
-	            <h3 class="heading"><?php _e('Default Template', ALM_NAME); ?></h3>
+	            <h3 class="heading"><?php _e('Default Template', 'ajax-load-more'); ?></h3>
 	            
 	            <div class="expand-wrap">        
    	            
 		            <div class="wrap repeater-wrap" data-name="default" data-type="default">		
    		                       
-							<label class="template-title" for="template-default"><?php _e('Enter the HTML and PHP code for the default template', ALM_NAME); ?></label>		            
+							<label class="template-title" for="template-default"><?php _e('Enter the HTML and PHP code for the default template', 'ajax-load-more'); ?></label>		            
 			            <textarea rows="10" id="template-default" class="_alm_repeater"><?php echo $contents; ?></textarea>
 			            <script>
                         var editorDefault = CodeMirror.fromTextArea(document.getElementById("template-default"), {
@@ -51,7 +51,7 @@
                           extraKeys: {"Ctrl-Space": "autocomplete"},
                         });
                      </script>      		            
-							<input type="submit" value="<?php _e('Save Template', ALM_NAME); ?>" class="button button-primary save-repeater" data-editor-id="template-default">
+							<input type="submit" value="<?php _e('Save Template', 'ajax-load-more'); ?>" class="button button-primary save-repeater" data-editor-id="template-default">
 		            	<div class="saved-response">&nbsp;</div>  
 							<?php include( ALM_PATH . 'admin/includes/components/repeater-options.php'); ?>        	
 		            </div>
@@ -120,7 +120,7 @@
 						   //If template is not already saving, then proceed
 							if (!btn.hasClass('saving')) {
 							   btn.addClass('saving');
-								responseText.addClass('loading').html('<?php _e('Saving template...', ALM_NAME) ?>');
+								responseText.addClass('loading').html('<?php _e('Saving template...', 'ajax-load-more') ?>');
 								responseText.animate({'opacity' : 1});
 								
 								$.ajax({
@@ -152,7 +152,7 @@
 															
 									},
 									error: function(xhr, status, error) {
-										responseText.html('<?php _e('Something went wrong and the data could not be saved.', ALM_NAME) ?>').removeClass('loading');
+										responseText.html('<?php _e('Something went wrong and the data could not be saved.', 'ajax-load-more') ?>').removeClass('loading');
 										btn.removeClass('saving');
 									}
                         });
@@ -192,7 +192,7 @@
 						   	            
 						   //If template is not already saving, then proceed
 							if (!btn.hasClass('updating')) {
-							   btn.addClass('updating').text("<?php _e('Updating template...', ALM_NAME); ?>");
+							   btn.addClass('updating').text("<?php _e('Updating template...', 'ajax-load-more'); ?>");
 							   								
 								$.ajax({
 									type: 'POST',
@@ -213,7 +213,7 @@
 									  		
 									  	// Clear button styles				  
 									   setTimeout(function() { 
-                                 btn.text("<?php _e('Template Updated', ALM_NAME); ?>").blur();                                 
+                                 btn.text("<?php _e('Template Updated', 'ajax-load-more'); ?>").blur();                                 
                                  setTimeout(function() { 
 	                                 btn.removeClass('updating').html(btn_text).blur();											
 											}, 750);										
@@ -242,19 +242,19 @@
 	   <div class="cnkt-sidebar">
 	   	<?php include_once( ALM_PATH . 'admin/includes/cta/writeable.php'); ?>
    		<div class="cta">
-				<h3><?php _e('Templating Help', ALM_NAME); ?></h3>
+				<h3><?php _e('Templating Help', 'ajax-load-more'); ?></h3>
 				<div class="item">
-					<p><strong><?php _e('What is a repeater template?', ALM_NAME); ?></strong></p>
-					<p><?php _e('A repeater template is a snippet of code that will execute over and over within a <a href="http://codex.wordpress.org/The_Loop" target="_blank">WordPress loop</a>.</p>', ALM_NAME); ?></p>
+					<p><strong><?php _e('What is a repeater template?', 'ajax-load-more'); ?></strong></p>
+					<p><?php _e('A repeater template is a snippet of code that will execute over and over within a <a href="http://codex.wordpress.org/The_Loop" target="_blank">WordPress loop</a>.</p>', 'ajax-load-more'); ?></p>
 				</div>
 				<div class="item">
-					<p><strong><?php _e('Can I include PHP in the repeater template?', ALM_NAME); ?></strong></p>
-					<p><?php _e('Yes, PHP and core WordPress functions such as, <code>the_title()</code> and <code>the_permalink()</code> are required.</p>', ALM_NAME); ?></p>
+					<p><strong><?php _e('Can I include PHP in the repeater template?', 'ajax-load-more'); ?></strong></p>
+					<p><?php _e('Yes, PHP and core WordPress functions such as, <code>the_title()</code> and <code>the_permalink()</code> are required.</p>', 'ajax-load-more'); ?></p>
 				</div>
 				<div class="item">
-					<p><strong><?php _e('Tips and Tricks', ALM_NAME); ?></strong></p>
+					<p><strong><?php _e('Tips and Tricks', 'ajax-load-more'); ?></strong></p>
 					<ul>
-						<li><?php _e('Always open and close your templates with an HTML element. In some rare cases data may not be displayed if not wrapped in HTML.<br/>e.g. <code>&lt;li> &lt;/li></code> or <code>&lt;div> &lt;/div></code>', ALM_NAME); ?><br/> </li>
+						<li><?php _e('Always open and close your templates with an HTML element. In some rare cases data may not be displayed if not wrapped in HTML.<br/>e.g. <code>&lt;li> &lt;/li></code> or <code>&lt;div> &lt;/div></code>', 'ajax-load-more'); ?><br/> </li>
 					</ul>
 				</div>		
 	   	</div>

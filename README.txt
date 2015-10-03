@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: infinite scroll, scroll, infinite, lazy load, lazy loading, pagination, ajax pagination, ajax, ajax posts, ajax load posts, loop, query, dynamic, shortcode builder, wp_query, search, tags, category, post types, taxonomy, meta_query, archives, date, infinite scrolling
 Requires at least: 3.6
 Tested up to: 4.3.1
-Stable tag: 2.8.0
+Stable tag: 2.8.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -132,7 +132,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/preloaded/)
 >
 > #### Previous Post
-> The **[Preloaded](http://connekthq.com/plugins/ajax-load-more/previous-post/)** add-on will allow you to navigate single posts with Ajax Load More.<br />
+> The **[Previous Post](http://connekthq.com/plugins/ajax-load-more/previous-post/)** add-on will allow you to navigate single posts with Ajax Load More.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/previous-post/)
 > 
 > #### Search Engine Optimization
@@ -277,6 +277,20 @@ How to install Ajax Load More.
 
 == Changelog ==
 
+
+= 2.8.1.2 =
+* SECURITY - Due to a security scare with non-admin logged-in users I have updated all admin-ajax.php calls to verify nonce variables (wp_verify_nonce) and check user capabilities(edit_theme_options).
+
+= 2.8.1.1 =
+* FIX - Update for issue where Ajax Load More CSS would load even if unchecked.
+
+
+= 2.8.1.1 =
+* UPDATE - Adding required support/update for Language Pack translations (https://translate.wordpress.org/)
+* FIX - Update to automatically set posts_per_page to 1 if Previous Post add-on is in use.
+* FIX - Various core JS updates/improvements
+* FIX - Licenses not showing for Theme Repeaters and Previous Post add-ons
+* UPDATE - Various admin UI updates and enhancements.
 
 = 2.8.0 =
 * NEW - Adding required support and functionality for new Previous Post add-on - https://connekthq.com/plugins/ajax-load-more/add-ons/previous-post/

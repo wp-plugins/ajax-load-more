@@ -1578,6 +1578,31 @@ table.highlight{
 			margin: 0 0 10px;
 			line-height: 1.4;
 		}
+		
+		.ajax-load-more .cnkt-sidebar .cta.resources li{
+			display: block;
+			width: 100%;
+			line-height: 1;
+			margin: 1px 0;
+		}
+		.ajax-load-more .cnkt-sidebar .cta.resources li a{
+			text-decoration: none;
+			padding: 10px 0;
+			display: block;
+			border-top: 1px solid #efefef;	
+		}
+		.ajax-load-more .cnkt-sidebar .cta.resources li:first-of-type a{
+			border: none;	
+			padding-top: 0;
+		}
+		.ajax-load-more .cnkt-sidebar .cta.resources li i{
+			display: inline-block;
+			width: 20px;
+			text-align: center;
+			color: #ccc;
+			text-decoration: none;
+			font-size: 14px;
+		}
 		.ajax-load-more .cnkt-sidebar .item i{
 			font-size: 12px;
 			float: left;
@@ -2393,20 +2418,36 @@ p.cache-stats{
 */    
 
 #alm-mailing-list{}   
+	#alm-mailing-list .center{
+		text-align: center;
+		display: block;
+		background: #f7f7f7;
+		border: 1px solid #efefef;
+		padding: 15px;
+		margin: -5px 0 20px;
+		border-radius: 2px;
+		box-shadow: inset 0 0 0 1px #fff;
+	}
+	.center-text{
+		text-align: center;
+	}
+	#alm-mailing-list .center p{
+		margin-bottom: 15px;	
+	}
 	.ajax-load-more .cnkt-sidebar .cta.social .follow-btn{
 		display: inline-block;
 		background-color: #fff;
 		color: #333;
-		font-size: 24px;
+		font-size: 20px;
 		padding: 0;
 		width: 44px;
 		height: 44px;
 		line-height: 44px;
 		text-align: center;
 		vertical-align: top;
-		border-radius: 4px;
-		margin: 5px 5px 20px 0;
-		opacity: 0.9;
+		border-radius: 100%;
+		margin: 0 1px 0 0;
+		opacity: 0.8;
 	}
 		
 		.ajax-load-more .cnkt-sidebar .cta.social .follow-btn.facebook{
@@ -2418,7 +2459,6 @@ p.cache-stats{
 			color: #fff;	
 		}
 		.ajax-load-more .cnkt-sidebar .cta.social .follow-btn:hover{
-			box-shadow: 0 0 0 4px #efefef;
 			opacity: 1;
 		}
 

@@ -3,16 +3,18 @@
 Plugin Name: Ajax Load More
 Plugin URI: http://connekthq.com/plugins/ajax-load-more
 Description: A powerful solution to add infinite scroll functionality to your website.
+Text Domain: ajax-load-more
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.8.0
+Version: 2.8.1.2
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
+
 	
-define( 'ALM_VERSION', '2.8.0' );
-define( 'ALM_RELEASE', 'September 14, 2015' );
+define( 'ALM_VERSION', '2.8.1.2' );
+define( 'ALM_RELEASE', 'October 2, 2015' );
 define( 'ALM_STORE_URL', 'https://connekthq.com' );
 
 
@@ -105,32 +107,26 @@ if( !class_exists('AjaxLoadMore') ):
    	
    		define('ALM_PATH', plugin_dir_path(__FILE__));
    		define('ALM_URL', plugins_url('', __FILE__));
-   		define('ALM_ADMIN_URL', plugins_url('admin/', __FILE__));
-   		define('ALM_NAME', '_ajax_load_more');
+   		define('ALM_ADMIN_URL', plugins_url('admin/', __FILE__));   		
+   		define('ALM_NAME', '_ajax_load_more');		
    		define('ALM_TITLE', 'Ajax Load More');		
    		
    		add_action( 'wp_ajax_alm_query_posts', array(&$this, 'alm_query_posts') );
    		add_action( 'wp_ajax_nopriv_alm_query_posts', array(&$this, 'alm_query_posts') );
    		add_action( 'wp_ajax_alm_query_total', array(&$this, 'alm_query_total') );
-   		add_action( 'wp_ajax_nopriv_alm_query_total', array(&$this, 'alm_query_total') );
-   		
+   		add_action( 'wp_ajax_nopriv_alm_query_total', array(&$this, 'alm_query_total') );   		
    		add_action( 'wp_enqueue_scripts', array(&$this, 'alm_enqueue_scripts') );			
    		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'alm_action_links') );
-   		add_filter( 'plugin_row_meta', array(&$this, 'alm_plugin_meta_links'), 10, 2 );
-   		   
-   		add_shortcode( 'ajax_load_more', array(&$this, 'alm_shortcode') );		
+   		add_filter( 'plugin_row_meta', array(&$this, 'alm_plugin_meta_links'), 10, 2 );   		   
+   		add_shortcode( 'ajax_load_more', array(&$this, 'alm_shortcode') );	   		
    		
-   		// Allow shortcodes in widget areas
-   		add_filter( 'widget_text', 'do_shortcode' );
+   		add_filter( 'widget_text', 'do_shortcode' ); // Allow shortcodes in widget areas   		
    		
-   		// load text domain
-   		load_plugin_textdomain( 'ajax-load-more', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+   		load_plugin_textdomain( 'ajax-load-more', false, dirname(plugin_basename( __FILE__ )).'/lang/');//load text domain   		
    		
-   		// Include ALM query functions
-   		include_once( ALM_PATH . 'core/functions.php');
+   		include_once( ALM_PATH . 'core/functions.php'); // Include ALM query functions   		
    		
-   		// includes WP admin core
-   		$this->alm_before_theme();	
+   		$this->alm_before_theme();	// includes WP admin core
    		
    	}	
    		
@@ -159,7 +155,7 @@ if( !class_exists('AjaxLoadMore') ):
    	*/   
       
       function alm_action_links( $links ) {
-         $links[] = '<a href="'. get_admin_url(null, 'admin.php?page=ajax-load-more') .'">'.__('Settings', ALM_NAME).'</a>';
+         $links[] = '<a href="'. get_admin_url(null, 'admin.php?page=ajax-load-more') .'">'.__('Settings', 'ajax-load-more').'</a>';
          return $links;
       }
       
@@ -196,22 +192,22 @@ if( !class_exists('AjaxLoadMore') ):
    
    	function alm_enqueue_scripts(){
    		
+   		// Load JS
    		//wp_enqueue_script( 'ajax-load-more', plugins_url( '/core/js/ajax-load-more.js', __FILE__ ), array('jquery'),  '1.1', true );
    		wp_enqueue_script( 'ajax-load-more', plugins_url( '/core/js/ajax-load-more.min.js', __FILE__ ), array('jquery'),  '1.1', true );
    		
-   		$options = get_option( 'alm_settings' );
    		
+   		$options = get_option( 'alm_settings' );
+   		// Load CSS
+   		if(!isset($options['_alm_disable_css']) || $options['_alm_disable_css'] != '1'){
+   			wp_enqueue_style( 'ajax-load-more', plugins_url('/core/css/ajax-load-more.css', __FILE__ ));
+   		}   		
    		// Prevent loading of unnessasry posts - move user to top of page
    		$scrolltop = 'false';
    		if(!isset($options['_alm_scroll_top']) || $options['_alm_scroll_top'] != '1'){ // if unset or false
    			$scrolltop = 'false';
    		}else{ // if checked
       		$scrolltop = 'true';
-   		}
-   		
-   		// Load CSS
-   		if(!isset($options['_alm_disable_css']) || $options['_alm_disable_css'] != '1'){
-   			wp_enqueue_style( 'ajax-load-more', plugins_url('/core/css/ajax-load-more.css', __FILE__ ));
    		}
    		
    		wp_localize_script(
@@ -287,7 +283,7 @@ if( !class_exists('AjaxLoadMore') ):
 				'destroy_after' => '',
 				'transition' => 'slide',
 				'images_loaded' => 'false',
-				'button_label' => __('Older Posts', ALM_NAME),	
+				'button_label' => __('Older Posts', 'ajax-load-more'),	
 				'container_type' => '',	
 				'css_classes' => '',		
 			), $atts));
@@ -305,6 +301,7 @@ if( !class_exists('AjaxLoadMore') ):
    		}
    		// Previous post override
    		if($previous_post){
+      		$posts_per_page = 1;
    			$container_element = 'div';
    		}
          
@@ -571,14 +568,10 @@ if( !class_exists('AjaxLoadMore') ):
    
    	function alm_query_posts() {
    		
-   		$nonce = $_GET['nonce'];
-   		
-   		$options = get_option( 'alm_settings' );
-   		
-   		if(!is_user_logged_in()){ // Skip nonce verification if user is logged in   		   
-   		   
-   		   $options = get_option( 'alm_settings' );
-   		   
+   		$nonce = $_GET['nonce'];   		
+   		$options = get_option( 'alm_settings' );   		
+   		if(!is_user_logged_in()){ // Skip nonce verification if user is logged in      		   
+   		   $options = get_option( 'alm_settings' );   		   
    		   // check alm_settings for _alm_nonce_security
    		   if(isset($options['_alm_nonce_security']) & $options['_alm_nonce_security'] == '1'){        		   		   
       		   if (! wp_verify_nonce( $nonce, 'ajax_load_more_nonce' )) // Check our nonce, if they don't match then bounce!
@@ -653,7 +646,7 @@ if( !class_exists('AjaxLoadMore') ):
    		   $offset = $offset + $preloaded_amount;	
          }
          
-         //Next Post Add-on
+         //Previous Post Add-on
    		$is_previous_post = (isset($_GET['previous_post'])) ? $_GET['previous_post'] : false;
    		$previous_post_id = (isset($_GET['previous_post_id'])) ? $_GET['previous_post_id'] : '';
          

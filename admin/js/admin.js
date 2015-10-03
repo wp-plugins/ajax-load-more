@@ -200,8 +200,7 @@ jQuery(document).ready(function($) {
       $(window).resize(function() {
          setTimeout(function(){ 
             equalheight(addOnColumns); 
-         }, 500);
-        
+         }, 500);        
       });
    }
 

@@ -1,18 +1,18 @@
 <div class="inner border-top">
    <div class="wrap-30 wrap-50">
       <?php // Meta Key ?>
-      <label for="meta-key" class="full"><?php _e('Key (Name):', ALM_NAME); ?></label>
-      <input class="alm_element sm meta-key" name="meta-key" type="text" value="" placeholder="<?php _e('Enter custom field key(name)', ALM_NAME); ?>">   
+      <label for="meta-key" class="full"><?php _e('Key (Name):', 'ajax-load-more'); ?></label>
+      <input class="alm_element sm meta-key" name="meta-key" type="text" value="" placeholder="<?php _e('Enter custom field key(name)', 'ajax-load-more'); ?>">   
    </div>             
    <?php // Meta Value ?>
    <div class="wrap-30 wrap-50">
-      <label for="meta-value" class="full"><?php _e('Value:', ALM_NAME); ?></label>
-      <input class="alm_element sm meta-value" name="meta-value" type="text" value="" placeholder="<?php _e('Enter custom field value', ALM_NAME); ?>">
+      <label for="meta-value" class="full"><?php _e('Value:', 'ajax-load-more'); ?></label>
+      <input class="alm_element sm meta-value" name="meta-value" type="text" value="" placeholder="<?php _e('Enter custom field value', 'ajax-load-more'); ?>">
    </div>    
    <div class="clear"></div>
    <?php // Meta Compare ?>           
    <div class="wrap-30 wrap-50 padding-top">
-      <label for="meta-compare" class="full"><?php _e('Operator:', ALM_NAME); ?></label>
+      <label for="meta-compare" class="full"><?php _e('Operator:', 'ajax-load-more'); ?></label>
       <select class="alm_element meta-compare" name="meta-compare">
          <option value="IN" selected="selected">IN</option>
          <option value="NOT IN">NOT IN</option>
@@ -32,7 +32,7 @@
    </div>   
    <?php // Meta Type ?>           
    <div class="wrap-30 wrap-50 padding-top">
-      <label for="meta-type" class="full"><?php _e('Type:', ALM_NAME); ?></label>
+      <label for="meta-type" class="full"><?php _e('Type:', 'ajax-load-more'); ?></label>
       <select class="alm_element meta-type" name="meta-type">
          <option value="BINARY">BINARY</option>
          <option value="CHAR" selected="selected">CHAR</option>

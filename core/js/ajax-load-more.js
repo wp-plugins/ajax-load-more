@@ -16,9 +16,7 @@
    "use strict";   
       
    $.ajaxloadmore = function (el, e) {
-      
-      // Add unique classname
-      
+            
       //Prevent loading of unnessasry posts - move user to top of page
       if(alm_localize.scrolltop === 'true'){
          $(window).scrollTop(0); 
@@ -38,7 +36,7 @@
       alm.data;
       alm.el = el;
       alm.container = el;
-      alm.container.addClass('alm-'+e).attr('data-id', e);
+      alm.container.addClass('alm-'+e).attr('data-id', e); // Add unique classname and data id
       alm.content = $('.alm-listing.alm-ajax', alm.container);
       alm.content_preloaded = $('.alm-listing.alm-preloaded', alm.container);
       alm.prefix = 'alm-';
@@ -89,11 +87,7 @@
 			alm.paging_controls = true;		
 		}else{
 			alm.paging_controls = false;
-		}
-		
-		if($(".ajax-load-more-wrap").length > 1){ // if ALM is greater than 1, paging is false.
-		   //alm.paging = false;
-      }
+		}		
       /* /end Paging  */
       
       
@@ -432,8 +426,7 @@
        */
        
       alm.AjaxLoadMore.success = function (data) {
-         
-         var previousPostID = '';      
+              
          if(alm.previous_post){	         
             alm.AjaxLoadMore.getPreviousPost(); // Get previous page data           
          }         
@@ -466,7 +459,7 @@
             }
             
             // ALM Empty - triggers if zero results were returned 
-            if(!alm.data.length > 0){
+            if(alm.data.length === 0){
                if ($.isFunction($.fn.almEmpty)) {
                   $.fn.almEmpty(alm);
                }
@@ -665,7 +658,7 @@
             url: alm_localize.ajaxurl,
             data: {
                action: 'alm_query_previous_post',
-               id: alm.previous_post_id,
+               id: alm.previous_post_id
             },
             success: function (data) {
                if(data.has_previous_post){
@@ -690,7 +683,7 @@
             }
             
          });
-      }
+      };
       
       
       
@@ -868,7 +861,7 @@
 
       //Custom easing function
       $.easing.alm_easeInOutQuad = function (x, t, b, c, d) {
-         if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+         if ((t /= d / 2) < 1) { return c / 2 * t * t + b; }
          return -c / 2 * ((--t) * (t - 2) - 1) + b;
       };
       
