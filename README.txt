@@ -4,7 +4,7 @@ Donate link: http://connekthq.com/donate/
 Tags: infinite scroll, scroll, infinite, lazy load, lazy loading, pagination, ajax pagination, ajax, ajax posts, ajax load posts, loop, query, dynamic, shortcode builder, wp_query, search, tags, category, post types, taxonomy, meta_query, archives, date, infinite scrolling
 Requires at least: 3.6
 Tested up to: 4.3.1
-Stable tag: 2.8.2
+Stable tag: 2.8.2 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -278,7 +278,7 @@ How to install Ajax Load More.
 == Changelog ==
 
 
-= 2.8.1.3 =
+= 2.8.2 =
 * FIX - Fixed issue with the passing of ALM template variables to Theme Repeaters add-on.
 * FIX - Fixed issue shortcode builder returning an error when loading custom taxonomies.
 * NEW - Added new almDone() function that is dispatched after all posts have been loaded. $.fn.almDone(alm)
