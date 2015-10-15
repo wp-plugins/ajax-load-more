@@ -2,7 +2,7 @@
 /*
  * Ajax Load More
  * http://wordpress.org/plugins/ajax-load-more/
- * https://github.com/dcooney/wordpress-ajax-load-more/
+ * https://connekthq.com/plugins/ajax-load-more/
  *
  * Copyright 2015 Connekt Media - http://connekthq.com
  * Free to use under the GPLv2 license.
@@ -616,7 +616,10 @@
                }
             }             
 
-         } else {
+         } else { 
+            if ($.isFunction($.fn.almDone)) {
+               $.fn.almDone(alm);				
+            }
 	         if(!alm.paging){
             	alm.button.delay(alm.speed).removeClass('loading').addClass('done');
             }

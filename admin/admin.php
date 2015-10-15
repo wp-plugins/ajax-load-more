@@ -240,6 +240,7 @@ function alm_admin_menu() {
    add_action( 'load-' . $alm_template_page, 'alm_load_admin_js' );
    add_action( 'load-' . $alm_template_page, 'alm_set_admin_nonce' );   
    add_action( 'load-' . $alm_shortcode_page, 'alm_load_admin_js' );
+   add_action( 'load-' . $alm_shortcode_page, 'alm_set_admin_nonce' );
    add_action( 'load-' . $alm_examples_page, 'alm_load_admin_js' );
    add_action( 'load-' . $alm_addons_page, 'alm_load_admin_js' );
    add_action( 'load-' . $alm_licenses_page, 'alm_load_admin_js' );
@@ -571,31 +572,37 @@ function alm_update_repeater(){
 */
 
 function alm_get_tax_terms(){	
-	$nonce = $_GET["nonce"];
-	// Check our nonce, if they don't match then bounce!
-	if (! wp_verify_nonce( $nonce, 'alm_repeater_nonce' ))
-		die('Get Bounced!');
+	if (current_user_can( 'edit_theme_options' )){
 		
-	$taxonomy = (isset($_GET['taxonomy'])) ? $_GET['taxonomy'] : '';	
-	$tax_args = array(
-		'orderby'       => 'name', 
-		'order'         => 'ASC',
-		'hide_empty'    => false
-	);	
-	$terms = get_terms($taxonomy, $tax_args);
-	$returnVal = '';
-	if ( !empty( $terms ) && !is_wp_error( $terms ) ){		
-		$returnVal .= '<ul>';
-		foreach ( $terms as $term ) {
-			//print_r($term);
-			$returnVal .='<li><input type="checkbox" class="alm_element" name="tax-term-'.$term->slug.'" id="tax-term-'.$term->slug.'" data-type="'.$term->slug.'"><label for="tax-term-'.$term->slug.'">'.$term->name.'</label></li>';		
+		$nonce = $_GET["nonce"];
+		// Check our nonce, if they don't match then bounce!
+		if (! wp_verify_nonce( $nonce, 'alm_repeater_nonce' ))
+			die('Get Bounced!');
+			
+		$taxonomy = (isset($_GET['taxonomy'])) ? $_GET['taxonomy'] : '';	
+		$tax_args = array(
+			'orderby'       => 'name', 
+			'order'         => 'ASC',
+			'hide_empty'    => false
+		);	
+		$terms = get_terms($taxonomy, $tax_args);
+		$returnVal = '';
+		if ( !empty( $terms ) && !is_wp_error( $terms ) ){		
+			$returnVal .= '<ul>';
+			foreach ( $terms as $term ) {
+				//print_r($term);
+				$returnVal .='<li><input type="checkbox" class="alm_element" name="tax-term-'.$term->slug.'" id="tax-term-'.$term->slug.'" data-type="'.$term->slug.'"><label for="tax-term-'.$term->slug.'">'.$term->name.'</label></li>';		
+			}
+			$returnVal .= '</ul>';		
+			echo $returnVal;
+			die();
+		}else{
+			echo "<p class='warning'>No terms exist within this taxonomy</p>";
+			die();
 		}
-		$returnVal .= '</ul>';		
-		echo $returnVal;
-		die();
-	}else{
-		echo "<p class='warning'>No terms exist within this taxonomy</p>";
-		die();
+		
+	} else {		
+		echo __('You don\'t belong here.', 'ajax-load-more');		
 	}
 }
 

@@ -7,14 +7,14 @@ Text Domain: ajax-load-more
 Author: Darren Cooney
 Twitter: @KaptonKaos
 Author URI: http://connekthq.com
-Version: 2.8.1.2
+Version: 2.8.2
 License: GPL
 Copyright: Darren Cooney & Connekt Media
 */	
 
 	
-define( 'ALM_VERSION', '2.8.1.2' );
-define( 'ALM_RELEASE', 'October 2, 2015' );
+define( 'ALM_VERSION', '2.8.2' );
+define( 'ALM_RELEASE', 'October 15, 2015' );
 define( 'ALM_STORE_URL', 'https://connekthq.com' );
 
 
@@ -851,7 +851,7 @@ if( !class_exists('AjaxLoadMore') ):
 	   	         $alm_item = ($alm_page_count * $numPosts) - $numPosts + $alm_loop_count; // Get current item            
 	   				
 	   				if($theme_repeater != 'null' && has_filter('alm_get_theme_repeater')){
-		   				do_action('alm_get_theme_repeater', $theme_repeater);
+		   				do_action('alm_get_theme_repeater', $theme_repeater, $alm_found_posts, $alm_page, $alm_item);
 						}else{
 							include( alm_get_current_repeater($repeater, $type) );//Include repeater template
 						}
