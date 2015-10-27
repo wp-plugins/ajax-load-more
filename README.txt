@@ -150,8 +150,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 ***
 
 = Callback Functions =
-The following functions are available to be dispatched by Ajax Load More. 
-[Get More Information](https://connekthq.com/plugins/ajax-load-more/docs/callback-functions/)
+The following [functions](https://connekthq.com/plugins/ajax-load-more/docs/callback-functions/) are available to be dispatched by Ajax Load More.
 
 
 **ALM Complete** - The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
@@ -183,7 +182,7 @@ The following functions are available to be dispatched by Ajax Load More.
     
 = Variables =
 
-Ajax Load More passes the following PHP variables to each repeater template - these template variables can help you style and transform your repeater templates.
+Ajax Load More passes the following PHP [variables](https://connekthq.com/plugins/ajax-load-more/docs/variables/) to each repeater template - these template variables can help you style and transform your repeater templates.
  
 *   **$alm_page** - Returns the current page number. 'echo $alm_page;'
 *   **$alm_item** - Returns the current item number within your loop. 'echo $alm_item;'
