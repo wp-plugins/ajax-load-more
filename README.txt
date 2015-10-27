@@ -23,7 +23,7 @@ Build complex WordPress queries using the Ajax Load More custom shortcode builde
 = Features =
 * **Shortcode Builder** - Easily create your own Ajax Load More shortcode by adjusting the various WordPress query parameters in our easy-to-use shortcode builder.(see Shortcode Parameters).
 * **Query Parameters** - Ajax Load More allows you to query WordPress by many different content types. Query by Post Type, Post Format, Date, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
-* **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots) - [Add-on available](http://connekthq.com/plugins/ajax-load-more/add-ons/custom-repeaters/).
+* **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 * **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
 * **Multisite Compatibility** - As of Ajax Load More 2.7.2 you can now manage repeater templates across all sites in your network.
@@ -154,10 +154,17 @@ The following functions are available to be dispatched by Ajax Load More.
 [Get More Information](https://connekthq.com/plugins/ajax-load-more/docs/callback-functions/)
 
 
-**Ajax Complete** - The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
+**ALM Complete** - The almComplete() function is triggered after every *successful* ajax call made by Ajax Load More.
 
     $.fn.almComplete = function(alm){
     	// Your on complete code goes here
+    };
+    
+
+**ALM Done** - The almDone() function triggered after all posts have been loaded..
+
+    $.fn.almDone = function(alm){
+    	console.log('All posts have been loaded!');
     };
     
 **ALM Empty** - The almEmpty() function is triggered if there are zero results returned in the initial query.
@@ -165,8 +172,7 @@ The following functions are available to be dispatched by Ajax Load More.
     $.fn.almEmpty = function(alm){
        console.log('Sorry, but we could not locate any posts that matched your criteria.');
     };
-
-***    
+   
 **ALM Filter Complete** - The almFilterComplete() function is triggered after a successful call to the public function almFilter().
 
     $.fn.almFilterComplete = function(){
