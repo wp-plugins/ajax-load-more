@@ -13,8 +13,12 @@ A powerful solution to add infinite scroll functionality to your website
 == Description ==
 
 Ajax Load More is a robust and intuitive solution for infinite scrolling WordPress posts and pages with Ajax.
-Build complex WordPress queries using the Ajax Load More custom shortcode builder and then add the shortcode to your pages via the content editor or directly into your template files.
 
+Build complex WordPress queries using the Ajax Load More custom shortcode builder then add the shortcode to your pages via the content editor or directly into your template files.
+
+Ajax Load More's template management system allows users to take full control of their content and create unique layouts for different content types throughout their themes.
+
+**[Get More Information](http://connekthq.com/plugins/ajax-load-more/)**
 
 = Features =
 * **Shortcode Builder** - Easily create your own Ajax Load More shortcode by adjusting the various WordPress query parameters in our easy-to-use shortcode builder.(see Shortcode Parameters).
