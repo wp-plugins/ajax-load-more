@@ -12,18 +12,18 @@ A powerful solution to add infinite scroll functionality to your website
 
 == Description ==
 
-Ajax Load More is a robust and intuitive solution for infinite scrolling WordPress posts and pages with Ajax.
+Ajax Load More is a robust and intuitive solution for infinite scrolling posts, custom post types and pages with Ajax powered queries. 
 
-Build complex WordPress queries using the Ajax Load More custom shortcode builder then add the shortcode to your pages via the content editor or directly into your template files.
 
-Ajax Load More's template management system allows users to take full control of their content and create unique layouts for different content types throughout their themes.
+Build complex WordPress queries using the Ajax Load More custom shortcode builder then add the shortcode to your pages via the content editor or directly into your template files. 
 
 **[Get More Information](http://connekthq.com/plugins/ajax-load-more/)**
+
 
 = Features =
 * **Shortcode Builder** - Easily create your own Ajax Load More shortcode by adjusting the various WordPress query parameters in our easy-to-use shortcode builder.(see Shortcode Parameters).
 * **Query Parameters** - Ajax Load More allows you to query WordPress by many different content types. Query by Post Type, Post Format, Date, Category, Tags, Custom Taxonomies, Search Term, Authors and more!!
-* **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots).
+* **Customizable Repeater Templates** - Edit and extend the functionality of Ajax Load More by creating your own repeater template to match the look and feel of your website (see screenshots) - [Add-on available](http://connekthq.com/plugins/ajax-load-more/add-ons/custom-repeaters/).
 * **Setting Panel** - Customize your version of Ajax Load More by updating various plugin settings (see screenshots).
 * **Multiple Instances** - You can include multiple instances of Ajax Load More on a single page, post or template.
 * **Multisite Compatibility** - As of Ajax Load More 2.7.2 you can now manage repeater templates across all sites in your network.
@@ -124,7 +124,7 @@ Ajax Load More accepts a number of parameters that are passed to the WordPress q
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/custom-repeaters/)
 > 
 > #### Cache
-> The **[Cache](http://connekthq.com/plugins/ajax-load-more/cache/)** creates static HTML files of Ajax Load More requests then serves those static pages to your visitors without querying the database.<br />
+> The **[Cache](http://connekthq.com/plugins/ajax-load-more/cache/)** add-oncreates static HTML files of Ajax Load More requests then serves those static pages to your visitors without querying the database.<br />
 > [Get More Information](http://connekthq.com/plugins/ajax-load-more/cache/)
 > 
 > #### Paging
@@ -197,7 +197,7 @@ Ajax Load More passes the following PHP variables to each repeater template - th
 ***
 
 = Website =
-http://connekthq.com/ajax-load-more/
+https://connekthq.com/ajax-load-more/
 
 ***
 
