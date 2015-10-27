@@ -161,7 +161,7 @@ The following functions are available to be dispatched by Ajax Load More.
     };
     
 
-**ALM Done** - The almDone() function triggered after all posts have been loaded..
+**ALM Done** - The almDone() function is triggered after all posts have been loaded..
 
     $.fn.almDone = function(alm){
     	console.log('All posts have been loaded!');
